@@ -1,9 +1,11 @@
 # Verificación de la entrega 5.0
 
-El proyecto incluye una web estática lista para Pages y workflows de descarga,
-catálogo y publicación. No se ha desplegado en un repositorio del usuario ni se
-ha probado una descarga en la infraestructura de GitHub. Falta identificar ese
-repositorio para publicarlo.
+El proyecto incluye una web estática para Pages y workflows de descarga, catálogo
+y publicación. Los logs aportados identifican `SVN11X/extractor_exambase` y prueban
+que el workflow 5.0 se ejecutó en GitHub: conservó 5/103 preguntas y un artefacto
+antes del rechazo Cloudflare `600010`. El archivo **CORRECCIONES_5_0_1.md** describe
+la actualización local y el parche sobre su base real. La corrección no se ha
+subido ni ejecutado en el remoto desde esta entrega.
 
 ## Archivo de preguntas aportado
 
@@ -34,7 +36,7 @@ de las claves; no su corrección técnica o la vigencia del material.
 
 ## Comprobaciones del proyecto
 
-Pasaron 51 pruebas Python y 46 JavaScript. Se revisó la sintaxis de los workflows
+Pasaron 63 pruebas Python y 48 JavaScript en la versión 5.0.1. Se revisó la sintaxis de los workflows
 y de sus bloques Bash, y se generaron y reabrieron ZIP de prueba.
 
 El navegador verificó búsqueda, filtros, selección por URL, rechazo de dominios
@@ -47,6 +49,13 @@ propiedades serializadas, URLs ni almacenamiento del navegador. No se introdujer
 credenciales reales ni se inició un workflow desde esta entrega. Selenium se
 probó con el driver simulado y su parser contra los HTML reales; falta probar el
 arranque y el acceso al examen en el runner concreto.
+
+Las pruebas nuevas cubren el bloqueo de página 2 con conservación de 5 preguntas,
+reanudación sintética hasta 103/103 sin volver a pedir la página 1, prioridad de
+preguntas válidas frente a avisos antiguos, rechazo de scripts de otra página,
+recuperación de artefactos sin GitHub CLI y diagnóstico incluido en los hashes.
+Se verificó en navegador el selector de runner y sus requisitos; no se ejecutó
+una descarga real en un runner propio ni se superó Cloudflare con esta entrega.
 
 La cobertura completa no equivale a revisión académica completa. Las imágenes,
 los metadatos DOM y las explicaciones ausentes permanecen señalados en el informe.

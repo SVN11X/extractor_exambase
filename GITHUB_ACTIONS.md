@@ -10,9 +10,10 @@ Puedes elegir un examen, detectar su total de preguntas y páginas, recopilarlo,
 descargar imágenes, generar un ZIP y conservar resultados parciales. El flujo
 incluye reanudación desde el artefacto de una ejecución anterior del mismo examen.
 
-El flujo no se ha subido ni ejecutado en tu cuenta. Las pruebas locales utilizan
-archivos aportados y páginas simuladas; no demuestran que ExamBase acepte al
-servidor de GitHub.
+El registro aportado de la ejecución `41558984612` muestra que el flujo se ejecutó
+en GitHub, guardó 5/103 preguntas de Associate Data Practitioner y conservó el ZIP
+tras el rechazo Cloudflare `600010`. Las correcciones 5.0.1 se validan localmente;
+todavía no se han ejecutado en tu cuenta. Lee [CORRECCIONES_5_0_1.md](CORRECCIONES_5_0_1.md).
 
 **La limitación de Cloudflare sigue existiendo.** El servidor no tiene la sesión
 de tu Edge. El modo browser usa Chromium estándar de Playwright, sin técnicas de
@@ -69,6 +70,11 @@ en `bancos/` cuando activas `save_to_repo`.
 8. Activa **save_to_repo** si quieres guardar cada ejecución en Git. El workflow
    conserva ZIP, HTML, Markdown, JSONL, imágenes y originales en una carpeta por
    examen y ejecución. Si el repositorio es público, esos bancos serán públicos.
+9. **runner** permite `github` (predeterminado) o `self-hosted` (equipo propio ya
+   configurado con etiqueta `exambase`). Este último necesita sesión gráfica,
+   mantiene el navegador visible y requiere dejar el equipo encendido. La guía de
+   correcciones detalla su configuración; elegirlo no resuelve automáticamente
+   una verificación de acceso.
 
 El menú de Actions tiene tres ejemplos y un campo URL. El frontend de Pages
 incluye buscador, proveedor, URL personalizada, historial y revisión local del ZIP;

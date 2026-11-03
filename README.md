@@ -1,6 +1,8 @@
-# ExamBase · Archivo de estudio 5.0
+# ExamBase · Archivo de estudio 5.0.1
 
 Elige un examen en el frontend de **GitHub Pages**, inicia su recopilación en **GitHub Actions** y descarga un paquete para estudiar o usar con una IA. Puedes conservar cada ejecución en el repositorio y repetir el procedimiento con otro examen sin reinstalar la herramienta.
+
+La versión 5.0.1 corrige la detección de páginas que conservan scripts o avisos anteriores, añade diagnósticos de acceso y permite elegir un runner propio con navegador visible. El error Cloudflare `600010` observado en el registro de GitHub sigue siendo un rechazo de acceso del sitio: no se presenta como una descarga completa ni se reintenta automáticamente. Consulta [CORRECCIONES_5_0_1.md](CORRECCIONES_5_0_1.md) para aplicar el parche y reanudar.
 
 Empieza por [PUBLICAR_GITHUB_PAGES.md](PUBLICAR_GITHUB_PAGES.md). Para el motor remoto consulta [GITHUB_ACTIONS.md](GITHUB_ACTIONS.md). [LEEME.md](LEEME.md) mantiene las instrucciones de la extensión de Edge/Chrome para uso local.
 

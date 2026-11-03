@@ -102,6 +102,28 @@ def verification_error(source, core):
     return match.group(1) if match else "sin código visible"
 
 
+def current_question_page(source, url, number, exam, preferred=None):
+    """Acepta sólo preguntas completas de la URL y numeración solicitadas.
+
+    Una SPA puede conservar scripts iniciales o avisos ocultos de otra página.
+    El DOM correcto tiene prioridad sobre esos residuos. No resuelve desafíos.
+    """
+    import extractor as core
+    from descargar import detect_counts, validate_page
+    from selenium_support import soup_page
+    attempts = []
+    readers = ([lambda: preferred] if preferred else []) + [lambda: core.parse_page(source, url), lambda: soup_page(source, url)]
+    for read in readers:
+        try:
+            candidate = read()
+            metadata = exam if exam.get('total') else detect_counts(exam, candidate)
+            validate_page(metadata, candidate, number)
+            return candidate
+        except (core.ExtractionError, ValueError, KeyError, TypeError) as exc:
+            attempts.append(str(exc))
+    raise core.ExtractionError(attempts[-1] if attempts else 'No hay preguntas válidas de esta página.')
+
+
 class BrowserAssets:
     def __init__(self, context, core, delay):
         self.context, self.core, self.delay = context, core, delay

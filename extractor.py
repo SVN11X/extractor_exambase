@@ -43,7 +43,10 @@ class ExtractionError(Exception):
 
 
 class AccessStopped(ExtractionError):
-    pass
+    def __init__(self, message, *, kind="access_blocked", code=None, page=None, url=None):
+        super().__init__(message)
+        self.detail = {"kind": kind, "code": code, "page": page, "url": url,
+                       "message": str(message), "automatic_retry": False}
 
 
 class ChallengeRequired(AccessStopped):

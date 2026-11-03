@@ -213,7 +213,7 @@ def enrich(root, ocr=False, language="eng"):
     r['content_review_complete'] = not any((r.get('missing_explanations'), r.get('missing_or_special_answers'), r.get('unresolved_contexts'), r.get('dom_questions_requiring_context_review'), r.get('html_markers_requiring_review'), r.get('conflicts'), r.get('errors'), data.get('assets')))
     r['collection_complete'] = r['coverage_complete'] and r['content_review_complete'] and not r['images_failed']
     r['image_transcription_review_complete'] = not bool(data.get('assets'))
-    data['package_version'] = '5.0.0'
+    data['package_version'] = '5.0.1'
     ai = root / 'para_ia'
     ai.mkdir(exist_ok=True)
     (ai / 'preguntas.jsonl').write_text(''.join(json.dumps(ai_question(q, data['exam'], data.get('assets', {})), ensure_ascii=False) + '\n' for q in data['questions']), encoding='utf-8')

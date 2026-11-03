@@ -41,6 +41,7 @@ def persist(output, repository_root, run_id):
     shutil.copy2(output / 'estado_ejecucion.json', target / 'estado_ejecucion.json')
     data = json.loads((source / 'preguntas.json').read_text(encoding='utf-8'))
     entry = {'run_id': str(run_id), 'exam_key': key, 'exam': data['exam'], 'generated_at': data['report'].get('integrity_checked_at') or data.get('generated_at'), 'questions': state['questions'], 'coverage_complete': state['coverage_complete'], 'review_pending': state['review_pending'], 'zip_path': (relative / name).as_posix(), 'sha256': hashlib.sha256(archive.read_bytes()).hexdigest(), 'bytes': archive.stat().st_size}
+    entry.update(status=state.get('status', 'complete' if state['coverage_complete'] else 'partial'), failure=state.get('failure'), pages_saved=state.get('pages_saved', []), next_page=state.get('next_page'))
     index['runs'] = [entry] + index['runs']
     core.write_json(index_path, index)
     core.write_json(target / 'manifest_guardado.json', entry)

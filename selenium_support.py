@@ -62,8 +62,8 @@ class SeleniumAssets:
 
 
 class SeleniumSource:
-    def __init__(self, exam, output, delay):
-        self.exam, self.output, self.delay, self.last = exam, output, delay, 0
+    def __init__(self, exam, output, delay, *, headed=False):
+        self.exam, self.output, self.delay, self.last, self.headed = exam, output, delay, 0, headed
     def __enter__(self):
         try:
             from selenium import webdriver
@@ -72,7 +72,8 @@ class SeleniumSource:
             raise core.ExtractionError('Instala requirements_actions.txt para usar Selenium y Beautiful Soup.') from exc
         options = Options()
         options.page_load_strategy = 'eager'
-        options.add_argument('--headless=new')
+        if not self.headed:
+            options.add_argument('--headless=new')
         options.add_argument('--window-size=1365,900')
         self.driver = webdriver.Chrome(options=options)
         self.driver.set_page_load_timeout(60)
@@ -82,7 +83,7 @@ class SeleniumSource:
     def __exit__(self, *_):
         self.driver.quit()
     def page(self, number):
-        from browser_support import verification_error
+        from browser_support import verification_error, current_question_page
         from selenium.webdriver.common.by import By
         time.sleep(max(0, self.delay - (time.monotonic() - self.last)))
         self.last = time.monotonic()
@@ -94,12 +95,12 @@ class SeleniumSource:
         while time.monotonic() < deadline:
             text = self.driver.page_source
             target.write_text(text, encoding='utf-8')
-            failure = verification_error(text, core)
-            if failure:
-                raise core.AccessStopped('Verificación rechazada: '+failure)
             try:
-                page = core.parse_page(text, self.driver.current_url)
+                page = current_question_page(text, self.driver.current_url, number, self.exam)
             except core.ExtractionError:
+                failure = verification_error(text, core)
+                if failure:
+                    raise core.AccessStopped('Cloudflare rechazó la verificación en la página '+str(number)+' (código '+failure+').', kind='verification_rejected', code=failure, page=number, url=self.driver.current_url)
                 time.sleep(1)
                 continue
             if page['parser'] == 'dom':
@@ -110,6 +111,6 @@ class SeleniumSource:
                 time.sleep(.7)
                 text = self.driver.page_source
                 target.write_text(text, encoding='utf-8')
-                page = soup_page(text, self.driver.current_url)
+                page = current_question_page(text, self.driver.current_url, number, self.exam)
             return page
-        raise core.AccessStopped('Las preguntas no aparecieron en 60 segundos. Se conserva el resultado parcial para reanudar.')
+        raise core.AccessStopped('Las preguntas no aparecieron en 60 segundos. Se conserva el resultado parcial para reanudar.', kind='access_timeout', page=number, url=self.driver.current_url)

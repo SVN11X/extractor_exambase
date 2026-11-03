@@ -6,9 +6,11 @@ reanudar otra ejecución, sin almacenar perfiles ni cookies del navegador.
 """
 from __future__ import annotations
 import argparse
+import functools
 import hashlib
 import json
 import math
+import os
 import re
 import time
 import urllib.parse
@@ -116,8 +118,8 @@ class HttpSource:
 
 
 class BrowserSource:
-    def __init__(self, exam, output, delay):
-        self.exam, self.output, self.delay = exam, output, delay
+    def __init__(self, exam, output, delay, *, headed=False):
+        self.exam, self.output, self.delay, self.headed = exam, output, delay, headed
     def __enter__(self):
         try:
             from playwright.sync_api import sync_playwright
@@ -127,7 +129,7 @@ class BrowserSource:
         self.choose_page, self.network_payloads, self.verification_error = choose_page, network_payloads, verification_error
         self.pw = sync_playwright().start()
         try:
-            self.browser = self.pw.chromium.launch(headless=True)
+            self.browser = self.pw.chromium.launch(headless=not self.headed)
             self.context = self.browser.new_context()
             self.tab = self.context.new_page()
             self.received = []
@@ -150,6 +152,7 @@ class BrowserSource:
         except Exception:
             pass
     def page(self, number):
+        from browser_support import current_question_page
         url = self.exam["base"] + str(number)
         self.received.clear()
         time.sleep(max(0, self.delay - (time.monotonic() - self.last_navigation)))
@@ -162,16 +165,14 @@ class BrowserSource:
             target = self.output / "paginas_originales" / f"pagina_{number:05}.html"
             target.parent.mkdir(exist_ok=True)
             target.write_text(text, encoding="utf-8")
-            failure = self.verification_error(text, core)
-            if failure:
-                raise core.AccessStopped(f"Verificación rechazada ({failure}) en página {number}. GitHub Actions no puede pedir intervención en ese navegador.")
-            page = self.choose_page(self.received, number, url)
-            if page is None:
-                try:
-                    page = core.parse_page(text, url)
-                except core.ExtractionError as exc:
-                    last = str(exc)
-            if page and page["payload"]["result"].get("page") == number:
+            current_url = self.tab.url
+            preferred = self.choose_page(self.received, number, current_url)
+            try:
+                page = current_question_page(text, current_url, number, self.exam, preferred)
+            except core.ExtractionError as exc:
+                last = str(exc)
+                page = None
+            if page:
                 if page["parser"] == "dom":
                     for button in self.tab.get_by_role("button", name="Reveal Answer", exact=True).all():
                         if button.is_visible():
@@ -179,10 +180,13 @@ class BrowserSource:
                     self.tab.wait_for_timeout(600)
                     text = self.tab.content()
                     target.write_text(text, encoding="utf-8")
-                    page = self.choose_page(self.received, number, url) or core.parse_page(text, url)
+                    page = current_question_page(text, self.tab.url, number, self.exam, self.choose_page(self.received, number, self.tab.url))
                 return page
+            failure = self.verification_error(text, core)
+            if failure:
+                raise core.AccessStopped(f"Cloudflare rechazó la verificación en la página {number} (código {failure}).", kind='verification_rejected', code=failure, page=number, url=current_url)
             self.tab.wait_for_timeout(1000)
-        raise core.AccessStopped("La página requiere acceso o verificación que no se completó en 60 segundos. " + last)
+        raise core.AccessStopped("La página requiere acceso o verificación que no se completó en 60 segundos. " + last, kind='access_timeout', page=number, url=self.tab.url)
 
 
 def run(args, source_factory=None):
@@ -211,11 +215,13 @@ def run(args, source_factory=None):
         factory = source_factory
     elif args.mode == "selenium":
         from selenium_support import SeleniumSource
-        factory = SeleniumSource
+        factory = functools.partial(SeleniumSource, headed=getattr(args, 'headed', False))
     else:
-        factory = BrowserSource if args.mode == "browser" else HttpSource
+        factory = functools.partial(BrowserSource, headed=getattr(args, 'headed', False)) if args.mode == "browser" else HttpSource
     started = time.monotonic()
     stopped = None
+    failure = None
+    number = 1
     try:
         with factory(exam, output, args.delay) as source:
             assets.downloader = source.assets
@@ -239,6 +245,10 @@ def run(args, source_factory=None):
                         stopped = "Se alcanzó el límite de páginas solicitado; puede reanudarse desde este ZIP."
                     break
                 number += 1
+    except core.AccessStopped as exc:
+        stopped = str(exc)
+        failure = {**exc.detail, 'page': exc.detail.get('page') or number, 'url': exc.detail.get('url') or exam['base']+str(number)}
+        archive.errors.append({'page': number, 'issue': stopped, 'kind': failure['kind'], 'code': failure['code']})
     except (core.ExtractionError, OSError, ValueError, KeyError, TypeError) as exc:
         stopped = str(exc)
         archive.errors.append({"page": len(archive.pages) + 1, "issue": stopped})
@@ -264,11 +274,29 @@ def run(args, source_factory=None):
     from paquetes import enrich
     data = enrich(output, ocr=getattr(args, "ocr", False))
     report = data["report"]
-    result_zip = core.create_zip(output)
+    # add_page registra el HTML antes de recuperar imágenes: sólo contar una
+    # página cuando se conservaron todas sus preguntas, incluso si falla un recurso.
+    saved_pages = [n for n in report['pages_present'] if all(q in archive.questions for q in range((n-1)*exam['per_page']+1, min(n*exam['per_page'], total)+1))]
+    next_page = next((p for p in range(1, pages+1) if p not in saved_pages), None) if pages else 1
     success = report["coverage_complete"] and not archive.errors and not report["images_failed"]
-    state = {"exam": exam, "mode": args.mode, "questions": len(archive.questions), "coverage_complete": report["coverage_complete"], "execution_complete": success, "stopped_reason": stopped, "zip": result_zip.name, "review_pending": not report["collection_complete"]}
+    status = 'complete' if success else 'blocked' if failure else 'partial' if saved_pages else 'failed'
+    diagnostic = {'status': status, 'failure': failure, 'pages_saved': saved_pages, 'next_page': next_page}
+    core.write_json(output / 'diagnostico_acceso.json', diagnostic)
+    integrity_path = output / 'integridad_sha256.json'
+    integrity = json.loads(integrity_path.read_text(encoding='utf-8'))
+    integrity['files']['diagnostico_acceso.json'] = hashlib.sha256((output / 'diagnostico_acceso.json').read_bytes()).hexdigest()
+    core.write_json(integrity_path, integrity)
+    result_zip = core.create_zip(output)
+    state = {"exam": exam, "mode": args.mode, "questions": len(archive.questions), "coverage_complete": report["coverage_complete"], "execution_complete": success, "stopped_reason": stopped, "zip": result_zip.name, "review_pending": not report["collection_complete"], 'status': status, 'failure': failure, 'pages_saved': saved_pages, 'next_page': next_page, 'resume_supported': bool(saved_pages and exam.get('total')), 'runner_environment': os.environ.get('RUNNER_ENVIRONMENT', 'local')}
     core.write_json(args.output / "estado_ejecucion.json", state)
     print(json.dumps(state, ensure_ascii=False, indent=2), flush=True)
+    if failure:
+        label = 'Acceso rechazado por el sitio' if failure['kind'] == 'verification_rejected' else 'Acceso sin completar'
+        hint = f"{label} en página {failure['page']}; {len(archive.questions)}/{exam.get('total') or '?'} preguntas conservadas. Código: {failure.get('code') or failure['kind']}. El ZIP parcial permite reanudar; repetir con el mismo cliente puede volver a bloquearse."
+        if os.environ.get('GITHUB_ACTIONS') == 'true':
+            print('::error title='+label+'::'+hint.replace('%','%25').replace('\r','%0D').replace('\n','%0A'), flush=True)
+        else:
+            print(hint, flush=True)
     return 0 if success else 2
 
 
@@ -283,6 +311,7 @@ def main(argv=None):
     parser.add_argument("--max-minutes", type=float, default=300)
     parser.add_argument("--resume-from", type=Path)
     parser.add_argument("--ocr", action="store_true", help="Transcribir imágenes con Tesseract, siempre sin verificar")
+    parser.add_argument("--headed", action="store_true", help="Navegador visible en un equipo con sesión gráfica, sin resolución automática de verificaciones")
     args = parser.parse_args(argv)
     if not math.isfinite(args.delay) or not math.isfinite(args.max_minutes) or args.delay < 5 or args.delay > 120 or args.page_limit < 0 or args.max_minutes <= 0:
         parser.error("delay debe estar entre 5 y 120; page-limit no puede ser negativo; max-minutes debe ser positivo")

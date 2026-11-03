@@ -1,4 +1,4 @@
-import {filterExams,parseExamUrl,downloadInputs,runStatus,summary} from './model.mjs';
+import {filterExams,parseExamUrl,downloadInputs,runStatus,bankStatus,summary} from './model.mjs';
 import {GitHub} from './github-api.mjs';
 import {inspectBytes} from './zip.mjs';
 const $=id=>document.getElementById(id), state={catalog:null,selected:null,api:null,tab:'runs',runs:[],banks:[],timer:null,busy:false,generation:0,pending:null,artifacts:new Map(),catalogRequest:null};
@@ -66,7 +66,7 @@ function renderResults() {
   $('runs-empty').hidden=items.length>0 || !!state.pending;
   if(state.pending) {const card=el('article','run-card');append(card,el('div','',`Solicitud aceptada: ${state.pending.name}. Esperando a que GitHub publique la ejecución…`));list.append(card);}
   for(const item of items) {
-    const run=state.tab==='runs',status=run?runStatus(item):{text:item.coverage_complete?'Cobertura completa':'Cobertura parcial',style:item.coverage_complete?'':'error'},card=el('article','run-card'),body=el('div'),links=el('div','run-links');
+    const run=state.tab==='runs',status=run?runStatus(item):bankStatus(item),card=el('article','run-card'),body=el('div'),links=el('div','run-links');
     const title=run ? (saved('requests',{})[item.display_title?.match(/\[([\w-]+)\]/)?.[1]]?.name || item.display_title?.split(' [')[0] || 'Descarga de examen') : item.exam?.name || item.exam_key;
     append(body,el('span','badge '+status.style,status.text),el('h3','',title),el('p','run-meta',run?`Ejecución #${item.run_number} · ${new Date(item.created_at).toLocaleString('es')}`:`${item.questions} preguntas · ${new Date(item.generated_at).toLocaleString('es')}`));
     if(run) {
@@ -76,6 +76,7 @@ function renderResults() {
       if(item.status==='completed'){const b=el('button','text-btn','Reanudar desde aquí');b.addEventListener('click',()=>{$('resume-id').value=item.id;location.hash='catalogo';notice('ID de respaldo seleccionado. Elige el mismo examen antes de iniciar.');});links.append(b);}
       if(status.active)body.append(el('div','run-status-bar'));
     } else {try {links.append(link('Descargar ZIP ↓',api.bankUrl(item.zip_path),'btn primary'));}catch(error){body.append(el('p','error-text',error.message));} if(item.review_pending)body.append(el('p','run-meta','Hay contenido que requiere revisión. Consulta el informe incluido.')); const again=el('button','text-btn','Volver a preparar');again.addEventListener('click',()=>{try{const exam=parseExamUrl(item.exam.base+'1');choose({id:exam.key,url:exam.base+'1',name:item.exam.name || exam.name,vendor:item.exam.vendor || exam.vendor,vendor_slug:exam.vendor,questions:item.exam.total});$('resume-id').value='';location.hash='catalogo';}catch(error){notice(error.message,true);}});links.append(again);}
+    if(!run && item.failure){body.append(el('p','run-meta',`Acceso rechazado en página ${item.failure.page ?? '?'}. Próxima página pendiente: ${item.next_page ?? 'revisar informe'}.`));const resume=el('button','text-btn','Reanudar este banco');resume.addEventListener('click',()=>{try{const exam=parseExamUrl(item.exam.base+'1');choose({id:exam.key,url:exam.base+'1',name:item.exam.name || exam.name,vendor:item.exam.vendor || exam.vendor,vendor_slug:exam.vendor,questions:item.exam.total});if(!/^\d+$/.test(item.run_id))throw Error('El banco no conserva un ID de ejecución válido.');$('resume-id').value=item.run_id;location.hash='catalogo';notice('Se seleccionó el examen y su respaldo. Elige el entorno de ejecución antes de continuar.');}catch(error){notice(error.message,true);}});links.append(resume);}
     append(card,body,links);list.append(card);
   }
 }
@@ -97,7 +98,7 @@ async function start() {
   if(!state.api){openConnect();return;}
   $('start').disabled=true;
   try {
-    const id=crypto.randomUUID(),inputs=downloadInputs(state.selected,{mode:$('engine').value,delay:$('delay').value,resume:$('resume-id').value,save:$('save-repo').checked},id);
+    const id=crypto.randomUUID(),inputs=downloadInputs(state.selected,{mode:$('engine').value,delay:$('delay').value,resume:$('resume-id').value,save:$('save-repo').checked,runner:$('runner').value},id);
     await state.api.dispatch('descargar-examen.yml',inputs);state.pending={id,name:state.selected.name,time:Date.now()};
     const requests=saved('requests',{});requests[id]={name:state.selected.name,exam:state.selected.id};remember('requests',Object.fromEntries(Object.entries(requests).slice(-100)));
     location.hash='descargas';notice('Solicitud enviada a GitHub. Puedes cerrar la página; la ejecución continuará en Actions.');renderResults();await refresh();
@@ -132,6 +133,7 @@ $('disconnect').addEventListener('click',()=>{disconnected();$('connect-dialog')
 for(const id of ['custom-open','empty-custom'])$(id).addEventListener('click',()=>{$('custom-error').textContent='';$('custom-dialog').showModal();});
 $('custom-close').addEventListener('click',()=>$('custom-dialog').close());$('custom-form').addEventListener('submit',event=>{event.preventDefault();try {const exam=parseExamUrl($('custom-url').value);choose({id:exam.key,url:exam.base+'1',name:exam.name,vendor:exam.vendor,vendor_slug:exam.vendor,questions:null});$('custom-dialog').close();notice('Examen seleccionado. El total de preguntas se detectará durante la ejecución.');}catch(error){$('custom-error').textContent=error.message;}});
 $('start').addEventListener('click',start);$('search').addEventListener('input',renderCatalog);$('vendor').addEventListener('change',renderCatalog);
+$('runner').addEventListener('change',()=>{$('runner-hint').textContent=$('runner').value==='self-hosted'?'Requiere un runner configurado con etiqueta exambase, equipo encendido y sesión gráfica abierta. El navegador será visible; una verificación todavía puede requerir atención.':'GitHub puede ejecutar la descarga sin tu ordenador. Una verificación de acceso puede dejar un resultado parcial.';});
 document.querySelectorAll('[data-vendor]').forEach(n=>n.addEventListener('click',()=>{$('vendor').value=n.dataset.vendor;renderCatalog();}));
 $('show-runs').addEventListener('click',()=>{state.tab='runs';renderResults();});$('show-banks').addEventListener('click',()=>{state.tab='banks';renderResults();});$('refresh-runs').addEventListener('click',refresh);$('update-catalog').addEventListener('click',updateCatalog);$('inspect-file').addEventListener('change',inspect);
 window.addEventListener('hashchange',route);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});

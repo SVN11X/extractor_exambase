@@ -30,7 +30,7 @@ En `edge://extensions` o `chrome://extensions`, activa **Modo de desarrollador**
 
 La extensión conserva las mejoras de la versión 3.2: proceso de fondo, alarmas, reintentos de pestañas temporalmente ocupadas, checkpoints, prevención opcional de suspensión automática y descarga del ZIP sin mantener abierto el panel. Deja el navegador y el equipo encendidos. Una verificación con un fallo explícito o que no llegue a mostrar las preguntas sigue pudiendo requerir atención personal.
 
-Para ejecutar en un servidor sin tu PC, sigue **GITHUB_ACTIONS.md**. El flujo está incluido en `.github/workflows/descargar-examen.yml`, pero **no se ha publicado ni probado en tu cuenta**. Si Cloudflare bloquea el servidor, guarda el resultado parcial y se detiene: no resuelve CAPTCHAs. Para un acceso fiable en ese caso, el dueño del sitio tendría que facilitar una exportación/API o permitir la automatización.
+Para ejecutar en un servidor sin tu PC, sigue **GITHUB_ACTIONS.md**. Los logs aportados muestran una ejecución real con rechazo Cloudflare `600010` tras 5/103 preguntas. Las correcciones 5.0.1 todavía deben aplicarse al remoto; consulta **CORRECCIONES_5_0_1.md**. Si el sitio rechaza el acceso, se guarda un parcial. También puedes configurar un runner propio con navegador visible, que requiere dejar el equipo encendido; tampoco garantiza superar una verificación.
 
 ## Resultado
 
@@ -50,4 +50,4 @@ La transcripción de imágenes y revisión de diagramas queda pendiente. No se i
 - `GITHUB_ACTIONS.md`: instrucciones de configuración, ejecución y límites.
 - Herramientas anteriores y muestra: se conservan por compatibilidad; la muestra contiene sólo cinco preguntas.
 
-Se verificaron 46 pruebas JavaScript y 51 pruebas Python, además de la sintaxis YAML/Bash de los workflows. Incluyen separación de exámenes, conservación del progreso anterior, reanudación de parciales, guardado de versiones, JSONL, hashes, API de GitHub simulada e integridad de ZIP. Se probó el ZIP real de 349 preguntas en el inspector del frontend; sus pendientes se detallan en **VERIFICACION.md**. Esto no equivale a una ejecución real del workflow en tu cuenta.
+Se verificaron 48 pruebas JavaScript y 63 pruebas Python, además de la sintaxis YAML/Bash de los workflows. Incluyen separación de exámenes, conservación del progreso, reanudación de parciales, diagnóstico de acceso, recuperación sin GitHub CLI, guardado de versiones, JSONL, hashes, API simulada e integridad de ZIP. Se probó anteriormente el ZIP real de 349 preguntas en el inspector; sus pendientes se detallan en **VERIFICACION.md**. La reanudación hasta 103/103 se verificó con datos sintéticos y no demuestra superar Cloudflare en el sitio.

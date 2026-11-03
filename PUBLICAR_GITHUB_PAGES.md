@@ -55,4 +55,4 @@ Actions ejecuta el proceso sin tu ordenador, siempre que la web entregue el cont
 
 Referencias oficiales: [Pages con workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages), [Selenium Manager](https://www.selenium.dev/documentation/selenium_manager/), [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) y [limitaciones de undetected-chromedriver](https://github.com/ultrafunkamsterdam/undetected-chromedriver#what-this-is-not).
 
-El ZIP completo se entrega sin parche `git am`: no se proporcionó un repositorio/base con historial Git. Para producir un parche aplicable hace falta el repositorio real y su commit de partida.
+La entrega 5.0.1 incluye ZIP completo y parche `git am` sobre el commit real `a3842cc294dac1449408d3fa73bb55f211d8998f` de `SVN11X/extractor_exambase`. Consulta **CORRECCIONES_5_0_1.md** para aplicarlo, configurar un runner propio o reanudar el parcial del registro.

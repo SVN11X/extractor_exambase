@@ -1,5 +1,5 @@
 name: Descargar examen de ExamBase
-run-name: ${{ inputs.exam_label || 'ExamBase — descarga seleccionada' }} [${{ inputs.request_id || github.run_number }}]
+run-name: ${{ inputs.exam_label || inputs.exam || 'ExamBase — descarga seleccionada' }} [${{ inputs.request_id || github.run_number }}]
 
 on:
   workflow_dispatch:
@@ -51,6 +51,11 @@ on:
         description: Conservar una versión del resultado en bancos/ (visible si el repositorio es público)
         type: boolean
         default: false
+      runner:
+        description: github usa el servidor de GitHub; self-hosted requiere un runner propio con etiqueta exambase
+        type: choice
+        default: github
+        options: [github, self-hosted]
 
 permissions:
   contents: write
@@ -62,8 +67,11 @@ concurrency:
 
 jobs:
   descargar:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runner == 'self-hosted' && fromJSON('["self-hosted", "exambase"]') || 'ubuntu-latest' }}
     timeout-minutes: 330
+    defaults:
+      run:
+        shell: bash
     env:
       EXAM_URL: ${{ inputs.exam_url }}
       EXAM_LABEL: ${{ inputs.exam_label }}
@@ -72,6 +80,7 @@ jobs:
       EXAM_DELAY: ${{ inputs.delay }}
       EXAM_LIMIT: ${{ inputs.page_limit }}
       RESUME_RUN_ID: ${{ inputs.resume_run_id }}
+      EXAM_RUNNER: ${{ inputs.runner }}
       PYTHONUNBUFFERED: "1"
     steps:
       - uses: actions/checkout@v6
@@ -86,33 +95,20 @@ jobs:
       - name: Preparar navegador (sólo modo browser)
         if: inputs.mode == 'browser'
         run: |
-          python -m playwright install --with-deps chromium
+          if [[ "$EXAM_RUNNER" == 'self-hosted' ]]; then
+            python -m playwright install chromium
+          else
+            python -m playwright install --with-deps chromium
+          fi
       - name: Preparar transcripción OCR
+        if: runner.environment == 'github-hosted' && runner.os == 'Linux'
         continue-on-error: true
         run: sudo apt-get update && sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
       - name: Recuperar respaldo de otra ejecución
         if: inputs.resume_run_id != ''
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          if [[ ! "$RESUME_RUN_ID" =~ ^[0-9]+$ ]]; then
-            echo "El ID de ejecución debe contener sólo números."
-            exit 1
-          fi
-          if ! gh run download "$RESUME_RUN_ID" --name exambase-resultado --dir respaldo; then
-            python - <<'PY'
-          import json, os, shutil
-          from pathlib import Path
-          index=Path('bancos/index.json')
-          entries=json.loads(index.read_text()).get('runs', []) if index.exists() else []
-          found=next((r for r in entries if r['run_id']==os.environ['RESUME_RUN_ID']), None)
-          if not found: raise SystemExit('El respaldo caducó y no hay copia guardada en el repositorio.')
-          path=Path(found['zip_path']).resolve()
-          if not path.is_relative_to(Path('bancos').resolve()) or not path.is_file(): raise SystemExit('Ruta de respaldo inválida.')
-          Path('respaldo').mkdir(exist_ok=True)
-          shutil.copy2(path, Path('respaldo')/path.name)
-          PY
-          fi
+        run: python recuperar_respaldo.py --run-id "$RESUME_RUN_ID" --output respaldo
       - name: Recopilar el examen seleccionado
         run: |
           case "$EXAM_PRESET" in
@@ -124,7 +120,9 @@ jobs:
           esac
           resume=()
           if [[ -n "$RESUME_RUN_ID" ]]; then resume=(--resume-from respaldo); fi
-          python descargar.py --exam-url "$EXAM_URL" --exam-name "$EXAM_LABEL" --mode "$EXAM_MODE" --delay "$EXAM_DELAY" --page-limit "$EXAM_LIMIT" --max-minutes 300 --output salida --ocr "${resume[@]}"
+          display=()
+          if [[ "$EXAM_RUNNER" == 'self-hosted' && "$EXAM_MODE" != 'http' ]]; then display=(--headed); fi
+          python descargar.py --exam-url "$EXAM_URL" --exam-name "$EXAM_LABEL" --mode "$EXAM_MODE" --delay "$EXAM_DELAY" --page-limit "$EXAM_LIMIT" --max-minutes 300 --output salida --ocr "${resume[@]}" "${display[@]}"
       - name: Conservar resultado completo o parcial
         if: always()
         uses: actions/upload-artifact@v6
@@ -151,14 +149,24 @@ jobs:
         run: |
           if [[ -f salida/estado_ejecucion.json ]]; then
             python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
-          import json
+          import json, os
           from pathlib import Path
           d=json.loads(Path('salida/estado_ejecucion.json').read_text())
           print('## Resultado de ExamBase')
           print(f"Preguntas conservadas: **{d['questions']}**")
+          print(f"Estado: **{d.get('status', 'partial')}**")
+          print(f"Páginas guardadas: **{len(d.get('pages_saved', []))}/{d['exam'].get('pages', '?')}**")
           print(f"Cobertura completa: **{d['coverage_complete']}**")
           print(f"Revisión de contenido pendiente: **{d['review_pending']}**")
           if d.get('stopped_reason'): print('\nMotivo de la parada: ' + d['stopped_reason'])
+          failure=d.get('failure') or {}
+          if failure:
+              print(f"\nCódigo de acceso: **{failure.get('code') or failure.get('kind')}**. Página: **{failure.get('page')}**.")
+              print('\nLa página no entregó el contenido necesario. La ejecución conserva el parcial; no se considera una descarga completa. No se reintenta automáticamente el desafío.')
+          if d.get('resume_supported'):
+              print(f"\nPara reanudar selecciona el mismo examen y usa **resume_run_id = {os.environ['GITHUB_RUN_ID']}**. Próxima página: **{d.get('next_page') or 'revisar imágenes'}**.")
+          if failure and os.environ.get('EXAM_RUNNER') != 'self-hosted':
+              print('\nRepetir con el mismo cliente puede volver a ser rechazado. El modo self-hosted usa tu equipo con navegador visible y requiere configurarlo previamente; tampoco garantiza superar verificaciones. Para acceso desatendido fiable se necesita una vía habilitada por el propietario.')
           print('\nDescarga el artefacto **exambase-resultado**. No incluye perfiles ni cookies del navegador.')
           PY
           fi

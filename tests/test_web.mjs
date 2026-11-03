@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {downloadInputs,filterExams,summary,runStatus} from '../web/model.mjs';
+import {downloadInputs,filterExams,summary,runStatus,bankStatus} from '../web/model.mjs';
 import {GitHub} from '../web/github-api.mjs';
 import {inspectBytes,readZip} from '../web/zip.mjs';
 import {zipBytes,textFromHtml} from '../extension_navegador/core.mjs';
@@ -19,6 +19,16 @@ test('inputs dinámicos usan la URL elegida y separan guardado de reanudación',
 test('una ejecución exitosa no se presenta como validación de contenido',()=>{
   assert.equal(runStatus({status:'completed',conclusion:'success'}).text,'Ejecución terminada');
   assert.match(runStatus({status:'completed',conclusion:'failure'}).text,/parcial/);
+});
+test('runner propio se envía explícitamente y se rechazan entornos desconocidos',()=>{
+  const d=downloadInputs(exam,{mode:'selenium',delay:10,resume:'41558984612',save:true,runner:'self-hosted'},'request');
+  assert.equal(d.runner,'self-hosted');assert.equal(d.resume_run_id,'41558984612');
+  assert.throws(()=>downloadInputs(exam,{mode:'selenium',delay:10,resume:'',runner:'external'},'request'),/entorno/i);
+});
+test('el historial distingue un rechazo de acceso de cobertura parcial',()=>{
+  assert.equal(bankStatus({status:'blocked',failure:{code:'600010'},coverage_complete:false}).text,'Acceso bloqueado · 600010');
+  assert.equal(bankStatus({coverage_complete:false}).text,'Cobertura parcial');
+  assert.equal(bankStatus({coverage_complete:true}).text,'Cobertura completa');
 });
 test('API mantiene el token fuera de propiedades públicas, rutas y errores',async()=>{
   const calls=[]; const api=new GitHub('usuario','repo','TEST_SECRET',async(url,options)=>{calls.push({url,options});return {ok:true,status:204};});
