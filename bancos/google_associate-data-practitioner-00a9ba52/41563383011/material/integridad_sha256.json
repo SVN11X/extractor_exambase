@@ -1,0 +1,31 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "LEEME.md": "2be7adc4d6194ca66506a4c9c5e23ee6f566a64b17f5283e5a28287080cbae52",
+    "capturas/pagina_00001.json": "2f93e05b0b06d43a1b736b1096b8043120eca90ccbc977d18db7bea1d034830c",
+    "datos_originales/pagina_1_001.json": "30764df2a19becd915b1a4189361c937dede6d481d56ba73e41ce62312d00d16",
+    "imagenes/0b95e1df0a09dec6055c.png": "1366a3ac1a47d5a0487101d4732b09eb9db2811a5424e0566fafaf1399beead1",
+    "imagenes/3518bc4909c52da9c2d1.png": "7a2a718a597c05ef91667d9a607898cc902c5c60327ac8c97765876f3382c15b",
+    "imagenes/4c50d99fe62664b001b1.png": "a1d4d017391d8c65a90b8fc9302ab13cca169c9ce3d4fe76d36a7b59b0378b3e",
+    "imagenes/56cf9bdf9bd9fe07e4dd.png": "1721f34eeec016e8d21585f0848f29ec18e1bf5fa25cb0bd2812dccdedfef6f6",
+    "imagenes/6b6933e85ad787c52abf.png": "a544b1f75348a79b036744bfe9a860dc7f6fb1ddccce55f96cdad203a56369e6",
+    "imagenes/aa8c10fa2f5c10bcf192.png": "590d6782604de3c9257b323fcab5719a7c8dfa2270bae10007b8733fcce00e46",
+    "imagenes/d4d1e2f7aa571954f0e7.png": "5b240f968edc520187414e9adb578293939f75df5bebff1ecea4b0f986aed6b8",
+    "imagenes/dbac30816517d1e3960b.png": "f4c7c5fceff4ace0293d9564a6e7fb044dba2535bdb96b3c5df025d6e39fef39",
+    "informe_validacion.json": "b66372620b39b817e98894b474764b3afc97ea26b95886abe8ee95867974b9c3",
+    "lector.js": "7fd8b9fb8fd8ff1b30ac888e1f612e2cc52cdcc3bd70a357abc517f718c7d6d5",
+    "manifest_examen.json": "24771605c29a46e456e5ec2f6ceedcd349fd73d8f8b641d4292d1804cc88f508",
+    "paginas_originales/pagina_00001.html": "b396d932d6de1f50a83f18795597e580a703af7a9a2865773a3504756b9fc796",
+    "paginas_originales/pagina_00002.html": "3336603dfa56b662fbbb28ed7270265ab41f4d7fea10898661b1ac8945ba1998",
+    "para_ia/LEEME_IA.md": "c41e4cfb1c921be570e8a2e57bce132287694cafed58a232cc73dfdefba9d727",
+    "para_ia/contextos.json": "bb96778948e4c6524d7dbc9a8ba33b031e7264d90708a95ebf9dbeec85e9ecd9",
+    "para_ia/imagenes.json": "53d337dbe32e0e725f3fbd3babb312cc403826d02216db5c3daccf5148d1e778",
+    "para_ia/informe_validacion.json": "b66372620b39b817e98894b474764b3afc97ea26b95886abe8ee95867974b9c3",
+    "para_ia/preguntas.jsonl": "75fc299225556eaca85fa1bda41f4db4934c30860657b301f244ddbd8bab0251",
+    "preguntas.html": "ec46f7c3c9a2d610cf982cee72733152605fee3136f7c78fd969596736a1430a",
+    "preguntas.json": "7d0825165baf416aa2b28621b9f8bf623af6deaa0c890146553ac43b2cbffc5e",
+    "preguntas.md": "a70ccbf67aff8c2f5ec4d28de18d6a4911c0db22126be81c8ff75ec40a5331ac",
+    "diagnostico_acceso.json": "e209bcdb4e8e2ee522c74692f8b9324453a5a4631ec67968dde10cf9ddb8bd36"
+  },
+  "meaning": "Conservación de bytes; no valida exactitud técnica."
+}

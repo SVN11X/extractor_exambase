@@ -1,0 +1,15 @@
+{
+  "status": "blocked",
+  "failure": {
+    "kind": "verification_rejected",
+    "code": "600010",
+    "page": 2,
+    "url": "https://www.exambase.com/exams/google/associate-data-practitioner/practice-questions/2",
+    "message": "Cloudflare rechazó la verificación en la página 2 (código 600010).",
+    "automatic_retry": false
+  },
+  "pages_saved": [
+    1
+  ],
+  "next_page": 2
+}

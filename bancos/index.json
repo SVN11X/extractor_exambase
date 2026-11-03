@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "runs": [
+    {
+      "run_id": "41563383011",
+      "exam_key": "google/associate-data-practitioner",
+      "exam": {
+        "key": "google/associate-data-practitioner",
+        "vendor": "google",
+        "slug": "associate-data-practitioner",
+        "name": "associate data practitioner",
+        "base": "https://www.exambase.com/exams/google/associate-data-practitioner/practice-questions/",
+        "total": 103,
+        "pages": 21,
+        "per_page": 5
+      },
+      "generated_at": "2026-11-03T02:01:29.633237+00:00",
+      "questions": 5,
+      "coverage_complete": false,
+      "review_pending": true,
+      "zip_path": "bancos/google_associate-data-practitioner-00a9ba52/41563383011/resultado_google_associate-data-practitioner.zip",
+      "sha256": "ca9f36ff438a43063050974837b8f7222665076ebb5b6a6d02809d5f01fb9213",
+      "bytes": 758232,
+      "status": "blocked",
+      "failure": {
+        "kind": "verification_rejected",
+        "code": "600010",
+        "page": 2,
+        "url": "https://www.exambase.com/exams/google/associate-data-practitioner/practice-questions/2",
+        "message": "Cloudflare rechazó la verificación en la página 2 (código 600010).",
+        "automatic_retry": false
+      },
+      "pages_saved": [
+        1
+      ],
+      "next_page": 2
+    }
+  ]
+}
