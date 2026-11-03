@@ -13,35 +13,14 @@ from pathlib import Path
 
 import extractor as core
 from browser_support import current_question_page, verification_error
+from capture_support import capture_script
+from access_diagnostics import classify_access, annotate_access
 
 MAX_RESPONSE = 40 * 1024**2
 MAX_ASSET = 20 * 1024**2
 
-# Sólo controles de contenido del examen. No pulsa widgets de verificación.
-CAPTURE_JS = r'''return (async () => {
-  for (const button of document.querySelectorAll('button')) {
-    if (button.textContent.trim() === 'Reveal Answer' && button.getClientRects().length) button.click();
-  }
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  const images = [];
-  const deadline = Date.now() + 14000;
-  let bytes = 0;
-  const urls = [...new Set([...document.images].map(i => i.currentSrc || i.src))];
-  for (const url of urls.slice(0, 128)) {
-    if (Date.now() > deadline) break;
-    if (new URL(url, location.href).origin !== location.origin) continue;
-    try {
-      const response = await fetch(url, {credentials: 'same-origin', signal:AbortSignal.timeout(3000)});
-      if (!response.ok) {images.push({url, status:response.status}); continue;}
-      const blob = await response.blob(); if (blob.size > 20*1024*1024) continue;
-      if (bytes + blob.size > 20*1024*1024) continue;
-      bytes += blob.size;
-      const data = await new Promise((resolve,reject) => {const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(blob);});
-      images.push({url, data});
-    } catch { images.push({url, status:0}); }
-  }
-  return JSON.stringify({url:location.href, html:document.documentElement.outerHTML, images});
-})();'''
+# Compatibilidad de importación; las opciones reales se calculan por página.
+CAPTURE_JS = 'return '+capture_script(1,{})
 
 
 def solver_endpoint(value):
@@ -87,7 +66,11 @@ class SolverClient:
         self.version = result.get('version')
         if result.get('status') != 'ok':
             code = re.search(r'\b([36]\d{5})\b', str(result.get('message', '')))
-            raise core.AccessStopped('El solver no consiguió entregar el contenido solicitado.', kind='solver_rejected', code=code[1] if code else None)
+            message=str(result.get('message',''))
+            kind='solver_timeout' if re.search(r'timeout|timed out',message,re.I) else 'solver_rejected'
+            failure=core.AccessStopped('El solver no consiguió entregar el contenido solicitado.', kind=kind, code=code[1] if code else None)
+            failure.detail.update(stage=command,provider='cloudflare' if code else None)
+            raise failure
         return result
 
 
@@ -197,7 +180,10 @@ class SolverSource:
         if not isinstance(solution, dict):
             raise core.ExtractionError('El solver devolvió status=ok sin una solución utilizable.')
         if solution.get('status') in {401,403,429}:
-            raise core.AccessStopped(f'El solver recibió HTTP {solution["status"]}.', kind='solver_rejected', code=str(solution['status']))
+            detail=classify_access(str(solution.get('response','')),solution['status'])
+            failure=core.AccessStopped(f'El solver recibió HTTP {solution["status"]}.', kind=detail['kind'], code=detail['code'])
+            failure.detail.update(detail)
+            raise failure
         return solution
 
     def page(self, number):
@@ -206,7 +192,7 @@ class SolverSource:
         self.last = time.monotonic()
         extra = {'waitInSeconds': 2}
         if self.engine == 'flaresolverr-next':
-            extra.update(executeJs=CAPTURE_JS, disableMedia=False)
+            extra.update(executeJs='return '+capture_script(number,self.exam,images=True), disableMedia=False)
         try:
             solution = self.request(url, **extra)
         except core.AccessStopped as exc:
@@ -235,10 +221,13 @@ class SolverSource:
         try:
             page = current_question_page(text, actual_url, number, self.exam)
         except core.ExtractionError:
-            code = verification_error(text, core)
-            if code:
-                raise core.AccessStopped(f'La página {number} sigue mostrando un rechazo de acceso ({code}).', kind='verification_rejected', code=code, page=number, url=actual_url)
+            detail=classify_access(text,solution.get('status'))
+            if detail:
+                failure=core.AccessStopped(f'Acceso sin completar en la página {number}: {detail["kind"]}.', kind=detail['kind'],code=detail['code'],page=number,url=actual_url)
+                failure.detail.update(detail)
+                raise failure
             raise
+        if self.engine=='flaresolverr-next':page['capture']=captured.get('capture',{})
         self.assets.update(solution, images)
         page['transport'] = {'engine':self.engine, 'solver_version':self.client.version}
-        return page
+        return annotate_access(page,text)

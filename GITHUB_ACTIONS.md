@@ -4,6 +4,11 @@ El flujo está preparado en `.github/workflows/descargar-examen.yml`. Se ejecuta
 en un servidor de GitHub; tu PC puede estar apagado después de iniciarlo.
 Puedes usarlo desde el frontend de Pages siguiendo [PUBLICAR_GITHUB_PAGES.md](PUBLICAR_GITHUB_PAGES.md).
 
+La actualización **5.2.0** añade `scrapling`, comprueba respuestas y objetos
+referenciados antes de devolver éxito, y repara capturas incompletas al reanudar.
+Consulta [CORRECCIONES_5_2.md](CORRECCIONES_5_2.md). Tener todas las preguntas no basta
+si faltan claves, contextos o metadatos necesarios para verificar sus referencias.
+
 ## Qué está preparado y qué falta comprobar
 
 Puedes elegir un examen, detectar su total de preguntas y páginas, recopilarlo,

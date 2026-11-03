@@ -7,6 +7,7 @@ JavaScript recibido. Conserva los originales y no deduce respuestas ausentes.
 from __future__ import annotations
 
 import argparse
+import copy
 import base64
 import copy
 import hashlib
@@ -260,6 +261,21 @@ def canonical_url(root, fallback):
     return fallback
 
 
+def dom_choice_is_correct(value):
+    node=TreeReader(value).root if isinstance(value,str) else value
+    for item in node.walk():
+        if item.has_class('list-group-item'):
+            if item.attrs.get('data-correct')=='true' or item.attrs.get('data-is-correct')=='true' or item.attrs.get('aria-label','').strip().lower() in {'correct','correct answer'}:return True
+        if item.tag not in {'span','small'}:continue
+        parent=item.parent
+        in_content=False
+        while parent and parent is not node:
+            if parent.has_class('exambase-question__rich-text'):in_content=True;break
+            parent=parent.parent
+        if not in_content and item.text().strip().lower() in {'correct','correct answer'}:return True
+    return False
+
+
 def parse_page(source, fallback_url=DEFAULT_URL.format(page=1)):
     tree = TreeReader(source).root
     url = canonical_url(tree, fallback_url)
@@ -311,7 +327,7 @@ def parse_page(source, fallback_url=DEFAULT_URL.format(page=1)):
             label = next((n.text().strip() for n in li.walk() if n.tag == "span" and re.fullmatch("[A-Z]", n.text().strip())), None)
             body = next((n for n in li.walk() if n.has_class("exambase-question__rich-text")), None)
             if label and body:
-                correct = any(n.text().strip().lower() == "correct" for n in li.walk() if n.tag in {"span", "small"})
+                correct = dom_choice_is_correct(li)
                 choices.append({"letter": label, "text": body.inner(), "is_correct": True if correct else None})
         explanation = ""
         for header in card.walk():
@@ -507,10 +523,8 @@ def normalized_question(raw, page, source_label):
     for c in raw.get("choices") or []:
         choices.append({"id": c.get("id"), "letter": c.get("letter"), "html": c.get("text", ""), "text": readable(c.get("text", "")), "is_correct": c.get("is_correct")})
     correct = [c["letter"] for c in choices if c["is_correct"] is True]
-    contexts = []
-    for kind, field_name in (("topics", "topic_id"), ("series", "series_id"), ("case_studies", "case_study_id")):
-        if raw.get(field_name) is not None:
-            contexts.append(f"{kind}:{raw[field_name]}")
+    from reference_support import question_refs
+    contexts = question_refs(raw)
     return {"id": raw.get("id"), "number": raw.get("order"), "question_type": raw.get("question_type"), "question_html": raw.get("question_text", ""), "question_text": readable(raw.get("question_text", "")), "choices": choices, "correct_choices": correct, "answer_status": "explicit_choices" if correct else "answer_image" if raw.get("answer_image_url") else "missing_or_special_format", "explanation_html": raw.get("solution_text", ""), "explanation_text": readable(raw.get("solution_text", "")), "answer_image_url": raw.get("answer_image_url"), "type_data": raw.get("type_data", {}), "context_refs": contexts, "image_refs": [], "sources": [{"page": page["payload"]["result"].get("page"), "url": page["url"], "parser": page["parser"], "file": source_label}], "raw": raw}
 
 
@@ -532,6 +546,8 @@ class Archive:
         self.observed_page_totals = set()
 
     def add_page(self, page, label, local_source=None):
+        from reference_support import attach_contexts
+        page=attach_contexts(page,page['payload'])
         result = page["payload"]["result"]
         for key, dest in (("total", self.observed_totals), ("total_pages", self.observed_page_totals)):
             if isinstance(result.get(key), int):
@@ -539,14 +555,15 @@ class Archive:
         self.pages.append({"page": result.get("page"), "url": page["url"], "file": label, "parser": page["parser"], "question_count": len(result.get("items", [])), "warnings": page.get("warnings", [])})
         tag = f"pagina_{result.get('page') or 'desconocida'}_{len(self.pages):03}"
         write_json(self.output / "datos_originales" / f"{tag}.json", page["payload"])
-        for kind in ("topics", "series", "case_studies"):
+        for kind in ("topics", "series", "case_studies", "objects"):
             group = result.get(kind) or []
             if isinstance(group, dict):
                 group = list(group.values())
             for context in group:
                 if not isinstance(context, dict):
                     continue
-                key = f"{kind}:{context.get('id')}"
+                key = context.get('_object_key') or f"{kind}:{context.get('id')}"
+                context={k:v for k,v in context.items() if k not in {'_object_key','_object_kind'}}
                 old = self.contexts.get(key)
                 if old and old["raw"] != context:
                     self.conflicts.append({"context": key, "issue": "Distinto contenido para el mismo contexto", "page": result.get("page")})
@@ -572,9 +589,24 @@ class Archive:
             if previous["correct_choices"] and q["correct_choices"] and previous["correct_choices"] != q["correct_choices"]:
                 self.conflicts.append({"question": q["number"], "issue": "Respuestas explícitas distintas"})
             sources = previous["sources"] + q["sources"]
-            if q["sources"][0]["parser"] in {"structured", "browser-network"} and previous["sources"][0]["parser"] not in {"structured", "browser-network"}:
-                self.questions[q["number"]] = q
-            self.questions[q["number"]]["sources"] = sources
+            prefer_new=q['sources'][0]['parser'] in {'structured','browser-network'} and previous['sources'][0]['parser'] not in {'structured','browser-network'}
+            chosen=copy.deepcopy(q if prefer_new else previous)
+            other=previous if prefer_new else q
+            if content_identity(previous)==content_identity(q):
+                if not chosen['correct_choices'] and other['correct_choices']:
+                    chosen['correct_choices']=other['correct_choices'][:]
+                    chosen['answer_status']=other['answer_status']
+                    for group in (chosen['choices'],chosen['raw'].get('choices') or []):
+                        for choice in group:
+                            if choice.get('letter') in chosen['correct_choices']:choice['is_correct']=True
+                for field in ('explanation_text','explanation_html','answer_image_url'):
+                    if not chosen.get(field) and other.get(field):chosen[field]=other[field]
+                if not chosen['raw'].get('solution_text') and other['raw'].get('solution_text'):chosen['raw']['solution_text']=other['raw']['solution_text']
+                if not chosen['raw'].get('answer_image_url') and other['raw'].get('answer_image_url'):chosen['raw']['answer_image_url']=other['raw']['answer_image_url']
+                for ref in other['image_refs']:
+                    if ref not in chosen['image_refs']:chosen['image_refs'].append(ref)
+            chosen['sources']=sources
+            self.questions[q['number']]=chosen
 
     def report(self, expected=349, expected_pages=70):
         questions = sorted(self.questions.values(), key=lambda q: q["number"])

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Recopilación desatendida: examen por URL, metadatos detectados, pausa segura.
 
-No intenta resolver ni esquivar verificaciones. Conserva un ZIP parcial para
-reanudar otra ejecución, sin almacenar perfiles ni cookies del navegador.
+Conserva un ZIP parcial para reanudar otra ejecución. El motor seleccionado
+gestiona su sesión; los paquetes no incluyen perfiles ni cookies del navegador.
 """
 from __future__ import annotations
 import argparse
@@ -15,9 +15,14 @@ import re
 import time
 import urllib.parse
 import zipfile
+import shutil
 from pathlib import Path
 
 import extractor as core
+from capture_quality import page_quality, merge_page
+from capture_support import capture_script
+from access_diagnostics import classify_access, annotate_access
+from reference_support import foreign_fields
 
 CATALOG = json.loads(Path(__file__).with_name("catalogo.json").read_text(encoding="utf-8"))
 EXTERNAL = {urllib.parse.urlsplit(f["href"]).hostname.removeprefix("www.") for f in CATALOG["featured"] if f.get("href")}
@@ -185,18 +190,19 @@ class BrowserSource:
                 last = str(exc)
                 page = None
             if page:
-                if page["parser"] == "dom":
-                    for button in self.tab.get_by_role("button", name="Reveal Answer", exact=True).all():
-                        if button.is_visible():
-                            button.click()
-                    self.tab.wait_for_timeout(600)
-                    text = self.tab.content()
+                buttons=self.tab.get_by_role('button',name='Reveal Answer',exact=True).all()
+                if page_quality(page)['missing_answers'] or any(b.is_visible() for b in buttons):
+                    captured=json.loads(self.tab.evaluate(capture_script(number,self.exam)))
+                    text = captured['html']
                     target.write_text(text, encoding="utf-8")
-                    page = current_question_page(text, self.tab.url, number, self.exam, self.choose_page(self.received, number, self.tab.url))
-                return page
-            failure = self.verification_error(text, core)
-            if failure:
-                raise core.AccessStopped(f"Cloudflare rechazó la verificación en la página {number} (código {failure}).", kind='verification_rejected', code=failure, page=number, url=current_url)
+                    page = current_question_page(text,captured['url'],number,self.exam,self.choose_page(self.received,number,captured['url']))
+                    page['capture']=captured.get('capture',{})
+                return annotate_access(page,text)
+            detail=classify_access(text)
+            if detail:
+                failure=core.AccessStopped(f'Acceso sin completar en la página {number}: {detail["kind"]}.',kind=detail['kind'],code=detail['code'],page=number,url=current_url)
+                failure.detail.update(detail)
+                raise failure
             self.tab.wait_for_timeout(1000)
         raise core.AccessStopped("La página requiere acceso o verificación que no se completó en 60 segundos. " + last, kind='access_timeout', page=number, url=self.tab.url)
 
@@ -223,6 +229,23 @@ def run(args, source_factory=None):
             if item.get("download_status") == "downloaded" and path.is_relative_to(output.resolve()) and path.is_file() and hashlib.sha256(path.read_bytes()).hexdigest() == item.get("sha256"):
                 assets.assets[key] = item
     archive = core.Archive(output, assets, exam)
+    # Carga primero todo el respaldo: un bloqueo al reparar una página no debe
+    # hacer desaparecer del nuevo ZIP las páginas posteriores ya recuperadas.
+    cached_pages={}
+    cache_diagnostics=[]
+    if exam.get('total'):
+        for saved_number in range(1,exam['pages']+1):
+            path=output/'capturas'/f'pagina_{saved_number:05}.json'
+            if not path.is_file():continue
+            try:
+                saved=json.loads(path.read_text(encoding='utf-8'))
+                validate_page(exam,saved,saved_number)
+                archive.add_page(saved,f'capturas/{path.name}')
+                cached_pages[saved_number]=saved
+            except (core.ExtractionError,ValueError,KeyError,TypeError) as exc:
+                cache_diagnostics.append({'page':saved_number,'issue':str(exc)})
+    damaged_assets={key for key,value in assets.assets.items() if value.get('download_status')!='downloaded'}
+    damaged_pages={s['page'] for q in archive.questions.values() if any(ref['asset_id'] in damaged_assets for ref in q['image_refs']) for s in q['sources']}
     if source_factory:
         factory = source_factory
     elif args.mode in {'flaresolverr-next','flaresolverr','cloudproxy'}:
@@ -231,6 +254,9 @@ def run(args, source_factory=None):
     elif args.mode == "selenium":
         from selenium_support import SeleniumSource
         factory = functools.partial(SeleniumSource, headed=getattr(args, 'headed', False))
+    elif args.mode=='scrapling':
+        from scrapling_support import ScraplingSource
+        factory=functools.partial(ScraplingSource,headed=getattr(args,'headed',False))
     else:
         factory = functools.partial(BrowserSource, headed=getattr(args, 'headed', False),patched=args.mode=='rebrowser') if args.mode in {'browser','rebrowser'} else HttpSource
     started = time.monotonic()
@@ -246,15 +272,37 @@ def run(args, source_factory=None):
                     stopped = "Se alcanzó el presupuesto de tiempo; se conserva el progreso para otra ejecución."
                     break
                 cache = output / "capturas" / f"pagina_{number:05}.json"
-                page = json.loads(cache.read_text(encoding="utf-8")) if cache.exists() else source.page(number)
+                saved=cached_pages.get(number)
+                context_pending=bool(saved and (saved.get('parser')=='dom' or any(any(item['target'] not in archive.contexts for item in foreign_fields(q.get('raw') or {})) or any(ref not in archive.contexts for ref in q['context_refs']) for q in archive.questions.values() if any(s['page']==number for s in q['sources']))))
+                needs_refresh=not saved or any(page_quality(saved)[key] for key in ('missing_answers','empty_questions','empty_choices')) or number in damaged_pages or context_pending
+                if needs_refresh:
+                    if saved:
+                        print(f'Página {number}: se conserva el respaldo y se reparan respuestas o imágenes pendientes.',flush=True)
+                        original=output/'paginas_originales'/f'pagina_{number:05}.html'
+                        if original.is_file():
+                            before=original.parent/'previas'/original.name
+                            before.parent.mkdir(exist_ok=True)
+                            if not before.exists():shutil.copyfile(original,before)
+                    page=source.page(number)
+                    if saved:page=merge_page(page,saved)
+                else:page=saved
                 if number == 1 and "total" not in exam:
                     exam.update(detect_counts(exam, page))
                     archive.exam = exam
                     core.write_json(output / "manifest_examen.json", exam)
                 validate_page(exam, page, number)
-                core.write_json(cache, page)
-                archive.add_page(page, f"capturas/{cache.name}")
+                if needs_refresh:
+                    core.write_json(cache, page)
+                    repair_assets={ref['asset_id'] for q in archive.questions.values() if any(s['page']==number for s in q['sources']) for ref in q['image_refs']} & damaged_assets
+                    for key in repair_assets:assets.assets.pop(key,None)
+                    archive.add_page(page, f"capturas/{cache.name}")
                 print(f"Página {number}/{exam['pages']}: {len(archive.questions)}/{exam['total']} preguntas", flush=True)
+                print(f"  Respuestas pendientes en esta página: {page_quality(page)['missing_answers']}",flush=True)
+                if page.get('access_failure'):
+                    detail=page['access_failure']
+                    stopped_access=core.AccessStopped(f'La página {number} conserva preguntas pero no entregó sus respuestas: {detail["kind"]}.',kind=detail['kind'],code=detail.get('code'),page=number,url=page['url'])
+                    stopped_access.detail.update(detail)
+                    raise stopped_access
                 if number >= exam["pages"] or (args.page_limit and number >= args.page_limit):
                     if number < exam["pages"]:
                         stopped = "Se alcanzó el límite de páginas solicitado; puede reanudarse desde este ZIP."
@@ -292,10 +340,24 @@ def run(args, source_factory=None):
     # add_page registra el HTML antes de recuperar imágenes: sólo contar una
     # página cuando se conservaron todas sus preguntas, incluso si falla un recurso.
     saved_pages = [n for n in report['pages_present'] if all(q in archive.questions for q in range((n-1)*exam['per_page']+1, min(n*exam['per_page'], total)+1))]
-    next_page = next((p for p in range(1, pages+1) if p not in saved_pages), None) if pages else 1
-    success = report["coverage_complete"] and not archive.errors and not report["images_failed"]
+    missing_answers=set(report['answers_missing'])
+    answer_pages=sorted({s['page'] for q in data['questions'] if q['number'] in missing_answers for s in q['sources']})
+    failed_assets=set(report['images_failed'])
+    image_pages=sorted({s['page'] for q in data['questions'] if any(ref['asset_id'] in failed_assets for ref in q['image_refs']) for s in q['sources']})
+    invalid_content=set(report['empty_questions']) | {item['question'] for item in report['empty_choices']}
+    content_pages=sorted({s['page'] for q in data['questions'] if q['number'] in invalid_content for s in q['sources']})
+    reference_pages=[]
+    if not report['references_complete']:
+        uncertain=set(report.get('dom_questions_requiring_context_review',[]))
+        reference_pages=sorted({s['page'] for q in data['questions'] if q['number'] in uncertain or q['context_refs'] for s in q['sources']}) or [1]
+    pending_pages=sorted((set(range(1,pages+1))-set(saved_pages)) | set(answer_pages) | set(image_pages) | set(content_pages) | set(reference_pages))
+    next_page = pending_pages[0] if pending_pages else None if pages else 1
+    success = report["coverage_complete"] and report['answers_complete'] and report['references_complete'] and not report['empty_questions'] and not report['empty_choices'] and not archive.errors and not report["images_failed"] and not report.get('conflicts')
+    if not success and not stopped and missing_answers:stopped=f'Hay {len(missing_answers)} preguntas sin respuesta explícita. Reanuda para reparar las páginas pendientes.'
+    if not success and not stopped and invalid_content:stopped=f'Hay {len(invalid_content)} preguntas con enunciados o alternativas vacíos; se requiere recuperar su contenido.'
+    if not success and not stopped and not report['references_complete']:stopped='Los objetos referenciados o sus metadatos no están completos; consulta para_ia/referencias.json.'
     status = 'complete' if success else 'blocked' if failure else 'partial' if saved_pages else 'failed'
-    diagnostic = {'status': status, 'failure': failure, 'pages_saved': saved_pages, 'next_page': next_page}
+    diagnostic = {'status': status, 'failure': failure, 'pages_saved': saved_pages, 'next_page': next_page,'pages_pending_answers':answer_pages,'pages_pending_images':image_pages,'answers_present':report['answers_present'],'answers_missing':report['answers_missing'],'cache_diagnostics':cache_diagnostics}
     core.write_json(output / 'diagnostico_acceso.json', diagnostic)
     integrity_path = output / 'integridad_sha256.json'
     integrity = json.loads(integrity_path.read_text(encoding='utf-8'))
@@ -303,6 +365,8 @@ def run(args, source_factory=None):
     core.write_json(integrity_path, integrity)
     result_zip = core.create_zip(output)
     state = {"exam": exam, "mode": args.mode, "questions": len(archive.questions), "coverage_complete": report["coverage_complete"], "execution_complete": success, "stopped_reason": stopped, "zip": result_zip.name, "review_pending": not report["collection_complete"], 'status': status, 'failure': failure, 'pages_saved': saved_pages, 'next_page': next_page, 'resume_supported': bool(saved_pages and exam.get('total')), 'runner_environment': os.environ.get('RUNNER_ENVIRONMENT', 'local')}
+    state.update(answers_present=report['answers_present'],answers_missing=report['answers_missing'],answers_complete=report['answers_complete'],pages_pending_answers=answer_pages,pages_pending_images=image_pages)
+    state.update(references_complete=report['references_complete'],objects_preserved=report['objects_preserved'],unresolved_references=report['unresolved_references'],metadata_unverified_questions=report.get('dom_questions_requiring_context_review',[]),pages_pending_references=reference_pages)
     core.write_json(args.output / "estado_ejecucion.json", state)
     print(json.dumps(state, ensure_ascii=False, indent=2), flush=True)
     if failure:
@@ -319,7 +383,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--exam-url", required=True)
     parser.add_argument("--exam-name", help="Nombre para el lector y el historial")
-    parser.add_argument("--mode", choices=["http", "browser", "selenium", "rebrowser", "flaresolverr-next", "flaresolverr", "cloudproxy"], default="http")
+    parser.add_argument("--mode", choices=["http", "browser", "selenium", "rebrowser", "flaresolverr-next", "flaresolverr", "cloudproxy", "scrapling"], default="http")
     parser.add_argument('--solver-url',default=os.environ.get('EXAM_SOLVER_URL','http://127.0.0.1:8191/v1'),help='API v1 del solver local')
     parser.add_argument("--output", type=Path, default=Path("salida"))
     parser.add_argument("--delay", type=float, default=10)
@@ -327,7 +391,7 @@ def main(argv=None):
     parser.add_argument("--max-minutes", type=float, default=300)
     parser.add_argument("--resume-from", type=Path)
     parser.add_argument("--ocr", action="store_true", help="Transcribir imágenes con Tesseract, siempre sin verificar")
-    parser.add_argument("--headed", action="store_true", help="Navegador visible para browser, rebrowser o selenium; requiere pantalla real o Xvfb")
+    parser.add_argument("--headed", action="store_true", help="Navegador visible para browser, rebrowser, selenium o scrapling; requiere pantalla real o Xvfb")
     args = parser.parse_args(argv)
     if not math.isfinite(args.delay) or not math.isfinite(args.max_minutes) or args.delay < 5 or args.delay > 120 or args.page_limit < 0 or args.max_minutes <= 0:
         parser.error("delay debe estar entre 5 y 120; page-limit no puede ser negativo; max-minutes debe ser positivo")

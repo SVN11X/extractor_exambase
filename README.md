@@ -1,6 +1,10 @@
-# ExamBase · Archivo de estudio 5.1.0
+# ExamBase · Archivo de estudio 5.2.0
 
 Elige un examen en el frontend de **GitHub Pages**, inicia su recopilación en **GitHub Actions** y descarga un paquete para estudiar o usar con una IA. Puedes conservar cada ejecución en el repositorio y repetir el procedimiento con otro examen sin reinstalar la herramienta.
+
+La versión **5.2.0** corrige la captura de respuestas: espera la carga de las tarjetas, abre cada respuesta por separado y vuelve a localizar los elementos que reemplaza la web. Combina las claves explícitas del DOM con los metadatos estructurados sólo cuando corresponden a la misma pregunta. Una descarga con todas las preguntas y respuestas ausentes termina como parcial. Al reanudar, conserva todo el respaldo y vuelve a pedir las páginas con respuestas pendientes. Consulta [CORRECCIONES_5_2.md](CORRECCIONES_5_2.md).
+
+Incluye **Scrapling 0.5** como motor seleccionable, con sesión persistente durante el trabajo y registro de respuestas de API. Exporta `para_ia/referencias.json` con objetos, casos, contextos y enlaces hacia las preguntas. Una referencia rota, un archivo referenciado sin recuperar o metadatos DOM sin verificar impiden declarar la ejecución completa. No se promete obtener contenido que el sitio no entregue.
 
 La versión 5.1.0 añade **FlareSolverr-next**, **FlareSolverr** y **Rebrowser**, compatibilidad con un servicio propio **CloudProxy** y un workflow de diagnóstico con **Rebrowser Bot Detector**. Puedes elegir el motor en la web. Actions inicia y cierra automáticamente el contenedor de Next o FlareSolverr; mantiene una sesión durante la descarga. Consulta [MOTORES_ACCESO_5_1.md](MOTORES_ACCESO_5_1.md) para instalar la actualización, elegir el motor y retomar el parcial de tu última ejecución.
 
@@ -16,4 +20,4 @@ El nuevo acceso todavía requiere una prueba real en tu runner: el registro `415
 
 Para repetir: conecta el repositorio desde la web, elige un examen y pulsa **Preparar paquete**. Para retomar una descarga parcial indica su ID de ejecución. La herramienta comprueba que corresponda al mismo examen. Cada nueva descarga empieza una recopilación nueva salvo que pidas reanudar.
 
-Pruebas locales: `python -m pip install -r requirements_actions.txt -r requirements_rebrowser.txt`, `python -m unittest discover -s tests -p 'test_*.py'` y `node --test tests/*.mjs`. Las pruebas no descargan exámenes del sitio. Para revisar los workflows también se necesita PyYAML.
+Pruebas locales: `python -m pip install -r requirements_actions.txt -r requirements_rebrowser.txt -r requirements_scrapling.txt`, `python -m unittest discover -s tests -p 'test_*.py'` y `node --test tests/*.mjs`. Las pruebas no descargan exámenes del sitio. Para revisar los workflows también se necesita PyYAML.

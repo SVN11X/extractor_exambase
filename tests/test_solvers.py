@@ -145,11 +145,12 @@ class SolverTests(unittest.TestCase):
         args=argparse.Namespace(exam_url=BASE,output=self.root/'api',resume_from=None,mode='flaresolverr-next',solver_url=f'http://127.0.0.1:{server.server_port}/v1',delay=5,max_minutes=300,page_limit=0)
         try:
             output=io.StringIO()
-            with patch('solver_support.time.sleep'),contextlib.redirect_stdout(output):self.assertEqual(descargar.run(args),0)
+            with patch('solver_support.time.sleep'),contextlib.redirect_stdout(output):self.assertEqual(descargar.run(args),2)
         finally:
             server.shutdown();server.server_close();worker.join()
         state=json.loads((args.output/'estado_ejecucion.json').read_text())
         self.assertEqual((state['questions'],state['coverage_complete']),(7,True))
+        self.assertFalse(state['references_complete'])
         with zipfile.ZipFile(args.output/state['zip']) as archive:
             names=archive.namelist()
             self.assertTrue(any(n.endswith('/preguntas.html') for n in names))

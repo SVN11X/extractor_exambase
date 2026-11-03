@@ -55,7 +55,8 @@ def start(engine, state_file, *, external=False, endpoint='http://127.0.0.1:8191
         try:
             container=docker('run','-d','--name',name,'--label','exambase.owner='+owner,
                 '-p',f'127.0.0.1:{port}:8191','--shm-size=1g',
-                '-e','LOG_LEVEL=error','-e','LOG_HTML=false','-e','HEADLESS=true',image)
+                '-e','LOG_LEVEL=error','-e','LOG_HTML=false','-e','HEADLESS=true',
+                '-e','EXECUTE_JS_TIMEOUT=75',image)
         except RuntimeError:
             # Docker puede crear el contenedor antes de fallar al publicar el puerto.
             try:

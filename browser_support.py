@@ -61,7 +61,9 @@ def network_payloads(value):
         if isinstance(obj, dict):
             result = obj.get("result")
             if isinstance(result, dict) and result.get("kind") == "questions" and isinstance(result.get("items"), list):
-                found.append({k: v for k, v in obj.items() if k in {"result", "page", "discussions", "topicId"}})
+                from reference_support import attach_contexts
+                payload={k: v for k,v in obj.items() if k in {'result','page','discussions','topicId'}}
+                found.append(attach_contexts({'payload':payload},obj)['payload'])
                 return
             if obj.get("kind") == "questions" and isinstance(obj.get("items"), list):
                 found.append({"result": obj})
@@ -111,16 +113,22 @@ def current_question_page(source, url, number, exam, preferred=None):
     import extractor as core
     from descargar import detect_counts, validate_page
     from selenium_support import soup_page
+    from capture_quality import merge_page
     attempts = []
+    valid = []
     readers = ([lambda: preferred] if preferred else []) + [lambda: core.parse_page(source, url), lambda: soup_page(source, url)]
     for read in readers:
         try:
             candidate = read()
             metadata = exam if exam.get('total') else detect_counts(exam, candidate)
             validate_page(metadata, candidate, number)
-            return candidate
+            valid.append(candidate)
         except (core.ExtractionError, ValueError, KeyError, TypeError) as exc:
             attempts.append(str(exc))
+    if valid:
+        result = valid[0]
+        for candidate in valid[1:]:result = merge_page(result,candidate)
+        return result
     raise core.ExtractionError(attempts[-1] if attempts else 'No hay preguntas válidas de esta página.')
 
 

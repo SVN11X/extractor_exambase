@@ -6,6 +6,10 @@ import time
 import urllib.parse
 from pathlib import Path
 import extractor as core
+import json
+from capture_support import capture_script
+from capture_quality import page_quality
+from access_diagnostics import classify_access, annotate_access
 
 
 def soup_page(source, url):
@@ -25,7 +29,7 @@ def soup_page(source, url):
             letter = next((s.get_text(strip=True) for s in li.select('span') if re.fullmatch('[A-Z]', s.get_text(strip=True))), None)
             body = li.select_one('.exambase-question__rich-text')
             if letter and body:
-                correct = any(s.get_text(strip=True).lower() == 'correct' for s in li.select('span, small'))
+                correct = core.dom_choice_is_correct(str(li))
                 choices.append({'letter': letter, 'text': body.decode_contents(), 'is_correct': True if correct else None})
         explanation = ''
         for header in card.select('.card-header'):
@@ -78,7 +82,7 @@ class SeleniumSource:
         options.add_argument('--window-size=1365,900')
         self.driver = webdriver.Chrome(options=options)
         self.driver.set_page_load_timeout(60)
-        self.driver.set_script_timeout(45)
+        self.driver.set_script_timeout(80)
         self.assets = SeleniumAssets(self.driver, self.delay)
         return self
     def __exit__(self, *_):
@@ -104,19 +108,22 @@ class SeleniumSource:
             try:
                 page = current_question_page(text, self.driver.current_url, number, self.exam)
             except core.ExtractionError:
-                failure = verification_error(text, core)
-                if failure:
-                    raise core.AccessStopped('Cloudflare rechazó la verificación en la página '+str(number)+' (código '+failure+').', kind='verification_rejected', code=failure, page=number, url=self.driver.current_url)
+                detail=classify_access(text)
+                if detail:
+                    failure=core.AccessStopped(f'Acceso sin completar en la página {number}: {detail["kind"]}.',kind=detail['kind'],code=detail['code'],page=number,url=self.driver.current_url)
+                    failure.detail.update(detail)
+                    raise failure
                 time.sleep(1)
                 continue
-            if page['parser'] == 'dom':
-                # Sólo abre los controles de contenido del examen.
-                for button in self.driver.find_elements(By.TAG_NAME, 'button'):
-                    if button.text.strip() == 'Reveal Answer' and button.is_displayed():
-                        button.click()
-                time.sleep(.7)
-                text = self.driver.page_source
+            buttons=self.driver.find_elements(By.TAG_NAME,'button')
+            if page_quality(page)['missing_answers'] or any(b.text.strip()=='Reveal Answer' and b.is_displayed() for b in buttons):
+                expression=capture_script(number,self.exam)
+                result=self.driver.execute_async_script('const done=arguments[arguments.length-1];'+expression+'.then(v=>done({value:v})).catch(()=>done({error:true}));')
+                if result.get('error'):raise core.ExtractionError('Falló la captura de respuestas en Selenium.')
+                captured=json.loads(result['value'])
+                text = captured['html']
                 target.write_text(text, encoding='utf-8')
-                page = current_question_page(text, self.driver.current_url, number, self.exam)
-            return page
+                page = current_question_page(text,captured['url'],number,self.exam)
+                page['capture']=captured.get('capture',{})
+            return annotate_access(page,text)
         raise core.AccessStopped('Las preguntas no aparecieron en 60 segundos. Se conserva el resultado parcial para reanudar.', kind='access_timeout', page=number, url=self.driver.current_url)

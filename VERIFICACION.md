@@ -1,4 +1,27 @@
-# Verificación de la entrega 5.1.0
+# Verificación de la entrega 5.2.0
+
+## Comprobaciones nuevas de 5.2.0
+
+Pasaron 100 pruebas Python y 52 JavaScript. Cubren respuestas que llegan tarde,
+tarjetas sustituidas por la SPA, respuestas ausentes pese a contar todas las
+preguntas, conservación de todo el respaldo tras un bloqueo y reparación por
+página. Se comprueba que texto de una alternativa no se confunda con una marca
+de respuesta correcta y que no se mezclen claves contradictorias.
+
+Se instaló Scrapling 0.5 y se probaron su integración y cierre mediante una sesión
+simulada: captura de API, metadatos, objetos hermanos y ausencia de cabeceras
+privadas en la exportación. Se validan identificadores, referencias inversas,
+objetos tipados, referencias desconocidas y el grafo de IA. Un DOM sin metadatos
+suficientes queda parcial incluso con todas las preguntas y claves.
+
+La API pública de GitHub confirmó el estado exitoso de `41619720711` y la existencia
+del artefacto; su ZIP requiere autenticación y no se pudo auditar. No se ejecutó
+una nueva descarga en tu cuenta ni se superó un desafío real. La prueba de carga
+de archivo en el navegador de revisión agotó el tiempo de espera; el nuevo
+contador se verificó mediante pruebas de modelo, y su revisión visual queda pendiente.
+
+Base del parche: `5490b4d7169c4f5d74b8fdf8ed222a7c55c9fe4d`. La entrega incluye
+el repositorio completo, sus bancos existentes y un parche comprobado con `git am`.
 
 El proyecto incluye una web estática para Pages y workflows de descarga, catálogo,
 diagnóstico y publicación. El último log aportado, ejecución `41563383011`, prueba

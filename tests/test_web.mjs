@@ -26,7 +26,7 @@ test('runner propio se envía explícitamente y se rechazan entornos desconocido
   assert.throws(()=>downloadInputs(exam,{mode:'selenium',delay:10,resume:'',runner:'external'},'request'),/entorno/i);
 });
 test('motores solver y Rebrowser viajan a Actions; CloudProxy requiere servicio propio',()=>{
-  for(const mode of ['flaresolverr-next','flaresolverr','rebrowser'])assert.equal(downloadInputs(exam,{mode,delay:10,resume:'',runner:'github'},'request').mode,mode);
+  for(const mode of ['flaresolverr-next','flaresolverr','rebrowser','scrapling'])assert.equal(downloadInputs(exam,{mode,delay:10,resume:'',runner:'github'},'request').mode,mode);
   assert.throws(()=>downloadInputs(exam,{mode:'cloudproxy',delay:10,resume:'',runner:'github'},'request'),/runner propio/i);
   assert.equal(downloadInputs(exam,{mode:'cloudproxy',delay:10,resume:'',runner:'self-hosted'},'request').mode,'cloudproxy');
 });
@@ -34,6 +34,7 @@ test('el historial distingue un rechazo de acceso de cobertura parcial',()=>{
   assert.equal(bankStatus({status:'blocked',failure:{code:'600010'},coverage_complete:false}).text,'Acceso bloqueado · 600010');
   assert.equal(bankStatus({coverage_complete:false}).text,'Cobertura parcial');
   assert.equal(bankStatus({coverage_complete:true}).text,'Cobertura completa');
+  assert.equal(bankStatus({coverage_complete:true,answers_complete:false,answers_missing:[4,8]}).text,'Respuestas pendientes · 2');
 });
 test('API mantiene el token fuera de propiedades públicas, rutas y errores',async()=>{
   const calls=[]; const api=new GitHub('usuario','repo','TEST_SECRET',async(url,options)=>{calls.push({url,options});return {ok:true,status:204};});

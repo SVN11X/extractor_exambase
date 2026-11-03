@@ -20,14 +20,18 @@ AI_GUIDE = """# Uso con una IA
 
 Entrega preguntas.jsonl junto con contextos.json, imagenes.json, informe_validacion.json
 y la carpeta imagenes del nivel superior. Para estudiar abre preguntas.html.
+referencias.json conserva el grafo entre preguntas y objetos, los vínculos sin
+resolver y los archivos referenciados que aún no se recuperaron. No supongas que
+un contexto ausente existe ni sustituyas su contenido por una explicación inventada.
 
 Cada línea es una pregunta independiente. stable_id es propio del exportador;
 source_id conserva el identificador de la fuente cuando existe. Una clave de
 respuesta es la indicada por ExamBase, no una corrección técnica independiente.
 Los HTML originales, raw y las páginas se conservan en preguntas.json y sus carpetas.
 
-Si explanation.status es missing, la fuente no incluyó explicación. No inventes
-una explicación ni la presentes como cita del sitio. Las transcripciones OCR son
+Si explanation.status es missing, no se conservó una explicación en esta captura;
+eso no demuestra que la fuente carezca de ella. No inventes una explicación ni
+la presentes como cita del sitio. Las transcripciones OCR son
 automáticas y no verificadas; revisa siempre imágenes, tablas, diagramas y código.
 El campo field indica dónde corresponde cada imagen: pregunta, opción o explicación.
 Los context_refs enlazan contextos compartidos; dom_context_review_required advierte
@@ -129,10 +133,13 @@ def reader(data):
                 out.append('</figure>')
         return "".join(out)
     r = data["report"]
-    body = [f'<header><p>ARCHIVO DE ESTUDIO · EXAMBASE</p><h1>{esc(data["exam"]["name"])}</h1><p>{len(data["questions"])} / {r.get("expected_questions") or "?"} preguntas · cobertura {"completa" if r.get("coverage_complete") else "parcial"} · {len(r.get("missing_explanations", []))} explicaciones ausentes</p><p>Las respuestas son las indicadas por la fuente. Consulta el informe antes de usar el material.</p><label>Buscar en el material <input id="search" type="search" placeholder="Número, texto u opción…"></label><p id="count" aria-live="polite"></p></header>']
+    from capture_quality import answers_report
+    answer_counts=answers_report(data)
+    body = [f'<header><p>ARCHIVO DE ESTUDIO · EXAMBASE</p><h1>{esc(data["exam"]["name"])}</h1><p>{len(data["questions"])} / {r.get("expected_questions") or "?"} preguntas · cobertura {"completa" if r.get("coverage_complete") else "parcial"} · {len(r.get("missing_explanations", []))} explicaciones ausentes</p><p>{answer_counts["answers_present"]} respuestas conservadas · {len(answer_counts["answers_missing"])} respuestas pendientes.</p><p>Las respuestas son las indicadas por la fuente. Consulta el informe antes de usar el material.</p><label>Buscar en el material <input id="search" type="search" placeholder="Número, texto u opción…"></label><p id="count" aria-live="polite"></p></header>']
     for key, context in data.get("contexts", {}).items():
         body.append(f'<section id="{esc(key.replace(":", "-"))}"><h2>Contexto: {esc(key)}</h2>{text(core.context_text(context))}{pictures(context.get("image_refs", []))}</section>')
     md = [f'# {data["exam"]["name"]}', '', f'{len(data["questions"])} / {r.get("expected_questions") or "?"} preguntas. Cobertura completa: {r.get("coverage_complete")}.', '', 'Respuestas de la fuente; revisión técnica pendiente. Las imágenes permanecen en sus campos de origen.', '']
+    md.extend([f'{answer_counts["answers_present"]} respuestas conservadas; {len(answer_counts["answers_missing"])} pendientes.', ''])
     for key, context in data.get("contexts", {}).items():
         md.extend([f'<a id="{key.replace(":", "-")}"></a>', f'## Contexto {key}', core.context_text(context), *core.image_lines(context.get("image_refs", []), data["assets"]), ''])
     for q in data["questions"]:
@@ -158,7 +165,7 @@ def reader(data):
             md.extend([f'**{choice["letter"]}.** {choice.get("text", "")}', *core.image_lines(refs_choice, data["assets"]), ''])
         explanation_images = images_for(r"^(solution|explanation)")
         answer = ', '.join(q.get("correct_choices", [])) or 'Sin clave explícita'
-        explanation = q.get("explanation_text") or 'No incluida en la fuente.'
+        explanation = q.get("explanation_text") or 'No conservada en esta captura.'
         part.extend(['<details><summary>Ver respuesta y explicación de la fuente</summary>', text(answer), text(explanation), pictures(explanation_images, 'Explicación'), '</details>'])
         md.extend(['**Respuesta de la fuente:** '+answer, '', '**Explicación:** '+explanation, *core.image_lines(explanation_images, data["assets"])])
         other = [ref for i, ref in enumerate(refs) if i not in matched]
@@ -191,6 +198,9 @@ def enrich(root, ocr=False, language="eng"):
     numbers = [q['number'] for q in data['questions']]
     expected = r.get('expected_questions')
     r['coverage_complete'] = bool(type(expected) is int and expected > 0 and len(numbers) == len(set(numbers)) == expected and set(numbers) == set(range(1, expected + 1)) and not r.get('missing_pages'))
+    from capture_quality import answers_report
+    r.update(answers_report(data))
+    r['missing_or_special_answers']=r['answers_missing'][:]
     r['missing_explanations'] = [q['number'] for q in data['questions'] if not q.get('explanation_text') and not q.get('explanation_html')]
     r['images_failed'] = []
     for asset in data.get('assets', {}).values():
@@ -213,11 +223,20 @@ def enrich(root, ocr=False, language="eng"):
     r['content_review_complete'] = not any((r.get('missing_explanations'), r.get('missing_or_special_answers'), r.get('unresolved_contexts'), r.get('dom_questions_requiring_context_review'), r.get('html_markers_requiring_review'), r.get('conflicts'), r.get('errors'), data.get('assets')))
     r['collection_complete'] = r['coverage_complete'] and r['content_review_complete'] and not r['images_failed']
     r['image_transcription_review_complete'] = not bool(data.get('assets'))
-    data['package_version'] = '5.1.0'
+    from reference_support import reference_graph,foreign_fields
+    for question in data['questions']:
+        for item in foreign_fields(question.get('raw') or {}):
+            if item['target'] in data.get('contexts',{}) and item['target'] not in question['context_refs']:question['context_refs'].append(item['target'])
+    graph=reference_graph(data)
+    r.update(references_complete=graph['complete'],unresolved_references=graph['unresolved'],referenced_files_pending=graph['files_pending'],objects_preserved=len(data.get('contexts',{})))
+    r['content_review_complete']=r['content_review_complete'] and graph['complete']
+    r['collection_complete']=r['collection_complete'] and graph['complete']
+    data['package_version'] = '5.2.0'
     ai = root / 'para_ia'
     ai.mkdir(exist_ok=True)
     (ai / 'preguntas.jsonl').write_text(''.join(json.dumps(ai_question(q, data['exam'], data.get('assets', {})), ensure_ascii=False) + '\n' for q in data['questions']), encoding='utf-8')
     write(ai / 'contextos.json', data.get('contexts', {}))
+    write(ai / 'referencias.json',graph)
     write(ai / 'imagenes.json', data.get('assets', {}))
     write(ai / 'informe_validacion.json', r)
     (ai / 'LEEME_IA.md').write_text(AI_GUIDE, encoding='utf-8')
