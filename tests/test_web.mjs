@@ -25,6 +25,11 @@ test('runner propio se envía explícitamente y se rechazan entornos desconocido
   assert.equal(d.runner,'self-hosted');assert.equal(d.resume_run_id,'41558984612');
   assert.throws(()=>downloadInputs(exam,{mode:'selenium',delay:10,resume:'',runner:'external'},'request'),/entorno/i);
 });
+test('motores solver y Rebrowser viajan a Actions; CloudProxy requiere servicio propio',()=>{
+  for(const mode of ['flaresolverr-next','flaresolverr','rebrowser'])assert.equal(downloadInputs(exam,{mode,delay:10,resume:'',runner:'github'},'request').mode,mode);
+  assert.throws(()=>downloadInputs(exam,{mode:'cloudproxy',delay:10,resume:'',runner:'github'},'request'),/runner propio/i);
+  assert.equal(downloadInputs(exam,{mode:'cloudproxy',delay:10,resume:'',runner:'self-hosted'},'request').mode,'cloudproxy');
+});
 test('el historial distingue un rechazo de acceso de cobertura parcial',()=>{
   assert.equal(bankStatus({status:'blocked',failure:{code:'600010'},coverage_complete:false}).text,'Acceso bloqueado · 600010');
   assert.equal(bankStatus({coverage_complete:false}).text,'Cobertura parcial');

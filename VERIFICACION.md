@@ -1,11 +1,32 @@
-# Verificación de la entrega 5.0
+# Verificación de la entrega 5.1.0
 
-El proyecto incluye una web estática para Pages y workflows de descarga, catálogo
-y publicación. Los logs aportados identifican `SVN11X/extractor_exambase` y prueban
-que el workflow 5.0 se ejecutó en GitHub: conservó 5/103 preguntas y un artefacto
-antes del rechazo Cloudflare `600010`. El archivo **CORRECCIONES_5_0_1.md** describe
-la actualización local y el parche sobre su base real. La corrección no se ha
-subido ni ejecutado en el remoto desde esta entrega.
+El proyecto incluye una web estática para Pages y workflows de descarga, catálogo,
+diagnóstico y publicación. El último log aportado, ejecución `41563383011`, prueba
+que la recuperación y el guardado en `bancos/` funcionaron: quedaron 5/103 preguntas
+y un rechazo real Cloudflare `600010` en la página 2. La actualización 5.1.0 añade
+FlareSolverr-next, FlareSolverr, Rebrowser y compatibilidad CloudProxy. Consulta
+**MOTORES_ACCESO_5_1.md**. No se ha subido ni ejecutado en el remoto desde esta entrega.
+
+## Comprobaciones nuevas de 5.1.0
+
+Pasaron 83 pruebas Python y 49 JavaScript. Las nuevas pruebas recorren la API v1
+mediante un servidor HTTP local, sesiones, captura posterior al JavaScript,
+imágenes en caché de navegador y generación del ZIP para persona e IA. Verifican
+que HTTP 200 y `status=ok` no acepten un desafío como preguntas, que un rechazo
+600010 quede registrado y que las cookies de prueba no aparezcan en las salidas.
+Se comprueban el cierre y la propiedad del contenedor mediante comandos simulados,
+incluido un fallo al publicar el puerto, y el diagnóstico vacío falla explícitamente.
+
+Se revisó en navegador real la selección del examen, los motores y sus ayudas,
+el requisito de conexión para abrir el diagnóstico y el campo de reanudación. Se
+comprobó la disposición sin desbordamiento horizontal en marcos de 360 y 768 px,
+y el cambio de motor y runner en la vista de 360 px, además del escritorio.
+
+Rebrowser se instaló e importó con su versión fijada. En este entorno no hay
+Docker ni Chrome local: el contenedor, Chrome con Xvfb, el detector público y la
+descarga real de ExamBase siguen pendientes de prueba en el runner. Las pruebas
+locales no demuestran que se haya superado Cloudflare. El parche se entrega sobre
+la base real `bc65e69174ce8583b225111958fdc4a6dea4c2d1` y se comprueba con `git am`.
 
 ## Archivo de preguntas aportado
 
@@ -34,7 +55,7 @@ Beautiful Soup se contrastó con las 70 capturas HTML aportadas: obtuvo las mism
 349 claves de respuesta que el resultado conservado. Esto verifica la extracción
 de las claves; no su corrección técnica o la vigencia del material.
 
-## Comprobaciones del proyecto
+## Comprobaciones conservadas de las versiones anteriores
 
 Pasaron 63 pruebas Python y 48 JavaScript en la versión 5.0.1. Se revisó la sintaxis de los workflows
 y de sus bloques Bash, y se generaron y reabrieron ZIP de prueba.

@@ -13,8 +13,9 @@ export function downloadInputs(exam, options, requestId) {
   const parsed = parseExamUrl(exam.url), delay = Number(options.delay), resume = options.resume.trim();
   if (!Number.isFinite(delay) || delay < 5 || delay > 120) throw Error('La pausa debe estar entre 5 y 120 segundos.');
   if (resume && !/^\d+$/.test(resume)) throw Error('El ID para reanudar debe contener sólo números.');
-  if (!['browser','selenium','http'].includes(options.mode)) throw Error('Motor desconocido.');
+  if (!['browser','selenium','http','rebrowser','flaresolverr-next','flaresolverr','cloudproxy'].includes(options.mode)) throw Error('Motor desconocido.');
   const runner=options.runner || 'github';if(!['github','self-hosted'].includes(runner))throw Error('Entorno de ejecución desconocido.');
+  if(options.mode==='cloudproxy' && runner!=='self-hosted')throw Error('CloudProxy requiere un runner propio con el servicio local ya iniciado.');
   return {exam:'personalizado', exam_url:parsed.base+'1', exam_label:exam.name.slice(0,100), mode:options.mode, delay:String(delay), page_limit:'0', resume_run_id:resume, request_id:requestId, save_to_repo:String(!!options.save),runner};
 }
 export function runStatus(run) {

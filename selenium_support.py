@@ -3,6 +3,7 @@ from __future__ import annotations
 import base64
 import re
 import time
+import urllib.parse
 from pathlib import Path
 import extractor as core
 
@@ -88,7 +89,12 @@ class SeleniumSource:
         time.sleep(max(0, self.delay - (time.monotonic() - self.last)))
         self.last = time.monotonic()
         url = self.exam['base'] + str(number)
-        self.driver.get(url)
+        followed=False
+        if number>1 and self.driver.current_url.startswith(self.exam['base']):
+            for link in self.driver.find_elements(By.CSS_SELECTOR,'a[href]'):
+                if urllib.parse.urljoin(self.driver.current_url,link.get_attribute('href') or '')==url and link.is_displayed():
+                    link.click();followed=True;break
+        if not followed:self.driver.get(url)
         deadline = time.monotonic() + 60
         target = self.output / 'paginas_originales' / f'pagina_{number:05}.html'
         target.parent.mkdir(exist_ok=True)

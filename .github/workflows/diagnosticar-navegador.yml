@@ -1,0 +1,52 @@
+name: Diagnosticar navegador con Rebrowser Bot Detector
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        description: Motor que se probará en el detector público
+        default: rebrowser
+        options: [rebrowser, flaresolverr-next, browser]
+permissions:
+  contents: read
+jobs:
+  diagnostico:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      EXAM_MODE: ${{ inputs.mode }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements_actions.txt
+      - if: inputs.mode == 'rebrowser'
+        run: |
+          python -m pip install -r requirements_rebrowser.txt
+          python -m rebrowser_playwright install --with-deps chrome
+      - if: inputs.mode == 'browser'
+        run: python -m playwright install --with-deps chromium
+      - if: inputs.mode != 'flaresolverr-next'
+        run: sudo apt-get update && sudo apt-get install -y xvfb xauth
+      - if: inputs.mode == 'flaresolverr-next'
+        run: python solver_service.py start --state-file salida/solver_runtime.json
+      - name: Ejecutar pruebas de señales
+        run: |
+          if [[ "$EXAM_MODE" == 'flaresolverr-next' ]]; then
+            python diagnosticar_navegador.py --mode "$EXAM_MODE" --output salida/diagnostico
+          else
+            xvfb-run -a -s '-screen 0 1366x900x24' python diagnosticar_navegador.py --mode "$EXAM_MODE" --headed --output salida/diagnostico
+          fi
+      - name: Cerrar servicio
+        if: always() && inputs.mode == 'flaresolverr-next'
+        run: python solver_service.py stop --state-file salida/solver_runtime.json
+      - uses: actions/upload-artifact@v6
+        if: always()
+        with:
+          name: exambase-diagnostico
+          path: salida/**/*.json
+          if-no-files-found: warn
+          retention-days: 7

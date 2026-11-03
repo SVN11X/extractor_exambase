@@ -118,19 +118,24 @@ class HttpSource:
 
 
 class BrowserSource:
-    def __init__(self, exam, output, delay, *, headed=False):
-        self.exam, self.output, self.delay, self.headed = exam, output, delay, headed
+    def __init__(self, exam, output, delay, *, headed=False, patched=False):
+        self.exam, self.output, self.delay, self.headed, self.patched = exam, output, delay, headed, patched
     def __enter__(self):
         try:
-            from playwright.sync_api import sync_playwright
+            if self.patched:
+                from rebrowser_playwright.sync_api import sync_playwright
+            else:
+                from playwright.sync_api import sync_playwright
         except ImportError as exc:
-            raise core.ExtractionError("Instala requirements_actions.txt y ejecuta python -m playwright install chromium.") from exc
+            instructions = 'Instala requirements_rebrowser.txt y Google Chrome estable.' if self.patched else 'Instala requirements_actions.txt y ejecuta python -m playwright install chromium.'
+            raise core.ExtractionError(instructions) from exc
         from browser_support import BrowserAssets, choose_page, network_payloads, verification_error
         self.choose_page, self.network_payloads, self.verification_error = choose_page, network_payloads, verification_error
         self.pw = sync_playwright().start()
         try:
-            self.browser = self.pw.chromium.launch(headless=not self.headed)
-            self.context = self.browser.new_context()
+            options={'channel':'chrome','args':['--window-size=1366,900']} if self.patched else {}
+            self.browser = self.pw.chromium.launch(headless=not self.headed, **options)
+            self.context = self.browser.new_context(no_viewport=True) if self.patched else self.browser.new_context()
             self.tab = self.context.new_page()
             self.received = []
             self.last_navigation = 0.0
@@ -141,8 +146,10 @@ class BrowserSource:
             self.pw.stop()
             raise
     def __exit__(self, *_):
-        self.browser.close()
-        self.pw.stop()
+        try:
+            self.browser.close()
+        finally:
+            self.pw.stop()
     def on_response(self, response):
         if urllib.parse.urlsplit(response.url).hostname != urllib.parse.urlsplit(self.exam["base"]).hostname:
             return
@@ -157,7 +164,12 @@ class BrowserSource:
         self.received.clear()
         time.sleep(max(0, self.delay - (time.monotonic() - self.last_navigation)))
         self.last_navigation = time.monotonic()
-        self.tab.goto(url, wait_until="domcontentloaded", timeout=60000)
+        followed=False
+        if number>1 and self.tab.url.startswith(self.exam['base']):
+            for link in self.tab.locator('a[href]').all():
+                if urllib.parse.urljoin(self.tab.url,link.get_attribute('href') or '')==url and link.is_visible():
+                    link.click();followed=True;break
+        if not followed:self.tab.goto(url, wait_until="domcontentloaded", timeout=60000)
         deadline = time.monotonic() + 60
         last = "La página no entregó preguntas."
         while time.monotonic() < deadline:
@@ -213,11 +225,14 @@ def run(args, source_factory=None):
     archive = core.Archive(output, assets, exam)
     if source_factory:
         factory = source_factory
+    elif args.mode in {'flaresolverr-next','flaresolverr','cloudproxy'}:
+        from solver_support import SolverSource
+        factory=functools.partial(SolverSource,engine=args.mode,endpoint=getattr(args,'solver_url','http://127.0.0.1:8191/v1'))
     elif args.mode == "selenium":
         from selenium_support import SeleniumSource
         factory = functools.partial(SeleniumSource, headed=getattr(args, 'headed', False))
     else:
-        factory = functools.partial(BrowserSource, headed=getattr(args, 'headed', False)) if args.mode == "browser" else HttpSource
+        factory = functools.partial(BrowserSource, headed=getattr(args, 'headed', False),patched=args.mode=='rebrowser') if args.mode in {'browser','rebrowser'} else HttpSource
     started = time.monotonic()
     stopped = None
     failure = None
@@ -304,14 +319,15 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--exam-url", required=True)
     parser.add_argument("--exam-name", help="Nombre para el lector y el historial")
-    parser.add_argument("--mode", choices=["http", "browser", "selenium"], default="http")
+    parser.add_argument("--mode", choices=["http", "browser", "selenium", "rebrowser", "flaresolverr-next", "flaresolverr", "cloudproxy"], default="http")
+    parser.add_argument('--solver-url',default=os.environ.get('EXAM_SOLVER_URL','http://127.0.0.1:8191/v1'),help='API v1 del solver local')
     parser.add_argument("--output", type=Path, default=Path("salida"))
     parser.add_argument("--delay", type=float, default=10)
     parser.add_argument("--page-limit", type=int, default=0)
     parser.add_argument("--max-minutes", type=float, default=300)
     parser.add_argument("--resume-from", type=Path)
     parser.add_argument("--ocr", action="store_true", help="Transcribir imágenes con Tesseract, siempre sin verificar")
-    parser.add_argument("--headed", action="store_true", help="Navegador visible en un equipo con sesión gráfica, sin resolución automática de verificaciones")
+    parser.add_argument("--headed", action="store_true", help="Navegador visible para browser, rebrowser o selenium; requiere pantalla real o Xvfb")
     args = parser.parse_args(argv)
     if not math.isfinite(args.delay) or not math.isfinite(args.max_minutes) or args.delay < 5 or args.delay > 120 or args.page_limit < 0 or args.max_minutes <= 0:
         parser.error("delay debe estar entre 5 y 120; page-limit no puede ser negativo; max-minutes debe ser positivo")

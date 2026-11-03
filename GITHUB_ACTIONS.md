@@ -10,18 +10,18 @@ Puedes elegir un examen, detectar su total de preguntas y páginas, recopilarlo,
 descargar imágenes, generar un ZIP y conservar resultados parciales. El flujo
 incluye reanudación desde el artefacto de una ejecución anterior del mismo examen.
 
-El registro aportado de la ejecución `41558984612` muestra que el flujo se ejecutó
-en GitHub, guardó 5/103 preguntas de Associate Data Practitioner y conservó el ZIP
-tras el rechazo Cloudflare `600010`. Las correcciones 5.0.1 se validan localmente;
-todavía no se han ejecutado en tu cuenta. Lee [CORRECCIONES_5_0_1.md](CORRECCIONES_5_0_1.md).
+La ejecución más reciente aportada, `41563383011`, recuperó el respaldo anterior,
+guardó 5/103 preguntas de Associate Data Practitioner y conservó el resultado en
+`bancos/` tras un rechazo real `600010` en la página 2. La versión 5.1.0 incorpora
+motores nuevos; su eficacia frente al sitio todavía no se ha probado en tu cuenta.
+Lee [MOTORES_ACCESO_5_1.md](MOTORES_ACCESO_5_1.md).
 
-**La limitación de Cloudflare sigue existiendo.** El servidor no tiene la sesión
-de tu Edge. El modo browser usa Chromium estándar de Playwright, sin técnicas de
-camuflaje ni resolución de CAPTCHAs. Si aparece una verificación que no termina,
-guarda lo recuperado y termina con estado parcial. No habrá una ventana que puedas
-verificar desde el formulario de Actions. Para un funcionamiento fiable cuando el
-sitio bloquea a los servidores, el dueño tendría que ofrecer una exportación/API
-o habilitar acceso automatizado.
+El servidor no hereda la sesión de tu Edge. FlareSolverr y Next intentan gestionar
+desafíos con su navegador; Rebrowser modifica señales de Playwright. Pueden seguir
+siendo rechazados, por ejemplo por la dirección de red del runner. Si el motor no
+entrega preguntas válidas, el extractor conserva el parcial y termina. Actions no
+ofrece una ventana interactiva en el formulario de ejecución. Una vía habilitada
+por el propietario sigue siendo la opción más fiable para ejecución desatendida.
 
 Cloudflare documenta esos límites aquí:
 <https://developers.cloudflare.com/cloudflare-challenges/reference/supported-browsers/>.
@@ -57,6 +57,15 @@ en `bancos/` cuando activas `save_to_repo`.
    portada del examen o una página de preguntas. No pegues el índice general ni
    el índice de un proveedor.
 4. En **mode**, elige:
+   - `flaresolverr-next` (predeterminado): Docker con el fork de rix1337 y su API
+     `executeJs`. Abre respuestas y captura imágenes en la misma sesión. El workflow
+     descarga la imagen, inicia el servicio local y cierra su propio contenedor.
+   - `rebrowser`: instala `rebrowser-playwright==1.64.102`, usa Chrome estable y
+     pantalla virtual Xvfb. No necesita Docker ni una persona frente al equipo.
+   - `flaresolverr`: API del proyecto clásico. Sólo captura el HTML entregado;
+     respuestas que necesiten JavaScript adicional pueden quedar pendientes.
+   - `cloudproxy`: compatibilidad con una instancia local ya iniciada. Sólo para
+     `runner=self-hosted`; no se instala el contenedor antiguo automáticamente.
    - `http`: descarga HTML con Python; sólo sirve si el sitio entrega las preguntas
      sin una verificación que necesite JavaScript.
    - `browser`: abre Chromium en el servidor, espera a que cargue el contenido y
@@ -71,10 +80,9 @@ en `bancos/` cuando activas `save_to_repo`.
    conserva ZIP, HTML, Markdown, JSONL, imágenes y originales en una carpeta por
    examen y ejecución. Si el repositorio es público, esos bancos serán públicos.
 9. **runner** permite `github` (predeterminado) o `self-hosted` (equipo propio ya
-   configurado con etiqueta `exambase`). Este último necesita sesión gráfica,
-   mantiene el navegador visible y requiere dejar el equipo encendido. La guía de
-   correcciones detalla su configuración; elegirlo no resuelve automáticamente
-   una verificación de acceso.
+   configurado con etiqueta `exambase`). En el equipo propio, Next/FlareSolverr
+   requieren Docker; CloudProxy requiere un servicio local; los modos browser,
+   rebrowser y selenium requieren una pantalla gráfica. Mantén encendido el runner.
 
 El menú de Actions tiene tres ejemplos y un campo URL. El frontend de Pages
 incluye buscador, proveedor, URL personalizada, historial y revisión local del ZIP;
@@ -104,13 +112,17 @@ habías activado el guardado en repositorio.
 Si la ejecución anterior no consiguió siquiera detectar el examen y guardó cero
 preguntas, vuelve a empezar dejando `resume_run_id` vacío.
 
-No se guardan ni se transfieren cookies o perfiles del navegador. No debes copiar
+No se incluyen cookies ni perfiles del navegador en los artefactos o bancos. Las
+cookies del solver se conservan en memoria durante su sesión local. No debes copiar
 tu perfil de Edge ni subir credenciales al repositorio. El token automático de
 GitHub se usa para recuperar artefactos y, si lo eliges, escribir los bancos.
 La protección de rama o una política de organización puede impedir ese commit;
 el artefacto se sube antes del guardado para conservar el resultado en ese caso.
 
 ## Ejecución por terminal
+
+Para los motores nuevos, los comandos completos de instalación, inicio, descarga
+y cierre están en [MOTORES_ACCESO_5_1.md](MOTORES_ACCESO_5_1.md).
 
 ```bash
 python descargar.py --exam-url "https://www.exambase.com/exams/google/associate-data-practitioner" --mode http --output salida --delay 10

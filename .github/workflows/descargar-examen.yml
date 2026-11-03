@@ -20,11 +20,11 @@ on:
         type: string
         default: https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/1
       mode:
-        description: Motor (ninguno resuelve verificaciones de Cloudflare)
+        description: Motor de acceso; las preguntas se validan antes de guardarlas
         required: true
         type: choice
-        default: browser
-        options: [browser, selenium, http]
+        default: flaresolverr-next
+        options: [flaresolverr-next, rebrowser, flaresolverr, browser, selenium, http, cloudproxy]
       delay:
         description: Segundos entre peticiones (5 a 120)
         required: true
@@ -92,6 +92,21 @@ jobs:
           python-version: "3.11"
       - name: Instalar librerías de lectura
         run: python -m pip install -r requirements_actions.txt
+      - name: Instalar Rebrowser (parches de Playwright)
+        if: inputs.mode == 'rebrowser'
+        run: python -m pip install -r requirements_rebrowser.txt
+      - name: Preparar pantalla virtual de Rebrowser
+        if: inputs.mode == 'rebrowser' && runner.environment == 'github-hosted'
+        run: |
+          python -m rebrowser_playwright install --with-deps chrome
+          sudo apt-get update && sudo apt-get install -y xvfb xauth
+      - name: Iniciar solver local
+        if: inputs.mode == 'flaresolverr-next' || inputs.mode == 'flaresolverr' || inputs.mode == 'cloudproxy'
+        run: |
+          if [[ "$EXAM_MODE" == 'cloudproxy' && "$EXAM_RUNNER" != 'self-hosted' ]]; then
+            echo 'CloudProxy requiere un runner propio con el servicio local ya iniciado.'; exit 1
+          fi
+          python solver_service.py start --engine "$EXAM_MODE" --state-file salida/solver_runtime.json
       - name: Preparar navegador (sólo modo browser)
         if: inputs.mode == 'browser'
         run: |
@@ -122,7 +137,15 @@ jobs:
           if [[ -n "$RESUME_RUN_ID" ]]; then resume=(--resume-from respaldo); fi
           display=()
           if [[ "$EXAM_RUNNER" == 'self-hosted' && "$EXAM_MODE" != 'http' ]]; then display=(--headed); fi
-          python descargar.py --exam-url "$EXAM_URL" --exam-name "$EXAM_LABEL" --mode "$EXAM_MODE" --delay "$EXAM_DELAY" --page-limit "$EXAM_LIMIT" --max-minutes 300 --output salida --ocr "${resume[@]}" "${display[@]}"
+          collector_command=(python descargar.py --exam-url "$EXAM_URL" --exam-name "$EXAM_LABEL" --mode "$EXAM_MODE" --delay "$EXAM_DELAY" --page-limit "$EXAM_LIMIT" --max-minutes 300 --output salida --ocr)
+          if [[ "$EXAM_MODE" == 'rebrowser' && "$EXAM_RUNNER" != 'self-hosted' ]]; then
+            xvfb-run -a -s '-screen 0 1366x900x24' "${collector_command[@]}" --headed "${resume[@]}"
+          else
+            "${collector_command[@]}" "${resume[@]}" "${display[@]}"
+          fi
+      - name: Cerrar servicio de esta ejecución
+        if: always() && (inputs.mode == 'flaresolverr-next' || inputs.mode == 'flaresolverr')
+        run: python solver_service.py stop --state-file salida/solver_runtime.json
       - name: Conservar resultado completo o parcial
         if: always()
         uses: actions/upload-artifact@v6
@@ -131,6 +154,7 @@ jobs:
           path: |
             salida/*.zip
             salida/estado_ejecucion.json
+            salida/solver_runtime.json
           if-no-files-found: warn
           retention-days: 7
       - name: Guardar una versión en el repositorio
@@ -162,11 +186,11 @@ jobs:
           failure=d.get('failure') or {}
           if failure:
               print(f"\nCódigo de acceso: **{failure.get('code') or failure.get('kind')}**. Página: **{failure.get('page')}**.")
-              print('\nLa página no entregó el contenido necesario. La ejecución conserva el parcial; no se considera una descarga completa. No se reintenta automáticamente el desafío.')
+              print('\nEl motor no entregó preguntas válidas. Se conserva el parcial; no se inicia otra sesión ni se cambia automáticamente de motor para reintentar.')
           if d.get('resume_supported'):
               print(f"\nPara reanudar selecciona el mismo examen y usa **resume_run_id = {os.environ['GITHUB_RUN_ID']}**. Próxima página: **{d.get('next_page') or 'revisar imágenes'}**.")
           if failure and os.environ.get('EXAM_RUNNER') != 'self-hosted':
-              print('\nRepetir con el mismo cliente puede volver a ser rechazado. El modo self-hosted usa tu equipo con navegador visible y requiere configurarlo previamente; tampoco garantiza superar verificaciones. Para acceso desatendido fiable se necesita una vía habilitada por el propietario.')
+              print('\nUn motor alternativo o un runner propio se eligen en otra ejecución; no garantizan superar verificaciones. Revisa MOTORES_ACCESO_5_1.md. Para acceso desatendido fiable se necesita una vía habilitada por el propietario.')
           print('\nDescarga el artefacto **exambase-resultado**. No incluye perfiles ni cookies del navegador.')
           PY
           fi
