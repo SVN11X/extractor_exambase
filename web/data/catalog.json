@@ -1,0 +1,1289 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-11-03T00:22:56.772431+00:00",
+  "advertised_total": 1657,
+  "vendors": [
+    {
+      "vendor": "Microsoft",
+      "slug": "microsoft",
+      "examCount": 135,
+      "liveCount": 135
+    },
+    {
+      "vendor": "Cisco",
+      "slug": "cisco",
+      "examCount": 111,
+      "liveCount": 111
+    },
+    {
+      "vendor": "Fortinet",
+      "slug": "fortinet",
+      "examCount": 82,
+      "liveCount": 82
+    },
+    {
+      "vendor": "Salesforce",
+      "slug": "salesforce",
+      "examCount": 69,
+      "liveCount": 69
+    },
+    {
+      "vendor": "VMware",
+      "slug": "vmware",
+      "examCount": 64,
+      "liveCount": 64
+    },
+    {
+      "vendor": "Test Prep",
+      "slug": "test-prep",
+      "examCount": 53,
+      "liveCount": 53
+    },
+    {
+      "vendor": "CompTIA",
+      "slug": "comptia",
+      "examCount": 52,
+      "liveCount": 52
+    },
+    {
+      "vendor": "Huawei",
+      "slug": "huawei",
+      "examCount": 48,
+      "liveCount": 48
+    },
+    {
+      "vendor": "Dell",
+      "slug": "dell",
+      "examCount": 46,
+      "liveCount": 46
+    },
+    {
+      "vendor": "HP",
+      "slug": "hp",
+      "examCount": 43,
+      "liveCount": 43
+    },
+    {
+      "vendor": "Juniper",
+      "slug": "juniper",
+      "examCount": 43,
+      "liveCount": 43
+    },
+    {
+      "vendor": "ECCouncil",
+      "slug": "eccouncil",
+      "examCount": 28,
+      "liveCount": 28
+    },
+    {
+      "vendor": "IBM",
+      "slug": "ibm",
+      "examCount": 27,
+      "liveCount": 27
+    },
+    {
+      "vendor": "Palo Alto Networks",
+      "slug": "palo-alto-networks",
+      "examCount": 25,
+      "liveCount": 25
+    },
+    {
+      "vendor": "NetApp",
+      "slug": "netapp",
+      "examCount": 22,
+      "liveCount": 22
+    },
+    {
+      "vendor": "ServiceNow",
+      "slug": "servicenow",
+      "examCount": 22,
+      "liveCount": 22
+    },
+    {
+      "vendor": "ITIL",
+      "slug": "itil",
+      "examCount": 21,
+      "liveCount": 21
+    },
+    {
+      "vendor": "Checkpoint",
+      "slug": "checkpoint",
+      "examCount": 19,
+      "liveCount": 19
+    },
+    {
+      "vendor": "ISTQB",
+      "slug": "istqb",
+      "examCount": 19,
+      "liveCount": 19
+    },
+    {
+      "vendor": "Exin",
+      "slug": "exin",
+      "examCount": 18,
+      "liveCount": 18
+    },
+    {
+      "vendor": "GIAC",
+      "slug": "giac",
+      "examCount": 17,
+      "liveCount": 17
+    },
+    {
+      "vendor": "ISACA",
+      "slug": "isaca",
+      "examCount": 16,
+      "liveCount": 16
+    },
+    {
+      "vendor": "Amazon",
+      "slug": "amazon",
+      "examCount": 15,
+      "liveCount": 15
+    },
+    {
+      "vendor": "Nutanix",
+      "slug": "nutanix",
+      "examCount": 15,
+      "liveCount": 15
+    },
+    {
+      "vendor": "Pegasystems",
+      "slug": "pegasystems",
+      "examCount": 15,
+      "liveCount": 15
+    },
+    {
+      "vendor": "Splunk",
+      "slug": "splunk",
+      "examCount": 15,
+      "liveCount": 15
+    },
+    {
+      "vendor": "Citrix",
+      "slug": "citrix",
+      "examCount": 14,
+      "liveCount": 14
+    },
+    {
+      "vendor": "Amazon AWS",
+      "slug": "amazon-aws",
+      "examCount": 13,
+      "liveCount": 13
+    },
+    {
+      "vendor": "Google Cloud",
+      "slug": "google-cloud",
+      "examCount": 13,
+      "liveCount": 13
+    },
+    {
+      "vendor": "LPI",
+      "slug": "lpi",
+      "examCount": 13,
+      "liveCount": 13
+    },
+    {
+      "vendor": "Nokia",
+      "slug": "nokia",
+      "examCount": 13,
+      "liveCount": 13
+    },
+    {
+      "vendor": "PECB",
+      "slug": "pecb",
+      "examCount": 13,
+      "liveCount": 13
+    },
+    {
+      "vendor": "PMI",
+      "slug": "pmi",
+      "examCount": 13,
+      "liveCount": 13
+    },
+    {
+      "vendor": "The Open Group",
+      "slug": "the-open-group",
+      "examCount": 13,
+      "liveCount": 13
+    },
+    {
+      "vendor": "UiPath",
+      "slug": "uipath",
+      "examCount": 13,
+      "liveCount": 13
+    },
+    {
+      "vendor": "Genesys",
+      "slug": "genesys",
+      "examCount": 12,
+      "liveCount": 12
+    },
+    {
+      "vendor": "CyberArk",
+      "slug": "cyberark",
+      "examCount": 11,
+      "liveCount": 11
+    },
+    {
+      "vendor": "Snowflake",
+      "slug": "snowflake",
+      "examCount": 11,
+      "liveCount": 11
+    },
+    {
+      "vendor": "Workday",
+      "slug": "workday",
+      "examCount": 11,
+      "liveCount": 11
+    },
+    {
+      "vendor": "GAQM",
+      "slug": "gaqm",
+      "examCount": 9,
+      "liveCount": 9
+    },
+    {
+      "vendor": "Alcatel-Lucent",
+      "slug": "alcatel-lucent",
+      "examCount": 8,
+      "liveCount": 8
+    },
+    {
+      "vendor": "ASQ",
+      "slug": "asq",
+      "examCount": 8,
+      "liveCount": 8
+    },
+    {
+      "vendor": "CrowdStrike",
+      "slug": "crowdstrike",
+      "examCount": 8,
+      "liveCount": 8
+    },
+    {
+      "vendor": "CWNP",
+      "slug": "cwnp",
+      "examCount": 8,
+      "liveCount": 8
+    },
+    {
+      "vendor": "F5",
+      "slug": "f5",
+      "examCount": 8,
+      "liveCount": 8
+    },
+    {
+      "vendor": "Google",
+      "slug": "google",
+      "examCount": 8,
+      "liveCount": 8
+    },
+    {
+      "vendor": "NVIDIA",
+      "slug": "nvidia",
+      "examCount": 8,
+      "liveCount": 8
+    },
+    {
+      "vendor": "PRINCE2",
+      "slug": "prince2",
+      "examCount": 8,
+      "liveCount": 8
+    },
+    {
+      "vendor": "Six Sigma",
+      "slug": "six-sigma",
+      "examCount": 8,
+      "liveCount": 8
+    },
+    {
+      "vendor": "Blue Prism",
+      "slug": "blue-prism",
+      "examCount": 7,
+      "liveCount": 7
+    },
+    {
+      "vendor": "Databricks",
+      "slug": "databricks",
+      "examCount": 7,
+      "liveCount": 7
+    },
+    {
+      "vendor": "GitHub",
+      "slug": "github",
+      "examCount": 7,
+      "liveCount": 7
+    },
+    {
+      "vendor": "IAPP",
+      "slug": "iapp",
+      "examCount": 7,
+      "liveCount": 7
+    },
+    {
+      "vendor": "IIA",
+      "slug": "iia",
+      "examCount": 7,
+      "liveCount": 7
+    },
+    {
+      "vendor": "ISC",
+      "slug": "isc",
+      "examCount": 7,
+      "liveCount": 7
+    },
+    {
+      "vendor": "Symantec",
+      "slug": "symantec",
+      "examCount": 7,
+      "liveCount": 7
+    },
+    {
+      "vendor": "ACFE",
+      "slug": "acfe",
+      "examCount": 6,
+      "liveCount": 6
+    },
+    {
+      "vendor": "BCS",
+      "slug": "bcs",
+      "examCount": 6,
+      "liveCount": 6
+    },
+    {
+      "vendor": "CIW",
+      "slug": "ciw",
+      "examCount": 6,
+      "liveCount": 6
+    },
+    {
+      "vendor": "IIBA",
+      "slug": "iiba",
+      "examCount": 6,
+      "liveCount": 6
+    },
+    {
+      "vendor": "QlikView",
+      "slug": "qlikview",
+      "examCount": 6,
+      "liveCount": 6
+    },
+    {
+      "vendor": "SAP",
+      "slug": "sap",
+      "examCount": 6,
+      "liveCount": 6
+    },
+    {
+      "vendor": "ACAMS",
+      "slug": "acams",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "Appian",
+      "slug": "appian",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "Avaya",
+      "slug": "avaya",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "CIPS",
+      "slug": "cips",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "HRCI",
+      "slug": "hrci",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "Linux Foundation",
+      "slug": "linux-foundation",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "Mulesoft",
+      "slug": "mulesoft",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "PEOPLECERT",
+      "slug": "peoplecert",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "Python Institute",
+      "slug": "python-institute",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "Riverbed",
+      "slug": "riverbed",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "SAS Institute",
+      "slug": "sas-institute",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "Scaled Agile",
+      "slug": "scaled-agile",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "Scrum",
+      "slug": "scrum",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "SOA",
+      "slug": "soa",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "SolarWinds",
+      "slug": "solarwinds",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "Veritas",
+      "slug": "veritas",
+      "examCount": 5,
+      "liveCount": 5
+    },
+    {
+      "vendor": "AHIP",
+      "slug": "ahip",
+      "examCount": 4,
+      "liveCount": 4
+    },
+    {
+      "vendor": "APICS",
+      "slug": "apics",
+      "examCount": 4,
+      "liveCount": 4
+    },
+    {
+      "vendor": "Apple",
+      "slug": "apple",
+      "examCount": 4,
+      "liveCount": 4
+    },
+    {
+      "vendor": "Atlassian",
+      "slug": "atlassian",
+      "examCount": 4,
+      "liveCount": 4
+    },
+    {
+      "vendor": "Blockchain",
+      "slug": "blockchain",
+      "examCount": 4,
+      "liveCount": 4
+    },
+    {
+      "vendor": "English Test Preparation",
+      "slug": "english-test-preparation",
+      "examCount": 4,
+      "liveCount": 4
+    },
+    {
+      "vendor": "FINRA",
+      "slug": "finra",
+      "examCount": 4,
+      "liveCount": 4
+    },
+    {
+      "vendor": "HashiCorp",
+      "slug": "hashicorp",
+      "examCount": 4,
+      "liveCount": 4
+    },
+    {
+      "vendor": "Hitachi",
+      "slug": "hitachi",
+      "examCount": 4,
+      "liveCount": 4
+    },
+    {
+      "vendor": "Veeam",
+      "slug": "veeam",
+      "examCount": 4,
+      "liveCount": 4
+    },
+    {
+      "vendor": "Alibaba",
+      "slug": "alibaba",
+      "examCount": 3,
+      "liveCount": 3
+    },
+    {
+      "vendor": "Anthropic",
+      "slug": "anthropic",
+      "examCount": 3,
+      "liveCount": 3
+    },
+    {
+      "vendor": "CDMP",
+      "slug": "cdmp",
+      "examCount": 3,
+      "liveCount": 3
+    },
+    {
+      "vendor": "CertNexus",
+      "slug": "certnexus",
+      "examCount": 3,
+      "liveCount": 3
+    },
+    {
+      "vendor": "HCL Software Academy",
+      "slug": "hcl-software-academy",
+      "examCount": 3,
+      "liveCount": 3
+    },
+    {
+      "vendor": "ISA",
+      "slug": "isa",
+      "examCount": 3,
+      "liveCount": 3
+    },
+    {
+      "vendor": "iSQI",
+      "slug": "isqi",
+      "examCount": 3,
+      "liveCount": 3
+    },
+    {
+      "vendor": "Netskope",
+      "slug": "netskope",
+      "examCount": 3,
+      "liveCount": 3
+    },
+    {
+      "vendor": "RedHat",
+      "slug": "redhat",
+      "examCount": 3,
+      "liveCount": 3
+    },
+    {
+      "vendor": "SDFM",
+      "slug": "sdfm",
+      "examCount": 3,
+      "liveCount": 3
+    },
+    {
+      "vendor": "Tableau",
+      "slug": "tableau",
+      "examCount": 3,
+      "liveCount": 3
+    },
+    {
+      "vendor": "Versa Networks",
+      "slug": "versa-networks",
+      "examCount": 3,
+      "liveCount": 3
+    },
+    {
+      "vendor": "WorldatWork",
+      "slug": "worldatwork",
+      "examCount": 3,
+      "liveCount": 3
+    },
+    {
+      "vendor": "AAFM India",
+      "slug": "aafm-india",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "AAPC",
+      "slug": "aapc",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "ABA",
+      "slug": "aba",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "ACSM",
+      "slug": "acsm",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "AHIMA",
+      "slug": "ahima",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "AndroidATC",
+      "slug": "androidatc",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "API",
+      "slug": "api",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Aruba",
+      "slug": "aruba",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Axis Communications",
+      "slug": "axis-communications",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "BACB",
+      "slug": "bacb",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "BICSI",
+      "slug": "bicsi",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Blue Coat",
+      "slug": "blue-coat",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "C++ Institute",
+      "slug": "c-institute",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Canadian Securities Institute",
+      "slug": "canadian-securities-institute",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "CNCF",
+      "slug": "cncf",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Confluent",
+      "slug": "confluent",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "CSA",
+      "slug": "csa",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Cyber AB",
+      "slug": "cyber-ab",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "DSCI",
+      "slug": "dsci",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "GARP",
+      "slug": "garp",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Guidance Software",
+      "slug": "guidance-software",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Infor",
+      "slug": "infor",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Magento",
+      "slug": "magento",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "McAfee",
+      "slug": "mcafee",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "MongoDB",
+      "slug": "mongodb",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Novell",
+      "slug": "novell",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "OCEG",
+      "slug": "oceg",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Omnissa",
+      "slug": "omnissa",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Proofpoint",
+      "slug": "proofpoint",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Pure Storage",
+      "slug": "pure-storage",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "RUCKUS Networks",
+      "slug": "ruckus-networks",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "SNIA",
+      "slug": "snia",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Talend",
+      "slug": "talend",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Teradata",
+      "slug": "teradata",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Tibco",
+      "slug": "tibco",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "WatchGuard",
+      "slug": "watchguard",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Zend",
+      "slug": "zend",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "Zscaler",
+      "slug": "zscaler",
+      "examCount": 2,
+      "liveCount": 2
+    },
+    {
+      "vendor": "A10 Networks",
+      "slug": "a10-networks",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "AACN",
+      "slug": "aacn",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "AHLEI",
+      "slug": "ahlei",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "AICPA",
+      "slug": "aicpa",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "AIWMI",
+      "slug": "aiwmi",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "APSE",
+      "slug": "apse",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "ARDMS",
+      "slug": "ardms",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "Arista",
+      "slug": "arista",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "Autodesk",
+      "slug": "autodesk",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "AVIXA",
+      "slug": "avixa",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "Brightest",
+      "slug": "brightest",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "CA Technologies",
+      "slug": "ca-technologies",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "Certinia",
+      "slug": "certinia",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "Certiport",
+      "slug": "certiport",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "Cloudera",
+      "slug": "cloudera",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "CMAA",
+      "slug": "cmaa",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "Datadog",
+      "slug": "datadog",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "DMI",
+      "slug": "dmi",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "FileMaker",
+      "slug": "filemaker",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "GMAC",
+      "slug": "gmac",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "Google Workspace",
+      "slug": "google-workspace",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "HAAD",
+      "slug": "haad",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "HPE",
+      "slug": "hpe",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "IAAP",
+      "slug": "iaap",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "ICF",
+      "slug": "icf",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "IFPUG",
+      "slug": "ifpug",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "IICA",
+      "slug": "iica",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "iSAQB",
+      "slug": "isaqb",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "ISC2",
+      "slug": "isc2",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "ISM",
+      "slug": "ism",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "Mirantis",
+      "slug": "mirantis",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "NACVA",
+      "slug": "nacva",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "NADCA",
+      "slug": "nadca",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "nCino",
+      "slug": "ncino",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "NCMA",
+      "slug": "ncma",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "NFPA",
+      "slug": "nfpa",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "NI",
+      "slug": "ni",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "NMIMS",
+      "slug": "nmims",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "NMLS",
+      "slug": "nmls",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "OMSB",
+      "slug": "omsb",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "Payroll",
+      "slug": "payroll",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "PRMIA",
+      "slug": "prmia",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "SailPoint",
+      "slug": "sailpoint",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "SANS",
+      "slug": "sans",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "Scrum Alliance",
+      "slug": "scrum-alliance",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "SDI",
+      "slug": "sdi",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "SecOps Group",
+      "slug": "secops-group",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "SHRM",
+      "slug": "shrm",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "Sitecore",
+      "slug": "sitecore",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "Slack",
+      "slug": "slack",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "USGBC",
+      "slug": "usgbc",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "Vmedu",
+      "slug": "vmedu",
+      "examCount": 1,
+      "liveCount": 1
+    },
+    {
+      "vendor": "WGU University",
+      "slug": "wgu-university",
+      "examCount": 1,
+      "liveCount": 1
+    }
+  ],
+  "exams": [
+    {
+      "id": "google/associate-cloud-engineer",
+      "url": "https://www.exambase.com/exams/google/associate-cloud-engineer",
+      "name": "Associate Cloud Engineer",
+      "vendor": "Google Cloud",
+      "vendor_slug": "google-cloud",
+      "questions": 349,
+      "code": "Associate Cloud Engineer"
+    },
+    {
+      "id": "google/associate-data-practitioner",
+      "url": "https://www.exambase.com/exams/google/associate-data-practitioner",
+      "name": "Associate Data Practitioner",
+      "vendor": "Google Cloud",
+      "vendor_slug": "google-cloud",
+      "questions": 103,
+      "code": "Associate Data Practitioner"
+    },
+    {
+      "id": "google/cloud-digital-leader",
+      "url": "https://www.exambase.com/exams/google/cloud-digital-leader",
+      "name": "Cloud Digital Leader",
+      "vendor": "Google Cloud",
+      "vendor_slug": "google-cloud",
+      "questions": 289,
+      "code": "Cloud Digital Leader"
+    },
+    {
+      "id": "google/professional-cloud-security-engineer",
+      "url": "https://www.exambase.com/exams/google/professional-cloud-security-engineer",
+      "name": "Cloud Security Engineer",
+      "vendor": "Google Cloud",
+      "vendor_slug": "google-cloud",
+      "questions": 376,
+      "code": "PROFESSIONAL-CLOUD-SECURITY-ENGINEER"
+    },
+    {
+      "id": "google/generative-ai-leader",
+      "url": "https://www.exambase.com/exams/google/generative-ai-leader",
+      "name": "Generative AI Leader",
+      "vendor": "Google Cloud",
+      "vendor_slug": "google-cloud",
+      "questions": 75,
+      "code": "Generative AI Leader"
+    },
+    {
+      "id": "google/professional-cloud-architect",
+      "url": "https://www.exambase.com/exams/google/professional-cloud-architect",
+      "name": "Professional Cloud Architect",
+      "vendor": "Google Cloud",
+      "vendor_slug": "google-cloud",
+      "questions": 360,
+      "code": "Professional Cloud Architect"
+    },
+    {
+      "id": "google/professional-cloud-database-engineer",
+      "url": "https://www.exambase.com/exams/google/professional-cloud-database-engineer",
+      "name": "Professional Cloud Database Engineer",
+      "vendor": "Google Cloud",
+      "vendor_slug": "google-cloud",
+      "questions": 197,
+      "code": "Professional Cloud Database Engineer"
+    },
+    {
+      "id": "google/professional-cloud-devops-engineer",
+      "url": "https://www.exambase.com/exams/google/professional-cloud-devops-engineer",
+      "name": "Professional Cloud DevOps Engineer",
+      "vendor": "Google Cloud",
+      "vendor_slug": "google-cloud",
+      "questions": 239,
+      "code": "Professional Cloud DevOps Engineer"
+    },
+    {
+      "id": "google/professional-cloud-developer",
+      "url": "https://www.exambase.com/exams/google/professional-cloud-developer",
+      "name": "Professional Cloud Developer",
+      "vendor": "Google Cloud",
+      "vendor_slug": "google-cloud",
+      "questions": 379,
+      "code": "Professional Cloud Developer"
+    },
+    {
+      "id": "google/professional-cloud-network-engineer",
+      "url": "https://www.exambase.com/exams/google/professional-cloud-network-engineer",
+      "name": "Professional Cloud Network Engineer",
+      "vendor": "Google Cloud",
+      "vendor_slug": "google-cloud",
+      "questions": 316,
+      "code": "Professional Cloud Network Engineer"
+    },
+    {
+      "id": "google/professional-data-engineer",
+      "url": "https://www.exambase.com/exams/google/professional-data-engineer",
+      "name": "Professional Data Engineer",
+      "vendor": "Google Cloud",
+      "vendor_slug": "google-cloud",
+      "questions": 349,
+      "code": "Professional Data Engineer"
+    },
+    {
+      "id": "google/professional-machine-learning-engineer",
+      "url": "https://www.exambase.com/exams/google/professional-machine-learning-engineer",
+      "name": "Professional ML Engineer",
+      "vendor": "Google Cloud",
+      "vendor_slug": "google-cloud",
+      "questions": 339,
+      "code": "Professional ML Engineer"
+    },
+    {
+      "id": "google/professional-security-operations-engineer",
+      "url": "https://www.exambase.com/exams/google/professional-security-operations-engineer",
+      "name": "Professional Security Operations Engineer",
+      "vendor": "Google Cloud",
+      "vendor_slug": "google-cloud",
+      "questions": 133,
+      "code": "Professional Security Operations Engineer"
+    }
+  ],
+  "complete": false,
+  "notes": [
+    "Las listas completas se obtienen al actualizar el catálogo. Puedes usar cualquier URL de examen compatible."
+  ],
+  "last_update": {
+    "updated_vendors": [
+      "google-cloud"
+    ],
+    "errors": [],
+    "previous_entries_retained": true
+  }
+}

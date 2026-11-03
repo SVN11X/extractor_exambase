@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv*/
+perfil_navegador*/
+salida/
+respaldo/
+resultado_*/
+tests/*verificacion.zip
+tests/extension_worker_exportacion.zip
+.DS_Store

@@ -1,0 +1,164 @@
+name: Descargar examen de ExamBase
+run-name: ${{ inputs.exam_label || 'ExamBase — descarga seleccionada' }} [${{ inputs.request_id || github.run_number }}]
+
+on:
+  workflow_dispatch:
+    inputs:
+      exam:
+        description: Examen de ejemplo, o personalizado para usar la URL
+        required: true
+        type: choice
+        default: personalizado
+        options:
+          - personalizado
+          - google-professional-data-engineer
+          - google-associate-cloud-engineer
+          - google-associate-data-practitioner
+      exam_url:
+        description: URL del examen o de una página de sus preguntas
+        required: true
+        type: string
+        default: https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/1
+      mode:
+        description: Motor (ninguno resuelve verificaciones de Cloudflare)
+        required: true
+        type: choice
+        default: browser
+        options: [browser, selenium, http]
+      delay:
+        description: Segundos entre peticiones (5 a 120)
+        required: true
+        type: number
+        default: 10
+      page_limit:
+        description: Límite de páginas; 0 descarga todas las que indique el examen
+        required: true
+        type: number
+        default: 0
+      resume_run_id:
+        description: ID de una ejecución anterior de este mismo examen; vacío para empezar
+        required: false
+        type: string
+      request_id:
+        description: Identificador de la solicitud del frontend
+        required: false
+        type: string
+      exam_label:
+        description: Nombre del examen para mostrar en el historial
+        required: false
+        type: string
+      save_to_repo:
+        description: Conservar una versión del resultado en bancos/ (visible si el repositorio es público)
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: exambase-trabajo
+  cancel-in-progress: false
+
+jobs:
+  descargar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    env:
+      EXAM_URL: ${{ inputs.exam_url }}
+      EXAM_LABEL: ${{ inputs.exam_label }}
+      EXAM_PRESET: ${{ inputs.exam }}
+      EXAM_MODE: ${{ inputs.mode }}
+      EXAM_DELAY: ${{ inputs.delay }}
+      EXAM_LIMIT: ${{ inputs.page_limit }}
+      RESUME_RUN_ID: ${{ inputs.resume_run_id }}
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: ${{ inputs.save_to_repo }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Instalar librerías de lectura
+        run: python -m pip install -r requirements_actions.txt
+      - name: Preparar navegador (sólo modo browser)
+        if: inputs.mode == 'browser'
+        run: |
+          python -m playwright install --with-deps chromium
+      - name: Preparar transcripción OCR
+        continue-on-error: true
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
+      - name: Recuperar respaldo de otra ejecución
+        if: inputs.resume_run_id != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [[ ! "$RESUME_RUN_ID" =~ ^[0-9]+$ ]]; then
+            echo "El ID de ejecución debe contener sólo números."
+            exit 1
+          fi
+          if ! gh run download "$RESUME_RUN_ID" --name exambase-resultado --dir respaldo; then
+            python - <<'PY'
+          import json, os, shutil
+          from pathlib import Path
+          index=Path('bancos/index.json')
+          entries=json.loads(index.read_text()).get('runs', []) if index.exists() else []
+          found=next((r for r in entries if r['run_id']==os.environ['RESUME_RUN_ID']), None)
+          if not found: raise SystemExit('El respaldo caducó y no hay copia guardada en el repositorio.')
+          path=Path(found['zip_path']).resolve()
+          if not path.is_relative_to(Path('bancos').resolve()) or not path.is_file(): raise SystemExit('Ruta de respaldo inválida.')
+          Path('respaldo').mkdir(exist_ok=True)
+          shutil.copy2(path, Path('respaldo')/path.name)
+          PY
+          fi
+      - name: Recopilar el examen seleccionado
+        run: |
+          case "$EXAM_PRESET" in
+            personalizado) ;;
+            google-professional-data-engineer) EXAM_URL="https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/1" ;;
+            google-associate-cloud-engineer) EXAM_URL="https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/1" ;;
+            google-associate-data-practitioner) EXAM_URL="https://www.exambase.com/exams/google/associate-data-practitioner/practice-questions/1" ;;
+            *) echo "Selección de examen no reconocida."; exit 1 ;;
+          esac
+          resume=()
+          if [[ -n "$RESUME_RUN_ID" ]]; then resume=(--resume-from respaldo); fi
+          python descargar.py --exam-url "$EXAM_URL" --exam-name "$EXAM_LABEL" --mode "$EXAM_MODE" --delay "$EXAM_DELAY" --page-limit "$EXAM_LIMIT" --max-minutes 300 --output salida --ocr "${resume[@]}"
+      - name: Conservar resultado completo o parcial
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: exambase-resultado
+          path: |
+            salida/*.zip
+            salida/estado_ejecucion.json
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Guardar una versión en el repositorio
+        if: always() && !cancelled() && inputs.save_to_repo && hashFiles('salida/estado_ejecucion.json') != ''
+        run: |
+          python persistir_banco.py --output salida --repo . --run-id "$GITHUB_RUN_ID"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bancos/
+          if ! git diff --cached --quiet; then
+            git commit -m "Conservar resultado ExamBase de ejecución $GITHUB_RUN_ID"
+            git push
+          fi
+      - name: Resumen
+        if: always()
+        run: |
+          if [[ -f salida/estado_ejecucion.json ]]; then
+            python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          from pathlib import Path
+          d=json.loads(Path('salida/estado_ejecucion.json').read_text())
+          print('## Resultado de ExamBase')
+          print(f"Preguntas conservadas: **{d['questions']}**")
+          print(f"Cobertura completa: **{d['coverage_complete']}**")
+          print(f"Revisión de contenido pendiente: **{d['review_pending']}**")
+          if d.get('stopped_reason'): print('\nMotivo de la parada: ' + d['stopped_reason'])
+          print('\nDescarga el artefacto **exambase-resultado**. No incluye perfiles ni cookies del navegador.')
+          PY
+          fi
