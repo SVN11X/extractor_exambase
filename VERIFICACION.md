@@ -1,4 +1,13 @@
-# Verificación de la entrega 5.2.0
+# Verificación de la entrega 5.2.1
+
+## Comprobaciones de 5.2.1
+
+Pasaron 102 pruebas Python y 52 JavaScript. Las pruebas reproducen el cambio de
+documento durante la comprobación, una comprobación que sigue pendiente y la
+reanudación con 103 preguntas, 68 respuestas y un contexto compartido. El estado
+marca las siete páginas pendientes y la primera es la 2. Otra prueba confirma
+que una respuesta recuperada del DOM se guarda junto al contexto estructurado
+del respaldo. La ejecución de ExamBase queda por comprobar en GitHub Actions.
 
 ## Comprobaciones nuevas de 5.2.0
 

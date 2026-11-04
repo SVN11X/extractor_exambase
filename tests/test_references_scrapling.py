@@ -6,6 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import MagicMock,patch
+from patchright.sync_api import Error as BrowserError
 import descargar
 import extractor as core
 from browser_support import network_payloads
@@ -85,13 +86,15 @@ class ReferenceTests(unittest.TestCase):
         result,state,data,graph=self.collect(modify,'typed')
         self.assertEqual(result,0);self.assertTrue(graph['complete'])
         self.assertIn('objects:diagram:D9',data['questions'][0]['context_refs'])
+        self.assertIsNone(state['next_page'])
 
     def test_object_with_missing_reverse_question_reference_is_incomplete(self):
         def modify(value,n):
-            if n==1:value['payload']['case_studies']=[{'id':8,'text':'Caso','question_ids':[999]}]
+            if n==2:value['payload']['case_studies']=[{'id':8,'text':'Caso','question_ids':[999]}]
             return value
         result,state,data,graph=self.collect(modify,'reverse')
         self.assertEqual(result,2);self.assertEqual(graph['unresolved'][0]['source_question_id'],999)
+        self.assertEqual(state['pages_pending_references'],[2])
 
     def test_reference_chain_between_objects_is_checked(self):
         for present in (True,False):
@@ -104,12 +107,18 @@ class ReferenceTests(unittest.TestCase):
             self.assertEqual(result,0 if present else 2)
             self.assertEqual(graph['complete'],present)
 
-    def test_scrapling_reuses_session_and_collects_api_objects_without_raw_headers(self):
+    def test_scrapling_waits_through_same_tab_navigation_and_collects_api_objects(self):
         value=page(self.exam,1);value['payload']['result']['items'][0]['case_study_id']=8
         record=MagicMock();record.url=self.exam['base']+'__data.json';record.headers={'Content-Type':'application/json'}
         record.meta={'resource_type':'fetch'};record.json.return_value={**value['payload'],'case_studies':[{'id':8,'text':'Caso API'}]}
         response=MagicMock();response.url=self.exam['base']+'1';response.status=200;response.html_content=html_page(value)
-        browser_page=MagicMock();browser_page.evaluate.return_value=json.dumps({'url':response.url,'html':response.html_content,'images':[],'capture':{'version':2}})
+        browser_page=MagicMock()
+        browser_page.content.side_effect=[
+            '<iframe src="https://challenges.cloudflare.com/test"></iframe>',
+            BrowserError('Frame was detached'),
+            response.html_content,
+        ]
+        browser_page.evaluate.return_value=json.dumps({'url':response.url,'html':response.html_content,'images':[],'capture':{'version':2}})
         with patch('scrapling.fetchers.StealthySession') as factory:
             session=factory.return_value.__enter__.return_value
             session.network.search.return_value=[record]
@@ -122,8 +131,32 @@ class ReferenceTests(unittest.TestCase):
             self.assertEqual(factory.call_args.kwargs['retries'],1)
             self.assertTrue(factory.call_args.kwargs['record_requests'])
             self.assertFalse(factory.call_args.kwargs['google_search'])
+            self.assertFalse(factory.call_args.kwargs['solve_cloudflare'])
+            self.assertEqual(browser_page.content.call_count,3)
+            browser_page.evaluate.assert_called_once()
+            session.fetch.assert_called_once()
             session.network.clear.assert_called_once();factory.return_value.__exit__.assert_called_once()
         self.assertNotIn('request_headers',json.dumps(captured))
+
+    def test_scrapling_reports_persistent_challenge_with_no_extra_navigation(self):
+        browser_page=MagicMock()
+        browser_page.url=self.exam['base']+'2'
+        browser_page.content.return_value='<title>Just a moment...</title>Cloudflare'
+        response=MagicMock(status=403)
+        with patch('scrapling.fetchers.StealthySession') as factory, patch('scrapling_support.time.monotonic',side_effect=[0,0,0,21]):
+            session=factory.return_value.__enter__.return_value
+            session.network.search.return_value=[]
+            def fetch(url,**options):
+                options['page_action'](browser_page)
+                return response
+            session.fetch.side_effect=fetch
+            with ScraplingSource(self.exam,self.root,0) as source, self.assertRaises(core.AccessStopped) as caught:
+                source.page(2)
+            self.assertEqual(caught.exception.detail['kind'],'challenge_pending')
+            self.assertEqual(caught.exception.detail['page'],2)
+            self.assertFalse(caught.exception.detail['automatic_retry'])
+            browser_page.evaluate.assert_not_called()
+            session.fetch.assert_called_once()
 
 
 if __name__=='__main__':unittest.main()

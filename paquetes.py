@@ -231,7 +231,7 @@ def enrich(root, ocr=False, language="eng"):
     r.update(references_complete=graph['complete'],unresolved_references=graph['unresolved'],referenced_files_pending=graph['files_pending'],objects_preserved=len(data.get('contexts',{})))
     r['content_review_complete']=r['content_review_complete'] and graph['complete']
     r['collection_complete']=r['collection_complete'] and graph['complete']
-    data['package_version'] = '5.2.0'
+    data['package_version'] = '5.2.1'
     ai = root / 'para_ia'
     ai.mkdir(exist_ok=True)
     (ai / 'preguntas.jsonl').write_text(''.join(json.dumps(ai_question(q, data['exam'], data.get('assets', {})), ensure_ascii=False) + '\n' for q in data['questions']), encoding='utf-8')

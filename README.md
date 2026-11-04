@@ -1,10 +1,12 @@
-# ExamBase · Archivo de estudio 5.2.0
+# ExamBase · Archivo de estudio 5.2.1
 
 Elige un examen en el frontend de **GitHub Pages**, inicia su recopilación en **GitHub Actions** y descarga un paquete para estudiar o usar con una IA. Puedes conservar cada ejecución en el repositorio y repetir el procedimiento con otro examen sin reinstalar la herramienta.
 
 La versión **5.2.0** corrige la captura de respuestas: espera la carga de las tarjetas, abre cada respuesta por separado y vuelve a localizar los elementos que reemplaza la web. Combina las claves explícitas del DOM con los metadatos estructurados sólo cuando corresponden a la misma pregunta. Una descarga con todas las preguntas y respuestas ausentes termina como parcial. Al reanudar, conserva todo el respaldo y vuelve a pedir las páginas con respuestas pendientes. Consulta [CORRECCIONES_5_2.md](CORRECCIONES_5_2.md).
 
 Incluye **Scrapling 0.5** como motor seleccionable, con sesión persistente durante el trabajo y registro de respuestas de API. Exporta `para_ia/referencias.json` con objetos, casos, contextos y enlaces hacia las preguntas. Una referencia rota, un archivo referenciado sin recuperar o metadatos DOM sin verificar impiden declarar la ejecución completa. No se promete obtener contenido que el sitio no entregue.
+
+La versión **5.2.1** corrige la interrupción de Scrapling al desaparecer el marco de Turnstile. Espera que el sitio termine la comprobación en la pestaña abierta y conserva el ZIP si el acceso sigue pendiente. La reanudación identifica las páginas con respuestas o referencias por revisar y conserva los metadatos del respaldo al incorporar respuestas del DOM.
 
 La versión 5.1.0 añade **FlareSolverr-next**, **FlareSolverr** y **Rebrowser**, compatibilidad con un servicio propio **CloudProxy** y un workflow de diagnóstico con **Rebrowser Bot Detector**. Puedes elegir el motor en la web. Actions inicia y cierra automáticamente el contenedor de Next o FlareSolverr; mantiene una sesión durante la descarga. Consulta [MOTORES_ACCESO_5_1.md](MOTORES_ACCESO_5_1.md) para instalar la actualización, elegir el motor y retomar el parcial de tu última ejecución.
 

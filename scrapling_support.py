@@ -20,27 +20,57 @@ class ScraplingAssets(SolverAssets):
 
 
 class ScraplingSource:
-    def __init__(self,exam,output,delay,*,headed=False):
+    def __init__(self,exam,output,delay,*,headed=False,verification_wait=None):
         self.exam,self.output,self.delay,self.headed=exam,Path(output),delay,headed
+        self.verification_wait=verification_wait
         self.engine='scrapling';self.last=0;self.last_url=exam['base']+'1'
         self.assets=ScraplingAssets(self);self.received=[];self.objects={k:{} for k in ('topics','series','case_studies','objects')}
     def __enter__(self):
         try:from scrapling.fetchers import StealthySession
         except ImportError as exc:raise core.ExtractionError('Instala requirements_scrapling.txt y ejecuta python -m patchright install chromium.') from exc
-        self.manager=StealthySession(headless=not self.headed,solve_cloudflare=True,google_search=False,
+        self.manager=StealthySession(headless=not self.headed,solve_cloudflare=False,google_search=False,
             disable_resources=False,record_requests=True,max_recorded_requests=200,retries=1,timeout=120000)
         self.session=self.manager.__enter__()
         return self
     def __exit__(self,*args):return self.manager.__exit__(*args)
     def page(self,number):
+        from patchright.sync_api import Error as BrowserError
+
         time.sleep(max(0,self.delay-(time.monotonic()-self.last)));self.last=time.monotonic()
         url=self.exam['base']+str(number);captured={};self.received=[]
         self.session.network.clear()
         def action(tab):
-            try:
-                captured.update(json.loads(tab.evaluate(capture_script(number,self.exam,images=True))))
-                tab.wait_for_timeout(300)
-            except Exception:captured['capture']={'error':'No se completó la captura dinámica; revisar el contenido conservado.'}
+            deadline=time.monotonic()+(self.verification_wait or 20)
+            announced=False
+            while True:
+                try:
+                    html=tab.content()
+                    detail=classify_access(html)
+                    if not detail:
+                        captured.update(json.loads(tab.evaluate(capture_script(number,self.exam,images=True))))
+                        tab.wait_for_timeout(300)
+                        return
+                    if detail['kind']!='challenge_pending' or time.monotonic()>=deadline:
+                        captured.update(html=html,url=tab.url)
+                        return
+                    if not announced:
+                        message=f'Página {number}: esperando que termine la comprobación de acceso.'
+                        if self.verification_wait:
+                            message+=' Si el sitio solicita una acción, complétala en el navegador.'
+                        print(message,flush=True)
+                        announced=True
+                except BrowserError as exc:
+                    # La comprobación puede navegar en la misma pestaña mientras leemos el DOM.
+                    navigating=any(marker in str(exc).lower() for marker in (
+                        'execution context was destroyed','frame was detached','page is navigating',
+                    ))
+                    if not navigating or time.monotonic()>=deadline:
+                        captured['capture']={'error':'El navegador interrumpió la captura dinámica.'}
+                        return
+                except (ValueError,TypeError):
+                    captured['capture']={'error':'No se pudo leer el resultado de la captura dinámica.'}
+                    return
+                tab.wait_for_timeout(500)
         try:response=self.session.fetch(url,page_action=action,google_search=False)
         except Exception as exc:raise core.ExtractionError(f'Scrapling no completó la petición de la página {number} ({type(exc).__name__}).') from exc
         text=captured.get('html') or str(response.html_content)

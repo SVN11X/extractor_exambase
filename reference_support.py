@@ -96,7 +96,11 @@ def reference_graph(data):
             edge={'from':f'{exam}:q:{q["number"]:05d}','to':target,'relation':'context'};edges.append(edge)
             if target not in objects:unresolved.append(edge)
         for item in foreign_fields(q.get('raw') or {}):
-            if item['target'] not in q.get('context_refs',[]):unresolved.append({'from':f'{exam}:q:{q["number"]:05d}','to':None,'field':item['field'],'source_id':item['source_id'],'relation':'unclassified_reference'})
+            if item['target'] in q.get('context_refs',[]):continue
+            if item['target'] in objects:
+                edges.append({'from':f'{exam}:q:{q["number"]:05d}','to':item['target'],'relation':'context'})
+            else:
+                unresolved.append({'from':f'{exam}:q:{q["number"]:05d}','to':None,'field':item['field'],'source_id':item['source_id'],'relation':'unclassified_reference'})
     for object_key,obj in objects.items():
         raw=obj['raw'];targets=raw.get('question_ids') or []
         if raw.get('question_id') is not None:targets=[*targets,raw['question_id']]

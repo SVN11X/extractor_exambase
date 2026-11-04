@@ -152,6 +152,45 @@ class AccessTests(unittest.TestCase):
         self.assertEqual(result.returncode,0,result.stderr)
         self.assertIn('600010',result.stdout)
 
+    def test_resumed_bank_only_marks_incomplete_pages_with_shared_context(self):
+        incomplete=[2,5,8,11,14,17,20]
+        calls=[]
+        class Source:
+            assets=None
+            blocked=False
+            def __init__(self,exam,*_): self.exam=exam
+            def __enter__(self): return self
+            def __exit__(self,*_): pass
+            def page(self,number):
+                calls.append(number)
+                if self.blocked:
+                    raise core.AccessStopped('Comprobación pendiente',kind='challenge_pending',page=number)
+                value=page(self.exam,number,103)
+                result=value['payload']['result']
+                result['case_studies']=[{'id':8,'text':'Contexto común'}]
+                for question in result['items']:
+                    question['case_study_id']=8
+                    if number in incomplete:
+                        question['_dom_card_html']='<div></div>'
+                        question['choices'][0]['is_correct']=None
+                return value
+        args=argparse.Namespace(exam_url=EXAM_URL,output=self.root/'original',resume_from=None,mode='scrapling',delay=5,max_minutes=300,page_limit=0)
+        with contextlib.redirect_stdout(io.StringIO()): self.assertEqual(descargar.run(args,Source),2)
+        initial=json.loads((args.output/'estado_ejecucion.json').read_text())
+        Source.blocked=True
+        calls.clear()
+        args.resume_from=args.output/initial['zip']
+        args.output=self.root/'reanudado'
+        with contextlib.redirect_stdout(io.StringIO()): self.assertEqual(descargar.run(args,Source),2)
+        state=json.loads((args.output/'estado_ejecucion.json').read_text())
+        self.assertEqual(calls,[2])
+        self.assertEqual(state['status'],'blocked')
+        self.assertEqual((state['questions'],state['answers_present'],state['objects_preserved']),(103,68,1))
+        self.assertEqual(state['pages_pending_answers'],incomplete)
+        self.assertEqual(state['pages_pending_references'],incomplete)
+        self.assertEqual(state['unresolved_references'],[])
+        self.assertEqual(state['next_page'],2)
+
 
 class BackupTests(unittest.TestCase):
     def setUp(self):

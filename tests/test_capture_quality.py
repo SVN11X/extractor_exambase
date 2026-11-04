@@ -102,7 +102,12 @@ class CaptureQualityTests(unittest.TestCase):
                 if n==1 and self.behavior=='blocked':raise core.AccessStopped('Verificación rechazada',code='600010',page=1)
                 value=page(self.exam,n)
                 if n==1 and self.behavior=='missing':
-                    value['payload']['result']['items'][0]['choices'][0]['is_correct']=None
+                    result=value['payload']['result']
+                    result['case_studies']=[{'id':9,'text':'Contexto conservado'}]
+                    result['items'][0]['case_study_id']=9
+                    result['items'][0]['choices'][0]['is_correct']=None
+                elif n==1 and self.behavior=='complete':
+                    return core.parse_page(html_page(value),value['url'])
                 return value
         first=self.args('first')
         with contextlib.redirect_stdout(io.StringIO()):self.assertEqual(descargar.run(first,Source),2)
@@ -123,6 +128,10 @@ class CaptureQualityTests(unittest.TestCase):
         data=json.loads(next(third.output.glob('resultado_*/preguntas.json')).read_text())
         self.assertEqual(data['questions'][0]['correct_choices'],['A'])
         self.assertEqual(data['questions'][0]['id'],1)
+        self.assertEqual(data['questions'][0]['context_refs'],['case_studies:9'])
+        saved=json.loads(next(third.output.glob('resultado_*/capturas/pagina_00001.json')).read_text())
+        self.assertEqual(saved['parser'],'structured')
+        self.assertEqual(saved['payload']['result']['case_studies'][0]['id'],9)
 
 
 if __name__=='__main__':unittest.main()

@@ -22,7 +22,7 @@ import extractor as core
 from capture_quality import page_quality, merge_page
 from capture_support import capture_script
 from access_diagnostics import classify_access, annotate_access
-from reference_support import foreign_fields
+from reference_support import attach_contexts, context_collections, key as context_key, reference_graph
 
 CATALOG = json.loads(Path(__file__).with_name("catalogo.json").read_text(encoding="utf-8"))
 EXTERNAL = {urllib.parse.urlsplit(f["href"]).hostname.removeprefix("www.") for f in CATALOG["featured"] if f.get("href")}
@@ -207,6 +207,28 @@ class BrowserSource:
         raise core.AccessStopped("La página requiere acceso o verificación que no se completó en 60 segundos. " + last, kind='access_timeout', page=number, url=self.tab.url)
 
 
+def reference_repair_pages(archive, captures):
+    questions=list(archive.questions.values())
+    unverified={q['number'] for q in questions if '_dom_card_html' in q['raw']}
+    graph=reference_graph({'exam':archive.exam,'questions':questions,'contexts':archive.contexts,
+                           'assets':archive.assets.assets,'report':{'dom_questions_requiring_context_review':sorted(unverified)}})
+    if graph['complete']:
+        return set()
+    broken_sources={edge['from'] for edge in graph['unresolved']}
+    pending_objects=(broken_sources & archive.contexts.keys()) | {item['object'] for item in graph['files_pending']}
+    exam_key=archive.exam['key']
+    pages={source['page'] for q in questions
+           if q['number'] in unverified or f'{exam_key}:q:{q["number"]:05d}' in broken_sources
+           for source in q['sources']}
+    if pending_objects:
+        for number, capture in captures.items():
+            collections=context_collections(capture['payload'])
+            if any((obj.get('_object_key') or context_key(kind,obj['id'])) in pending_objects
+                   for kind, objects in collections.items() for obj in objects):
+                pages.add(number)
+    return pages or {1}
+
+
 def run(args, source_factory=None):
     exam = exam_from_url(args.exam_url)
     if getattr(args, 'exam_name', None):
@@ -246,6 +268,7 @@ def run(args, source_factory=None):
                 cache_diagnostics.append({'page':saved_number,'issue':str(exc)})
     damaged_assets={key for key,value in assets.assets.items() if value.get('download_status')!='downloaded'}
     damaged_pages={s['page'] for q in archive.questions.values() if any(ref['asset_id'] in damaged_assets for ref in q['image_refs']) for s in q['sources']}
+    repair_references=reference_repair_pages(archive,cached_pages)
     if source_factory:
         factory = source_factory
     elif args.mode in {'flaresolverr-next','flaresolverr','cloudproxy'}:
@@ -256,7 +279,8 @@ def run(args, source_factory=None):
         factory = functools.partial(SeleniumSource, headed=getattr(args, 'headed', False))
     elif args.mode=='scrapling':
         from scrapling_support import ScraplingSource
-        factory=functools.partial(ScraplingSource,headed=getattr(args,'headed',False))
+        factory=functools.partial(ScraplingSource,headed=getattr(args,'headed',False),
+                                  verification_wait=getattr(args,'verification_wait',None))
     else:
         factory = functools.partial(BrowserSource, headed=getattr(args, 'headed', False),patched=args.mode=='rebrowser') if args.mode in {'browser','rebrowser'} else HttpSource
     started = time.monotonic()
@@ -273,18 +297,26 @@ def run(args, source_factory=None):
                     break
                 cache = output / "capturas" / f"pagina_{number:05}.json"
                 saved=cached_pages.get(number)
-                context_pending=bool(saved and (saved.get('parser')=='dom' or any(any(item['target'] not in archive.contexts for item in foreign_fields(q.get('raw') or {})) or any(ref not in archive.contexts for ref in q['context_refs']) for q in archive.questions.values() if any(s['page']==number for s in q['sources']))))
-                needs_refresh=not saved or any(page_quality(saved)[key] for key in ('missing_answers','empty_questions','empty_choices')) or number in damaged_pages or context_pending
+                needs_refresh=not saved or any(page_quality(saved)[key] for key in ('missing_answers','empty_questions','empty_choices')) or number in damaged_pages or number in repair_references
                 if needs_refresh:
                     if saved:
-                        print(f'Página {number}: se conserva el respaldo y se reparan respuestas o imágenes pendientes.',flush=True)
+                        print(f'Página {number}: se conserva el respaldo y se revisa el contenido pendiente.',flush=True)
                         original=output/'paginas_originales'/f'pagina_{number:05}.html'
                         if original.is_file():
                             before=original.parent/'previas'/original.name
                             before.parent.mkdir(exist_ok=True)
                             if not before.exists():shutil.copyfile(original,before)
                     page=source.page(number)
-                    if saved:page=merge_page(page,saved)
+                    if saved:
+                        fresh=page
+                        if saved['parser']!='dom' and fresh['parser']=='dom':
+                            page=merge_page(saved,fresh)
+                            for field in ('capture','transport','access_failure'):
+                                page.pop(field,None)
+                                if field in fresh:page[field]=fresh[field]
+                        else:
+                            page=merge_page(fresh,saved)
+                        page=attach_contexts(page,[saved['payload'],fresh['payload']])
                 else:page=saved
                 if number == 1 and "total" not in exam:
                     exam.update(detect_counts(exam, page))
@@ -293,6 +325,7 @@ def run(args, source_factory=None):
                 validate_page(exam, page, number)
                 if needs_refresh:
                     core.write_json(cache, page)
+                    cached_pages[number]=page
                     repair_assets={ref['asset_id'] for q in archive.questions.values() if any(s['page']==number for s in q['sources']) for ref in q['image_refs']} & damaged_assets
                     for key in repair_assets:assets.assets.pop(key,None)
                     archive.add_page(page, f"capturas/{cache.name}")
@@ -314,7 +347,7 @@ def run(args, source_factory=None):
         archive.errors.append({'page': number, 'issue': stopped, 'kind': failure['kind'], 'code': failure['code']})
     except (core.ExtractionError, OSError, ValueError, KeyError, TypeError) as exc:
         stopped = str(exc)
-        archive.errors.append({"page": len(archive.pages) + 1, "issue": stopped})
+        archive.errors.append({"page": number, "issue": stopped})
     except KeyboardInterrupt:
         stopped = "Ejecución interrumpida; se conserva lo recuperado en el ZIP parcial."
         archive.errors.append({"issue": stopped})
@@ -346,10 +379,7 @@ def run(args, source_factory=None):
     image_pages=sorted({s['page'] for q in data['questions'] if any(ref['asset_id'] in failed_assets for ref in q['image_refs']) for s in q['sources']})
     invalid_content=set(report['empty_questions']) | {item['question'] for item in report['empty_choices']}
     content_pages=sorted({s['page'] for q in data['questions'] if q['number'] in invalid_content for s in q['sources']})
-    reference_pages=[]
-    if not report['references_complete']:
-        uncertain=set(report.get('dom_questions_requiring_context_review',[]))
-        reference_pages=sorted({s['page'] for q in data['questions'] if q['number'] in uncertain or q['context_refs'] for s in q['sources']}) or [1]
+    reference_pages=sorted(reference_repair_pages(archive,cached_pages))
     pending_pages=sorted((set(range(1,pages+1))-set(saved_pages)) | set(answer_pages) | set(image_pages) | set(content_pages) | set(reference_pages))
     next_page = pending_pages[0] if pending_pages else None if pages else 1
     success = report["coverage_complete"] and report['answers_complete'] and report['references_complete'] and not report['empty_questions'] and not report['empty_choices'] and not archive.errors and not report["images_failed"] and not report.get('conflicts')
@@ -357,7 +387,7 @@ def run(args, source_factory=None):
     if not success and not stopped and invalid_content:stopped=f'Hay {len(invalid_content)} preguntas con enunciados o alternativas vacíos; se requiere recuperar su contenido.'
     if not success and not stopped and not report['references_complete']:stopped='Los objetos referenciados o sus metadatos no están completos; consulta para_ia/referencias.json.'
     status = 'complete' if success else 'blocked' if failure else 'partial' if saved_pages else 'failed'
-    diagnostic = {'status': status, 'failure': failure, 'pages_saved': saved_pages, 'next_page': next_page,'pages_pending_answers':answer_pages,'pages_pending_images':image_pages,'answers_present':report['answers_present'],'answers_missing':report['answers_missing'],'cache_diagnostics':cache_diagnostics}
+    diagnostic = {'status': status, 'failure': failure, 'pages_saved': saved_pages, 'next_page': next_page,'pages_pending_answers':answer_pages,'pages_pending_images':image_pages,'pages_pending_references':reference_pages,'answers_present':report['answers_present'],'answers_missing':report['answers_missing'],'cache_diagnostics':cache_diagnostics}
     core.write_json(output / 'diagnostico_acceso.json', diagnostic)
     integrity_path = output / 'integridad_sha256.json'
     integrity = json.loads(integrity_path.read_text(encoding='utf-8'))
@@ -392,9 +422,12 @@ def main(argv=None):
     parser.add_argument("--resume-from", type=Path)
     parser.add_argument("--ocr", action="store_true", help="Transcribir imágenes con Tesseract, siempre sin verificar")
     parser.add_argument("--headed", action="store_true", help="Navegador visible para browser, rebrowser, selenium o scrapling; requiere pantalla real o Xvfb")
+    parser.add_argument("--verification-wait",type=int,metavar="SEGUNDOS",help="Tiempo para completar una comprobación del sitio con scrapling --headed (1 a 300)")
     args = parser.parse_args(argv)
     if not math.isfinite(args.delay) or not math.isfinite(args.max_minutes) or args.delay < 5 or args.delay > 120 or args.page_limit < 0 or args.max_minutes <= 0:
         parser.error("delay debe estar entre 5 y 120; page-limit no puede ser negativo; max-minutes debe ser positivo")
+    if args.verification_wait is not None and (args.mode!='scrapling' or not args.headed or not 1<=args.verification_wait<=300):
+        parser.error("verification-wait requiere --mode scrapling --headed y un valor entre 1 y 300 segundos")
     try:
         return run(args)
     except (core.ExtractionError, ValueError, OSError, zipfile.BadZipFile) as exc:

@@ -1,9 +1,15 @@
-# Captura y diagnóstico · versión 5.2.0
+# Captura y diagnóstico · versión 5.2.1
 
-Base real: `5490b4d7169c4f5d74b8fdf8ed222a7c55c9fe4d`, la actualización 5.1
-publicada en `SVN11X/extractor_exambase`. Se conservan sus motores y bancos.
+El parche 5.2.1 se aplica sobre `9c6642e2bb6309d0b2415d88ef78252690346e23`
+de `SVN11X/extractor_exambase`.
 
 ## Qué se pudo comprobar de tu ejecución
+
+El log de `41743648444` registra 103 preguntas, 68 respuestas y un objeto
+conservado de **Google Associate Data Practitioner**. Quedan 35 respuestas y
+metadatos por verificar en las páginas 2, 5, 8, 11, 14, 17 y 20. No se detectaron
+referencias rotas. Scrapling se detuvo al desaparecer el marco de Turnstile
+mientras intentaba pulsar la casilla de verificación.
 
 La API pública de GitHub identifica la ejecución `41619720711`, trabajo
 `125862077527`, como exitosa. El solver se inició, el recopilador terminó y se
@@ -28,9 +34,10 @@ Se incorpora **Scrapling 0.5** como motor `scrapling`, basado en la API del proy
 oficial [D4Vinci/Scrapling](https://github.com/D4Vinci/Scrapling), commit consultado
 `95cf9019ab5a5d6f3e9654b7ef1c6a26e29dc5c0`. Se instala con su extra `fetchers` y
 utiliza `StealthySession`, registro de API y un solo intento de petición por página.
-La sesión habilita el mecanismo de Cloudflare de la biblioteca, sin rotación de
-proxies ni cambio automático a otros motores. No se ha probado contra ExamBase
-desde esta entrega y no garantiza superar sus controles.
+La versión 5.2.1 desactiva el clic de verificación de la biblioteca. Si detecta
+una comprobación pendiente, espera hasta 20 segundos en la misma pestaña. Si el
+sitio abre la página durante ese tiempo, captura sus preguntas y respuestas. Si
+la comprobación sigue pendiente, registra el estado y conserva el ZIP parcial.
 
 La captura compartida por Next, Playwright/Rebrowser y Selenium espera tarjetas,
 pulsa un control **Reveal Answer** a la vez y comprueba que aparezca una marca
@@ -95,15 +102,16 @@ git push origin main
 ```
 
 El parche corresponde a la base indicada arriba. Si hay conflictos de Git,
-revísalos antes de continuar; no vuelvas a aplicar el parche 5.1 anterior.
+revísalos antes de continuar.
 
 En Pages o Actions selecciona **el mismo examen** de la ejecución anterior y:
 
 | Opción | Valor |
 | --- | --- |
-| Motor | `scrapling` para capturar también la API, o `flaresolverr-next` |
+| Examen | Google Associate Data Practitioner |
+| Motor | `scrapling` |
 | Runner | `github` |
-| ID para reanudar | `41619720711` |
+| ID para reanudar | `41743648444` |
 | Límite de páginas | `0` |
 | Guardar también en el repositorio | Activado si quieres conservar el banco |
 
@@ -118,12 +126,13 @@ Para usar Scrapling por terminal:
 ```powershell
 python -m pip install -r requirements_actions.txt -r requirements_scrapling.txt
 python -m patchright install chromium
-python descargar.py --exam-url "URL_DEL_MISMO_EXAMEN" --mode scrapling --headed --resume-from resultado_anterior.zip --output salida_nueva
+python descargar.py --exam-url "URL_DEL_MISMO_EXAMEN" --mode scrapling --headed --verification-wait 180 --resume-from resultado_anterior.zip --output salida_nueva
 ```
 
-En Actions se prepara el navegador automáticamente y se utiliza Xvfb en el runner
-de GitHub. No hace falta dejar abierto tu equipo. La operación se conserva como
-parcial si el sitio no entrega contenido suficiente.
+En Actions el navegador se ejecuta en el servidor de GitHub. Si el sitio exige
+interacción, descarga el ZIP parcial y usa el comando local. La opción
+`--verification-wait 180` deja hasta tres minutos para completar la comprobación
+en la ventana visible.
 
 Para una auditoría exacta del resultado anterior se necesita su ZIP descargado
 desde Actions, especialmente `informe_validacion.json`, `preguntas.json`, capturas
