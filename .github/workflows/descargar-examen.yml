@@ -192,6 +192,12 @@ jobs:
           print(f"Respuestas conservadas: **{d.get('answers_present', '?')}**")
           print(f"Preguntas sin respuesta: **{d.get('answers_missing', [])}**")
           print(f"Páginas con respuestas pendientes: **{d.get('pages_pending_answers', [])}**")
+          if d.get('images_found') is not None:
+              print(f"Imágenes guardadas **{d.get('images_downloaded', '?')}/{d['images_found']}**. Imágenes pendientes **{len(d.get('images_failed') or [])}**.")
+          if d.get('missing_explanations') is not None:
+              print(f"Explicaciones ausentes en el contenido conservado **{len(d['missing_explanations'])}**.")
+          if d.get('images_requiring_review'):
+              print(f"Imágenes con revisión visual pendiente **{len(d['images_requiring_review'])}**. El OCR requiere comprobarse con las imágenes originales.")
           print(f"Objetos conservados: **{d.get('objects_preserved', 0)}**. Referencias verificadas: **{d.get('references_complete', False)}**")
           print(f"Preguntas con metadatos pendientes: **{len(d.get('metadata_unverified_questions', []))}**. Páginas afectadas: **{d.get('pages_pending_references', [])}**")
           print(f"Referencias sin resolver: **{len(d.get('unresolved_references', []))}**. Archivos referenciados pendientes: **{len(d.get('referenced_files_pending', []))}**")
@@ -204,8 +210,14 @@ jobs:
           if failure:
               print(f"\nCódigo de acceso: **{failure.get('code') or failure.get('kind')}**. Página: **{failure.get('page')}**.")
               print('\nEl motor no entregó preguntas válidas. Se conserva el parcial; no se inicia otra sesión ni se cambia automáticamente de motor para reintentar.')
-          if d.get('resume_supported'):
-              print(f"\nPara reanudar selecciona el mismo examen y usa **resume_run_id = {os.environ['GITHUB_RUN_ID']}**. Próxima página: **{d.get('next_page') or 'revisar imágenes'}**.")
+          if d.get('execution_complete'):
+              print('\nRecopilación completa. El ZIP está preparado para su descarga.')
+          elif d.get('resume_supported'):
+              print(f"\nPara reanudar selecciona el mismo examen y usa **resume_run_id = {os.environ['GITHUB_RUN_ID']}**.")
+              if d.get('next_page'):
+                  print(f"Próxima página **{d['next_page']}**.")
+              else:
+                  print('Consulta los pendientes concretos en informe_validacion.json.')
           if failure and os.environ.get('EXAM_RUNNER') != 'self-hosted':
               print('\nUn motor alternativo o un runner propio se eligen en otra ejecución; no garantizan superar verificaciones. Revisa MOTORES_ACCESO_5_1.md. Para acceso desatendido fiable se necesita una vía habilitada por el propietario.')
           print('\nDescarga el artefacto **exambase-resultado**. No incluye perfiles ni cookies del navegador.')

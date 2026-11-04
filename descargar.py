@@ -405,8 +405,12 @@ def run(args, source_factory=None):
                    f'{missing_links} referencias sin resolver y {pending_files} archivos referenciados pendientes. '
                    'Consulta para_ia/referencias.json.')
     status = 'complete' if success else 'blocked' if failure else 'partial' if saved_pages else 'failed'
+    content_summary = {field: report.get(field, []) for field in
+                       ('images_failed', 'images_requiring_review', 'missing_explanations')}
+    content_summary.update(images_found=report['images_found'], images_downloaded=report['images_downloaded'])
     diagnostic = {'status': status, 'failure': failure, 'pages_saved': saved_pages, 'next_page': next_page,'pages_pending_answers':answer_pages,'pages_pending_images':image_pages,'pages_pending_references':reference_pages,'answers_present':report['answers_present'],'answers_missing':report['answers_missing'],'cache_diagnostics':cache_diagnostics}
     diagnostic['pages_retried_for_metadata'] = sorted(metadata_retried)
+    diagnostic.update(content_summary)
     core.write_json(output / 'diagnostico_acceso.json', diagnostic)
     integrity_path = output / 'integridad_sha256.json'
     integrity = json.loads(integrity_path.read_text(encoding='utf-8'))
@@ -417,6 +421,7 @@ def run(args, source_factory=None):
     state.update(answers_present=report['answers_present'],answers_missing=report['answers_missing'],answers_complete=report['answers_complete'],pages_pending_answers=answer_pages,pages_pending_images=image_pages)
     state.update(references_complete=report['references_complete'],objects_preserved=report['objects_preserved'],unresolved_references=report['unresolved_references'],metadata_unverified_questions=unverified_metadata,pages_pending_references=reference_pages,referenced_files_pending=report['referenced_files_pending'])
     state['pages_retried_for_metadata'] = sorted(metadata_retried)
+    state.update(content_summary)
     core.write_json(args.output / "estado_ejecucion.json", state)
     print(json.dumps(state, ensure_ascii=False, indent=2), flush=True)
     if failure:

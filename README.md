@@ -1,6 +1,8 @@
-# ExamBase · Archivo de estudio 5.2.3
+# ExamBase · Archivo de estudio 5.2.4
 
 Elige un examen en el frontend de **GitHub Pages**, inicia su recopilación en **GitHub Actions** y descarga un paquete para estudiar o usar con una IA. Puedes conservar cada ejecución en el repositorio y repetir el procedimiento con otro examen sin reinstalar la herramienta.
+
+La versión **5.2.4** muestra cuántas imágenes se guardaron, cuáles faltan y cuántas explicaciones están vacías en el contenido conservado. Una recopilación completa se presenta como terminada. Las imágenes descargadas mantienen su aviso de revisión visual del contenido y del OCR.
 
 La versión **5.2.0** corrige la captura de respuestas: espera la carga de las tarjetas, abre cada respuesta por separado y vuelve a localizar los elementos que reemplaza la web. Combina las claves explícitas del DOM con los metadatos estructurados sólo cuando corresponden a la misma pregunta. Una descarga con todas las preguntas y respuestas ausentes termina como parcial. Al reanudar, conserva todo el respaldo y vuelve a pedir las páginas con respuestas pendientes. Consulta [CORRECCIONES_5_2.md](CORRECCIONES_5_2.md).
 

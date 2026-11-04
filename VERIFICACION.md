@@ -1,4 +1,20 @@
-# Verificación de la entrega 5.2.3
+# Verificación de la entrega 5.2.4
+
+## Comprobaciones de 5.2.4
+
+Pasaron 106 pruebas Python y 52 JavaScript. El resumen real del workflow se
+ejecutó con resultados completos, parciales y bloqueados. Un resultado completo
+con revisión pendiente muestra 8/8 imágenes guardadas y el ZIP preparado. El
+caso parcial conserva sus instrucciones de reanudación.
+
+El ZIP real de `41843218758` se comprobó con el inspector de Pages y se volvió
+a procesar localmente desde el respaldo. Ambas comprobaciones conservaron
+349 respuestas y 8/8 imágenes presentes. El estado registra 27 explicaciones
+ausentes y mantiene la revisión de contenido pendiente. Se verificó que sus
+campos de explicación están vacíos en las capturas estructuradas.
+
+La nueva presentación del resumen de Actions queda por comprobar en la próxima
+ejecución publicada.
 
 ## Comprobaciones de 5.2.3
 

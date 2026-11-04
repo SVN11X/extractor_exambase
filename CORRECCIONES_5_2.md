@@ -1,7 +1,24 @@
-# Captura y diagnóstico · versión 5.2.3
+# Captura y diagnóstico · versión 5.2.4
 
-El parche 5.2.3 se aplica sobre `eddd0fb4dbe70e3dad537c00bf12320618ac5449`
+El parche 5.2.4 se aplica sobre `13db896a7dc3a704fa207f55c35bdb84c2eb990c`
 de `SVN11X/extractor_exambase`.
+
+## Estado de imágenes y revisión del contenido
+
+El resultado de `41843218758` conserva 349 preguntas y respuestas, 8 imágenes
+descargadas y todos los metadatos. Se comprobaron los ocho archivos y sus hashes.
+Las 27 explicaciones señaladas tienen el campo `solution_text` vacío en sus
+capturas estructuradas.
+
+La versión 5.2.4 muestra las imágenes guardadas y pendientes en el estado, el
+diagnóstico y el resumen de Actions. Cuando la recopilación está completa, el
+resumen presenta el ZIP como listo para descargar. El aviso de revisión visual
+describe la comprobación del contenido y del OCR. Las explicaciones vacías se
+enumeran como contenido ausente en el paquete.
+
+El inspector de Pages cuenta los archivos presentes dentro del ZIP y detecta
+también las imágenes que carecen de una ruta local. Al cargar sólo un JSON,
+solicita el ZIP para comprobar los archivos asociados.
 
 ## Recuperación automática de metadatos
 
@@ -140,7 +157,7 @@ En Pages o Actions selecciona **el mismo examen** de la ejecución anterior y:
 | Examen | Google Associate Cloud Engineer |
 | Motor | `scrapling` |
 | Runner | `github` |
-| ID para reanudar | `41825863020` |
+| ID para reanudar | `41843218758` |
 | Límite de páginas | `0` |
 | Guardar también en el repositorio | Activado si quieres conservar el banco |
 

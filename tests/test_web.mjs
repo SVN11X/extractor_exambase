@@ -47,6 +47,12 @@ test('API mantiene el token fuera de propiedades públicas, rutas y errores',asy
 test('inspector distingue cobertura, explicación ausente y archivo de imagen faltante',()=>{
   const data={questions:[{number:1,correct_choices:['B'],explanation_text:''}],report:{expected_questions:1,missing_pages:[]},assets:{x:{local_path:'imagenes/x.png'}}};
   const r=summary(data,new Set());assert(r.coverage);assert.deepEqual(r.missingExplanations,[1]);assert.deepEqual(r.missingFiles,['imagenes/x.png']);
+  assert.equal(r.imagesPresent,0);
+  assert.equal(summary(data,new Set(['imagenes/x.png'])).imagesPresent,1);
+  assert.equal(summary(data).imagesPresent,null);
+  const absent={...data,assets:{x:{id:'x',download_status:'failed'}}};
+  assert.deepEqual(summary(absent,new Set()).missingFiles,['x']);
+  assert.equal(summary(absent,new Set()).imagesPresent,0);
   assert(!summary({...data,questions:[data.questions[0],data.questions[0]]}).coverage);
 });
 test('inspector abre ZIP de extensión y el contenedor adicional de Actions',async()=>{

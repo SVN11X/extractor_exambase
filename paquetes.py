@@ -219,6 +219,8 @@ def enrich(root, ocr=False, language="eng"):
             except (OSError, ValueError, subprocess.SubprocessError) as exc:
                 asset['ocr_status'], asset['ocr_error'] = 'failed', str(exc)[:500]
         asset['review_required'] = True
+    r['images_found'] = len(data.get('assets', {}))
+    r['images_downloaded'] = r['images_found'] - len(r['images_failed'])
     r['integrity_checked_at'] = datetime.now(timezone.utc).isoformat()
     r['content_review_complete'] = not any((r.get('missing_explanations'), r.get('missing_or_special_answers'), r.get('unresolved_contexts'), r.get('dom_questions_requiring_context_review'), r.get('html_markers_requiring_review'), r.get('conflicts'), r.get('errors'), data.get('assets')))
     r['collection_complete'] = r['coverage_complete'] and r['content_review_complete'] and not r['images_failed']
@@ -231,7 +233,7 @@ def enrich(root, ocr=False, language="eng"):
     r.update(references_complete=graph['complete'],unresolved_references=graph['unresolved'],referenced_files_pending=graph['files_pending'],objects_preserved=len(data.get('contexts',{})))
     r['content_review_complete']=r['content_review_complete'] and graph['complete']
     r['collection_complete']=r['collection_complete'] and graph['complete']
-    data['package_version'] = '5.2.3'
+    data['package_version'] = '5.2.4'
     ai = root / 'para_ia'
     ai.mkdir(exist_ok=True)
     (ai / 'preguntas.jsonl').write_text(''.join(json.dumps(ai_question(q, data['exam'], data.get('assets', {})), ensure_ascii=False) + '\n' for q in data['questions']), encoding='utf-8')

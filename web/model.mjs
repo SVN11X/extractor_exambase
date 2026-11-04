@@ -32,8 +32,11 @@ export function summary(data, files=null) {
   if (!data || !Array.isArray(data.questions) || !data.report) throw Error('Este JSON no tiene la estructura de un resultado de ExamBase.');
   const r=data.report, numbers=data.questions.map(q=>q.number), unique=new Set(numbers);
   const expected=r.expected_questions, missingExplanations=data.questions.filter(q=>!q.explanation_text && !q.raw?.solution_text).map(q=>q.number);
-  const assets=Object.values(data.assets || {}), missingFiles=files ? assets.filter(a=>a.local_path && !files.has(a.local_path)).map(a=>a.local_path) : null;
+  const assets=Object.values(data.assets || {});
+  const missingFiles=files ? Object.entries(data.assets || {})
+    .filter(([,asset])=>!asset.local_path || !files.has(asset.local_path))
+    .map(([key,asset])=>asset.local_path || asset.id || key) : null;
   const coverage=Number.isSafeInteger(expected) && expected>0 && numbers.length===expected && unique.size===expected && numbers.every(n=>Number.isInteger(n)&&n>=1&&n<=expected) && !r.missing_pages?.length;
   const answersMissing=data.questions.filter(q=>!q.correct_choices?.length&&!q.answer_image_url).map(q=>q.number),answerImages=data.questions.filter(q=>!q.correct_choices?.length&&q.answer_image_url).map(q=>q.number);
-  return {questions:numbers.length,expected,coverage,images:assets.length,missingExplanations,missingFiles,answersMissing,answersPresent:numbers.length-answersMissing.length,answerImages,contextReview:r.dom_questions_requiring_context_review || [],formattingReview:r.html_markers_requiring_review || [],conflicts:r.conflicts || [],errors:r.errors || []};
+  return {questions:numbers.length,expected,coverage,images:assets.length,imagesPresent:files ? assets.length-missingFiles.length : null,missingExplanations,missingFiles,answersMissing,answersPresent:numbers.length-answersMissing.length,answerImages,contextReview:r.dom_questions_requiring_context_review || [],formattingReview:r.html_markers_requiring_review || [],conflicts:r.conflicts || [],errors:r.errors || []};
 }

@@ -44,6 +44,7 @@ def persist(output, repository_root, run_id):
     entry.update(status=state.get('status', 'complete' if state['coverage_complete'] else 'partial'), failure=state.get('failure'), pages_saved=state.get('pages_saved', []), next_page=state.get('next_page'))
     entry.update({field:state.get(field) for field in ('answers_present','answers_missing','answers_complete','pages_pending_answers','pages_pending_images')})
     entry.update({field:state.get(field) for field in ('references_complete','objects_preserved','unresolved_references','metadata_unverified_questions')})
+    entry.update({field:state.get(field) for field in ('images_found','images_downloaded','images_failed','images_requiring_review','missing_explanations')})
     index['runs'] = [entry] + index['runs']
     core.write_json(index_path, index)
     core.write_json(target / 'manifest_guardado.json', entry)

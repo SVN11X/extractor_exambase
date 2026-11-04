@@ -158,6 +158,29 @@ class AccessTests(unittest.TestCase):
         self.assertEqual(result.returncode,0,result.stderr)
         self.assertIn('600010',result.stdout)
 
+        state.update(questions=349, status='complete', coverage_complete=True, execution_complete=True,
+                     stopped_reason=None, failure=None, resume_supported=True, next_page=None,
+                     images_found=8, images_downloaded=8, images_failed=[],
+                     images_requiring_review=list(range(8)), missing_explanations=list(range(1,28)))
+        (self.root/'salida/estado_ejecucion.json').write_text(json.dumps(state))
+        result=subprocess.run([sys.executable,'-c',code],cwd=self.root,text=True,capture_output=True)
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertIn('Imágenes guardadas **8/8**',result.stdout)
+        self.assertIn('conservado **27**',result.stdout)
+        self.assertIn('Recopilación completa',result.stdout)
+        self.assertNotIn('revisar imágenes',result.stdout)
+        self.assertNotIn('Para reanudar',result.stdout)
+
+        state.update(status='partial', execution_complete=False, images_downloaded=7, images_failed=['pending'])
+        (self.root/'salida/estado_ejecucion.json').write_text(json.dumps(state))
+        with patch.dict('os.environ',{'GITHUB_RUN_ID':'123'}):
+            result=subprocess.run([sys.executable,'-c',code],cwd=self.root,text=True,capture_output=True)
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertIn('Imágenes guardadas **7/8**',result.stdout)
+        self.assertIn('resume_run_id = 123',result.stdout)
+        self.assertIn('informe_validacion.json',result.stdout)
+        self.assertNotIn('revisar imágenes',result.stdout)
+
     def test_resumed_bank_only_marks_incomplete_pages_with_shared_context(self):
         incomplete=[2,5,8,11,14,17,20]
         calls=[]

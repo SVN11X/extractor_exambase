@@ -59,6 +59,8 @@ class PackageTests(unittest.TestCase):
         self.assertTrue(changed['report']['coverage_complete'])
         self.assertFalse(changed['report']['content_review_complete'])
         self.assertEqual(changed['report']['images_failed'], ['x'])
+        self.assertEqual(changed['report']['images_found'], 1)
+        self.assertEqual(changed['report']['images_downloaded'], 0)
         self.assertEqual(changed['report']['missing_explanations'], [1])
     def test_asset_path_escape_is_rejected(self):
         with self.assertRaises(ValueError): paquetes.safe_asset(self.root, '../escape.png')
