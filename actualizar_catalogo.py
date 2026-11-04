@@ -9,6 +9,36 @@ from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 import extractor as core
 from descargar import exam_from_url
+from access_diagnostics import classify_access
+
+
+class CatalogSource:
+    """Lee índices públicos con el mismo navegador Scrapling del recopilador."""
+    def __init__(self, delay=10):
+        self.delay, self.last = delay, 0
+    def __enter__(self):
+        from scrapling.fetchers import StealthySession
+        self.manager=StealthySession(headless=False,solve_cloudflare=False,google_search=False,retries=1,timeout=60000)
+        self.session=self.manager.__enter__()
+        return self
+    def __exit__(self,*args):
+        return self.manager.__exit__(*args)
+    def get(self,url):
+        time.sleep(max(0,self.delay-(time.monotonic()-self.last)))
+        self.last=time.monotonic()
+        response=self.session.fetch(url,google_search=False)
+        source=str(response.html_content)
+        detail=classify_access(source,response.status)
+        if detail:
+            error=core.AccessStopped('El catálogo requiere completar el acceso.',kind=detail['kind'],code=detail.get('code'),url=url)
+            error.detail.update(detail)
+            raise error
+        actual, expected = urlsplit(response.url), urlsplit(url)
+        if actual.hostname != expected.hostname or actual.path.rstrip('/') != expected.path.rstrip('/'):
+            raise core.ExtractionError('El índice redirigió fuera del proveedor.')
+        if not 200 <= response.status < 300:
+            raise core.ExtractionError(f'El índice devolvió HTTP {response.status}; se conserva el catálogo anterior.')
+        return source.encode(), 'text/html', 'utf-8'
 
 
 def parse_vendor(source, vendor):
@@ -23,7 +53,7 @@ def parse_vendor(source, vendor):
         except (core.ExtractionError, ValueError):
             continue
         # Sólo portadas de examen con contador real; excluye navegación genérica.
-        if '/practice-questions/' in url or urlsplit(url).hostname not in {'exambase.com', 'www.exambase.com'}:
+        if '/practice-questions/' in url:
             continue
         label = anchor.get_text(' ', strip=True)
         match = re.search(r'([\d,]+)\s+questions?\b', label, re.I)
@@ -42,27 +72,56 @@ def parse_vendor(source, vendor):
     return list(exams.values())
 
 
+def advertised_count(source):
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(source, 'html.parser')
+    main = soup.find('main') or soup
+    match = re.search(r'\b([\d,]+)\s+(?:active\s+)?exams?\b', main.get_text(' ', strip=True), re.I)
+    return int(match[1].replace(',', '')) if match else None
+
+
 def update(path, slug, delay, downloader=None):
+    if downloader is None:
+        with CatalogSource(delay) as source:
+            return update(path,slug,delay,source)
     path = Path(path)
     data = json.loads(path.read_text(encoding='utf-8'))
     selected = data['vendors'] if slug == 'all' else [v for v in data['vendors'] if v['slug'] == slug]
     if not selected:
         raise ValueError('Proveedor no reconocido en el índice.')
-    source = downloader or core.Downloader(delay=delay, retries=1)
+    source = downloader
     errors, updated = [], []
     for vendor in selected:
         try:
             body, _, encoding = source.get('https://www.exambase.com/exams/' + vendor['slug'])
-            found = parse_vendor(body.decode(encoding, 'replace'), vendor)
-            data['exams'] = [e for e in data['exams'] if e.get('vendor_slug') != vendor['slug']] + found
+            text = body.decode(encoding, 'replace')
+            current_count = advertised_count(text)
+            found = [] if current_count == 0 else parse_vendor(text, vendor)
+            expected = current_count if current_count is not None else vendor.get('liveCount')
+            if type(expected) is int and expected > len(found):
+                raise core.ExtractionError(f'Índice parcial: se encontraron {len(found)} de {expected} exámenes anunciados; se conserva el catálogo previo.')
+            retained = []
+            for exam in data['exams']:
+                memberships = set(exam.get('vendor_slugs', [exam.get('vendor_slug')])) - {vendor['slug'], None}
+                if memberships:
+                    retained.append({**exam, 'vendor_slugs': sorted(memberships)})
+            by_key = {exam['id']: exam for exam in retained}
+            for exam in found:
+                memberships = set(by_key.get(exam['id'], {}).get('vendor_slugs', [])) | {vendor['slug']}
+                by_key[exam['id']] = {**exam, 'vendor_slugs': sorted(memberships)}
+            data['exams'] = list(by_key.values())
+            if current_count is not None:
+                vendor['liveCount'] = current_count
             updated.append(vendor['slug'])
+            data.setdefault('vendor_updated_at',{})[vendor['slug']]=datetime.now(timezone.utc).isoformat()
         except (core.ExtractionError, ValueError, OSError) as exc:
-            errors.append({'vendor': vendor['slug'], 'error': str(exc)})
+            errors.append({'vendor': vendor['slug'], 'error': str(exc), 'blocked': isinstance(exc, core.AccessStopped)})
             if isinstance(exc, core.AccessStopped):
                 break
     data['updated_at'] = datetime.now(timezone.utc).isoformat()
+    data['exams']=list({exam['id']:exam for exam in data['exams']}.values())
     data['exams'].sort(key=lambda e: (e['vendor'], e['name']))
-    data['complete'] = len(updated) == len(data['vendors']) and not errors
+    data['complete'] = all(v['slug'] in data.get('vendor_updated_at',{}) for v in data['vendors'])
     data['last_update'] = {'updated_vendors': updated, 'errors': errors, 'previous_entries_retained': True}
     core.write_json(path, data)
     return data['last_update']
@@ -72,7 +131,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--vendor', default='all')
     parser.add_argument('--delay', type=float, default=5)
-    parser.add_argument('--path', type=Path, default=Path('web/data/catalog.json'))
+    parser.add_argument('--path', type=Path, default=Path('catalogos/catalogo.json'))
     args = parser.parse_args()
     if not 5 <= args.delay <= 120:
         parser.error('La pausa debe estar entre 5 y 120 segundos.')

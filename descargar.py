@@ -20,12 +20,15 @@ from pathlib import Path
 
 import extractor as core
 from capture_quality import page_quality, merge_page
-from capture_support import capture_script
 from access_diagnostics import classify_access, annotate_access
 from reference_support import attach_contexts, context_collections, key as context_key, reference_graph
 
-CATALOG = json.loads(Path(__file__).with_name("catalogo.json").read_text(encoding="utf-8"))
+CATALOG = json.loads((Path(__file__).parent / "catalogos" / "origen.json").read_text(encoding="utf-8"))
 EXTERNAL = {urllib.parse.urlsplit(f["href"]).hostname.removeprefix("www.") for f in CATALOG["featured"] if f.get("href")}
+
+
+class DatasetChanged(core.ExtractionError):
+    """La fuente cambió de generación: es necesario recopilar desde cero."""
 
 
 def exam_from_url(value):
@@ -59,12 +62,12 @@ def detect_counts(exam, page):
 
 def validate_page(exam, page, number):
     r = page["payload"]["result"]
+    if r.get("total") not in (None, exam["total"]) or r.get("total_pages") not in (None, exam["pages"]):
+        raise DatasetChanged("El sitio cambió los totales durante la extracción; no se mezclarán versiones.")
     expected = list(range((number - 1) * exam["per_page"] + 1, min(number * exam["per_page"], exam["total"]) + 1))
     orders = [q.get("order") for q in r.get("items", [])]
     if r.get("page") != number or sorted(orders) != expected or len(set(orders)) != len(orders):
         raise core.ExtractionError(f"La página {number} no coincide con su numeración esperada.")
-    if r.get("total") not in (None, exam["total"]) or r.get("total_pages") not in (None, exam["pages"]):
-        raise core.ExtractionError("El sitio cambió los totales durante la extracción; no se mezclarán versiones.")
     url = urllib.parse.urlsplit(page["url"])
     wanted = urllib.parse.urlsplit(exam["base"])
     if url.hostname.removeprefix("www.") != wanted.hostname.removeprefix("www.") or url.path.rstrip("/") != (wanted.path + str(number)).rstrip("/"):
@@ -101,110 +104,6 @@ def restore(source, output, exam):
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_bytes(z.read(item))
         return meta
-
-
-class HttpSource:
-    def __init__(self, exam, output, delay):
-        self.exam, self.output = exam, output
-        self.assets = core.Downloader(delay=delay, retries=1)
-    def __enter__(self):
-        return self
-    def __exit__(self, *_):
-        pass
-    def page(self, number):
-        url = self.exam["base"] + str(number)
-        body, _, encoding = self.assets.get(url)
-        text = body.decode(encoding, "replace")
-        core.write_json(self.output / "ultima_peticion.json", {"url": url, "page": number})
-        target = self.output / "paginas_originales" / f"pagina_{number:05}.html"
-        target.parent.mkdir(exist_ok=True)
-        target.write_text(text, encoding="utf-8")
-        return core.parse_page(text, url)
-
-
-class BrowserSource:
-    def __init__(self, exam, output, delay, *, headed=False, patched=False):
-        self.exam, self.output, self.delay, self.headed, self.patched = exam, output, delay, headed, patched
-    def __enter__(self):
-        try:
-            if self.patched:
-                from rebrowser_playwright.sync_api import sync_playwright
-            else:
-                from playwright.sync_api import sync_playwright
-        except ImportError as exc:
-            instructions = 'Instala requirements_rebrowser.txt y Google Chrome estable.' if self.patched else 'Instala requirements_actions.txt y ejecuta python -m playwright install chromium.'
-            raise core.ExtractionError(instructions) from exc
-        from browser_support import BrowserAssets, choose_page, network_payloads, verification_error
-        self.choose_page, self.network_payloads, self.verification_error = choose_page, network_payloads, verification_error
-        self.pw = sync_playwright().start()
-        try:
-            options={'channel':'chrome','args':['--window-size=1366,900']} if self.patched else {}
-            self.browser = self.pw.chromium.launch(headless=not self.headed, **options)
-            self.context = self.browser.new_context(no_viewport=True) if self.patched else self.browser.new_context()
-            self.tab = self.context.new_page()
-            self.received = []
-            self.last_navigation = 0.0
-            self.assets = BrowserAssets(self.context, core, self.delay)
-            self.tab.on("response", self.on_response)
-            return self
-        except Exception:
-            self.pw.stop()
-            raise
-    def __exit__(self, *_):
-        try:
-            self.browser.close()
-        finally:
-            self.pw.stop()
-    def on_response(self, response):
-        if urllib.parse.urlsplit(response.url).hostname != urllib.parse.urlsplit(self.exam["base"]).hostname:
-            return
-        try:
-            if response.ok and "json" in response.headers.get("content-type", ""):
-                self.received.extend(self.network_payloads(response.json()))
-        except Exception:
-            pass
-    def page(self, number):
-        from browser_support import current_question_page
-        url = self.exam["base"] + str(number)
-        self.received.clear()
-        time.sleep(max(0, self.delay - (time.monotonic() - self.last_navigation)))
-        self.last_navigation = time.monotonic()
-        followed=False
-        if number>1 and self.tab.url.startswith(self.exam['base']):
-            for link in self.tab.locator('a[href]').all():
-                if urllib.parse.urljoin(self.tab.url,link.get_attribute('href') or '')==url and link.is_visible():
-                    link.click();followed=True;break
-        if not followed:self.tab.goto(url, wait_until="domcontentloaded", timeout=60000)
-        deadline = time.monotonic() + 60
-        last = "La página no entregó preguntas."
-        while time.monotonic() < deadline:
-            text = self.tab.content()
-            target = self.output / "paginas_originales" / f"pagina_{number:05}.html"
-            target.parent.mkdir(exist_ok=True)
-            target.write_text(text, encoding="utf-8")
-            current_url = self.tab.url
-            preferred = self.choose_page(self.received, number, current_url)
-            try:
-                page = current_question_page(text, current_url, number, self.exam, preferred)
-            except core.ExtractionError as exc:
-                last = str(exc)
-                page = None
-            if page:
-                buttons=self.tab.get_by_role('button',name='Reveal Answer',exact=True).all()
-                if page_quality(page)['missing_answers'] or any(b.is_visible() for b in buttons):
-                    captured=json.loads(self.tab.evaluate(capture_script(number,self.exam)))
-                    text = captured['html']
-                    target.write_text(text, encoding="utf-8")
-                    page = current_question_page(text,captured['url'],number,self.exam,self.choose_page(self.received,number,captured['url']))
-                    page['capture']=captured.get('capture',{})
-                return annotate_access(page,text)
-            detail=classify_access(text)
-            if detail:
-                failure=core.AccessStopped(f'Acceso sin completar en la página {number}: {detail["kind"]}.',kind=detail['kind'],code=detail['code'],page=number,url=current_url)
-                failure.detail.update(detail)
-                raise failure
-            self.tab.wait_for_timeout(1000)
-        raise core.AccessStopped("La página requiere acceso o verificación que no se completó en 60 segundos. " + last, kind='access_timeout', page=number, url=self.tab.url)
 
 
 def reference_repair_pages(archive, captures):
@@ -271,21 +170,14 @@ def run(args, source_factory=None):
     repair_references=reference_repair_pages(archive,cached_pages)
     if source_factory:
         factory = source_factory
-    elif args.mode in {'flaresolverr-next','flaresolverr','cloudproxy'}:
-        from solver_support import SolverSource
-        factory=functools.partial(SolverSource,engine=args.mode,endpoint=getattr(args,'solver_url','http://127.0.0.1:8191/v1'))
-    elif args.mode == "selenium":
-        from selenium_support import SeleniumSource
-        factory = functools.partial(SeleniumSource, headed=getattr(args, 'headed', False))
-    elif args.mode=='scrapling':
+    else:
         from scrapling_support import ScraplingSource
         factory=functools.partial(ScraplingSource,headed=getattr(args,'headed',False),
                                   verification_wait=getattr(args,'verification_wait',None))
-    else:
-        factory = functools.partial(BrowserSource, headed=getattr(args, 'headed', False),patched=args.mode=='rebrowser') if args.mode in {'browser','rebrowser'} else HttpSource
     started = time.monotonic()
     stopped = None
     failure = None
+    restart_required = False
     number = 1
     metadata_retried = set()
     try:
@@ -359,6 +251,7 @@ def run(args, source_factory=None):
         archive.errors.append({'page': number, 'issue': stopped, 'kind': failure['kind'], 'code': failure['code']})
     except (core.ExtractionError, OSError, ValueError, KeyError, TypeError) as exc:
         stopped = str(exc)
+        restart_required = isinstance(exc, DatasetChanged)
         archive.errors.append({"page": number, "issue": stopped})
     except KeyboardInterrupt:
         stopped = "Ejecución interrumpida; se conserva lo recuperado en el ZIP parcial."
@@ -421,6 +314,7 @@ def run(args, source_factory=None):
     state.update(answers_present=report['answers_present'],answers_missing=report['answers_missing'],answers_complete=report['answers_complete'],pages_pending_answers=answer_pages,pages_pending_images=image_pages)
     state.update(references_complete=report['references_complete'],objects_preserved=report['objects_preserved'],unresolved_references=report['unresolved_references'],metadata_unverified_questions=unverified_metadata,pages_pending_references=reference_pages,referenced_files_pending=report['referenced_files_pending'])
     state['pages_retried_for_metadata'] = sorted(metadata_retried)
+    state['restart_required'] = restart_required
     state.update(content_summary)
     core.write_json(args.output / "estado_ejecucion.json", state)
     print(json.dumps(state, ensure_ascii=False, indent=2), flush=True)
@@ -438,15 +332,14 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--exam-url", required=True)
     parser.add_argument("--exam-name", help="Nombre para el lector y el historial")
-    parser.add_argument("--mode", choices=["http", "browser", "selenium", "rebrowser", "flaresolverr-next", "flaresolverr", "cloudproxy", "scrapling"], default="http")
-    parser.add_argument('--solver-url',default=os.environ.get('EXAM_SOLVER_URL','http://127.0.0.1:8191/v1'),help='API v1 del solver local')
+    parser.add_argument("--mode", choices=["scrapling"], default="scrapling", help=argparse.SUPPRESS)
     parser.add_argument("--output", type=Path, default=Path("salida"))
     parser.add_argument("--delay", type=float, default=10)
     parser.add_argument("--page-limit", type=int, default=0)
     parser.add_argument("--max-minutes", type=float, default=300)
     parser.add_argument("--resume-from", type=Path)
     parser.add_argument("--ocr", action="store_true", help="Transcribir imágenes con Tesseract, siempre sin verificar")
-    parser.add_argument("--headed", action="store_true", help="Navegador visible para browser, rebrowser, selenium o scrapling; requiere pantalla real o Xvfb")
+    parser.add_argument("--headed", action="store_true", help="Navegador Scrapling visible; requiere pantalla real o Xvfb")
     parser.add_argument("--verification-wait",type=int,metavar="SEGUNDOS",help="Tiempo para completar una comprobación del sitio con scrapling --headed (1 a 300)")
     args = parser.parse_args(argv)
     if not math.isfinite(args.delay) or not math.isfinite(args.max_minutes) or args.delay < 5 or args.delay > 120 or args.page_limit < 0 or args.max_minutes <= 0:

@@ -1,225 +1,26 @@
-name: Descargar examen de ExamBase
-run-name: ${{ inputs.exam_label || inputs.exam || 'ExamBase — descarga seleccionada' }} [${{ inputs.request_id || github.run_number }}]
-
+name: Actualizar un examen
 on:
   workflow_dispatch:
     inputs:
-      exam:
-        description: Examen de ejemplo, o personalizado para usar la URL
-        required: true
-        type: choice
-        default: personalizado
-        options:
-          - personalizado
-          - google-professional-data-engineer
-          - google-associate-cloud-engineer
-          - google-associate-data-practitioner
       exam_url:
         description: URL del examen o de una página de sus preguntas
         required: true
         type: string
-        default: https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/1
-      mode:
-        description: Motor de acceso; las preguntas se validan antes de guardarlas
-        required: true
-        type: choice
-        default: flaresolverr-next
-        options: [flaresolverr-next, scrapling, rebrowser, flaresolverr, browser, selenium, http, cloudproxy]
-      delay:
-        description: Segundos entre peticiones (5 a 120)
-        required: true
-        type: number
-        default: 10
-      page_limit:
-        description: Límite de páginas; 0 descarga todas las que indique el examen
-        required: true
-        type: number
-        default: 0
-      resume_run_id:
-        description: ID de una ejecución anterior de este mismo examen; vacío para empezar
-        required: false
-        type: string
-      request_id:
-        description: Identificador de la solicitud del frontend
-        required: false
-        type: string
-      exam_label:
-        description: Nombre del examen para mostrar en el historial
-        required: false
-        type: string
-      save_to_repo:
-        description: Conservar una versión del resultado en bancos/ (visible si el repositorio es público)
-        type: boolean
-        default: false
-      runner:
-        description: github usa el servidor de GitHub; self-hosted requiere un runner propio con etiqueta exambase
-        type: choice
-        default: github
-        options: [github, self-hosted]
-
+        default: https://www.exambase.com/exams/google/professional-data-engineer
 permissions:
   contents: write
-  actions: read
-
 concurrency:
-  group: exambase-trabajo
-  cancel-in-progress: false
-
+  group: exambase-bancos
+  queue: max
 jobs:
   descargar:
-    runs-on: ${{ inputs.runner == 'self-hosted' && fromJSON('["self-hosted", "exambase"]') || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 330
-    defaults:
-      run:
-        shell: bash
-    env:
-      EXAM_URL: ${{ inputs.exam_url }}
-      EXAM_LABEL: ${{ inputs.exam_label }}
-      EXAM_PRESET: ${{ inputs.exam }}
-      EXAM_MODE: ${{ inputs.mode }}
-      EXAM_DELAY: ${{ inputs.delay }}
-      EXAM_LIMIT: ${{ inputs.page_limit }}
-      RESUME_RUN_ID: ${{ inputs.resume_run_id }}
-      EXAM_RUNNER: ${{ inputs.runner }}
-      PYTHONUNBUFFERED: "1"
     steps:
       - uses: actions/checkout@v6
         with:
           ref: ${{ github.event.repository.default_branch }}
-          persist-credentials: ${{ inputs.save_to_repo }}
-      - uses: actions/setup-python@v6
+      - uses: ./.github/actions/ejecutar
         with:
-          python-version: "3.11"
-      - name: Instalar librerías de lectura
-        run: python -m pip install -r requirements_actions.txt
-      - name: Instalar Rebrowser (parches de Playwright)
-        if: inputs.mode == 'rebrowser'
-        run: python -m pip install -r requirements_rebrowser.txt
-      - name: Instalar Scrapling y su navegador
-        if: inputs.mode == 'scrapling'
-        run: |
-          python -m pip install -r requirements_scrapling.txt
-          if [[ "$EXAM_RUNNER" == 'self-hosted' ]]; then
-            python -m patchright install chromium
-          else
-            python -m patchright install --with-deps chromium
-            sudo apt-get update && sudo apt-get install -y xvfb xauth
-          fi
-      - name: Preparar pantalla virtual de Rebrowser
-        if: inputs.mode == 'rebrowser' && runner.environment == 'github-hosted'
-        run: |
-          python -m rebrowser_playwright install --with-deps chrome
-          sudo apt-get update && sudo apt-get install -y xvfb xauth
-      - name: Iniciar solver local
-        if: inputs.mode == 'flaresolverr-next' || inputs.mode == 'flaresolverr' || inputs.mode == 'cloudproxy'
-        run: |
-          if [[ "$EXAM_MODE" == 'cloudproxy' && "$EXAM_RUNNER" != 'self-hosted' ]]; then
-            echo 'CloudProxy requiere un runner propio con el servicio local ya iniciado.'; exit 1
-          fi
-          python solver_service.py start --engine "$EXAM_MODE" --state-file salida/solver_runtime.json
-      - name: Preparar navegador (sólo modo browser)
-        if: inputs.mode == 'browser'
-        run: |
-          if [[ "$EXAM_RUNNER" == 'self-hosted' ]]; then
-            python -m playwright install chromium
-          else
-            python -m playwright install --with-deps chromium
-          fi
-      - name: Preparar transcripción OCR
-        if: runner.environment == 'github-hosted' && runner.os == 'Linux'
-        continue-on-error: true
-        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
-      - name: Recuperar respaldo de otra ejecución
-        if: inputs.resume_run_id != ''
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: python recuperar_respaldo.py --run-id "$RESUME_RUN_ID" --output respaldo
-      - name: Recopilar el examen seleccionado
-        run: |
-          case "$EXAM_PRESET" in
-            personalizado) ;;
-            google-professional-data-engineer) EXAM_URL="https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/1" ;;
-            google-associate-cloud-engineer) EXAM_URL="https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/1" ;;
-            google-associate-data-practitioner) EXAM_URL="https://www.exambase.com/exams/google/associate-data-practitioner/practice-questions/1" ;;
-            *) echo "Selección de examen no reconocida."; exit 1 ;;
-          esac
-          resume=()
-          if [[ -n "$RESUME_RUN_ID" ]]; then resume=(--resume-from respaldo); fi
-          display=()
-          if [[ "$EXAM_RUNNER" == 'self-hosted' && "$EXAM_MODE" != 'http' ]]; then display=(--headed); fi
-          collector_command=(python descargar.py --exam-url "$EXAM_URL" --exam-name "$EXAM_LABEL" --mode "$EXAM_MODE" --delay "$EXAM_DELAY" --page-limit "$EXAM_LIMIT" --max-minutes 300 --output salida --ocr)
-          if [[ ( "$EXAM_MODE" == 'rebrowser' || "$EXAM_MODE" == 'scrapling' ) && "$EXAM_RUNNER" != 'self-hosted' ]]; then
-            xvfb-run -a -s '-screen 0 1366x900x24' "${collector_command[@]}" --headed "${resume[@]}"
-          else
-            "${collector_command[@]}" "${resume[@]}" "${display[@]}"
-          fi
-      - name: Cerrar servicio de esta ejecución
-        if: always() && (inputs.mode == 'flaresolverr-next' || inputs.mode == 'flaresolverr')
-        run: python solver_service.py stop --state-file salida/solver_runtime.json
-      - name: Conservar resultado completo o parcial
-        if: always()
-        uses: actions/upload-artifact@v6
-        with:
-          name: exambase-resultado
-          path: |
-            salida/*.zip
-            salida/estado_ejecucion.json
-            salida/solver_runtime.json
-          if-no-files-found: warn
-          retention-days: 7
-      - name: Guardar una versión en el repositorio
-        if: always() && !cancelled() && inputs.save_to_repo && hashFiles('salida/estado_ejecucion.json') != ''
-        run: |
-          python persistir_banco.py --output salida --repo . --run-id "$GITHUB_RUN_ID"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add bancos/
-          if ! git diff --cached --quiet; then
-            git commit -m "Conservar resultado ExamBase de ejecución $GITHUB_RUN_ID"
-            git push
-          fi
-      - name: Resumen
-        if: always()
-        run: |
-          if [[ -f salida/estado_ejecucion.json ]]; then
-            python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
-          import json, os
-          from pathlib import Path
-          d=json.loads(Path('salida/estado_ejecucion.json').read_text())
-          print('## Resultado de ExamBase')
-          print(f"Examen: **{d['exam'].get('key', '?')}**")
-          print(f"Preguntas conservadas: **{d['questions']}**")
-          print(f"Respuestas conservadas: **{d.get('answers_present', '?')}**")
-          print(f"Preguntas sin respuesta: **{d.get('answers_missing', [])}**")
-          print(f"Páginas con respuestas pendientes: **{d.get('pages_pending_answers', [])}**")
-          if d.get('images_found') is not None:
-              print(f"Imágenes guardadas **{d.get('images_downloaded', '?')}/{d['images_found']}**. Imágenes pendientes **{len(d.get('images_failed') or [])}**.")
-          if d.get('missing_explanations') is not None:
-              print(f"Explicaciones ausentes en el contenido conservado **{len(d['missing_explanations'])}**.")
-          if d.get('images_requiring_review'):
-              print(f"Imágenes con revisión visual pendiente **{len(d['images_requiring_review'])}**. El OCR requiere comprobarse con las imágenes originales.")
-          print(f"Objetos conservados: **{d.get('objects_preserved', 0)}**. Referencias verificadas: **{d.get('references_complete', False)}**")
-          print(f"Preguntas con metadatos pendientes: **{len(d.get('metadata_unverified_questions', []))}**. Páginas afectadas: **{d.get('pages_pending_references', [])}**")
-          print(f"Referencias sin resolver: **{len(d.get('unresolved_references', []))}**. Archivos referenciados pendientes: **{len(d.get('referenced_files_pending', []))}**")
-          print(f"Estado: **{d.get('status', 'partial')}**")
-          print(f"Páginas guardadas: **{len(d.get('pages_saved', []))}/{d['exam'].get('pages', '?')}**")
-          print(f"Cobertura completa: **{d['coverage_complete']}**")
-          print(f"Revisión de contenido pendiente: **{d['review_pending']}**")
-          if d.get('stopped_reason'): print('\nMotivo de la parada: ' + d['stopped_reason'])
-          failure=d.get('failure') or {}
-          if failure:
-              print(f"\nCódigo de acceso: **{failure.get('code') or failure.get('kind')}**. Página: **{failure.get('page')}**.")
-              print('\nEl motor no entregó preguntas válidas. Se conserva el parcial; no se inicia otra sesión ni se cambia automáticamente de motor para reintentar.')
-          if d.get('execution_complete'):
-              print('\nRecopilación completa. El ZIP está preparado para su descarga.')
-          elif d.get('resume_supported'):
-              print(f"\nPara reanudar selecciona el mismo examen y usa **resume_run_id = {os.environ['GITHUB_RUN_ID']}**.")
-              if d.get('next_page'):
-                  print(f"Próxima página **{d['next_page']}**.")
-              else:
-                  print('Consulta los pendientes concretos en informe_validacion.json.')
-          if failure and os.environ.get('EXAM_RUNNER') != 'self-hosted':
-              print('\nUn motor alternativo o un runner propio se eligen en otra ejecución; no garantizan superar verificaciones. Revisa MOTORES_ACCESO_5_1.md. Para acceso desatendido fiable se necesita una vía habilitada por el propietario.')
-          print('\nDescarga el artefacto **exambase-resultado**. No incluye perfiles ni cookies del navegador.')
-          PY
-          fi
+          tarea: examen
+          exam_url: ${{ inputs.exam_url }}

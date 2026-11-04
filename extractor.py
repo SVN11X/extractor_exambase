@@ -734,31 +734,19 @@ def create_zip(output):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Exporta páginas de ExamBase a JSON, Markdown, HTML e imágenes. Sin dependencias externas.")
-    parser.add_argument("--input", type=Path, help="HTML/TXT local o carpeta de páginas ya guardadas; sin este argumento descarga las páginas")
+    parser.add_argument("--input", type=Path, required=True, help="HTML/TXT local o carpeta de páginas ya guardadas")
     parser.add_argument("--output", type=Path, default=Path("resultado_exambase"))
-    parser.add_argument("--url", default=DEFAULT_URL, help="URL con marcador {page}")
     parser.add_argument("--pages", type=int, default=70)
     parser.add_argument("--expected", type=int, default=349)
-    parser.add_argument("--delay", type=float, default=2.0)
-    parser.add_argument("--timeout", type=float, default=45.0)
-    parser.add_argument("--retries", type=int, default=3)
-    parser.add_argument("--fetch-images", action="store_true", help="Permite descargar imágenes remotas también en modo --input")
     parser.add_argument("--ocr", choices=["auto", "on", "off"], default="auto", help="Usa Tesseract si está instalado. OCR siempre queda sin verificar")
     parser.add_argument("--tesseract", help="Ruta de tesseract.exe si no está en PATH")
     parser.add_argument("--ocr-language", default="eng")
-    parser.add_argument("--refresh", action="store_true", help="Vuelve a descargar HTML ya almacenado")
-    parser.add_argument("--browser", action="store_true", help="Abre un navegador visible; la verificación humana la completa el usuario")
-    parser.add_argument("--browser-channel", default="msedge", choices=["msedge", "chrome", "chromium"])
-    parser.add_argument("--browser-profile", type=Path, default=Path("perfil_navegador_exambase"))
     parser.add_argument("--zip", action="store_true", help="Crea también resultado_exambase.zip")
     args = parser.parse_args(argv)
-    if args.pages < 1 or args.expected < 1 or args.delay < 0 or args.retries < 0:
-        parser.error("pages y expected deben ser positivos; delay y retries no pueden ser negativos")
-    if "{page}" not in args.url:
-        parser.error("--url debe contener {page}")
+    if args.pages < 1 or args.expected < 1:
+        parser.error("pages y expected deben ser positivos")
     args.output.mkdir(parents=True, exist_ok=True)
-    downloader = Downloader(args.delay, args.timeout, args.retries)
-    assets = AssetStore(args.output, downloader if not args.input or args.fetch_images else None, args.ocr, args.tesseract, args.ocr_language)
+    assets = AssetStore(args.output, None, args.ocr, args.tesseract, args.ocr_language)
     archive = Archive(args.output, assets)
     interrupted = False
     try:
@@ -780,43 +768,6 @@ def main(argv=None):
                     raise
                 except ExtractionError as e:
                     archive.errors.append({"source": path.name, "issue": str(e)})
-        elif args.browser:
-            import browser_support
-            browser_support.collect(args, archive, sys.modules[__name__])
-        else:
-            consecutive_failures = 0
-            for number in range(1, args.pages + 1):
-                url = args.url.format(page=number)
-                cached = args.output / "paginas_originales" / f"pagina_{number:03}.html"
-                try:
-                    if cached.exists() and not args.refresh:
-                        text = cached.read_text(encoding="utf-8")
-                    else:
-                        body, _, encoding = downloader.get(url)
-                        text = body.decode(encoding, "replace")
-                    # Conservar también las respuestas de error HTTP 200:
-                    # antes se perdía el HTML de verificación de Cloudflare.
-                    diagnostic = args.output / "diagnostico" / f"pagina_{number:03}.html"
-                    diagnostic.parent.mkdir(exist_ok=True)
-                    diagnostic.write_text(text, encoding="utf-8")
-                    page = parse_page(text, url)
-                    if page["payload"]["result"].get("page") != number:
-                        raise ExtractionError(f"Se pidió la página {number}, pero el contenido indica otra página")
-                    cached.parent.mkdir(exist_ok=True)
-                    cached.write_text(text, encoding="utf-8")
-                    archive.add_page(page, f"paginas_originales/{cached.name}")
-                    consecutive_failures = 0
-                    print(f"Página {number}/{args.pages}: {len(page['payload']['result']['items'])} preguntas; acumuladas {len(archive.questions)}", flush=True)
-                except AccessStopped:
-                    raise
-                except ExtractionError as e:
-                    consecutive_failures += 1
-                    archive.errors.append({"page": number, "url": url, "issue": str(e)})
-                    print(f"PENDIENTE página {number}: {e}", flush=True)
-                    # Si la estructura cambió, detenerse antes de repetir el fallo 70 veces.
-                    if (number == 1 and not archive.questions) or consecutive_failures >= 2:
-                        print("Se detiene la secuencia para no repetir el mismo fallo en las demás páginas.", flush=True)
-                        break
     except (AccessStopped, ExtractionError) as e:
         archive.errors.append({"issue": str(e)})
         print(str(e), file=sys.stderr, flush=True)

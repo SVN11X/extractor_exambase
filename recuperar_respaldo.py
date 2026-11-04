@@ -73,10 +73,14 @@ def extract_result(body, destination):
 def saved_backup(root, run_id, destination):
     root = Path(root).resolve()
     index = root / 'bancos/index.json'
-    entries = json.loads(index.read_text(encoding='utf-8')).get('runs', []) if index.exists() else []
-    entry = next((row for row in entries if row.get('run_id') == str(run_id)), None)
-    if not entry:
+    data = json.loads(index.read_text(encoding='utf-8')) if index.exists() else {}
+    entries = data.get('exams', data.get('runs', []))
+    matches = [row for row in entries if row.get('run_id') == str(run_id)]
+    if len(matches) > 1:
+        raise ValueError('La ejecución contiene varios exámenes. Usa Actualizar un examen con su URL en Actions.')
+    if not matches:
         raise ValueError('El artefacto no está disponible y no hay copia guardada de esa ejecución en el repositorio.')
+    entry = matches[0]
     path = (root / entry['zip_path']).resolve()
     if not path.is_relative_to(root / 'bancos') or not path.is_file() or path.stat().st_size > LIMIT:
         raise ValueError('Ruta o tamaño de respaldo inválidos.')

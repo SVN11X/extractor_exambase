@@ -237,78 +237,44 @@ class ExtractorTests(unittest.TestCase):
         self.assertEqual(opened.call_count, 3)
 
     def test_synthetic_70_page_349_question_end_to_end_and_resume(self):
+        import descargar
+        from types import SimpleNamespace
         calls = []
-
-        def get(_self, url):
-            page = int(url.rsplit("/", 1)[-1])
-            calls.append(page)
-            items = []
-            for number in range((page - 1) * 5 + 1, min(page * 5, 349) + 1):
-                item = fake_payload()["result"]["items"][0]
-                item.update(id=10000 + number, order=number, question_text=f"Pregunta sintética {number}")
-                items.append(item)
-            return fake_html(fake_payload(page, 349, 70, items)).encode(), "text/html", "utf-8"
-
-        args = ["--url", "https://example.test/practice-questions/{page}", "--output", str(self.out), "--delay", "0", "--ocr", "off", "--zip"]
-        with patch.object(e.Downloader, "get", get), contextlib.redirect_stdout(io.StringIO()):
-            self.assertEqual(e.main(args), 0)
-        self.assertEqual(calls, list(range(1, 71)))
-        report = json.loads((self.out / "informe_validacion.json").read_text())
-        self.assertEqual(report["questions_extracted"], 349)
-        self.assertTrue(report["collection_complete"])
-        data = json.loads((self.out / "preguntas.json").read_text())
-        self.assertEqual([q["number"] for q in data["questions"]], list(range(1, 350)))
-        with zipfile.ZipFile(self.out.with_suffix(".zip")) as z:
-            self.assertIn("salida/preguntas.json", z.namelist())
-            self.assertIn("salida/paginas_originales/pagina_070.html", z.namelist())
-        # Repetir la descarga con caché no debe volver a pedir los HTML.
-        with patch.object(e.Downloader, "get", side_effect=AssertionError("No debería acceder a Internet")), contextlib.redirect_stdout(io.StringIO()):
-            self.assertEqual(e.main(args), 0)
-
-    def test_wrong_page_response_is_not_counted(self):
-        body = fake_html(fake_payload(page=2, total=1, pages=1)).encode()
-        with patch.object(e.Downloader, "get", return_value=(body, "text/html", "utf-8")), contextlib.redirect_stdout(io.StringIO()):
-            code = e.main(["--url", "https://example.test/practice-questions/{page}", "--pages", "1", "--expected", "1", "--output", str(self.out), "--ocr", "off"])
-        self.assertEqual(code, 2)
-        report = json.loads((self.out / "informe_validacion.json").read_text())
-        self.assertEqual(report["questions_extracted"], 0)
-        self.assertFalse(report["collection_complete"])
+        class Source:
+            assets = None
+            def __init__(self, exam, output, delay): self.exam=exam
+            def __enter__(self): return self
+            def __exit__(self,*_): pass
+            def page(self, number):
+                calls.append(number)
+                items=[]
+                for order in range((number-1)*5+1,min(number*5,349)+1):
+                    item=fake_payload()['result']['items'][0]
+                    item.update(id=10000+order,order=order,question_text=f'Pregunta sintética {order}')
+                    items.append(item)
+                return {'url':self.exam['base']+str(number),'parser':'structured','payload':fake_payload(number,349,70,items),'warnings':[]}
+        args=SimpleNamespace(exam_url='https://www.exambase.com/exams/cisco/demo',output=self.out,
+                             delay=0,mode='scrapling',resume_from=None,max_minutes=300,page_limit=0)
+        with contextlib.redirect_stdout(io.StringIO()):self.assertEqual(descargar.run(args,Source),0)
+        self.assertEqual(calls,list(range(1,71)))
+        result=self.out/'resultado_cisco_demo'
+        data=json.loads((result/'preguntas.json').read_text())
+        self.assertEqual([q['number'] for q in data['questions']],list(range(1,350)))
+        self.assertTrue(data['report']['coverage_complete'])
+        archive=self.out/'resultado_cisco_demo.zip'
+        with zipfile.ZipFile(archive) as z:
+            self.assertIn('resultado_cisco_demo/capturas/pagina_00070.json',z.namelist())
+        args.output=self.out/'resumed'
+        args.resume_from=archive
+        with contextlib.redirect_stdout(io.StringIO()):self.assertEqual(descargar.run(args,Source),0)
+        self.assertEqual(len(calls),70)
 
     def test_turnstile_http_200_is_detected_explicitly(self):
         with self.assertRaises(e.ChallengeRequired) as caught:
             e.parse_page(CHALLENGE)
         self.assertIn("verificación", str(caught.exception))
 
-    def test_challenge_stops_http_sequence_after_first_blocked_page(self):
-        calls = []
 
-        def get(_self, url):
-            number = int(url.rsplit("/", 1)[-1])
-            calls.append(number)
-            content = fake_html(fake_payload(1, 349, 70)) if number == 1 else CHALLENGE
-            return content.encode(), "text/html", "utf-8"
-
-        with patch.object(e.Downloader, "get", get), contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
-            code = e.main(["--output", str(self.out), "--ocr", "off"])
-        self.assertEqual(code, 2)
-        self.assertEqual(calls, [1, 2])
-        self.assertEqual((self.out / "diagnostico/pagina_002.html").read_text(), CHALLENGE)
-        report = json.loads((self.out / "informe_validacion.json").read_text())
-        self.assertEqual(report["questions_extracted"], 1)
-        self.assertIn("Cloudflare", report["errors"][0]["issue"])
-
-    def test_two_unknown_failures_stop_http_sequence(self):
-        calls = []
-
-        def get(_self, url):
-            number = int(url.rsplit("/", 1)[-1])
-            calls.append(number)
-            content = fake_html(fake_payload(1, 349, 70)) if number == 1 else "<html><h1>Other response</h1></html>"
-            return content.encode(), "text/html", "utf-8"
-
-        with patch.object(e.Downloader, "get", get), contextlib.redirect_stdout(io.StringIO()):
-            e.main(["--output", str(self.out), "--ocr", "off"])
-        self.assertEqual(calls, [1, 2, 3])
 
     def test_network_json_and_svelte_references_can_be_read(self):
         payload = fake_payload()
@@ -323,60 +289,6 @@ class ExtractorTests(unittest.TestCase):
         self.assertIsNone(browser.choose_page([payload], 2, "https://example.test/2"))
         self.assertEqual(browser.choose_page([payload], 1, "https://example.test/1")["payload"], payload)
 
-    def test_browser_waits_for_user_and_collects_after_manual_verification(self):
-        manual = [False]
-        state = {}
-
-        class FakePage:
-            def set_default_timeout(self, _timeout):
-                pass
-            def on(self, _event, callback):
-                state["callback"] = callback
-            def goto(self, url, **kwargs):
-                state["url"] = url
-            def wait_for_timeout(self, _ms):
-                pass
-            def content(self):
-                return fake_html(fake_payload()) if manual[0] else CHALLENGE
-
-        class FakeContext:
-            pages = [FakePage()]
-            def close(self):
-                state["closed"] = True
-
-        class FakeChromium:
-            def launch_persistent_context(self, path, **kwargs):
-                state["launch"] = kwargs
-                return FakeContext()
-
-        class FakePW:
-            chromium = FakeChromium()
-            def __enter__(self):
-                return self
-            def __exit__(self, *args):
-                pass
-
-        class FakeError(Exception):
-            pass
-
-        sync_api = types.ModuleType("playwright.sync_api")
-        sync_api.sync_playwright = FakePW
-        sync_api.Error = FakeError
-        pkg = types.ModuleType("playwright")
-        pkg.sync_api = sync_api
-
-        def complete(_prompt):
-            manual[0] = True
-            return ""
-
-        with patch.dict(sys.modules, {"playwright": pkg, "playwright.sync_api": sync_api}), patch("builtins.input", side_effect=complete) as ask, contextlib.redirect_stdout(io.StringIO()):
-            code = e.main(["--browser", "--url", "https://example.test/practice-questions/{page}", "--pages", "1", "--expected", "1", "--output", str(self.out), "--ocr", "off"])
-        self.assertEqual(code, 0)
-        self.assertEqual(ask.call_count, 1)
-        self.assertTrue(state["closed"])
-        self.assertEqual(state["launch"], {"channel": "msedge", "headless": False, "chromium_sandbox": True})
-        self.assertTrue((self.out / "datos_navegador/pagina_001.json").is_file())
-        self.assertTrue(json.loads((self.out / "informe_validacion.json").read_text())["collection_complete"])
 
     def test_visible_verification_failure_is_identified(self):
         failed = '<html><h2>Verification Didn\'t Go Through</h2><p>Turnstile couldn\'t verify you (error 300030).</p><button>Try again</button></html>'

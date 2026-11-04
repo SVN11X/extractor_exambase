@@ -8,3 +8,6 @@ resultado_*/
 tests/*verificacion.zip
 tests/extension_worker_exportacion.zip
 .DS_Store
+.exambase-bank.lock
+bancos/**/.*
+trabajo/

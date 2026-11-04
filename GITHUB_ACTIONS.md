@@ -1,158 +1,32 @@
-# Ejecutar el extractor en GitHub Actions
+# Uso de GitHub Actions
 
-El flujo está preparado en `.github/workflows/descargar-examen.yml`. Se ejecuta
-en un servidor de GitHub; tu PC puede estar apagado después de iniciarlo.
-Puedes usarlo desde el frontend de Pages siguiendo [PUBLICAR_GITHUB_PAGES.md](PUBLICAR_GITHUB_PAGES.md).
+1. Incorpora la actualización a la rama predeterminada del repositorio.
+2. En **Settings → Actions → General → Workflow permissions**, permite lectura y escritura. Si una política de tu organización lo impide, el artefacto sigue siendo descargable, pero el trabajo marcará el error al guardar en Git.
+3. Abre **Actions → Actualizar un examen → Run workflow**, pega la URL y ejecuta. La URL puede ser la portada o una página de preguntas de un examen admitido por el catálogo.
+4. Abre la ejecución y revisa su resumen. **exambase-resultado** incluye carpetas por proveedor/examen y `resumen.md`. Los artefactos duran 14 días; `bancos/` conserva el resultado vigente.
 
-La actualización **5.2.0** añade `scrapling`, comprueba respuestas y objetos
-referenciados antes de devolver éxito, y repara capturas incompletas al reanudar.
-Consulta [CORRECCIONES_5_2.md](CORRECCIONES_5_2.md). Tener todas las preguntas no basta
-si faltan claves, contextos o metadatos necesarios para verificar sus referencias.
+No se requieren tokens personales, ID de respaldo, selección de motor, tiempos de espera ni campos de frontend. Se usa `GITHUB_TOKEN` con permiso `contents: write`, suministrado por GitHub al workflow. Las tres tareas comparten una cola para serializar escrituras y conservar hasta 100 solicitudes pendientes.
 
-## Qué está preparado y qué falta comprobar
+## Actualizar manualmente
 
-Puedes elegir un examen, detectar su total de preguntas y páginas, recopilarlo,
-descargar imágenes, generar un ZIP y conservar resultados parciales. El flujo
-incluye reanudación desde el artefacto de una ejecución anterior del mismo examen.
+**Actualizar un examen** fuerza una actualización al existir una copia completa. Si la extracción anterior quedó parcial, la reanuda automáticamente, incluidas las páginas con respuestas, imágenes o referencias pendientes. El hash del respaldo se verifica antes de usarlo. Si necesitas descartar voluntariamente un parcial corrupto, revisa su diagnóstico y retíralo mediante un cambio Git explícito; la tarea no lo destruye silenciosamente.
 
-La ejecución más reciente aportada, `41563383011`, recuperó el respaldo anterior,
-guardó 5/103 preguntas de Associate Data Practitioner y conservó el resultado en
-`bancos/` tras un rechazo real `600010` en la página 2. La versión 5.1.0 incorpora
-motores nuevos; su eficacia frente al sitio todavía no se ha probado en tu cuenta.
-Lee [MOTORES_ACCESO_5_1.md](MOTORES_ACCESO_5_1.md).
+**Extraer exámenes por proveedor** admite un slug de `catalogos/catalogo.json`, por ejemplo `google-cloud`, `microsoft` o `cisco`. Procesa exámenes elegibles respetando el límite por lote y la antigüedad configurada. Repite la misma tarea para completar lotes pendientes; para renovar inmediatamente un examen completo usa la tarea individual.
 
-El servidor no hereda la sesión de tu Edge. FlareSolverr y Next intentan gestionar
-desafíos con su navegador; Rebrowser modifica señales de Playwright. Pueden seguir
-siendo rechazados, por ejemplo por la dirección de red del runner. Si el motor no
-entrega preguntas válidas, el extractor conserva el parcial y termina. Actions no
-ofrece una ventana interactiva en el formulario de ejecución. Una vía habilitada
-por el propietario sigue siendo la opción más fiable para ejecución desatendida.
+## Programación
 
-Cloudflare documenta esos límites aquí:
-<https://developers.cloudflare.com/cloudflare-challenges/reference/supported-browsers/>.
+El workflow por proveedor corre diariamente a las 03:17 de America/Santiago. El catálogo adicional corre los lunes a las 02:17, misma zona. Cambia los cron en `.github/workflows/` si necesitas otro horario. La programación de GitHub opera sobre la rama predeterminada y puede retrasarse. En repositorios públicos GitHub deshabilita las tareas programadas tras 60 días sin actividad; puedes volver a habilitarlas desde Actions.
 
-## Preparar el repositorio
+La cola `automatizacion/estado.json` guarda el siguiente proveedor, el último examen y los aplazamientos por acceso. No se crea una matriz de cientos de trabajos simultáneos. Hasta 10 exámenes se atienden secuencialmente por lote; un límite de tiempo deja el resto pendiente. El resumen informa cuántos exámenes elegibles quedan, sin presentar un lote como la descarga completa del proveedor.
 
-1. Crea un repositorio vacío en GitHub. Puede ser privado para controlar quién
-   accede al código y a los resultados. Su cuota de Actions dependerá de tu plan.
-2. Descomprime el paquete y entra en la carpeta **extractor_exambase**. Deben quedar
-   `descargar.py`, `catalogo.json` y `.github` en la raíz del repositorio, no dentro
-   de otra carpeta adicional.
-3. Sube el contenido de esa carpeta, incluida `.github`. Desde Git Bash dentro
-   de ella, para un repositorio nuevo y vacío:
+Edita `automatizacion/config.json` para elegir proveedores, intervalo mínimo, presupuesto, máximo por lote, minutos por examen y frecuencia de renovación. La actualización `catalogo --vendor all` avanza un proveedor por ejecución; la tarea por proveedor también descubre el índice correspondiente cuando caduca. Un catálogo con menos enlaces que el contador actual anunciado (o el último conocido si la página no lo incluye) se conserva para revisión y no se declara completo.
 
-```bash
-git init
-git add .
-git commit -m "Añadir extractor ExamBase con selección de examen"
-git branch -M main
-git remote add origin https://github.com/TU_USUARIO/TU_REPOSITORIO.git
-git push -u origin main
-```
+## Conservación del resultado
 
-Sustituye `TU_USUARIO/TU_REPOSITORIO` por tu repositorio. Las carpetas temporales
-de salida están en `.gitignore`. El workflow puede guardar los paquetes finales
-en `bancos/` cuando activas `save_to_repo`.
+La publicación usa una carpeta temporal y un reemplazo recuperable. Una recopilación parcial conserva la copia anterior más completa y un solo punto de avance. Si cambian los totales al reanudar, se inicia una captura nueva una sola vez, conservando el respaldo. El índice se reconstruye de los manifiestos vigentes; una publicación fallida devuelve la carpeta anterior. `migrar_bancos.py` consolida automáticamente las versiones antiguas y es reanudable e idempotente.
 
-## Elegir y ejecutar
+Los jobs duran como máximo 330 minutos (catálogo: 60); el presupuesto interno es menor para reservar tiempo de empaquetado y guardado. Una cancelación forzada de GitHub o un fallo del runner antes de la conservación puede perder el trabajo no publicado de ese job. Los resultados publicados en ejecuciones anteriores permanecen disponibles.
 
-1. Abre el repositorio → **Actions** → **Descargar examen de ExamBase** → **Run workflow**.
-2. En **exam**, elige uno de los tres ejemplos verificados o **personalizado**.
-3. Si elegiste personalizado, pega la URL del examen en **exam_url**. Admite la
-   portada del examen o una página de preguntas. No pegues el índice general ni
-   el índice de un proveedor.
-4. En **mode**, elige:
-   - `flaresolverr-next` (predeterminado): Docker con el fork de rix1337 y su API
-     `executeJs`. Abre respuestas y captura imágenes en la misma sesión. El workflow
-     descarga la imagen, inicia el servicio local y cierra su propio contenedor.
-   - `rebrowser`: instala `rebrowser-playwright==1.64.102`, usa Chrome estable y
-     pantalla virtual Xvfb. No necesita Docker ni una persona frente al equipo.
-   - `flaresolverr`: API del proyecto clásico. Sólo captura el HTML entregado;
-     respuestas que necesiten JavaScript adicional pueden quedar pendientes.
-   - `cloudproxy`: compatibilidad con una instancia local ya iniciada. Sólo para
-     `runner=self-hosted`; no se instala el contenedor antiguo automáticamente.
-   - `http`: descarga HTML con Python; sólo sirve si el sitio entrega las preguntas
-     sin una verificación que necesite JavaScript.
-   - `browser`: abre Chromium en el servidor, espera a que cargue el contenido y
-     utiliza los controles normales de mostrar respuestas. También puede ser bloqueado.
-   - `selenium`: usa Chrome estándar con Selenium Manager para elegir el driver y
-     Beautiful Soup para leer el DOM. Las mismas limitaciones de verificación aplican.
-5. Deja **page_limit = 0** para todas las páginas. El delay admite de 5 a 120 segundos.
-6. Pulsa **Run workflow**. Puedes cerrar tu navegador.
-7. Al terminar, abre la ejecución y descarga **exambase-resultado** en **Artifacts**.
-   Dentro está el ZIP del examen y `estado_ejecucion.json`.
-8. Activa **save_to_repo** si quieres guardar cada ejecución en Git. El workflow
-   conserva ZIP, HTML, Markdown, JSONL, imágenes y originales en una carpeta por
-   examen y ejecución. Si el repositorio es público, esos bancos serán públicos.
-9. **runner** permite `github` (predeterminado) o `self-hosted` (equipo propio ya
-   configurado con etiqueta `exambase`). En el equipo propio, Next/FlareSolverr
-   requieren Docker; CloudProxy requiere un servicio local; los modos browser,
-   rebrowser y selenium requieren una pantalla gráfica. Mantén encendido el runner.
+Scrapling usa una sesión de navegador por examen; las imágenes provienen de esa sesión. No hay cambio automático a Selenium, FlareSolverr, Rebrowser o clientes alternativos. Si aparece un bloqueo que exige intervención, la ejecución conserva un ZIP parcial y marca el diagnóstico. Consulta el código y página del fallo; ninguna dependencia garantiza acceso desatendido al sitio.
 
-El menú de Actions tiene tres ejemplos y un campo URL. El frontend de Pages
-incluye buscador, proveedor, URL personalizada, historial y revisión local del ZIP;
-su catálogo se actualiza con el workflow `actualizar-catalogo.yml`. El catálogo
-inicial es parcial y no pretende contener los 1.657 exámenes anunciados.
-
-Un resultado completo puede tener explicaciones ausentes en la fuente o imágenes
-pendientes de transcribir. Consulta el informe; las claves no se corrigen ni se
-inventan explicaciones. El código de salida 2 significa cobertura parcial, bloqueo
-o presupuesto de tiempo agotado; el artefacto se conserva aunque la ejecución
-aparezca en rojo, siempre que el programa haya podido crear el resultado.
-
-## Reanudar una descarga parcial
-
-Cada ejecución tiene un límite de trabajo de 300 minutos para dejar margen a la
-creación y subida del ZIP. El flujo completo tiene un límite de 330 minutos.
-
-1. Copia el número de la URL de la ejecución anterior: el número situado después
-   de `/actions/runs/`.
-2. Inicia otro **Run workflow** con el **mismo examen**.
-3. Introduce ese número en **resume_run_id**.
-
-El flujo recupera el artefacto, valida que sea del mismo examen y reutiliza las
-páginas e imágenes que ya están guardadas. Los artefactos de este flujo se
-conservan durante siete días; si venció, se intenta la copia de `bancos/` cuando
-habías activado el guardado en repositorio.
-Si la ejecución anterior no consiguió siquiera detectar el examen y guardó cero
-preguntas, vuelve a empezar dejando `resume_run_id` vacío.
-
-No se incluyen cookies ni perfiles del navegador en los artefactos o bancos. Las
-cookies del solver se conservan en memoria durante su sesión local. No debes copiar
-tu perfil de Edge ni subir credenciales al repositorio. El token automático de
-GitHub se usa para recuperar artefactos y, si lo eliges, escribir los bancos.
-La protección de rama o una política de organización puede impedir ese commit;
-el artefacto se sube antes del guardado para conservar el resultado en ese caso.
-
-## Ejecución por terminal
-
-Para los motores nuevos, los comandos completos de instalación, inicio, descarga
-y cierre están en [MOTORES_ACCESO_5_1.md](MOTORES_ACCESO_5_1.md).
-
-```bash
-python descargar.py --exam-url "https://www.exambase.com/exams/google/associate-data-practitioner" --mode http --output salida --delay 10
-```
-
-Para modo browser instala primero las dependencias:
-
-```bash
-python -m pip install -r requirements_actions.txt
-python -m playwright install chromium
-python descargar.py --exam-url "https://www.exambase.com/exams/google/associate-data-practitioner" --mode browser --output salida --delay 10
-```
-
-En Linux, Playwright puede necesitar sus dependencias de sistema. El workflow las
-instala con `python -m playwright install --with-deps chromium`.
-
-Para Selenium cambia `--mode browser` por `--mode selenium`; necesita Chrome
-disponible o descargable mediante Selenium Manager. `--ocr` usa Tesseract si está
-instalado; se marca toda transcripción como automática y sin verificar. Puedes
-enriquecer un resultado anterior sin volver a descargar preguntas:
-
-```bash
-python paquetes.py --input resultado_anterior.zip --output resultado_revisado --ocr
-```
-
-Documentación: <https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow>,
-<https://cli.github.com/manual/gh_run_download> y
-<https://playwright.dev/python/docs/ci-intro>.
+Al retirar el workflow de Pages se deja de publicar la interfaz. Si había un despliegue activo, puedes retirarlo desde **Settings → Pages → Unpublish site**. Eliminar archivos de la rama no despublica por sí solo un despliegue anterior.

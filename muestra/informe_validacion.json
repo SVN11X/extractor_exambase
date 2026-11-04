@@ -446,5 +446,19 @@
     "collection_complete comprueba cobertura y conservación; no valida la corrección técnica de las respuestas de ExamBase.",
     "Se conservan los originales y todas las imágenes detectadas. Cada imagen requiere revisión visual aunque se haya extraído texto mediante OCR.",
     "Las preguntas de formatos especiales sin clave explícita quedan pendientes; sus datos originales se conservan en raw/type_data."
-  ]
+  ],
+  "html_markers_requiring_review": [],
+  "coverage_complete": false,
+  "answers_present": 5,
+  "answers_missing": [],
+  "answers_complete": true,
+  "empty_questions": [],
+  "empty_choices": [],
+  "images_downloaded": 0,
+  "integrity_checked_at": "2026-11-04T18:05:28.432916+00:00",
+  "content_review_complete": true,
+  "references_complete": true,
+  "unresolved_references": [],
+  "referenced_files_pending": [],
+  "objects_preserved": 1
 }

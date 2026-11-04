@@ -9,7 +9,7 @@ import descargar
 import paquetes
 from persistir_banco import persist
 from actualizar_catalogo import parse_vendor, update
-from selenium_support import soup_page, SeleniumSource
+from html_support import soup_page
 from test_actions import page
 
 
@@ -20,7 +20,7 @@ class PackageTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
     def collect(self, name='demo'):
-        args = argparse.Namespace(exam_url=f'https://www.exambase.com/exams/cisco/{name}', output=self.root / name, resume_from=None, mode='http', delay=5, max_minutes=300, page_limit=0)
+        args = argparse.Namespace(exam_url=f'https://www.exambase.com/exams/cisco/{name}', output=self.root / name, resume_from=None, mode='scrapling', delay=5, max_minutes=300, page_limit=0)
         class Source:
             assets = None
             def __init__(self, exam, output, delay): self.exam = exam
@@ -45,9 +45,10 @@ class PackageTests(unittest.TestCase):
         b = persist(second, self.root / 'repo', '102')
         self.assertNotEqual(a['zip_path'], b['zip_path'])
         index = json.loads((self.root / 'repo/bancos/index.json').read_text())
-        self.assertEqual([v['run_id'] for v in index['runs']], ['102', '101'])
+        self.assertEqual(sorted(v['run_id'] for v in index['exams']), ['101', '102'])
         self.assertTrue((self.root / 'repo' / a['zip_path']).is_file())
-        with self.assertRaises(ValueError): persist(first, self.root / 'repo', '101')
+        persist(first, self.root / 'repo', '101')
+        self.assertEqual(len(json.loads((self.root / 'repo/bancos/index.json').read_text())['exams']), 2)
     def test_missing_explanations_and_images_do_not_claim_review_complete(self):
         _, result = self.collect()
         data = json.loads((result / 'preguntas.json').read_text())
@@ -96,14 +97,6 @@ class PackageTests(unittest.TestCase):
         self.assertTrue(data['payload']['result']['items'][0]['choices'][0]['is_correct'])
         data=soup_page(source.replace('<small>Correct</small>',''),data['url'])
         self.assertIsNone(data['payload']['result']['items'][0]['choices'][0]['is_correct'])
-    def test_selenium_uses_standard_manager_and_closes_driver(self):
-        with patch('selenium.webdriver.Chrome') as constructor:
-            driver=constructor.return_value
-            with SeleniumSource({'base':'https://www.exambase.com/exams/cisco/demo/practice-questions/'},self.root,5): pass
-            driver.quit.assert_called_once()
-            options=constructor.call_args.kwargs['options']
-            self.assertIn('--headless=new', options.arguments)
-            self.assertFalse(any('AutomationControlled' in arg for arg in options.arguments))
 
 
 if __name__ == '__main__': unittest.main()

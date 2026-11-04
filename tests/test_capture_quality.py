@@ -88,7 +88,7 @@ class CaptureQualityTests(unittest.TestCase):
         self.assertFalse(answers_report(data)['empty_questions']);self.assertFalse(answers_report(data)['empty_choices'])
 
     def args(self,folder,resume=None):
-        return argparse.Namespace(exam_url=self.exam['base']+'1',output=self.root/folder,resume_from=resume,mode='http',delay=5,max_minutes=300,page_limit=0)
+        return argparse.Namespace(exam_url=self.exam['base']+'1',output=self.root/folder,resume_from=resume,mode='scrapling',delay=5,max_minutes=300,page_limit=0)
 
     def test_full_count_with_missing_answers_fails_and_resume_only_repairs_pending_page(self):
         calls=[]

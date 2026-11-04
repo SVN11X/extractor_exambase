@@ -29,7 +29,7 @@ class ActionsTests(unittest.TestCase):
         self.tmp.cleanup()
 
     def args(self, **changes):
-        values = dict(exam_url=URL, output=self.root / "salida", resume_from=None, mode="http", delay=5, max_minutes=300, page_limit=0)
+        values = dict(exam_url=URL, output=self.root / "salida", resume_from=None, mode="scrapling", delay=5, max_minutes=300, page_limit=0)
         values.update(changes)
         return argparse.Namespace(**values)
 
@@ -136,14 +136,17 @@ class ActionsTests(unittest.TestCase):
             descargar.validate_page(exam, one, 1)
 
     def test_workflow_inputs_are_env_not_shell_substitution(self):
-        source = (Path(__file__).resolve().parents[1] / '.github/workflows/descargar-examen.yml').read_text()
-        self.assertIn('workflow_dispatch:', source)
-        self.assertIn('if: always()', source)
-        self.assertIn('actions/upload-artifact@v6', source)
-        self.assertIn('EXAM_URL: ${{ inputs.exam_url }}', source)
-        self.assertIn('--exam-url "$EXAM_URL"', source)
-        self.assertIn('--resume-from respaldo', source)
-        self.assertNotIn('python descargar.py --exam-url "${{', source)
+        import yaml
+        root = Path(__file__).resolve().parents[1]
+        workflow = yaml.load((root/'.github/workflows/descargar-examen.yml').read_text(), Loader=yaml.BaseLoader)
+        self.assertEqual(list(workflow['on']['workflow_dispatch']['inputs']), ['exam_url'])
+        action = (root/'.github/actions/ejecutar/action.yml').read_text()
+        self.assertIn('if: always()', action)
+        self.assertIn('actions/upload-artifact@v6', action)
+        self.assertIn('EXAM_URL: ${{ inputs.exam_url }}', action)
+        self.assertIn('--exam-url "$EXAM_URL"', action)
+        self.assertNotIn('python acciones.py examen --exam-url "${{', action)
+        self.assertFalse((root/'.github/workflows/publicar-pages.yml').exists())
 
     def test_interrupt_keeps_partial_result(self):
         def interrupt(value):

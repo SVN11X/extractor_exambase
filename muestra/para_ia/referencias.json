@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "nodes": [
+    {
+      "id": "google/professional-data-engineer:q:00001",
+      "type": "question",
+      "number": 1,
+      "source_id": 12094
+    },
+    {
+      "id": "google/professional-data-engineer:q:00002",
+      "type": "question",
+      "number": 2,
+      "source_id": 12095
+    },
+    {
+      "id": "google/professional-data-engineer:q:00003",
+      "type": "question",
+      "number": 3,
+      "source_id": 12096
+    },
+    {
+      "id": "google/professional-data-engineer:q:00004",
+      "type": "question",
+      "number": 4,
+      "source_id": 12097
+    },
+    {
+      "id": "google/professional-data-engineer:q:00005",
+      "type": "question",
+      "number": 5,
+      "source_id": 12098
+    },
+    {
+      "id": "topics:105",
+      "type": "object",
+      "source_id": 105,
+      "raw": {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "google/professional-data-engineer:q:00001",
+      "to": "topics:105",
+      "relation": "context"
+    },
+    {
+      "from": "google/professional-data-engineer:q:00002",
+      "to": "topics:105",
+      "relation": "context"
+    },
+    {
+      "from": "google/professional-data-engineer:q:00003",
+      "to": "topics:105",
+      "relation": "context"
+    },
+    {
+      "from": "google/professional-data-engineer:q:00004",
+      "to": "topics:105",
+      "relation": "context"
+    },
+    {
+      "from": "google/professional-data-engineer:q:00005",
+      "to": "topics:105",
+      "relation": "context"
+    }
+  ],
+  "unresolved": [],
+  "files_pending": [],
+  "metadata_unverified_questions": [],
+  "complete": true
+}

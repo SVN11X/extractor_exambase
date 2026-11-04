@@ -9,14 +9,36 @@ from access_diagnostics import annotate_access,classify_access
 from browser_support import choose_page, current_question_page, decode_network_response, network_payloads
 from capture_support import capture_script
 from reference_support import attach_contexts,context_collections,key as context_key
-from solver_support import SolverAssets
+import base64
 
 
-class ScraplingAssets(SolverAssets):
-    def get(self,url):
-        if url not in self.cached and url not in self.failed:
+class ScraplingAssets:
+    """Sólo recursos capturados en la misma sesión; no abre otro cliente HTTP."""
+    def __init__(self, source):
+        self.source, self.cached, self.failed = source, {}, {}
+    def update(self, solution, images):
+        for image in images:
+            if isinstance(image.get('url'), str) and isinstance(image.get('data'), str):
+                self.cached[image['url']] = image['data']
+                self.failed.pop(image['url'], None)
+            elif isinstance(image.get('url'), str) and isinstance(image.get('status'), int):
+                self.failed[image['url']] = image['status']
+    def get(self, url):
+        parsed, expected = urllib.parse.urlsplit(url), urllib.parse.urlsplit(self.source.exam['base'])
+        if parsed.scheme != 'https' or parsed.hostname != expected.hostname or parsed.username or parsed.password or parsed.port not in (None, 443):
+            raise core.ExtractionError('Imagen externa al origen del examen; se conserva su referencia.')
+        status = self.failed.get(url)
+        if status in (401, 403, 429):
+            raise core.AccessStopped(f'La imagen devolvió HTTP {status}.', kind='image_access_rejected', code=str(status))
+        if url not in self.cached:
             raise core.ExtractionError('El recurso no se capturó dentro de la sesión Scrapling; queda pendiente.')
-        return super().get(url)
+        header, encoded = self.cached[url].split(',', 1)
+        if not header.startswith('data:image/') or ';base64' not in header:
+            raise core.ExtractionError('La captura no contiene una imagen válida.')
+        body = base64.b64decode(encoded, validate=True)
+        if len(body) > 20*1024**2:
+            raise core.ExtractionError('La imagen supera 20 MiB.')
+        return body, header[5:].split(';')[0], 'utf-8'
 
 
 class ScraplingSource:

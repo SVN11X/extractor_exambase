@@ -449,7 +449,21 @@
       "collection_complete comprueba cobertura y conservación; no valida la corrección técnica de las respuestas de ExamBase.",
       "Se conservan los originales y todas las imágenes detectadas. Cada imagen requiere revisión visual aunque se haya extraído texto mediante OCR.",
       "Las preguntas de formatos especiales sin clave explícita quedan pendientes; sus datos originales se conservan en raw/type_data."
-    ]
+    ],
+    "html_markers_requiring_review": [],
+    "coverage_complete": false,
+    "answers_present": 5,
+    "answers_missing": [],
+    "answers_complete": true,
+    "empty_questions": [],
+    "empty_choices": [],
+    "images_downloaded": 0,
+    "integrity_checked_at": "2026-11-04T18:05:28.432916+00:00",
+    "content_review_complete": true,
+    "references_complete": true,
+    "unresolved_references": [],
+    "referenced_files_pending": [],
+    "objects_preserved": 1
   },
   "questions": [
     {
@@ -555,7 +569,8 @@
             "order": 3
           }
         ]
-      }
+      },
+      "formatting_review": []
     },
     {
       "id": 12095,
@@ -660,7 +675,8 @@
             "order": 3
           }
         ]
-      }
+      },
+      "formatting_review": []
     },
     {
       "id": 12096,
@@ -765,7 +781,8 @@
             "order": 3
           }
         ]
-      }
+      },
+      "formatting_review": []
     },
     {
       "id": 12097,
@@ -870,7 +887,8 @@
             "order": 3
           }
         ]
-      }
+      },
+      "formatting_review": []
     },
     {
       "id": 12098,
@@ -975,7 +993,8 @@
             "order": 3
           }
         ]
-      }
+      },
+      "formatting_review": []
     }
   ],
   "contexts": {
@@ -1012,5 +1031,20 @@
         "El HTML guardado no conserva el objeto de respuestas. Las claves ausentes quedan pendientes; no se deducen de la explicación."
       ]
     }
-  ]
+  ],
+  "exam": {
+    "key": "google/professional-data-engineer",
+    "name": "professional data engineer",
+    "base": "https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/",
+    "total": 349,
+    "pages": 70,
+    "per_page": 5
+  },
+  "package_version": "6.0.0",
+  "export_security": {
+    "reader_scripts": false,
+    "source_html_executable": false,
+    "original_pages_converted": [],
+    "antivirus_verdict": "not_scanned"
+  }
 }

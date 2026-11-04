@@ -172,7 +172,10 @@ def reader(data):
         part.extend([pictures(other), '</article>'])
         md.extend(core.image_lines(other, data["assets"]))
         body.append(''.join(part))
-    page = '<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; img-src \'self\' data:; style-src \'unsafe-inline\'; script-src \'self\'"><title>Archivo de estudio</title><script src="lector.js" defer></script><style>body{max-width:920px;margin:30px auto;padding:0 20px;font:16px/1.7 system-ui;color:#213a35;background:#f6f5f1}header{padding:20px 0}h1{font:38px/1.2 Georgia,serif}article,section{background:white;border:1px solid #dfe4d9;padding:26px;margin:22px 0;border-radius:12px}.rich{white-space:pre-wrap;overflow-wrap:anywhere;margin:14px 0}img{max-width:100%;height:auto}figure{margin:20px 0}figcaption{font-size:12px;color:#687360}summary{cursor:pointer;font-weight:600}details{background:#f4f7ef;padding:14px;border-radius:7px}input{display:block;margin:8px 0;padding:12px;width:min(100%,500px);box-sizing:border-box;font:inherit;border:1px solid #bac7af;border-radius:6px}a{color:#386a45}input:focus-visible,summary:focus-visible{outline:3px solid #d67d4f;outline-offset:3px}[hidden]{display:none!important}@media print{body{margin:0;background:white}input,header label,#count{display:none}article,section{border:0;border-top:1px solid #aaa;border-radius:0}details{background:white}figure{break-inside:avoid}}</style></head><body>' + ''.join(body) + '</body></html>'
+    # El lector es un documento estático: Ctrl+F busca sin distribuir un .js.
+    body[0] = re.sub(r'<label>Buscar.*?</p></header>', '<p>Busca con Ctrl+F. Las respuestas están desplegadas para lectura e impresión.</p></header>', body[0])
+    body = [part.replace('<details>', '<details open>') for part in body]
+    page = '<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; img-src \'self\' data:; style-src \'unsafe-inline\'; script-src \'none\'; object-src \'none\'; base-uri \'none\'; form-action \'none\'"><title>Archivo de estudio</title><style>body{max-width:920px;margin:30px auto;padding:0 20px;font:16px/1.7 system-ui;color:#213a35;background:#f6f5f1}header{padding:20px 0}h1{font:38px/1.2 Georgia,serif}article,section{background:white;border:1px solid #dfe4d9;padding:26px;margin:22px 0;border-radius:12px}.rich{white-space:pre-wrap;overflow-wrap:anywhere;margin:14px 0}img{max-width:100%;height:auto}figure{margin:20px 0}figcaption{font-size:12px;color:#687360}summary{cursor:pointer;font-weight:600}details{background:#f4f7ef;padding:14px;border-radius:7px}a{color:#386a45}summary:focus-visible{outline:3px solid #d67d4f;outline-offset:3px}@media print{body{margin:0;background:white}article,section{border:0;border-top:1px solid #aaa;border-radius:0}details{background:white}figure{break-inside:avoid}}</style></head><body>' + ''.join(body) + '</body></html>'
     return page, '\n'.join(md)
 
 
@@ -233,7 +236,7 @@ def enrich(root, ocr=False, language="eng"):
     r.update(references_complete=graph['complete'],unresolved_references=graph['unresolved'],referenced_files_pending=graph['files_pending'],objects_preserved=len(data.get('contexts',{})))
     r['content_review_complete']=r['content_review_complete'] and graph['complete']
     r['collection_complete']=r['collection_complete'] and graph['complete']
-    data['package_version'] = '5.2.4'
+    data['package_version'] = '6.0.0'
     ai = root / 'para_ia'
     ai.mkdir(exist_ok=True)
     (ai / 'preguntas.jsonl').write_text(''.join(json.dumps(ai_question(q, data['exam'], data.get('assets', {})), ensure_ascii=False) + '\n' for q in data['questions']), encoding='utf-8')
@@ -245,11 +248,25 @@ def enrich(root, ocr=False, language="eng"):
     page, markdown = reader(data)
     (root / 'preguntas.html').write_text(page, encoding='utf-8')
     (root / 'preguntas.md').write_text(markdown, encoding='utf-8')
-    (root / 'lector.js').write_text("const search=document.getElementById('search'),articles=[...document.querySelectorAll('article')];function filter(){const term=search.value.toLocaleLowerCase();let count=0;for(const a of articles){a.hidden=!a.textContent.toLocaleLowerCase().includes(term);if(!a.hidden)count++;}document.getElementById('count').textContent=count+(count===1?' pregunta visible':' preguntas visibles');}search.addEventListener('input',filter);window.addEventListener('beforeprint',()=>document.querySelectorAll('details').forEach(d=>d.open=true));filter();\n", encoding='utf-8')
+    (root / 'lector.js').unlink(missing_ok=True)
+    # Las páginas son evidencia de la captura, no una web para ejecutar offline.
+    # El HTML completo queda como un valor JSON con su hash de origen.
+    original_pages = list(data.get('export_security', {}).get('original_pages_converted', []))
+    for path in sorted((root / 'paginas_originales').rglob('*.html')):
+        raw = path.read_bytes()
+        destination = path.with_suffix('.json')
+        write(destination, {'format': 'captured_html_as_data', 'original_name': path.name,
+                            'sha256_original': hashlib.sha256(raw).hexdigest(),
+                            'html': raw.decode('utf-8')})
+        original_pages.append(str(destination.relative_to(root)))
+        path.unlink()
+    data['export_security'] = {'reader_scripts': False, 'source_html_executable': False,
+                               'original_pages_converted': original_pages,
+                               'antivirus_verdict': 'not_scanned'}
     write(root / 'preguntas.json', data)
     write(root / 'informe_validacion.json', r)
     write(root / 'manifest_examen.json', data['exam'])
-    (root / 'LEEME.md').write_text('# Archivo de estudio\n\nAbre preguntas.html para leer o imprimir. Para una IA usa para_ia/LEEME_IA.md y entrega también las imágenes. Consulta informe_validacion.json para los pendientes. integridad_sha256.json permite verificar que los archivos no cambiaron.\n', encoding='utf-8')
+    (root / 'LEEME.md').write_text('# Archivo de estudio\n\nAbre preguntas.html para leer o imprimir; busca con Ctrl+F. El lector funciona sin JavaScript. Las capturas HTML originales se conservan dentro de archivos JSON como datos. Para una IA usa para_ia/LEEME_IA.md y entrega también las imágenes. Consulta informe_validacion.json para los pendientes. integridad_sha256.json verifica conservación, no certifica ausencia de malware ni exactitud académica.\n', encoding='utf-8')
     hashes = {str(p.relative_to(root)).replace('\\', '/'): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(root.rglob('*')) if p.is_file() and p.name != 'integridad_sha256.json'}
     write(root / 'integridad_sha256.json', {'algorithm': 'sha256', 'files': hashes, 'meaning': 'Conservación de bytes; no valida exactitud técnica.'})
     return data

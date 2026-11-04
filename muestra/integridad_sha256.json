@@ -1,0 +1,20 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "LEEME.md": "b4400af9310a2ea06d8d3ec5c6bddd5798ce7b7bb3549dc4ccceb986bdbf7992",
+    "datos_originales/pagina_1_001.json": "102e78157f1f8d257e199cca0fdf86ac5f82d846f8501f114072770eec423330",
+    "datos_originales/pagina_1_002.json": "5a5a63e4329019ae5e74c836a137c14ad1fbe30067ab7749115f51db307ce837",
+    "informe_validacion.json": "fd9358a102abbad06ae35ec73d544b2684541546ee1eefa1c1fed7e9297ea623",
+    "manifest_examen.json": "6a50fe065ee90d9c34fc3ccd3c53b30e3f99f559a15c079634b8ee98a2d37826",
+    "para_ia/LEEME_IA.md": "3ca2f1aa26c210665378e98abf74f25265995518bcf74536842152ebcca39061",
+    "para_ia/contextos.json": "4fe16c4a228758a85121096fe191346547c2fecc1bdb00859af18b05328f28e3",
+    "para_ia/imagenes.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "para_ia/informe_validacion.json": "fd9358a102abbad06ae35ec73d544b2684541546ee1eefa1c1fed7e9297ea623",
+    "para_ia/preguntas.jsonl": "76dbddb884a6f75ac28d04ae9f8ec8b56bfaadf335c425c91622caf3120e46b2",
+    "para_ia/referencias.json": "03cca8de82936b2dc24c1214ee4be1d95572e48ac7c39985b0d3b05809b0fb4f",
+    "preguntas.html": "0b4f8b5a1b861fd33d4981084f899110517b66b28f125542ac66238e75b24dc7",
+    "preguntas.json": "153f0e211c38688fac105e24e22c24347ca9290871841f71940c7b9f6d63112c",
+    "preguntas.md": "e9b3e78969c56672d6151f75c712a5368451f1c59121d546adca652c3f4a19ea"
+  },
+  "meaning": "Conservación de bytes; no valida exactitud técnica."
+}

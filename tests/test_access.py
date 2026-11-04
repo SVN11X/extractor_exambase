@@ -13,7 +13,6 @@ import descargar
 import extractor as core
 import recuperar_respaldo as backups
 from browser_support import current_question_page
-from selenium_support import SeleniumSource
 from test_actions import page
 
 BLOCK = '<h2>Verification failed</h2><p>Error: 600010</p>'
@@ -57,44 +56,8 @@ class AccessTests(unittest.TestCase):
         with self.assertRaises(core.ExtractionError):
             current_question_page(dom(self.exam, 1), self.exam['base']+'2', 2, self.exam)
 
-    def test_selenium_rejection_is_structured_and_not_retried(self):
-        with patch('selenium.webdriver.Chrome') as make:
-            driver=make.return_value
-            driver.current_url=self.exam['base']+'2'
-            driver.page_source=BLOCK
-            with SeleniumSource(self.exam, self.root, 5) as source:
-                with self.assertRaises(core.AccessStopped) as caught:
-                    source.page(2)
-            self.assertEqual(caught.exception.detail['code'], '600010')
-            self.assertEqual(caught.exception.detail['page'], 2)
-            self.assertFalse(caught.exception.detail['automatic_retry'])
-            driver.get.assert_called_once()
-            driver.quit.assert_called_once()
 
-    def test_headed_selenium_can_read_questions_with_stale_notice(self):
-        with patch('selenium.webdriver.Chrome') as make, patch('selenium_support.time.sleep'):
-            driver=make.return_value
-            driver.current_url=self.exam['base']+'2'
-            driver.page_source=BLOCK+dom(self.exam, 2)
-            driver.find_elements.return_value=[]
-            with SeleniumSource(self.exam, self.root, 5, headed=True) as source:
-                result=source.page(2)
-            self.assertEqual(result['payload']['result']['page'], 2)
-            self.assertNotIn('--headless=new', make.call_args.kwargs['options'].arguments)
 
-    def test_playwright_also_prefers_current_questions(self):
-        source=descargar.BrowserSource(self.exam, self.root, 5)
-        source.received=[]
-        source.last_navigation=0
-        source.tab=MagicMock()
-        source.tab.url=self.exam['base']+'2'
-        source.tab.content.return_value=BLOCK+dom(self.exam, 2)
-        source.tab.get_by_role.return_value.all.return_value=[]
-        from browser_support import choose_page, verification_error
-        source.choose_page,source.verification_error=choose_page,verification_error
-        result=source.page(2)
-        self.assertEqual(result['payload']['result']['items'][0]['order'], 6)
-        source.tab.goto.assert_called_once()
 
     def test_actual_log_scenario_preserves_five_and_resumes_to_103(self):
         calls=[]
@@ -109,7 +72,7 @@ class AccessTests(unittest.TestCase):
                 if number==2 and self.blocked:
                     raise core.AccessStopped('Cloudflare rechazó la verificación (600010).',kind='verification_rejected',code='600010',page=2)
                 return page(self.exam, number, 103)
-        args=argparse.Namespace(exam_url=EXAM_URL,output=self.root/'primera',resume_from=None,mode='selenium',delay=5,max_minutes=300,page_limit=0)
+        args=argparse.Namespace(exam_url=EXAM_URL,output=self.root/'primera',resume_from=None,mode='scrapling',delay=5,max_minutes=300,page_limit=0)
         output=io.StringIO()
         with patch.dict('os.environ',{'GITHUB_ACTIONS':'true'}), contextlib.redirect_stdout(output):
             self.assertEqual(descargar.run(args,Source),2)
@@ -145,41 +108,21 @@ class AccessTests(unittest.TestCase):
         self.assertEqual((state['questions'],state['pages_saved'],state['next_page']),(5,[1],2))
 
     def test_actions_summary_handles_zero_question_block(self):
-        # Ejecuta el Python real del resumen, no una copia de su lógica.
-        import subprocess,sys,yaml
-        workflow=yaml.safe_load((Path(__file__).parents[1]/'.github/workflows/descargar-examen.yml').read_text())
-        code=next(s['run'] for s in workflow['jobs']['descargar']['steps'] if s.get('name')=='Resumen').split("<<'PY'",1)[1].split('\n',1)[1].rsplit('\n          PY',1)[0]
-        # YAML ya ha retirado la indentación común.
-        code=code.rsplit('\nPY',1)[0]
-        (self.root/'salida').mkdir()
+        from acciones import summary
         state={'questions':0,'exam':{},'status':'blocked','coverage_complete':False,'review_pending':True,'stopped_reason':'600010','failure':{'code':'600010','page':1},'resume_supported':False}
-        (self.root/'salida/estado_ejecucion.json').write_text(json.dumps(state))
-        result=subprocess.run([sys.executable,'-c',code],cwd=self.root,text=True,capture_output=True)
-        self.assertEqual(result.returncode,0,result.stderr)
-        self.assertIn('600010',result.stdout)
-
-        state.update(questions=349, status='complete', coverage_complete=True, execution_complete=True,
-                     stopped_reason=None, failure=None, resume_supported=True, next_page=None,
-                     images_found=8, images_downloaded=8, images_failed=[],
-                     images_requiring_review=list(range(8)), missing_explanations=list(range(1,28)))
-        (self.root/'salida/estado_ejecucion.json').write_text(json.dumps(state))
-        result=subprocess.run([sys.executable,'-c',code],cwd=self.root,text=True,capture_output=True)
-        self.assertEqual(result.returncode,0,result.stderr)
-        self.assertIn('Imágenes guardadas **8/8**',result.stdout)
-        self.assertIn('conservado **27**',result.stdout)
-        self.assertIn('Recopilación completa',result.stdout)
-        self.assertNotIn('revisar imágenes',result.stdout)
-        self.assertNotIn('Para reanudar',result.stdout)
-
-        state.update(status='partial', execution_complete=False, images_downloaded=7, images_failed=['pending'])
-        (self.root/'salida/estado_ejecucion.json').write_text(json.dumps(state))
-        with patch.dict('os.environ',{'GITHUB_RUN_ID':'123'}):
-            result=subprocess.run([sys.executable,'-c',code],cwd=self.root,text=True,capture_output=True)
-        self.assertEqual(result.returncode,0,result.stderr)
-        self.assertIn('Imágenes guardadas **7/8**',result.stdout)
-        self.assertIn('resume_run_id = 123',result.stdout)
-        self.assertIn('informe_validacion.json',result.stdout)
-        self.assertNotIn('revisar imágenes',result.stdout)
+        self.assertIn('600010', summary([state]))
+        state.update(questions=349, status='complete', execution_complete=True, stopped_reason=None,
+                     images_found=8, images_downloaded=8, missing_explanations=list(range(1,28)))
+        text=summary([state])
+        self.assertIn('Imágenes guardadas **8/8**',text)
+        self.assertIn('conservado **27**',text)
+        self.assertIn('Recopilación completa',text)
+        self.assertNotIn('recupera el avance',text)
+        state.update(execution_complete=False,images_downloaded=7)
+        text=summary([state])
+        self.assertIn('Imágenes guardadas **7/8**',text)
+        self.assertIn('recupera el avance',text)
+        self.assertIn('informe_validacion.json',text)
 
     def test_resumed_bank_only_marks_incomplete_pages_with_shared_context(self):
         incomplete=[2,5,8,11,14,17,20]

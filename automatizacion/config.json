@@ -1,0 +1,9 @@
+{
+  "proveedores": ["all"],
+  "intervalo_segundos": 10,
+  "max_examenes_por_lote": 10,
+  "presupuesto_minutos": 240,
+  "minutos_por_examen": 60,
+  "actualizar_cada_dias": 30,
+  "catalogo_cada_dias": 7
+}
