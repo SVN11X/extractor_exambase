@@ -1,4 +1,17 @@
-# Verificación de la entrega 5.2.2
+# Verificación de la entrega 5.2.3
+
+## Comprobaciones de 5.2.3
+
+Pasaron 106 pruebas Python y 52 JavaScript. La regresión nueva comprueba que una
+página visible se guarda antes de releerla y que un resultado estructurado posterior
+recupera identificadores y un caso de estudio conservando las claves anteriores.
+También comprueba el límite de dos lecturas y la parada ante una comprobación de
+acceso pendiente, incluso con respuestas visibles completas.
+
+La reproducción local con el ZIP real de `41825863020` conservó las 349 preguntas,
+las 349 respuestas y las imágenes. Al reproducir las mismas capturas incompletas,
+el proceso mantuvo las 115 preguntas con metadatos pendientes y terminó como parcial.
+La recuperación desde el sitio con esta versión queda por comprobar en Actions.
 
 ## Comprobaciones de 5.2.2
 

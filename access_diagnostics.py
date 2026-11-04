@@ -31,7 +31,7 @@ def classify_access(source, status=None):
 
 def annotate_access(page, source):
     from capture_quality import page_quality
-    if page_quality(page)['missing_answers']:
+    if page_quality(page)['missing_answers'] or page.get('parser') == 'dom':
         detail=classify_access(source)
         if detail:page['access_failure']=detail
     return page

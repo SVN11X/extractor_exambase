@@ -1,7 +1,24 @@
-# Captura y diagnóstico · versión 5.2.2
+# Captura y diagnóstico · versión 5.2.3
 
-El parche 5.2.2 se aplica sobre `f520e8d31a71d88d4bbf0db9180a680e7be33738`
+El parche 5.2.3 se aplica sobre `eddd0fb4dbe70e3dad537c00bf12320618ac5449`
 de `SVN11X/extractor_exambase`.
+
+## Recuperación automática de metadatos
+
+El ZIP de `41825863020` conserva 349 preguntas y respuestas de **Google Associate
+Cloud Engineer**. En 23 páginas el HTML inicial contiene `captcha_required` y las
+preguntas visibles se conservaron desde el DOM, con identificadores por verificar.
+
+La versión 5.2.3 guarda primero la captura visible y realiza una segunda lectura
+de esa página antes de avanzar. Usa la misma sesión y el intervalo configurado.
+Los identificadores y vínculos se toman del resultado estructurado recibido y se
+combinan con las respuestas ya guardadas cuando el contenido coincide.
+
+Se realiza como máximo una segunda lectura por página y ejecución. Una comprobación
+de acceso pendiente detiene el proceso aunque las respuestas visibles estén completas.
+Si la segunda lectura entrega sólo DOM, se conserva el parcial y sus metadatos se
+mantienen pendientes de verificación. `pages_retried_for_metadata` registra qué
+páginas recibieron esta segunda lectura.
 
 ## Qué se pudo comprobar de tu ejecución
 
@@ -120,10 +137,10 @@ En Pages o Actions selecciona **el mismo examen** de la ejecución anterior y:
 
 | Opción | Valor |
 | --- | --- |
-| Examen | Google Associate Data Practitioner |
+| Examen | Google Associate Cloud Engineer |
 | Motor | `scrapling` |
 | Runner | `github` |
-| ID para reanudar | `41749148063` |
+| ID para reanudar | `41825863020` |
 | Límite de páginas | `0` |
 | Guardar también en el repositorio | Activado si quieres conservar el banco |
 

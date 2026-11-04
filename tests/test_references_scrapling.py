@@ -77,6 +77,59 @@ class ReferenceTests(unittest.TestCase):
         self.assertEqual(result,2);self.assertEqual(state['answers_present'],7)
         self.assertEqual(graph['metadata_unverified_questions'],list(range(1,8)))
 
+    def test_scrapling_repairs_metadata_once_after_saving_visible_answers(self):
+        from access_diagnostics import annotate_access
+
+        for behavior in ('recovered','unchanged','blocked'):
+            with self.subTest(behavior=behavior):
+                calls=[]
+                attempts={}
+                class Source:
+                    assets=None
+                    def __init__(self,exam,*_): self.exam=exam
+                    def __enter__(self): return self
+                    def __exit__(self,*_): pass
+                    def page(self,number):
+                        calls.append(number)
+                        attempts[number]=attempts.get(number,0)+1
+                        value=page(self.exam,number)
+                        if number!=1:
+                            return value
+                        visible=core.parse_page(html_page(value),value['url'])
+                        if attempts[number]==1 or behavior=='unchanged':
+                            return visible
+                        if behavior=='blocked':
+                            return annotate_access(visible,'<iframe src="https://challenges.cloudflare.com/test"></iframe>')
+                        result=value['payload']['result']
+                        result['items'][0]['case_study_id']=80
+                        result['case_studies']=[{'id':80,'text':'Contexto recuperado','question_ids':[1]}]
+                        # Las claves ya guardadas deben sobrevivir a esta respuesta.
+                        for question in result['items']:
+                            question['choices'][0]['is_correct']=None
+                        return value
+
+                output=self.root/behavior
+                args=argparse.Namespace(exam_url=self.exam['base']+'1',output=output,resume_from=None,
+                                        mode='scrapling',delay=0,max_minutes=300,page_limit=0)
+                with contextlib.redirect_stdout(io.StringIO()):
+                    result=descargar.run(args,Source)
+                state=json.loads((output/'estado_ejecucion.json').read_text())
+                self.assertEqual(state['pages_retried_for_metadata'],[1])
+                self.assertEqual(attempts[1],2)
+                self.assertEqual(result,0 if behavior=='recovered' else 2)
+                self.assertEqual(calls,[1,1] if behavior=='blocked' else [1,1,2])
+                self.assertEqual(state['answers_present'],5 if behavior=='blocked' else 7)
+                self.assertEqual(state['status'],{'recovered':'complete','unchanged':'partial','blocked':'blocked'}[behavior])
+                if behavior=='recovered':
+                    self.assertTrue(state['references_complete'])
+                    self.assertEqual(state['objects_preserved'],1)
+                    capture=json.loads(next(output.glob('resultado_*/capturas/pagina_00001.json')).read_text())
+                    self.assertEqual(capture['payload']['result']['items'][0]['id'],1)
+                    self.assertTrue(capture['payload']['result']['items'][0]['choices'][0]['is_correct'])
+                else:
+                    self.assertFalse(state['references_complete'])
+                    self.assertEqual(state['metadata_unverified_questions'],list(range(1,6)))
+
     def test_typed_api_object_can_resolve_a_previously_unknown_field(self):
         def modify(value,n):
             if n==1:
