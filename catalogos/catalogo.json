@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-11-03T00:22:56.772431+00:00",
+  "updated_at": "2026-11-04T19:00:49.167327+00:00",
   "advertised_total": 1657,
   "vendors": [
     {
@@ -1164,7 +1164,10 @@
       "vendor": "Google Cloud",
       "vendor_slug": "google-cloud",
       "questions": 349,
-      "code": "Associate Cloud Engineer"
+      "code": "Associate Cloud Engineer",
+      "vendor_slugs": [
+        "google-cloud"
+      ]
     },
     {
       "id": "google/associate-data-practitioner",
@@ -1173,7 +1176,10 @@
       "vendor": "Google Cloud",
       "vendor_slug": "google-cloud",
       "questions": 103,
-      "code": "Associate Data Practitioner"
+      "code": "Associate Data Practitioner",
+      "vendor_slugs": [
+        "google-cloud"
+      ]
     },
     {
       "id": "google/cloud-digital-leader",
@@ -1182,7 +1188,10 @@
       "vendor": "Google Cloud",
       "vendor_slug": "google-cloud",
       "questions": 289,
-      "code": "Cloud Digital Leader"
+      "code": "Cloud Digital Leader",
+      "vendor_slugs": [
+        "google-cloud"
+      ]
     },
     {
       "id": "google/professional-cloud-security-engineer",
@@ -1191,7 +1200,10 @@
       "vendor": "Google Cloud",
       "vendor_slug": "google-cloud",
       "questions": 376,
-      "code": "PROFESSIONAL-CLOUD-SECURITY-ENGINEER"
+      "code": "PROFESSIONAL-CLOUD-SECURITY-ENGINEER",
+      "vendor_slugs": [
+        "google-cloud"
+      ]
     },
     {
       "id": "google/generative-ai-leader",
@@ -1200,7 +1212,10 @@
       "vendor": "Google Cloud",
       "vendor_slug": "google-cloud",
       "questions": 75,
-      "code": "Generative AI Leader"
+      "code": "Generative AI Leader",
+      "vendor_slugs": [
+        "google-cloud"
+      ]
     },
     {
       "id": "google/professional-cloud-architect",
@@ -1209,7 +1224,10 @@
       "vendor": "Google Cloud",
       "vendor_slug": "google-cloud",
       "questions": 360,
-      "code": "Professional Cloud Architect"
+      "code": "Professional Cloud Architect",
+      "vendor_slugs": [
+        "google-cloud"
+      ]
     },
     {
       "id": "google/professional-cloud-database-engineer",
@@ -1218,7 +1236,10 @@
       "vendor": "Google Cloud",
       "vendor_slug": "google-cloud",
       "questions": 197,
-      "code": "Professional Cloud Database Engineer"
+      "code": "Professional Cloud Database Engineer",
+      "vendor_slugs": [
+        "google-cloud"
+      ]
     },
     {
       "id": "google/professional-cloud-devops-engineer",
@@ -1227,7 +1248,10 @@
       "vendor": "Google Cloud",
       "vendor_slug": "google-cloud",
       "questions": 239,
-      "code": "Professional Cloud DevOps Engineer"
+      "code": "Professional Cloud DevOps Engineer",
+      "vendor_slugs": [
+        "google-cloud"
+      ]
     },
     {
       "id": "google/professional-cloud-developer",
@@ -1236,7 +1260,10 @@
       "vendor": "Google Cloud",
       "vendor_slug": "google-cloud",
       "questions": 379,
-      "code": "Professional Cloud Developer"
+      "code": "Professional Cloud Developer",
+      "vendor_slugs": [
+        "google-cloud"
+      ]
     },
     {
       "id": "google/professional-cloud-network-engineer",
@@ -1245,7 +1272,10 @@
       "vendor": "Google Cloud",
       "vendor_slug": "google-cloud",
       "questions": 316,
-      "code": "Professional Cloud Network Engineer"
+      "code": "Professional Cloud Network Engineer",
+      "vendor_slugs": [
+        "google-cloud"
+      ]
     },
     {
       "id": "google/professional-data-engineer",
@@ -1254,7 +1284,10 @@
       "vendor": "Google Cloud",
       "vendor_slug": "google-cloud",
       "questions": 349,
-      "code": "Professional Data Engineer"
+      "code": "Professional Data Engineer",
+      "vendor_slugs": [
+        "google-cloud"
+      ]
     },
     {
       "id": "google/professional-machine-learning-engineer",
@@ -1263,7 +1296,10 @@
       "vendor": "Google Cloud",
       "vendor_slug": "google-cloud",
       "questions": 339,
-      "code": "Professional ML Engineer"
+      "code": "Professional ML Engineer",
+      "vendor_slugs": [
+        "google-cloud"
+      ]
     },
     {
       "id": "google/professional-security-operations-engineer",
@@ -1272,7 +1308,10 @@
       "vendor": "Google Cloud",
       "vendor_slug": "google-cloud",
       "questions": 133,
-      "code": "Professional Security Operations Engineer"
+      "code": "Professional Security Operations Engineer",
+      "vendor_slugs": [
+        "google-cloud"
+      ]
     }
   ],
   "complete": false,
@@ -1285,5 +1324,8 @@
     ],
     "errors": [],
     "previous_entries_retained": true
+  },
+  "vendor_updated_at": {
+    "google-cloud": "2026-11-04T19:00:49.167311+00:00"
   }
 }
