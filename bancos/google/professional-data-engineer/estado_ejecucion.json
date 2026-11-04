@@ -131,16 +131,15 @@
     48,
     50,
     52,
-    54,
-    56,
-    58,
-    60,
-    62,
-    64,
-    66,
-    68,
-    70
+    57,
+    59,
+    61,
+    63,
+    65,
+    67,
+    69
   ],
+  "restart_required": false,
   "images_failed": [],
   "images_requiring_review": [
     "0c8e1f5f248c8b5a1208",
@@ -199,7 +198,6 @@
   ],
   "images_found": 25,
   "images_downloaded": 25,
-  "migrated_from_sha256": "5412a67c6f39980d50c26016d9d925d519532d74abd9e5ab95d29b8d3de66639",
   "empty_questions": [],
   "empty_choices": []
 }
