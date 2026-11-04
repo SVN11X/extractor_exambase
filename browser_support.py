@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import copy
 import re
 import time
 import urllib.parse
@@ -157,7 +158,37 @@ def verification_error(source, core):
     return match.group(1) if match else "sin código visible"
 
 
-def current_question_page(source, url, number, exam, preferred=None):
+def align_numbering(candidate, visible, metadata, number):
+    """Vincula el orden interno con el número mostrado sólo con contenido idéntico."""
+    from capture_quality import identity
+    from descargar import validate_page
+    from extractor import ExtractionError
+    result = candidate['payload']['result']
+    if result.get('kind') != 'questions' or result.get('page') != number:
+        raise ExtractionError('Los datos corresponden a otra página.')
+    source_items = result.get('items') or []
+    visible_items = visible['payload']['result']['items']
+    identities = [identity(question) for question in visible_items]
+    if len(source_items) != len(visible_items) or len(set(identities)) != len(identities):
+        raise ExtractionError('No hay una correspondencia única entre datos y preguntas visibles.')
+    if [identity(question) for question in source_items] != identities:
+        raise ExtractionError('Los datos y las preguntas visibles tienen contenido distinto.')
+    aligned = copy.deepcopy(candidate)
+    pairs = []
+    for question, shown in zip(aligned['payload']['result']['items'], visible_items):
+        if question.get('order') != shown['order']:
+            pairs.append({'source_id':question.get('id'), 'source_order':question.get('order'), 'number':shown['order']})
+            question['source_order'] = question.get('order')
+            question['order'] = shown['order']
+    # Conserva la URL y los contadores originales: no permite reparar otro examen
+    # ni ocultar un cambio de totales como si fuera un cambio de numeración.
+    validate_page(metadata, aligned, number)
+    if pairs:
+        aligned['numbering_alignment'] = {'method':'identical_visible_content', 'questions':pairs}
+    return aligned
+
+
+def current_question_page(source, url, number, exam, preferred=None, *, candidates=()):
     """Acepta sólo preguntas completas de la URL y numeración solicitadas.
 
     Una SPA puede conservar scripts iniciales o avisos ocultos de otra página.
@@ -166,19 +197,39 @@ def current_question_page(source, url, number, exam, preferred=None):
     import extractor as core
     from descargar import detect_counts, validate_page, DatasetChanged
     from html_support import soup_page
-    from capture_quality import merge_page
+    from capture_quality import merge_page, identity
     attempts = []
     changed = None
     valid = []
+    visible = None
+    try:
+        visible = soup_page(source, url)
+        validate_page(exam if exam.get('total') else detect_counts(exam, visible), visible, number)
+    except (core.ExtractionError, ValueError, KeyError, TypeError):
+        visible = None
     readers = ([lambda: preferred] if preferred else []) + [
+        *[lambda payload=payload: {'url':url, 'parser':'browser-network', 'payload':payload, 'warnings':[]}
+          for payload in reversed(candidates) if payload.get('result',{}).get('page') == number],
         lambda: core.parse_page(source, url, expected_page=number),
-        lambda: soup_page(source, url),
+        lambda: visible if visible else soup_page(source, url),
     ]
     for read in readers:
         try:
             candidate = read()
             metadata = exam if exam.get('total') else detect_counts(exam, candidate)
-            validate_page(metadata, candidate, number)
+            try:
+                validate_page(metadata, candidate, number)
+            except DatasetChanged:
+                raise
+            except core.ExtractionError:
+                if not visible or candidate.get('parser') == 'dom':
+                    raise
+                candidate = align_numbering(candidate, visible, metadata, number)
+            if visible and candidate.get('parser') != 'dom':
+                actual = {q['order']:identity(q) for q in candidate['payload']['result']['items']}
+                shown = {q['order']:identity(q) for q in visible['payload']['result']['items']}
+                if actual != shown:
+                    raise core.ExtractionError('Los datos no corresponden al contenido visible de estas preguntas.')
             valid.append(candidate)
         except (core.ExtractionError, ValueError, KeyError, TypeError) as exc:
             if isinstance(exc, DatasetChanged):

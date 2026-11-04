@@ -43,6 +43,12 @@ class ExtractionError(Exception):
     pass
 
 
+class TransportError(ExtractionError):
+    def __init__(self, message, detail):
+        super().__init__(message)
+        self.detail = detail
+
+
 class AccessStopped(ExtractionError):
     def __init__(self, message, *, kind="access_blocked", code=None, page=None, url=None):
         super().__init__(message)

@@ -1,6 +1,42 @@
 """Clasifica evidencia de acceso sin atribuir todo HTTP 403 a un antibot."""
 import re
+from urllib.parse import urlsplit
 import extractor as core
+
+
+def observe_document(url, evidence):
+    """Registra el estado del documento sin guardar cabeceras ni credenciales."""
+    expected = urlsplit(url)
+    def setup(tab):
+        def response(item):
+            actual = urlsplit(item.url)
+            if (item.request.resource_type == 'document' and actual.hostname == expected.hostname
+                    and actual.path.rstrip('/') == expected.path.rstrip('/')):
+                evidence['http_status'] = item.status
+        tab.on('response', response)
+    return setup
+
+
+def transport_exception(error, url, page=None, evidence=None):
+    evidence = evidence or {}
+    status = evidence.get('http_status')
+    match = re.search(r'net::(ERR_[A-Z_0-9]+)', str(error))
+    code = match[1] if match else type(error).__name__
+    detail = {'kind':'transport_error', 'code':code, 'page':page, 'url':url,
+              'http_status':status, 'exception_type':type(error).__name__, 'automatic_retry':False}
+    if status in (401, 403, 429):
+        access = classify_access('', status)
+        stopped = core.AccessStopped(f'El sitio devolvió HTTP {status} en la página {page or "de catálogo"}.',
+                                    kind=access['kind'], code=str(status), page=page, url=url)
+        stopped.detail.update(http_status=status, network_error=code)
+        return stopped
+    message = f'Scrapling interrumpió la petición de la página {page or "de catálogo"}: {code}'
+    if status is not None:
+        message += f' (HTTP {status})'
+    else:
+        message += ' (el navegador no entregó un código HTTP)'
+    detail['message'] = message
+    return core.TransportError(message, detail)
 
 
 def classify_access(source, status=None):

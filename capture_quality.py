@@ -49,14 +49,18 @@ def merge_page(base, supplement):
 
 
 def answers_report(data):
-    missing=[];empty=[];empty_choices=[]
+    missing=[];empty=[];empty_choices=[];unmarked=[]
     for question in data['questions']:
         letters={c.get('letter') for c in question.get('choices') or []}
         answer=question.get('correct_choices') or []
         if not (answer and all(isinstance(c,str) and re.fullmatch(r'[A-Z]',c) and c in letters for c in answer)) and not question.get('answer_image_url'):
             missing.append(question['number'])
+            source_choices = question.get('raw',{}).get('choices') or []
+            if source_choices and all(c.get('is_correct') is False for c in source_choices):
+                unmarked.append(question['number'])
         if not question.get('question_text','').strip() and not core.scan_images({'question_html':question.get('question_html','')}):empty.append(question['number'])
         for choice in question.get('choices') or []:
             if not choice.get('text','').strip() and not core.scan_images({'html':choice.get('html','')}):empty_choices.append({'question':question['number'],'letter':choice.get('letter')})
     return {'answers_present':len(data['questions'])-len(missing),'answers_missing':missing,
+            'answers_unmarked_in_source':unmarked,
             'answers_complete':bool(data['questions']) and not missing,'empty_questions':empty,'empty_choices':empty_choices}

@@ -221,6 +221,47 @@ class AutomationTests(unittest.TestCase):
         self.assertEqual([e['id'] for e in result['exams']],['cisco/uno'])
         self.assertEqual(result['vendors'][0]['liveCount'],1)
 
+    def test_summary_distinguishes_partial_banks_from_cooldown(self):
+        self.execute('proveedor','cisco',collector=lambda args:self.collector(args,partial=True))
+        from acciones import queue_counts, summary, read
+        catalog=read(self.root/'catalogos/catalogo.json')
+        index={e['exam_key']:e for e in current_entries(self.root)['exams']}
+        counts=queue_counts(catalog['exams'],index,acciones.configuration(self.root),datetime.now(timezone.utc),'cisco')
+        self.assertEqual(counts['partial'],1)
+        self.assertEqual(counts['new'],1)
+        self.assertEqual(counts['deferred'],1)
+        text=summary([],queue_info=counts)
+        self.assertIn('Bancos parciales o actualizaciones pendientes: **1**',text)
+        self.assertNotIn('Exámenes elegibles pendientes en este proveedor: **0**',text)
+
+    def test_manual_provider_can_continue_a_partial_without_waiting_a_day(self):
+        self.execute('examen','https://www.exambase.com/exams/cisco/uno',collector=lambda args:self.collector(args,partial=True))
+        catalog=acciones.read(self.root/'catalogos/catalogo.json')
+        index={e['exam_key']:e for e in current_entries(self.root)['exams']}
+        exams=[e for e in catalog['exams'] if e['id']=='cisco/uno']
+        self.assertEqual(acciones.eligible(exams,index,acciones.configuration(self.root),datetime.now(timezone.utc)),[])
+        self.assertEqual(len(acciones.eligible(exams,index,acciones.configuration(self.root),datetime.now(timezone.utc),manual=True)),1)
+
+    def test_transport_error_stops_the_batch_without_claiming_an_access_block(self):
+        cfg=self.root/'automatizacion/config.json';data=json.loads(cfg.read_text());data['max_examenes_por_lote']=10;cfg.write_text(json.dumps(data))
+        def broken(args):
+            self.calls.append(args)
+            class Source:
+                assets=None
+                def __init__(self,exam,*_):self.exam=exam
+                def __enter__(self):return self
+                def __exit__(self,*_):pass
+                def page(self,n):
+                    from access_diagnostics import transport_exception
+                    if n==2:raise transport_exception(Exception('net::ERR_HTTP_RESPONSE_CODE_FAILURE'),self.exam['base']+'2',2)
+                    return page(self.exam,n)
+            return descargar.run(args,Source)
+        self.assertEqual(self.execute('automatico',collector=broken),2)
+        self.assertEqual(len(self.calls),1)
+        queue=json.loads((self.root/'automatizacion/estado.json').read_text())
+        self.assertNotIn('cisco',queue.get('proveedores_bloqueados',{}))
+        self.assertIn('ERR_HTTP_RESPONSE_CODE_FAILURE',(self.root/'salida/resumen.md').read_text())
+
     def test_scrapling_images_use_only_same_session_bytes(self):
         assets=ScraplingAssets(SimpleNamespace(exam={'base':'https://www.exambase.com/exams/cisco/demo/'}))
         url='https://www.exambase.com/media/one.png'

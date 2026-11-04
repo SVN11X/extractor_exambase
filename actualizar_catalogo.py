@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 import extractor as core
 from descargar import exam_from_url
-from access_diagnostics import classify_access
+from access_diagnostics import classify_access, observe_document, transport_exception
 
 
 class CatalogSource:
@@ -26,7 +26,11 @@ class CatalogSource:
     def get(self,url):
         time.sleep(max(0,self.delay-(time.monotonic()-self.last)))
         self.last=time.monotonic()
-        response=self.session.fetch(url,google_search=False)
+        evidence = {}
+        try:
+            response=self.session.fetch(url,google_search=False,page_setup=observe_document(url,evidence))
+        except Exception as exc:
+            raise transport_exception(exc,url,evidence=evidence) from exc
         source=str(response.html_content)
         detail=classify_access(source,response.status)
         if detail:

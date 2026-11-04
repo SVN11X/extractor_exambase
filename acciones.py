@@ -65,7 +65,7 @@ def checkpoint(root, exam):
     return None
 
 
-def summary(states, pending=0, errors=()):
+def summary(states, pending=0, errors=(), queue_info=None):
     lines = ['# Resultado de ExamBase', '']
     for state in states:
         exam = state.get('exam', {})
@@ -77,17 +77,26 @@ def summary(states, pending=0, errors=()):
                   f'Preguntas sin texto de explicación conservado **{len(state.get("missing_explanations", []))}**.', '']
         if state.get('stopped_reason'):
             lines += [str(state['stopped_reason']), '']
+        if state.get('pages_recovered_offline'):
+            lines += [f'Páginas con metadatos recuperados del respaldo: **{len(state["pages_recovered_offline"])}**.', '']
         if not state.get('execution_complete'):
             lines += ['La próxima ejecución del mismo examen recupera el avance válido. Consulta informe_validacion.json.', '']
-    lines += [f'Exámenes elegibles pendientes en este proveedor: **{pending}**.', '']
+    if queue_info is not None:
+        lines += [f'Proveedor: **{queue_info["vendor"]}**.',
+                  f'Exámenes sin banco: **{queue_info["new"]}**.',
+                  f'Bancos parciales o actualizaciones pendientes: **{queue_info["partial"]}**.',
+                  f'Elegibles para extracción automática ahora: **{queue_info["eligible"]}**.',
+                  f'Parciales aplazados por el intervalo de reintento: **{queue_info["deferred"]}**.', '']
+    elif pending:
+        lines += [f'Exámenes elegibles pendientes en este proveedor: **{pending}**.', '']
     lines += [f'Error: {error}' for error in errors]
     return '\n'.join(lines) + '\n'
 
 
-def write_summary(root, states, pending=0, errors=()):
+def write_summary(root, states, pending=0, errors=(), queue_info=None):
     output = root/'salida'
     output.mkdir(exist_ok=True)
-    text = summary(states, pending, errors)
+    text = summary(states, pending, errors, queue_info)
     (output/'resumen.md').write_text(text, encoding='utf-8')
     print(text, flush=True)
     step = os.environ.get('GITHUB_STEP_SUMMARY')
@@ -126,7 +135,7 @@ def collect(root, url, config, minutes, collector=descargar.run):
         return state, entry
 
 
-def eligible(exams, index, config, now):
+def eligible(exams, index, config, now, *, manual=False):
     selected = []
     for exam in {e['id']: e for e in exams}.values():
         entry = index.get(exam['id'])
@@ -135,10 +144,19 @@ def eligible(exams, index, config, now):
         # Una copia completa con un progreso nuevo pendiente debe continuar ese progreso.
         complete = bool(entry and entry.get('execution_complete') and not entry.get('checkpoint_path'))
         age = config['actualizar_cada_dias'] if complete else cooldown
-        if entry and now - stamp(attempt.get('updated_at')) < timedelta(days=age):
+        if entry and now - stamp(attempt.get('updated_at')) < timedelta(days=age) and not (manual and not complete and attempt.get('status') != 'blocked'):
             continue
         selected.append((0 if not entry else 2 if complete else 1, stamp(attempt.get('updated_at')), exam['id'], exam))
     return [item[-1] for item in sorted(selected, key=lambda row: row[:3])]
+
+
+def queue_counts(exams, index, config, now, vendor):
+    unique = {e['id']:e for e in exams}
+    ready = {e['id'] for e in eligible(list(unique.values()),index,config,now)}
+    partial = {key for key in unique if key in index and
+               (not index[key].get('execution_complete') or index[key].get('checkpoint_path'))}
+    return {'vendor':vendor, 'new':sum(key not in index for key in unique), 'partial':len(partial),
+            'eligible':len(ready), 'deferred':len(partial-ready)}
 
 
 def execute(root, mode, value=None, collector=descargar.run, catalog_updater=update_catalog, clock=time.monotonic, now=None):
@@ -152,6 +170,7 @@ def execute(root, mode, value=None, collector=descargar.run, catalog_updater=upd
     queue = read(state_path, {'siguiente_proveedor': 0})
     turn = providers(catalog, config['proveedores'])
     states, errors, pending = [], [], 0
+    queue_info = None
     started = clock()
     try:
         if mode == 'examen':
@@ -191,7 +210,7 @@ def execute(root, mode, value=None, collector=descargar.run, catalog_updater=upd
                     break
             index = {e['exam_key']: e for e in current_entries(root)['exams']}
             exams = [e for e in catalog['exams'] if slug in e.get('vendor_slugs', [e.get('vendor_slug')])]
-            work = eligible(exams, index, config, now)
+            work = eligible(exams, index, config, now, manual=not automatic)
             if not work and automatic:
                 position = (position + 1) % len(turn)
                 continue
@@ -205,12 +224,14 @@ def execute(root, mode, value=None, collector=descargar.run, catalog_updater=upd
                 # Guarda el banco y el cursor después de cada examen, incluso si el siguiente falla.
                 queue['ultimo_examen'] = entry['exam_key']
                 atomic_json(state_path, queue)
-                if state.get('failure'):
+                if state.get('failure') or state.get('transport_failure'):
                     errors.append(state.get('stopped_reason') or 'Acceso pendiente.')
-                    queue.setdefault('proveedores_bloqueados', {})[slug] = now.isoformat()
+                    if state.get('failure'):
+                        queue.setdefault('proveedores_bloqueados', {})[slug] = now.isoformat()
                     break
             # Se excluyen los intentados hoy por su pausa de reintento; el resto queda para el próximo lote.
             pending = len(eligible(exams, index, config, now))
+            queue_info = queue_counts(exams,index,config,now,slug)
             if automatic and (pending == 0 or errors):
                 position = (position + 1) % len(turn)
             break
@@ -223,7 +244,7 @@ def execute(root, mode, value=None, collector=descargar.run, catalog_updater=upd
     finally:
         queue['ultimo_lote'] = now.isoformat()
         atomic_json(state_path, queue)
-        write_summary(root, states, pending, errors)
+        write_summary(root, states, pending, errors, queue_info)
 
 
 def main():

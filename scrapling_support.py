@@ -5,7 +5,7 @@ import urllib.parse
 from importlib.metadata import version
 from pathlib import Path
 import extractor as core
-from access_diagnostics import annotate_access,classify_access
+from access_diagnostics import annotate_access,classify_access,observe_document,transport_exception
 from browser_support import choose_page, current_question_page, decode_network_response, network_payloads
 from capture_support import capture_script
 from reference_support import attach_contexts,context_collections,key as context_key
@@ -93,8 +93,9 @@ class ScraplingSource:
                     captured['capture']={'error':'No se pudo leer el resultado de la captura dinámica.'}
                     return
                 tab.wait_for_timeout(500)
-        try:response=self.session.fetch(url,page_action=action,google_search=False)
-        except Exception as exc:raise core.ExtractionError(f'Scrapling no completó la petición de la página {number} ({type(exc).__name__}).') from exc
+        evidence = {}
+        try:response=self.session.fetch(url,page_action=action,page_setup=observe_document(url,evidence),google_search=False)
+        except Exception as exc:raise transport_exception(exc,url,number,evidence) from exc
         text=captured.get('html') or str(response.html_content)
         actual=captured.get('url') or response.url
         self.last_url=actual
@@ -143,7 +144,7 @@ class ScraplingSource:
             for kind,items in collections.items():
                 for obj in items:self.objects[kind][obj.get('_object_key') or context_key(kind,obj.get('id'))]=obj
         preferred = choose_page(self.received, number, actual, exam=self.exam)
-        try:page=current_question_page(text,actual,number,self.exam,preferred)
+        try:page=current_question_page(text,actual,number,self.exam,preferred,candidates=self.received)
         except core.ExtractionError:
             detail=classify_access(text,response.status)
             if detail:
@@ -154,5 +155,5 @@ class ScraplingSource:
         self.assets.update({},captured.get('images',[]))
         page['capture']=captured.get('capture',{})
         page['transport']={'engine':'scrapling','version':version('scrapling'),'network_incomplete':incomplete,
-                           'network_response_types':response_types,'validated_network_page':preferred is not None}
+                           'network_response_types':response_types,'validated_network_page':page.get('parser') == 'browser-network'}
         return annotate_access(page,text)

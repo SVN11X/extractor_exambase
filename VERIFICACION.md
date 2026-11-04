@@ -1,24 +1,16 @@
-# Verificación 6.0.0
+# Verificación 6.0.1
 
-Base: `7b235082726f155665c126e2fc7523f4dfa15429`. Revisión y pruebas locales; no se lanzaron extracciones reales ni se habilitaron tareas en el repositorio remoto.
+Base Git: `ef7a54b`, correspondiente al banco publicado por la ejecución `41891340136`. El parche es incremental sobre la versión 6.0 ya aplicada.
 
-## Pruebas
+- 110 pruebas de Python: extracción, numeración local por tema, orden interno con saltos, correspondencia con DOM, datos de red, rechazo de preguntas distintas o ambiguas, cambio de totales, reparación offline, hash alterado, claves no marcadas, diagnóstico de transporte, publicación recuperable, cola y reanudación.
+- 3 pruebas de JavaScript: hidratación de tarjetas y recuperación de respuestas.
+- Auditoría de 13 bancos y 2.964 archivos inventariados: CRC, SHA-256 de cada ZIP y archivo, coherencia del índice y ausencia de scripts independientes o HTML activo de origen en los ZIP de estudio. Nueve bancos completos y cuatro parciales; no se cambia el estado de los pendientes sin evidencia.
+- Reparación real offline de Generative AI Leader y Cloud Network Engineer a partir de sus ZIP existentes. Se recuperaron 70 metadatos en 14 páginas. Se comprobaron igualdad de enunciados, alternativas y respuestas y hashes de imágenes. Se impidió explícitamente abrir una sesión de red durante la comprobación.
+- Compilación de Python, sintaxis YAML y `git diff --check`.
+- Parche aplicado con `git am` en una copia limpia de la base y comparación del árbol final. ZIP completo exportado de los archivos versionados.
 
-- `python -m unittest discover -s tests -p 'test_*.py'`: 94 pruebas, incluidas actualización en ruta estable, conservación de copia completa ante un parcial, reanudación automática, rollback de publicación, hash de respaldo, rotación de proveedores, presupuesto, catálogo incompleto, bloqueo de acceso, alias, migración idempotente y reinicio de una captura al cambiar los totales.
-- `node --test tests/test_capture_script.mjs`: 3 pruebas de hidratación y recuperación de respuestas.
-- `python verificar_bancos.py`: auditoría de los tres bancos, CRC, SHA-256 del ZIP y de cada archivo inventariado. 692 archivos comprobados.
-- Validación local de sintaxis YAML y parámetros de los tres workflows y la acción compartida. Se comprobó la sintaxis actual de `queue: max` y `schedule.timezone` con la documentación oficial de GitHub.
-- `git diff --check` y compilación de Python.
-- El parche se aplica con `git am` sobre la base indicada en una copia limpia; se compara su árbol con el de la entrega. El ZIP completo se exporta de los archivos versionados.
+Se analizaron los dos logs adjuntos. La descarga individual de Professional Data Engineer había terminado con éxito. El lote por proveedor conservó sus resultados y salió con código 2 por parciales.
 
-## Bancos consolidados
+No se ejecutó una nueva extracción contra ExamBase ni se modificó el remoto en esta sesión. Cloud Architect mantiene 155/360 preguntas; su próximo intento puede recuperar las páginas faltantes desde la 32. Las claves de Cloud Digital Leader 288 y Cloud DevOps Engineer 202 no están marcadas en el contenido conservado y requieren verificar la fuente. Associate Data Practitioner mantiene el pendiente anterior de 15 metadatos, que estas capturas no permiten reparar con correspondencia suficiente.
 
-| Examen | Preguntas/respuestas | Imágenes guardadas | Recopilación |
-| --- | --- | --- | --- |
-| Google Professional Data Engineer | 349/349 | 25/25 | Completa |
-| Google Associate Cloud Engineer | 349/349 | 8/8 | Completa |
-| Google Associate Data Practitioner | 103/103 | 9/9 | Parcial: metadatos de 15 preguntas pendientes |
-
-La migración verificó igualdad de preguntas y contextos y conservación de hashes de imágenes frente a la mejor versión anterior. Los cinco directorios por ejecución se consolidaron en tres rutas. Se comprobó que los ZIP de estudio no incluyen JavaScript independiente ni HTML de origen activo. El HTML del lector no contiene scripts y aplica una política de contenido restrictiva; las respuestas están desplegadas para imprimir.
-
-No se realizó un análisis con Microsoft Defender y no puede confirmarse el falso positivo de las capturas. Tampoco se realizó una prueba visual en navegador de esta entrega; las pruebas del lector verifican estructura, escape y ubicación de imágenes. El acceso real y la programación de GitHub deben comprobarse al ejecutar los workflows en la rama predeterminada. Una política del servidor puede requerir intervención y dejar un resultado parcial verificable.
+El lector sigue siendo estático y no se modificó su diseño. No se realizó una nueva prueba visual ni un análisis con Microsoft Defender.

@@ -25,7 +25,9 @@ resolver y los archivos referenciados que aún no se recuperaron. No supongas qu
 un contexto ausente existe ni sustituyas su contenido por una explicación inventada.
 
 Cada línea es una pregunta independiente. stable_id es propio del exportador;
-source_id conserva el identificador de la fuente cuando existe. Una clave de
+source_id conserva el identificador de la fuente cuando existe. source_order
+conserva el orden interno; puede reiniciarse por tema y diferir de number, que
+corresponde al número global mostrado en la página. Una clave de
 respuesta es la indicada por ExamBase, no una corrección técnica independiente.
 Los HTML originales, raw y las páginas se conservan en preguntas.json y sus carpetas.
 
@@ -88,7 +90,7 @@ def image_records(q, assets):
 
 
 def ai_question(q, exam, assets):
-    return {"schema_version": "2.0", "stable_id": f"{exam['key']}:q:{q['number']:05d}", "exam_key": exam["key"], "number": q["number"], "source_id": q.get("id"), "source_type": q.get("question_type"), "question": {"text": q.get("question_text", ""), "html": q.get("question_html", "")}, "choices": q.get("choices", []), "answer": {"choices": q.get("correct_choices", []), "status": q.get("answer_status"), "attribution": "ExamBase; not independently verified"}, "explanation": {"text": q.get("explanation_text", ""), "html": q.get("explanation_html", ""), "status": "present" if q.get("explanation_text") or q.get("explanation_html") else "missing"}, "context_refs": q.get("context_refs", []), "images": image_records(q, assets), "special_format": q.get("type_data", {}), "dom_context_review_required": "_dom_card_html" in q.get("raw", {}), "formatting_review": q.get("formatting_review", []), "provenance": q.get("sources", [])}
+    return {"schema_version": "2.0", "stable_id": f"{exam['key']}:q:{q['number']:05d}", "exam_key": exam["key"], "number": q["number"], "source_order": q.get("raw", {}).get("source_order", q.get("raw", {}).get("order")), "source_id": q.get("id"), "source_type": q.get("question_type"), "question": {"text": q.get("question_text", ""), "html": q.get("question_html", "")}, "choices": q.get("choices", []), "answer": {"choices": q.get("correct_choices", []), "status": q.get("answer_status"), "attribution": "ExamBase; not independently verified"}, "explanation": {"text": q.get("explanation_text", ""), "html": q.get("explanation_html", ""), "status": "present" if q.get("explanation_text") or q.get("explanation_html") else "missing"}, "context_refs": q.get("context_refs", []), "images": image_records(q, assets), "special_format": q.get("type_data", {}), "dom_context_review_required": "_dom_card_html" in q.get("raw", {}), "formatting_review": q.get("formatting_review", []), "provenance": q.get("sources", [])}
 
 
 def remove_order_only_conflicts(data, root):
@@ -236,7 +238,7 @@ def enrich(root, ocr=False, language="eng"):
     r.update(references_complete=graph['complete'],unresolved_references=graph['unresolved'],referenced_files_pending=graph['files_pending'],objects_preserved=len(data.get('contexts',{})))
     r['content_review_complete']=r['content_review_complete'] and graph['complete']
     r['collection_complete']=r['collection_complete'] and graph['complete']
-    data['package_version'] = '6.0.0'
+    data['package_version'] = '6.0.1'
     ai = root / 'para_ia'
     ai.mkdir(exist_ok=True)
     (ai / 'preguntas.jsonl').write_text(''.join(json.dumps(ai_question(q, data['exam'], data.get('assets', {})), ensure_ascii=False) + '\n' for q in data['questions']), encoding='utf-8')

@@ -6,6 +6,7 @@ gestiona su sesión; los paquetes no incluyen perfiles ni cookies del navegador.
 """
 from __future__ import annotations
 import argparse
+import contextlib
 import functools
 import hashlib
 import json
@@ -17,6 +18,7 @@ import urllib.parse
 import zipfile
 import shutil
 from pathlib import Path
+from types import SimpleNamespace
 
 import extractor as core
 from capture_quality import page_quality, merge_page
@@ -128,6 +130,45 @@ def reference_repair_pages(archive, captures):
     return pages or {1}
 
 
+def recover_saved_metadata(output, exam, number, saved):
+    """Relee capturas conservadas sin solicitudes y sin ejecutar sus scripts."""
+    if saved.get('parser') != 'dom':
+        return saved
+    from browser_support import current_question_page
+    from capture_quality import identity
+    for subdir in ('', 'previas'):
+        for suffix in ('.json', '.html'):
+            path = output/'paginas_originales'/subdir/f'pagina_{number:05}{suffix}'
+            if not path.is_file() or path.stat().st_size > 30*1024**2:
+                continue
+            try:
+                if suffix == '.json':
+                    snapshot = json.loads(path.read_text(encoding='utf-8'))
+                    if snapshot.get('format') != 'captured_html_as_data':
+                        continue
+                    html = snapshot['html']
+                    if snapshot.get('sha256_original') != hashlib.sha256(html.encode('utf-8')).hexdigest():
+                        continue
+                else:
+                    html = path.read_text(encoding='utf-8')
+                parsed = current_question_page(html, exam['base']+str(number), number, exam)
+                if parsed.get('parser') == 'dom':
+                    continue
+                old_items, new_items = saved['payload']['result']['items'], parsed['payload']['result']['items']
+                if [identity(q) for q in old_items] != [identity(q) for q in new_items]:
+                    continue
+                parsed = attach_contexts(merge_page(parsed, saved), [saved['payload'], parsed['payload']])
+                for field in ('capture', 'transport'):
+                    if field in saved:
+                        parsed[field] = saved[field]
+                parsed['offline_repair'] = {'source':path.relative_to(output).as_posix(),
+                                            'sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
+                return parsed
+            except (core.ExtractionError, ValueError, TypeError, KeyError, OSError):
+                continue
+    return saved
+
+
 def run(args, source_factory=None):
     exam = exam_from_url(args.exam_url)
     if getattr(args, 'exam_name', None):
@@ -154,6 +195,7 @@ def run(args, source_factory=None):
     # hacer desaparecer del nuevo ZIP las páginas posteriores ya recuperadas.
     cached_pages={}
     cache_diagnostics=[]
+    recovered_pages=[]
     if exam.get('total'):
         for saved_number in range(1,exam['pages']+1):
             path=output/'capturas'/f'pagina_{saved_number:05}.json'
@@ -161,6 +203,11 @@ def run(args, source_factory=None):
             try:
                 saved=json.loads(path.read_text(encoding='utf-8'))
                 validate_page(exam,saved,saved_number)
+                repaired = recover_saved_metadata(output,exam,saved_number,saved)
+                if repaired is not saved:
+                    saved = repaired
+                    core.write_json(path,saved)
+                    recovered_pages.append(saved_number)
                 archive.add_page(saved,f'capturas/{path.name}')
                 cached_pages[saved_number]=saved
             except (core.ExtractionError,ValueError,KeyError,TypeError) as exc:
@@ -168,7 +215,12 @@ def run(args, source_factory=None):
     damaged_assets={key for key,value in assets.assets.items() if value.get('download_status')!='downloaded'}
     damaged_pages={s['page'] for q in archive.questions.values() if any(ref['asset_id'] in damaged_assets for ref in q['image_refs']) for s in q['sources']}
     repair_references=reference_repair_pages(archive,cached_pages)
-    if source_factory:
+    offline_complete = bool(exam.get('total') and len(cached_pages) == exam['pages']
+                            and not damaged_pages and not repair_references
+                            and all(not any(page_quality(p)[k] for k in ('missing_answers','empty_questions','empty_choices')) for p in cached_pages.values()))
+    if offline_complete:
+        factory = lambda *_: contextlib.nullcontext(SimpleNamespace(assets=None))
+    elif source_factory:
         factory = source_factory
     else:
         from scrapling_support import ScraplingSource
@@ -177,6 +229,7 @@ def run(args, source_factory=None):
     started = time.monotonic()
     stopped = None
     failure = None
+    transport_failure = None
     restart_required = False
     number = 1
     metadata_retried = set()
@@ -249,6 +302,10 @@ def run(args, source_factory=None):
         stopped = str(exc)
         failure = {**exc.detail, 'page': exc.detail.get('page') or number, 'url': exc.detail.get('url') or exam['base']+str(number)}
         archive.errors.append({'page': number, 'issue': stopped, 'kind': failure['kind'], 'code': failure['code']})
+    except core.TransportError as exc:
+        stopped = str(exc)
+        transport_failure = exc.detail
+        archive.errors.append({'page':number, 'issue':stopped, 'transport_failure':transport_failure})
     except (core.ExtractionError, OSError, ValueError, KeyError, TypeError) as exc:
         stopped = str(exc)
         restart_required = isinstance(exc, DatasetChanged)
@@ -289,6 +346,8 @@ def run(args, source_factory=None):
     next_page = pending_pages[0] if pending_pages else None if pages else 1
     success = report["coverage_complete"] and report['answers_complete'] and report['references_complete'] and not report['empty_questions'] and not report['empty_choices'] and not archive.errors and not report["images_failed"] and not report.get('conflicts')
     if not success and not stopped and missing_answers:stopped=f'Hay {len(missing_answers)} preguntas sin respuesta explícita. Reanuda para reparar las páginas pendientes.'
+    if not success and not transport_failure and not failure and report['answers_unmarked_in_source'] and missing_answers == set(report['answers_unmarked_in_source']):
+        stopped = f'La captura de origen no marca una respuesta correcta en las preguntas {report["answers_unmarked_in_source"]}. Se conserva su contenido y explicación; requieren revisión de la fuente.'
     if not success and not stopped and invalid_content:stopped=f'Hay {len(invalid_content)} preguntas con enunciados o alternativas vacíos; se requiere recuperar su contenido.'
     unverified_metadata = report.get('dom_questions_requiring_context_review', [])
     if not success and not stopped and not report['references_complete']:
@@ -301,8 +360,9 @@ def run(args, source_factory=None):
     content_summary = {field: report.get(field, []) for field in
                        ('images_failed', 'images_requiring_review', 'missing_explanations')}
     content_summary.update(images_found=report['images_found'], images_downloaded=report['images_downloaded'])
-    diagnostic = {'status': status, 'failure': failure, 'pages_saved': saved_pages, 'next_page': next_page,'pages_pending_answers':answer_pages,'pages_pending_images':image_pages,'pages_pending_references':reference_pages,'answers_present':report['answers_present'],'answers_missing':report['answers_missing'],'cache_diagnostics':cache_diagnostics}
+    diagnostic = {'status': status, 'failure': failure, 'transport_failure':transport_failure, 'pages_saved': saved_pages, 'next_page': next_page,'pages_pending_answers':answer_pages,'pages_pending_images':image_pages,'pages_pending_references':reference_pages,'answers_present':report['answers_present'],'answers_missing':report['answers_missing'],'cache_diagnostics':cache_diagnostics}
     diagnostic['pages_retried_for_metadata'] = sorted(metadata_retried)
+    diagnostic['pages_recovered_offline'] = recovered_pages
     diagnostic.update(content_summary)
     core.write_json(output / 'diagnostico_acceso.json', diagnostic)
     integrity_path = output / 'integridad_sha256.json'
@@ -312,9 +372,12 @@ def run(args, source_factory=None):
     result_zip = core.create_zip(output)
     state = {"exam": exam, "mode": args.mode, "questions": len(archive.questions), "coverage_complete": report["coverage_complete"], "execution_complete": success, "stopped_reason": stopped, "zip": result_zip.name, "review_pending": not report["collection_complete"], 'status': status, 'failure': failure, 'pages_saved': saved_pages, 'next_page': next_page, 'resume_supported': bool(saved_pages and exam.get('total')), 'runner_environment': os.environ.get('RUNNER_ENVIRONMENT', 'local')}
     state.update(answers_present=report['answers_present'],answers_missing=report['answers_missing'],answers_complete=report['answers_complete'],pages_pending_answers=answer_pages,pages_pending_images=image_pages)
+    state['answers_unmarked_in_source'] = report['answers_unmarked_in_source']
     state.update(references_complete=report['references_complete'],objects_preserved=report['objects_preserved'],unresolved_references=report['unresolved_references'],metadata_unverified_questions=unverified_metadata,pages_pending_references=reference_pages,referenced_files_pending=report['referenced_files_pending'])
     state['pages_retried_for_metadata'] = sorted(metadata_retried)
     state['restart_required'] = restart_required
+    state['transport_failure'] = transport_failure
+    state['pages_recovered_offline'] = recovered_pages
     state.update(content_summary)
     core.write_json(args.output / "estado_ejecucion.json", state)
     print(json.dumps(state, ensure_ascii=False, indent=2), flush=True)

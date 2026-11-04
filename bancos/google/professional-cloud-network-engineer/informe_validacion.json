@@ -77,7 +77,7 @@
   "observed_page_totals": [
     64
   ],
-  "duplicate_observations": 150,
+  "duplicate_observations": 0,
   "conflicts": [],
   "errors": [],
   "missing_or_special_answers": [],
@@ -164,18 +164,7 @@
     "fd3014f35e6f63a8aa78"
   ],
   "ocr_requested_but_not_installed": false,
-  "dom_questions_requiring_context_review": [
-    141,
-    142,
-    143,
-    144,
-    145,
-    146,
-    147,
-    148,
-    149,
-    150
-  ],
+  "dom_questions_requiring_context_review": [],
   "collection_complete": false,
   "image_transcription_review_complete": false,
   "notes": [
@@ -187,13 +176,14 @@
   "html_markers_requiring_review": [],
   "answers_present": 316,
   "answers_missing": [],
+  "answers_unmarked_in_source": [],
   "answers_complete": true,
   "empty_questions": [],
   "empty_choices": [],
   "images_downloaded": 12,
-  "integrity_checked_at": "2026-11-04T20:22:58.265308+00:00",
+  "integrity_checked_at": "2026-11-04T23:26:18.340085+00:00",
   "content_review_complete": false,
-  "references_complete": false,
+  "references_complete": true,
   "unresolved_references": [],
   "referenced_files_pending": [],
   "objects_preserved": 1

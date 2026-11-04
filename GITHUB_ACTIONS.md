@@ -9,15 +9,15 @@ No se requieren tokens personales, ID de respaldo, selección de motor, tiempos 
 
 ## Actualizar manualmente
 
-**Actualizar un examen** fuerza una actualización al existir una copia completa. Si la extracción anterior quedó parcial, la reanuda automáticamente, incluidas las páginas con respuestas, imágenes o referencias pendientes. El hash del respaldo se verifica antes de usarlo. Si necesitas descartar voluntariamente un parcial corrupto, revisa su diagnóstico y retíralo mediante un cambio Git explícito; la tarea no lo destruye silenciosamente.
+**Actualizar un examen** fuerza una actualización al existir una copia completa. Si la extracción anterior quedó parcial, primero intenta reparar sus metadatos desde las capturas conservadas y después la reanuda automáticamente, incluidas las páginas con respuestas, imágenes o referencias pendientes. El hash del respaldo se verifica antes de usarlo. Si necesitas descartar voluntariamente un parcial corrupto, revisa su diagnóstico y retíralo mediante un cambio Git explícito; la tarea no lo destruye silenciosamente.
 
-**Extraer exámenes por proveedor** admite un slug de `catalogos/catalogo.json`, por ejemplo `google-cloud`, `microsoft` o `cisco`. Procesa exámenes elegibles respetando el límite por lote y la antigüedad configurada. Repite la misma tarea para completar lotes pendientes; para renovar inmediatamente un examen completo usa la tarea individual.
+**Extraer exámenes por proveedor** admite un slug de `catalogos/catalogo.json`, por ejemplo `google-cloud`, `microsoft` o `cisco`. Procesa exámenes elegibles respetando el límite por lote y la antigüedad configurada. La ejecución manual puede reanudar parciales sin esperar el intervalo automático (los rechazos de acceso conservan su pausa). Repite la misma tarea para completar lotes pendientes; para renovar inmediatamente un examen completo usa la tarea individual.
 
 ## Programación
 
 El workflow por proveedor corre diariamente a las 03:17 de America/Santiago. El catálogo adicional corre los lunes a las 02:17, misma zona. Cambia los cron en `.github/workflows/` si necesitas otro horario. La programación de GitHub opera sobre la rama predeterminada y puede retrasarse. En repositorios públicos GitHub deshabilita las tareas programadas tras 60 días sin actividad; puedes volver a habilitarlas desde Actions.
 
-La cola `automatizacion/estado.json` guarda el siguiente proveedor, el último examen y los aplazamientos por acceso. No se crea una matriz de cientos de trabajos simultáneos. Hasta 10 exámenes se atienden secuencialmente por lote; un límite de tiempo deja el resto pendiente. El resumen informa cuántos exámenes elegibles quedan, sin presentar un lote como la descarga completa del proveedor.
+La cola `automatizacion/estado.json` guarda el siguiente proveedor, el último examen y los aplazamientos por acceso. No se crea una matriz de cientos de trabajos simultáneos. Hasta 10 exámenes se atienden secuencialmente por lote; un límite de tiempo deja el resto pendiente. El resumen separa exámenes nuevos, bancos parciales y espera de reintento. Cero elegibles por antigüedad no significa que todos los bancos estén completos.
 
 Edita `automatizacion/config.json` para elegir proveedores, intervalo mínimo, presupuesto, máximo por lote, minutos por examen y frecuencia de renovación. La actualización `catalogo --vendor all` avanza un proveedor por ejecución; la tarea por proveedor también descubre el índice correspondiente cuando caduca. Un catálogo con menos enlaces que el contador actual anunciado (o el último conocido si la página no lo incluye) se conserva para revisión y no se declara completo.
 

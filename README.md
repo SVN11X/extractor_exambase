@@ -1,4 +1,4 @@
-# ExamBase · bancos de estudio 6.0
+# ExamBase · bancos de estudio 6.0.1
 
 Recopilación mediante **Scrapling** y GitHub Actions. Cada examen tiene una carpeta vigente en `bancos/<proveedor>/<examen>/`. Se conservan preguntas, respuestas explícitas, imágenes, casos, escenarios y sus referencias, con validación de cobertura y hashes. La ejecución informa los pendientes reales.
 
@@ -31,7 +31,7 @@ La migración consolida las carpetas antiguas por ejecución y conserva la mejor
 
 ## Validación y límites
 
-Si cambian los totales durante una reanudación, se conserva el respaldo y se realiza un único reinicio desde cero para evitar mezclar generaciones. Se comprueban identidad del examen, paginación, numeración continua, respuestas explícitas, referencias a objetos y archivos, descarga de imágenes y conservación de bytes. Una captura con preguntas completas pero metadatos pendientes se presenta como parcial. Una explicación vacía y una imagen descargada pendiente de revisión se informan por separado. OCR y respuestas de la fuente requieren revisión académica.
+La numeración global se vincula con el orden interno por tema usando el contenido visible; se conserva ese orden de origen en los datos para IA. Al reanudar, se intentan recuperar primero los metadatos desde las capturas guardadas. Si el respaldo queda completo, se regenera sin consultar el sitio. Si cambian los totales durante una reanudación, se conserva el respaldo y se realiza un único reinicio desde cero para evitar mezclar generaciones. Se comprueban identidad del examen, paginación, numeración continua, respuestas explícitas, referencias a objetos y archivos, descarga de imágenes y conservación de bytes. Una captura con preguntas completas pero metadatos pendientes se presenta como parcial. Una explicación vacía y una imagen descargada pendiente de revisión se informan por separado. OCR y respuestas de la fuente requieren revisión académica.
 
 Scrapling es el único motor de acceso. Su navegador usa Patchright y el análisis HTML usa Beautiful Soup; son dependencias de la misma extracción. Se retiraron los motores alternativos, la extensión y GitHub Pages. Un desafío que requiera intervención puede impedir una ejecución desatendida; se guarda el parcial y el diagnóstico. No se garantiza que todos los proveedores permitan automatización.
 
@@ -42,3 +42,5 @@ Los bancos son visibles si el repositorio es público. Mantén únicamente conte
 ## Desarrollo
 
 Python 3.12. Instala `requirements_actions.txt`, `requirements_scrapling.txt` y `requirements_dev.txt`. Las pruebas no descargan exámenes: `python -m unittest discover -s tests -p 'test_*.py'` y `node --test tests/test_capture_script.mjs`. `extractor.py --input` conserva el conversor de muestras locales; la recopilación de red se ejecuta desde Actions.
+
+Consulta [CORRECCIONES_6_0_1.md](CORRECCIONES_6_0_1.md) para el diagnóstico de los logs y los dos bancos reparados sin solicitudes nuevas.

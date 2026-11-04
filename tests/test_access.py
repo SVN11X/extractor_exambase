@@ -48,7 +48,10 @@ class AccessTests(unittest.TestCase):
 
     def test_old_script_does_not_hide_current_structured_data(self):
         scripts = ''.join('<script>const initial={data:'+json.dumps(page(self.exam,n,103)['payload'])+'};</script>' for n in (1,2))
-        value = current_question_page(scripts+dom(self.exam,2),self.exam['base']+'2',2,self.exam)
+        from test_capture_quality import html_page
+        # El DOM actual debe corresponder al contenido de los datos estructurados.
+        visible = html_page(page(self.exam,2,103))
+        value = current_question_page(scripts+visible,self.exam['base']+'2',2,self.exam)
         self.assertEqual(value['parser'],'structured')
         self.assertEqual(value['payload']['result']['items'][0]['id'],6)
 
