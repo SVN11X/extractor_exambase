@@ -1,0 +1,218 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/8",
+  "parser": "dom",
+  "warnings": [
+    "El HTML guardado no conserva el objeto de respuestas. Las claves ausentes quedan pendientes; no se deducen de la explicación."
+  ],
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 8,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": null,
+          "order": 36,
+          "question_text": "You have one project called proj-sa where you manage all your service accounts. You want to be able to use a service account from this project to take snapshots of VMs running in another project called proj-vm. What should you do?<br>",
+          "solution_text": "To allow a service account from one project (proj-sa) to perform actions in another project (proj-vm), you must grant that service account the necessary IAM permissions directly on the target project. <br>Granting the &#x27;Compute Storage Admin&#x27; role in proj-vm provides the specific privileges required to create, modify, and delete snapshots for VMs running within that project. <br>Options A and B are insecure and unnecessary workarounds, while Option D refers to legacy scopes that do not enable cross-project access.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Download the private key from the service account, and add it to each VMs custom metadata.",
+              "is_correct": null
+            },
+            {
+              "letter": "B",
+              "text": "Download the private key from the service account, and add the private key to each VM&#x27;s SSH keys.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Grant the service account the IAM Role of Compute Storage Admin in the project called proj-vm.",
+              "is_correct": true
+            },
+            {
+              "letter": "D",
+              "text": "When creating the VMs, set the service account&#x27;s API scope for Compute Engine to read/write.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 36</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 36\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You have one project called proj-sa where you manage all your service accounts. You want to be able to use a service account from this project to take snapshots of VMs running in another project called proj-vm. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Download the private key from the service account, and add it to each VMs custom metadata.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Download the private key from the service account, and add the private key to each VM&#x27;s SSH keys.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Grant the service account the IAM Role of Compute Storage Admin in the project called proj-vm.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">When creating the VMs, set the service account&#x27;s API scope for Compute Engine to read/write.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">To allow a service account from one project (proj-sa) to perform actions in another project (proj-vm), you must grant that service account the necessary IAM permissions directly on the target project. <br>Granting the &#x27;Compute Storage Admin&#x27; role in proj-vm provides the specific privileges required to create, modify, and delete snapshots for VMs running within that project. <br>Options A and B are insecure and unnecessary workarounds, while Option D refers to legacy scopes that do not enable cross-project access.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F8\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 37,
+          "question_text": "You created a Google Cloud Platform project with an App Engine application inside the project. You initially configured the application to be served from the us- central region. Now you want the application to be served from the asia-northeast1 region. What should you do?<br>",
+          "solution_text": "Google Cloud Platform enforces a one-to-one relationship between a project and an App Engine application, meaning each project can only host a single App Engine app. Additionally, the region location for an App Engine application is immutable once it is created; it cannot be changed after initial setup. Therefore, to serve the application from asia-northeast1, you must create a new GCP project and initialize a new App Engine application within that project with the desired region.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Change the default region property setting in the existing GCP project to asia-northeast1.",
+              "is_correct": null
+            },
+            {
+              "letter": "B",
+              "text": "Change the region property setting in the existing App Engine application from us-central to asia-northeast1.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Create a second App Engine application in the existing GCP project and specify asia-northeast1 as the region to serve your application.",
+              "is_correct": null
+            },
+            {
+              "letter": "D",
+              "text": "Create a new GCP project and create an App Engine application inside this new project. Specify asia-northeast1 as the region to serve your application.",
+              "is_correct": true
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 37</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 37\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You created a Google Cloud Platform project with an App Engine application inside the project. You initially configured the application to be served from the us- central region. Now you want the application to be served from the asia-northeast1 region. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Change the default region property setting in the existing GCP project to asia-northeast1.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Change the region property setting in the existing App Engine application from us-central to asia-northeast1.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create a second App Engine application in the existing GCP project and specify asia-northeast1 as the region to serve your application.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create a new GCP project and create an App Engine application inside this new project. Specify asia-northeast1 as the region to serve your application.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">Google Cloud Platform enforces a one-to-one relationship between a project and an App Engine application, meaning each project can only host a single App Engine app. Additionally, the region location for an App Engine application is immutable once it is created; it cannot be changed after initial setup. Therefore, to serve the application from asia-northeast1, you must create a new GCP project and initialize a new App Engine application within that project with the desired region.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F8\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 38,
+          "question_text": "You need to grant access for three users so that they can view and edit table data on a Cloud Spanner instance. What should you do?<br>",
+          "solution_text": "The `roles/spanner.databaseUser` role is required to view and edit table data, whereas `roles/spanner.viewer` only provides read-only access. <br>According to GCP IAM best practices, you should assign roles to groups rather than individual users to simplify permission management and reduce administrative overhead.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Run gcloud iam roles describe roles/spanner.databaseUser. Add the users to the role.",
+              "is_correct": null
+            },
+            {
+              "letter": "B",
+              "text": "Run gcloud iam roles describe roles/spanner.databaseUser. Add the users to a new group. Add the group to the role.",
+              "is_correct": true
+            },
+            {
+              "letter": "C",
+              "text": "Run gcloud iam roles describe roles/spanner.viewer - -project my-project. Add the users to the role.",
+              "is_correct": null
+            },
+            {
+              "letter": "D",
+              "text": "Run gcloud iam roles describe roles/spanner.viewer - -project my-project. Add the users to a new group. Add the group to the role.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 38</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 38\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You need to grant access for three users so that they can view and edit table data on a Cloud Spanner instance. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Run gcloud iam roles describe roles/spanner.databaseUser. Add the users to the role.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Run gcloud iam roles describe roles/spanner.databaseUser. Add the users to a new group. Add the group to the role.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Run gcloud iam roles describe roles/spanner.viewer - -project my-project. Add the users to the role.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Run gcloud iam roles describe roles/spanner.viewer - -project my-project. Add the users to a new group. Add the group to the role.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">The `roles/spanner.databaseUser` role is required to view and edit table data, whereas `roles/spanner.viewer` only provides read-only access. <br>According to GCP IAM best practices, you should assign roles to groups rather than individual users to simplify permission management and reduce administrative overhead.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F8\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 39,
+          "question_text": "You create a new Google Kubernetes Engine (GKE) cluster and want to make sure that it always runs a supported and stable version of Kubernetes. What should you do?<br>",
+          "solution_text": "To ensure a GKE cluster *always* runs a supported and stable version, you must enable automatic updates, as manual selection only sets the initial state. Node Auto-Upgrades automatically manages the Kubernetes version lifecycle by upgrading nodes to the latest available stable version when it becomes ready.<br><br>Node Auto-Repair (A) fixes broken nodes but does not upgrade software versions. Selecting the latest version at creation (C) is a one-time action that does not guarantee future compliance. Container-Optimized OS (D) affects the node&#x27;s underlying OS, not the Kubernetes control plane or kubelet version management.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Enable the Node Auto-Repair feature for your GKE cluster.",
+              "is_correct": null
+            },
+            {
+              "letter": "B",
+              "text": "Enable the Node Auto-Upgrades feature for your GKE cluster.",
+              "is_correct": true
+            },
+            {
+              "letter": "C",
+              "text": "Select the latest available cluster version for your GKE cluster.",
+              "is_correct": null
+            },
+            {
+              "letter": "D",
+              "text": "Select &quot;Container-Optimized OS (cos)&quot; as a node image for your GKE cluster.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 39</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 39\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You create a new Google Kubernetes Engine (GKE) cluster and want to make sure that it always runs a supported and stable version of Kubernetes. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Enable the Node Auto-Repair feature for your GKE cluster.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Enable the Node Auto-Upgrades feature for your GKE cluster.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Select the latest available cluster version for your GKE cluster.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Select &quot;Container-Optimized OS (cos)&quot; as a node image for your GKE cluster.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">To ensure a GKE cluster *always* runs a supported and stable version, you must enable automatic updates, as manual selection only sets the initial state. Node Auto-Upgrades automatically manages the Kubernetes version lifecycle by upgrading nodes to the latest available stable version when it becomes ready.<br><br>Node Auto-Repair (A) fixes broken nodes but does not upgrade software versions. Selecting the latest version at creation (C) is a one-time action that does not guarantee future compliance. Container-Optimized OS (D) affects the node&#x27;s underlying OS, not the Kubernetes control plane or kubelet version management.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F8\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 40,
+          "question_text": "You have an instance group that you want to load balance. You want the load balancer to terminate the client SSL session. The instance group is used to serve a public web application over HTTPS. You want to follow Google-recommended practices. What should you do?<br>",
+          "solution_text": "Option A is the correct choice because HTTP(S) Load Balancing is Google&#x27;s recommended solution for public-facing web applications and provides built-in SSL termination capabilities. <br><br>In contrast, SSL Proxy and TCP Proxy load balancers are designed for non-HTTP traffic or scenarios requiring end-to-end encryption where the proxy does not decrypt the payload, while Internal Load Balancers are restricted to private network communication.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Configure an HTTP(S) load balancer.",
+              "is_correct": true
+            },
+            {
+              "letter": "B",
+              "text": "Configure an internal TCP load balancer.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Configure an external SSL proxy load balancer.",
+              "is_correct": null
+            },
+            {
+              "letter": "D",
+              "text": "Configure an external TCP proxy load balancer.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 40</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 40\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You have an instance group that you want to load balance. You want the load balancer to terminate the client SSL session. The instance group is used to serve a public web application over HTTPS. You want to follow Google-recommended practices. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Configure an HTTP(S) load balancer.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Configure an internal TCP load balancer.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Configure an external SSL proxy load balancer.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Configure an external TCP proxy load balancer.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">Option A is the correct choice because HTTP(S) Load Balancing is Google&#x27;s recommended solution for public-facing web applications and provides built-in SSL termination capabilities. <br><br>In contrast, SSL Proxy and TCP Proxy load balancers are designed for non-HTTP traffic or scenarios requiring end-to-end encryption where the proxy does not decrypt the payload, while Internal Load Balancers are restricted to private network communication.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F8\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        }
+      ],
+      "topics": [],
+      "series": [],
+      "case_studies": []
+    }
+  },
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
+    "attempts": [
+      {
+        "question": 36,
+        "answerVisible": true
+      },
+      {
+        "question": 37,
+        "answerVisible": true
+      },
+      {
+        "question": 38,
+        "answerVisible": true
+      },
+      {
+        "question": 39,
+        "answerVisible": true
+      },
+      {
+        "question": 40,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {
+      "application/json": 1
+    },
+    "validated_network_page": false
+  }
+}

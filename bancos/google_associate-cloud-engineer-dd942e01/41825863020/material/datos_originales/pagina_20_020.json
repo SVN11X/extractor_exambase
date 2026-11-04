@@ -1,0 +1,173 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 20,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": null,
+        "order": 96,
+        "question_text": "Your company implemented BigQuery as an enterprise data warehouse. Users from multiple business units run queries on this data warehouse. However, you notice that query costs for BigQuery are very high, and you need to control costs. Which two methods should you use? (Choose two.)<br>",
+        "solution_text": "To control BigQuery costs, applying custom query quotas (Option B) directly limits the amount of data processed per user or project, preventing runaway expenses from expensive queries. Additionally, switching to flat-rate pricing (Option E) with allocated slots allows you to pay a fixed fee regardless of usage volume, which is cost-effective and predictable for high-volume environments where slot utilization is optimized.",
+        "choices": [
+          {
+            "letter": "A",
+            "text": "Split the users from business units to multiple projects.",
+            "is_correct": null
+          },
+          {
+            "letter": "B",
+            "text": "Apply a user- or project-level custom query quota for BigQuery data warehouse.",
+            "is_correct": true
+          },
+          {
+            "letter": "C",
+            "text": "Create separate copies of your BigQuery data warehouse for each business unit.",
+            "is_correct": null
+          },
+          {
+            "letter": "D",
+            "text": "Split your BigQuery data warehouse into multiple data warehouses for each business unit.",
+            "is_correct": null
+          },
+          {
+            "letter": "E",
+            "text": "Change your BigQuery query model from on-demand to flat rate. Apply the appropriate number of slots to each Project.",
+            "is_correct": true
+          }
+        ],
+        "type_data": {},
+        "topic_label": "Topic 1",
+        "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 96</h4> <span class=\"badge bg-info-subtle text-info fs-12 text-uppercase\">Multiple Answers</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 96\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">Your company implemented BigQuery as an enterprise data warehouse. Users from multiple business units run queries on this data warehouse. However, you notice that query costs for BigQuery are very high, and you need to control costs. Which two methods should you use? (Choose two.)<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Split the users from business units to multiple projects.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Apply a user- or project-level custom query quota for BigQuery data warehouse.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create separate copies of your BigQuery data warehouse for each business unit.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Split your BigQuery data warehouse into multiple data warehouses for each business unit.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">E</span> <div class=\"exambase-question__rich-text flex-grow-1\">Change your BigQuery query model from on-demand to flat rate. Apply the appropriate number of slots to each Project.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">To control BigQuery costs, applying custom query quotas (Option B) directly limits the amount of data processed per user or project, preventing runaway expenses from expensive queries. Additionally, switching to flat-rate pricing (Option E) with allocated slots allows you to pay a fixed fee regardless of usage volume, which is cost-effective and predictable for high-volume environments where slot utilization is optimized.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F20\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+      },
+      {
+        "id": null,
+        "order": 97,
+        "question_text": "You are building a product on top of Google Kubernetes Engine (GKE). You have a single GKE cluster. For each of your customers, a Pod is running in that cluster, and your customers can run arbitrary code inside their Pod. You want to maximize the isolation between your customers&#x27; Pods. What should you do?<br>",
+        "solution_text": "To maximize isolation for workloads running arbitrary or untrusted code, GKE Sandbox using gVisor is the recommended solution. gVisor provides an additional layer of isolation by intercepting system calls and preventing containers from accessing the node&#x27;s kernel directly, thereby mitigating the risk of kernel exploits.<br>Options A and B focus on image integrity and vulnerability scanning rather than runtime isolation, while Option D only changes the node OS without providing a sandboxed execution environment for the Pods.",
+        "choices": [
+          {
+            "letter": "A",
+            "text": "Use Binary Authorization and whitelist only the container images used by your customers&#x27; Pods.",
+            "is_correct": null
+          },
+          {
+            "letter": "B",
+            "text": "Use the Container Analysis API to detect vulnerabilities in the containers used by your customers&#x27; Pods.",
+            "is_correct": null
+          },
+          {
+            "letter": "C",
+            "text": "Create a GKE node pool with a sandbox type configured to gvisor. Add the parameter runtimeClassName: gvisor to the specification of your customers&#x27; Pods.",
+            "is_correct": true
+          },
+          {
+            "letter": "D",
+            "text": "Use the cos_containerd image for your GKE nodes. Add a nodeSelector with the value cloud.google.com/gke-os-distribution: cos_containerd to the specification of your customers&#x27; Pods.",
+            "is_correct": null
+          }
+        ],
+        "type_data": {},
+        "topic_label": "Topic 1",
+        "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 97</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 97\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You are building a product on top of Google Kubernetes Engine (GKE). You have a single GKE cluster. For each of your customers, a Pod is running in that cluster, and your customers can run arbitrary code inside their Pod. You want to maximize the isolation between your customers&#x27; Pods. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Use Binary Authorization and whitelist only the container images used by your customers&#x27; Pods.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Use the Container Analysis API to detect vulnerabilities in the containers used by your customers&#x27; Pods.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create a GKE node pool with a sandbox type configured to gvisor. Add the parameter runtimeClassName: gvisor to the specification of your customers&#x27; Pods.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Use the cos_containerd image for your GKE nodes. Add a nodeSelector with the value cloud.google.com/gke-os-distribution: cos_containerd to the specification of your customers&#x27; Pods.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">To maximize isolation for workloads running arbitrary or untrusted code, GKE Sandbox using gVisor is the recommended solution. gVisor provides an additional layer of isolation by intercepting system calls and preventing containers from accessing the node&#x27;s kernel directly, thereby mitigating the risk of kernel exploits.<br>Options A and B focus on image integrity and vulnerability scanning rather than runtime isolation, while Option D only changes the node OS without providing a sandboxed execution environment for the Pods.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F20\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+      },
+      {
+        "id": null,
+        "order": 98,
+        "question_text": "Your customer has implemented a solution that uses Cloud Spanner and notices some read latency-related performance issues on one table. This table is accessed only by their users using a primary key. The table schema is shown below.<br><img class=\"in-exam-image\" src=\"/media/question_images/imported/ASSOCIATE-CLOUD-ENGINEER/0005100001.png\"><br>You want to resolve the issue. What should you do?<br>",
+        "solution_text": "Cloud Spanner distributes data based on the primary key range. If the primary key uses monotonically increasing values (like a sequential ID), all new writes and reads for recent records concentrate on a single node, causing a hotspot that degrades performance.<br>Changing the primary key to use non-monotonic values (such as hashed keys or UUIDs) distributes the load evenly across nodes, resolving the latency issue.",
+        "choices": [
+          {
+            "letter": "A",
+            "text": "Remove the profile_picture field from the table.",
+            "is_correct": null
+          },
+          {
+            "letter": "B",
+            "text": "Add a secondary index on the person_id column.",
+            "is_correct": null
+          },
+          {
+            "letter": "C",
+            "text": "Change the primary key to not have monotonically increasing values.",
+            "is_correct": true
+          },
+          {
+            "letter": "D",
+            "text": "Create a secondary index using the following Data Definition Language (DDL): <img class=\"in-exam-image\" src=\"/media/question_images/imported/ASSOCIATE-CLOUD-ENGINEER/0005200001.png\">",
+            "is_correct": null
+          }
+        ],
+        "type_data": {},
+        "topic_label": "Topic 1",
+        "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 98</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 98\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">Your customer has implemented a solution that uses Cloud Spanner and notices some read latency-related performance issues on one table. This table is accessed only by their users using a primary key. The table schema is shown below.<br><img class=\"in-exam-image\" src=\"/media/question_images/imported/ASSOCIATE-CLOUD-ENGINEER/0005100001.png\"><br>You want to resolve the issue. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Remove the profile_picture field from the table.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Add a secondary index on the person_id column.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Change the primary key to not have monotonically increasing values.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create a secondary index using the following Data Definition Language (DDL): <img class=\"in-exam-image\" src=\"/media/question_images/imported/ASSOCIATE-CLOUD-ENGINEER/0005200001.png\"></div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">Cloud Spanner distributes data based on the primary key range. If the primary key uses monotonically increasing values (like a sequential ID), all new writes and reads for recent records concentrate on a single node, causing a hotspot that degrades performance.<br>Changing the primary key to use non-monotonic values (such as hashed keys or UUIDs) distributes the load evenly across nodes, resolving the latency issue.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F20\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+      },
+      {
+        "id": null,
+        "order": 99,
+        "question_text": "Your finance team wants to view the billing report for your projects. You want to make sure that the finance team does not get additional permissions to the project. What should you do?<br>",
+        "solution_text": "The `roles/billing.viewer` role grants read-only access to billing account cost information and transactions, allowing the finance team to view reports without modifying settings.<br>Unlike the User or Admin roles, the Viewer role does not provide permissions to link or unlink projects from the billing account, ensuring they do not gain additional project management privileges.",
+        "choices": [
+          {
+            "letter": "A",
+            "text": "Add the group for the finance team to roles/billing user role.",
+            "is_correct": null
+          },
+          {
+            "letter": "B",
+            "text": "Add the group for the finance team to roles/billing admin role.",
+            "is_correct": null
+          },
+          {
+            "letter": "C",
+            "text": "Add the group for the finance team to roles/billing viewer role.",
+            "is_correct": true
+          },
+          {
+            "letter": "D",
+            "text": "Add the group for the finance team to roles/billing project/Manager role.",
+            "is_correct": null
+          }
+        ],
+        "type_data": {},
+        "topic_label": "Topic 1",
+        "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 99</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 99\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">Your finance team wants to view the billing report for your projects. You want to make sure that the finance team does not get additional permissions to the project. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Add the group for the finance team to roles/billing user role.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Add the group for the finance team to roles/billing admin role.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Add the group for the finance team to roles/billing viewer role.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Add the group for the finance team to roles/billing project/Manager role.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">The `roles/billing.viewer` role grants read-only access to billing account cost information and transactions, allowing the finance team to view reports without modifying settings.<br>Unlike the User or Admin roles, the Viewer role does not provide permissions to link or unlink projects from the billing account, ensuring they do not gain additional project management privileges.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F20\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+      },
+      {
+        "id": null,
+        "order": 100,
+        "question_text": "Your organization has strict requirements to control access to Google Cloud projects. You need to enable your Site Reliability Engineers (SREs) to approve requests from the Google Cloud support team when an SRE opens a support case. You want to follow Google-recommended practices. What should you do?<br>",
+        "solution_text": "The Access Approval API requires assigning the `roles/accessapproval.approver` role to manage case approvals, whereas `iam.roleAdmin` is unrelated. To adhere to Google-recommended identity management best practices, permissions should be granted to groups rather than individual users to simplify administration and reduce the risk of orphaned access.",
+        "choices": [
+          {
+            "letter": "A",
+            "text": "Add your SREs to roles/iam.roleAdmin role.",
+            "is_correct": null
+          },
+          {
+            "letter": "B",
+            "text": "Add your SREs to roles/accessapproval.approver role.",
+            "is_correct": null
+          },
+          {
+            "letter": "C",
+            "text": "Add your SREs to a group and then add this group to roles/iam.roleAdmin.role.",
+            "is_correct": null
+          },
+          {
+            "letter": "D",
+            "text": "Add your SREs to a group and then add this group to roles/accessapproval.approver role.",
+            "is_correct": true
+          }
+        ],
+        "type_data": {},
+        "topic_label": "Topic 1",
+        "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 100</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 100\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">Your organization has strict requirements to control access to Google Cloud projects. You need to enable your Site Reliability Engineers (SREs) to approve requests from the Google Cloud support team when an SRE opens a support case. You want to follow Google-recommended practices. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Add your SREs to roles/iam.roleAdmin role.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Add your SREs to roles/accessapproval.approver role.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Add your SREs to a group and then add this group to roles/iam.roleAdmin.role.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Add your SREs to a group and then add this group to roles/accessapproval.approver role.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">The Access Approval API requires assigning the `roles/accessapproval.approver` role to manage case approvals, whereas `iam.roleAdmin` is unrelated. To adhere to Google-recommended identity management best practices, permissions should be granted to groups rather than individual users to simplify administration and reduce the risk of orphaned access.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F20\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+      }
+    ],
+    "topics": [],
+    "series": [],
+    "case_studies": []
+  }
+}

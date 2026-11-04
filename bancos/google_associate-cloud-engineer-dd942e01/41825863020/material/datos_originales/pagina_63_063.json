@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 63,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 11092,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 311,
+        "question_type": "mc_single",
+        "question_text": "You need to migrate multiple PostgreSQL databases from your on-premises data center to Google Cloud. You want to significantly improve the performance of your databases while minimizing changes to your data schema and application code. You expect to exceed 150 TB of data per geographical region. You want to follow Google-recommended practices and minimize your operational costs. What should you do?",
+        "solution_text": "AlloyDB is the optimal choice because it is fully PostgreSQL-compatible, satisfying the requirement to minimize changes to schema and application code while delivering significant performance improvements over on-premises deployments. <br/>Although a single AlloyDB cluster has storage limits (max 128 TiB), the requirement specifies migrating 'multiple' databases; thus, distributing the >150 TB workload across multiple clusters is the recommended practice to handle scale while maintaining compatibility and cost efficiency compared to re-architecting for Spanner or Bigtable.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42451,
+            "letter": "A",
+            "text": "Migrate your data to AlloyDB.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 42452,
+            "letter": "B",
+            "text": "Migrate your data to Spanner.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42453,
+            "letter": "C",
+            "text": "Migrate your data to Firebase.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42454,
+            "letter": "D",
+            "text": "Migrate your data to Bigtable.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11093,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 312,
+        "question_type": "mc_single",
+        "question_text": "Your company's machine learning team requires a scalable and flexible platform to fine-tune large language models utilizing a large volume of proprietary data on Google Cloud. You are tasked with building a solution for this team. What should you do?",
+        "solution_text": "Google Kubernetes Engine (GKE) is the recommended platform for fine-tuning large language models because it provides robust orchestration for distributed workloads and native support for hardware accelerators like GPUs/TPUs. <br/>Unlike Dataflow, which is designed for data processing pipelines, GKE offers the necessary flexibility to manage complex containerized training jobs at scale. <br/>While Compute Engine MIGs and Cloud Run can run workloads, they lack the advanced scheduling, auto-scaling, and resource management capabilities essential for efficient large-scale model fine-tuning.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42455,
+            "letter": "A",
+            "text": "Use Dataflow as a platform to run the fine-tuning jobs",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42456,
+            "letter": "B",
+            "text": "Use a Compute Engine managed instance group as a platform to deploy Jupyter Notebooks and run fine-tuning jobs.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42457,
+            "letter": "C",
+            "text": "Use Cloud Run and GPU as a platform to run the fine-tuning jobs.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42458,
+            "letter": "D",
+            "text": "Use Google Kubernetes Engine (GKE) and hardware accelerators as a platform to run the fine-tuning jobs.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11094,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 313,
+        "question_type": "mc_single",
+        "question_text": "You recently discovered an issue with your rolling update in Google Kubernetes Engine (GKE). You now need to roll back a rolling update. What should you do?",
+        "solution_text": "The kubectl rollout undo command is the standard Kubernetes mechanism to revert a Deployment to a previous revision stored in its history. This ensures a safe and automated rollback without requiring manual pod scaling or deletion of the deployment resource.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42459,
+            "letter": "A",
+            "text": "Delete the deployment.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42460,
+            "letter": "B",
+            "text": "Use the kubectl rollout restart command to revert the deployment.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42461,
+            "letter": "C",
+            "text": "Use the kubectl rollout undo command.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 42462,
+            "letter": "D",
+            "text": "Manually scale down the new Pods and scale up the old Pods.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11095,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 314,
+        "question_type": "mc_single",
+        "question_text": "You are deploying an application to Google Kubernetes Engine (GKE) that needs to call an external third-party API. You need to provide the external API vendor with a list of IP addresses for their firewall to allow traffic from your application. You want to follow Google-recommended practices and avoid any risk of interrupting traffic to the API due to IP address changes. What should you do?",
+        "solution_text": "Private nodes ensure that GKE node IPs are not exposed directly to the internet, isolating them from direct external access. Cloud NAT allows these private nodes to make outbound connections using reserved static egress IP addresses that persist across cluster updates or autoscaling events. Providing these static NAT IPs to the vendor satisfies the requirement for a stable allowlist without risk of interruption.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42463,
+            "letter": "A",
+            "text": "Configure your GKE cluster with one node, and set the node to have a static external IP address. Ensure that the GKE cluster autoscaler is off. Send the external IP address of the node to the vendor to be added to the allowlist.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42464,
+            "letter": "B",
+            "text": "Configure your GKE cluster with private nodes. Configure a Cloud NAT instance with static IP addresses. Provide these IP addresses to the vendor to be added to the allowlist.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 42465,
+            "letter": "C",
+            "text": "Configure your GKE cluster with private nodes. Configure a Cloud NAT instance with dynamic IP addresses. Provide these IP addresses to the vendor to be added to the allowlist.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42466,
+            "letter": "D",
+            "text": "Configure your GKE cluster with public nodes. Write a Cloud Function that pulls the public IP addresses of each node in the cluster, Trigger the function to run every day with Cloud Scheduler. Send the list to the vendor by email every day.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11096,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 315,
+        "question_type": "mc_single",
+        "question_text": "You are planning to move your company's website and a specific asynchronous background job to Google Cloud. Your website contains only static HTML content. The background job is started through an HTTP endpoint and generates monthly invoices for your customers. Your website needs to be available in multiple geographic locations and requires autoscaling. You want to have no costs when your workloads are not in use and follow recommended practices. What should you do?",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42467,
+            "letter": "A",
+            "text": "Move your website to Google Kubernetes Engine (GKE), and move your background job to Cloud Functions.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42468,
+            "letter": "B",
+            "text": "Move both your website and background job to Compute Engine.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42469,
+            "letter": "C",
+            "text": "Move both your website and background job to Cloud Run.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 42470,
+            "letter": "D",
+            "text": "Move your website to Google Kubernetes Engine (GKE), and move your background job to Compute Engine.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 63,
+  "discussions": {
+    "11092": {
+      "target_type": "question",
+      "target_id": 11092,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11093": {
+      "target_type": "question",
+      "target_id": 11093,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11094": {
+      "target_type": "question",
+      "target_id": 11094,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11095": {
+      "target_type": "question",
+      "target_id": 11095,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11096": {
+      "target_type": "question",
+      "target_id": 11096,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

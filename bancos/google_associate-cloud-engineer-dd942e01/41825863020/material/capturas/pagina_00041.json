@@ -1,0 +1,218 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/41",
+  "parser": "dom",
+  "warnings": [
+    "El HTML guardado no conserva el objeto de respuestas. Las claves ausentes quedan pendientes; no se deducen de la explicación."
+  ],
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 41,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": null,
+          "order": 201,
+          "question_text": "Your company has multiple projects linked to a single billing account in Google Cloud. You need to visualize the costs with specific metrics that should be dynamically calculated based on company-specific criteria. You want to automate the process. What should you do?",
+          "solution_text": "Exporting Cloud Billing data to BigQuery is the native method for automating access to granular billing details, which the Console&#x27;s Reports section (A) and Cost breakdown (B) cannot provide with dynamic custom metrics. Option C involves a manual CSV export, failing the automation requirement, whereas Option D establishes an automated pipeline allowing Looker Studio to calculate and visualize company-specific criteria dynamically.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "In the Google Cloud console, visualize the costs related to the projects in the Reports section.",
+              "is_correct": null
+            },
+            {
+              "letter": "B",
+              "text": "In the Google Cloud console, visualize the costs related to the projects in the Cost breakdown section.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "In the Google Cloud console, use the export functionality of the Cost table. Create a Looker Studio dashboard on top of the CSV export.",
+              "is_correct": null
+            },
+            {
+              "letter": "D",
+              "text": "Configure Cloud Billing data export to BigQuery for the billing account. Create a Looker Studio dashboard on top of the BigQuery export.",
+              "is_correct": true
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 201</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 201\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">Your company has multiple projects linked to a single billing account in Google Cloud. You need to visualize the costs with specific metrics that should be dynamically calculated based on company-specific criteria. You want to automate the process. What should you do?</div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">In the Google Cloud console, visualize the costs related to the projects in the Reports section.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">In the Google Cloud console, visualize the costs related to the projects in the Cost breakdown section.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">In the Google Cloud console, use the export functionality of the Cost table. Create a Looker Studio dashboard on top of the CSV export.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Configure Cloud Billing data export to BigQuery for the billing account. Create a Looker Studio dashboard on top of the BigQuery export.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">Exporting Cloud Billing data to BigQuery is the native method for automating access to granular billing details, which the Console&#x27;s Reports section (A) and Cost breakdown (B) cannot provide with dynamic custom metrics. Option C involves a manual CSV export, failing the automation requirement, whereas Option D establishes an automated pipeline allowing Looker Studio to calculate and visualize company-specific criteria dynamically.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F41\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 202,
+          "question_text": "You have an application that runs on Compute Engine VM instances in a custom Virtual Private Cloud (VPC). Your company’s security policies only allow the use of internal IP addresses on VM instances and do not let VM instances connect to the internet. You need to ensure that the application can access a file hosted in a Cloud Storage bucket within your project. What should you do?",
+          "solution_text": "Private Google Access enables VM instances with only internal IP addresses to access Google APIs and services, such as Cloud Storage, without requiring an external IP address.<br>This directly satisfies the security policy restriction that prohibits internet connectivity while allowing necessary service access.<br>Option A is incorrect because Private Service Access supports specific regional services (like Cloud SQL or Redis) but does not support global multi-tenant services like Cloud Storage.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Enable Private Service Access on the Cloud Storage Bucket.",
+              "is_correct": null
+            },
+            {
+              "letter": "B",
+              "text": "Add storage.googleapis.com to the list of restricted services in a VPC Service Controls perimeter and add your project to the list of protected projects.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Enable Private Google Access on the subnet within the custom VPC.",
+              "is_correct": true
+            },
+            {
+              "letter": "D",
+              "text": "Deploy a Cloud NAT instance and route the traffic to the dedicated IP address of the Cloud Storage bucket.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 202</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 202\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You have an application that runs on Compute Engine VM instances in a custom Virtual Private Cloud (VPC). Your company’s security policies only allow the use of internal IP addresses on VM instances and do not let VM instances connect to the internet. You need to ensure that the application can access a file hosted in a Cloud Storage bucket within your project. What should you do?</div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Enable Private Service Access on the Cloud Storage Bucket.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Add storage.googleapis.com to the list of restricted services in a VPC Service Controls perimeter and add your project to the list of protected projects.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Enable Private Google Access on the subnet within the custom VPC.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Deploy a Cloud NAT instance and route the traffic to the dedicated IP address of the Cloud Storage bucket.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">Private Google Access enables VM instances with only internal IP addresses to access Google APIs and services, such as Cloud Storage, without requiring an external IP address.<br>This directly satisfies the security policy restriction that prohibits internet connectivity while allowing necessary service access.<br>Option A is incorrect because Private Service Access supports specific regional services (like Cloud SQL or Redis) but does not support global multi-tenant services like Cloud Storage.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F41\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 203,
+          "question_text": "Your company completed the acquisition of a startup and is now merging the IT systems of both companies. The startup had a production Google Cloud project in their organization. You need to move this project into your organization and ensure that the project is billed to your organization. You want to accomplish this task with minimal effort. What should you do?",
+          "solution_text": "The `projects.move` API method (or equivalent CLI command) is the designated mechanism for migrating a Google Cloud project between organizations with minimal disruption to resources and identities. This approach preserves existing configurations while allowing you to update the billing account to align with your organization, satisfying both requirements efficiently.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Use the projects.move method to move the project to your organization. Update the billing account of the project to that of your organization.",
+              "is_correct": true
+            },
+            {
+              "letter": "B",
+              "text": "Ensure that you have an Organization Administrator Identity and Access Management (IAM) role assigned to you in both organizations. Navigate to the Resource Manager in the startup’s Google Cloud organization, and drag the project to your company&#x27;s organization.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Create a Private Catalog for the Google Cloud Marketplace, and upload the resources of the startup&#x27;s production project to the Catalog. Share the Catalog with your organization, and deploy the resources in your company’s project.",
+              "is_correct": null
+            },
+            {
+              "letter": "D",
+              "text": "Create an infrastructure-as-code template for all resources in the project by using Terraform, and deploy that template to a new project in your organization. Delete the project from the startup’s Google Cloud organization.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 203</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 203\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">Your company completed the acquisition of a startup and is now merging the IT systems of both companies. The startup had a production Google Cloud project in their organization. You need to move this project into your organization and ensure that the project is billed to your organization. You want to accomplish this task with minimal effort. What should you do?</div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Use the projects.move method to move the project to your organization. Update the billing account of the project to that of your organization.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Ensure that you have an Organization Administrator Identity and Access Management (IAM) role assigned to you in both organizations. Navigate to the Resource Manager in the startup’s Google Cloud organization, and drag the project to your company&#x27;s organization.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create a Private Catalog for the Google Cloud Marketplace, and upload the resources of the startup&#x27;s production project to the Catalog. Share the Catalog with your organization, and deploy the resources in your company’s project.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create an infrastructure-as-code template for all resources in the project by using Terraform, and deploy that template to a new project in your organization. Delete the project from the startup’s Google Cloud organization.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">The `projects.move` API method (or equivalent CLI command) is the designated mechanism for migrating a Google Cloud project between organizations with minimal disruption to resources and identities. This approach preserves existing configurations while allowing you to update the billing account to align with your organization, satisfying both requirements efficiently.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F41\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 204,
+          "question_text": "All development (dev) teams in your organization are located in the United States. Each dev team has its own Google Cloud project. You want to restrict access so that each dev team can only create cloud resources in the United States (US). What should you do?",
+          "solution_text": "Option A is correct because Organization Policies are the designated mechanism in Google Cloud for restricting resource configuration parameters, such as allowed locations (via constraints like `constraints/gcp.resourceLocations`).<br>IAM policies control access permissions (who can do what) and cannot enforce structural or configurational restrictions like geographic location.<br>Creating a folder allows the policy to be applied hierarchically to all current and future dev projects within that scope.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Create a folder to contain all the dev projects. Create an organization policy to limit resources in US locations.",
+              "is_correct": true
+            },
+            {
+              "letter": "B",
+              "text": "Create an organization to contain all the dev projects. Create an Identity and Access Management (IAM) policy to limit the resources in US regions.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Create an Identity and Access Management (IAM) policy to restrict the resources locations in the US. Apply the policy to all dev projects.",
+              "is_correct": null
+            },
+            {
+              "letter": "D",
+              "text": "Create an Identity and Access Management (IAM) policy to restrict the resources locations in all dev projects. Apply the policy to all dev roles.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 204</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 204\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">All development (dev) teams in your organization are located in the United States. Each dev team has its own Google Cloud project. You want to restrict access so that each dev team can only create cloud resources in the United States (US). What should you do?</div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create a folder to contain all the dev projects. Create an organization policy to limit resources in US locations.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create an organization to contain all the dev projects. Create an Identity and Access Management (IAM) policy to limit the resources in US regions.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create an Identity and Access Management (IAM) policy to restrict the resources locations in the US. Apply the policy to all dev projects.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create an Identity and Access Management (IAM) policy to restrict the resources locations in all dev projects. Apply the policy to all dev roles.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">Option A is correct because Organization Policies are the designated mechanism in Google Cloud for restricting resource configuration parameters, such as allowed locations (via constraints like `constraints/gcp.resourceLocations`).<br>IAM policies control access permissions (who can do what) and cannot enforce structural or configurational restrictions like geographic location.<br>Creating a folder allows the policy to be applied hierarchically to all current and future dev projects within that scope.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F41\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 205,
+          "question_text": "You are configuring Cloud DNS. You want to create DNS records to point home.mydomain.com, mydomain.com, and www.mydomain.com to the IP address of your Google Cloud load balancer. What should you do?",
+          "solution_text": "You must use an A record for the apex domain (mydomain.com) to map it directly to the load balancer&#x27;s IPv4 address, as CNAME records are not permitted at the root zone level in standard DNS configurations. The subdomains www.mydomain.com and home.mydomain.com should use CNAME records to alias them to the apex domain or another canonical name.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Create one CNAME record to point mydomain.com to the load balancer, and create two A records to point WWW and HOME to mydomain.com respectively.",
+              "is_correct": null
+            },
+            {
+              "letter": "B",
+              "text": "Create one CNAME record to point mydomain.com to the load balancer, and create two AAAA records to point WWW and HOME to mydomain.com respectively.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Create one A record to point mydomain.com to the load balancer, and create two CNAME records to point WWW and HOME to mydomain.com respectively.",
+              "is_correct": true
+            },
+            {
+              "letter": "D",
+              "text": "Create one A record to point mydomain.com to the load balancer, and create two NS records to point WWW and HOME to mydomain.com respectively.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 205</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 205\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You are configuring Cloud DNS. You want to create DNS records to point home.mydomain.com, mydomain.com, and www.mydomain.com to the IP address of your Google Cloud load balancer. What should you do?</div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create one CNAME record to point mydomain.com to the load balancer, and create two A records to point WWW and HOME to mydomain.com respectively.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create one CNAME record to point mydomain.com to the load balancer, and create two AAAA records to point WWW and HOME to mydomain.com respectively.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create one A record to point mydomain.com to the load balancer, and create two CNAME records to point WWW and HOME to mydomain.com respectively.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create one A record to point mydomain.com to the load balancer, and create two NS records to point WWW and HOME to mydomain.com respectively.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">You must use an A record for the apex domain (mydomain.com) to map it directly to the load balancer&#x27;s IPv4 address, as CNAME records are not permitted at the root zone level in standard DNS configurations. The subdomains www.mydomain.com and home.mydomain.com should use CNAME records to alias them to the apex domain or another canonical name.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F41\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        }
+      ],
+      "topics": [],
+      "series": [],
+      "case_studies": []
+    }
+  },
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      201,
+      202,
+      203,
+      204,
+      205
+    ],
+    "attempts": [
+      {
+        "question": 201,
+        "answerVisible": true
+      },
+      {
+        "question": 202,
+        "answerVisible": true
+      },
+      {
+        "question": 203,
+        "answerVisible": true
+      },
+      {
+        "question": 204,
+        "answerVisible": true
+      },
+      {
+        "question": 205,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {
+      "application/json": 1
+    },
+    "validated_network_page": false
+  }
+}

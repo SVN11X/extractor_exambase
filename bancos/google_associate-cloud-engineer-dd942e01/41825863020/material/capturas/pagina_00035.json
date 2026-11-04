@@ -1,0 +1,218 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/35",
+  "parser": "dom",
+  "warnings": [
+    "El HTML guardado no conserva el objeto de respuestas. Las claves ausentes quedan pendientes; no se deducen de la explicación."
+  ],
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 35,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": null,
+          "order": 171,
+          "question_text": "You are working with a Cloud SQL MySQL database at your company. You need to retain a month-end copy of the database for three years for audit purposes.<br>What should you do?<br>",
+          "solution_text": "Option A is correct because Cloud SQL automatic backups have a retention limit (max 365 days) and cannot be directly stored in specific storage classes like Archive. <br>To retain data for three years at the lowest cost, you must manually schedule an export job to write a dump file to a Cloud Storage bucket configured with the Archive storage class.<br>Options B and C are invalid because backups cannot be moved to external storage buckets, and Option D is technically impossible as backups cannot be converted to export files.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Set up an export job for the first of the month. Write the export file to an Archive class Cloud Storage bucket.",
+              "is_correct": true
+            },
+            {
+              "letter": "B",
+              "text": "Save the automatic first-of-the-month backup for three years. Store the backup file in an Archive class Cloud Storage bucket.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Set up an on-demand backup for the first of the month. Write the backup to an Archive class Cloud Storage bucket.",
+              "is_correct": null
+            },
+            {
+              "letter": "D",
+              "text": "Convert the automatic first-of-the-month backup to an export file. Write the export file to a Coldline class Cloud Storage bucket.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 171</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 171\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You are working with a Cloud SQL MySQL database at your company. You need to retain a month-end copy of the database for three years for audit purposes.<br>What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Set up an export job for the first of the month. Write the export file to an Archive class Cloud Storage bucket.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Save the automatic first-of-the-month backup for three years. Store the backup file in an Archive class Cloud Storage bucket.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Set up an on-demand backup for the first of the month. Write the backup to an Archive class Cloud Storage bucket.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Convert the automatic first-of-the-month backup to an export file. Write the export file to a Coldline class Cloud Storage bucket.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">Option A is correct because Cloud SQL automatic backups have a retention limit (max 365 days) and cannot be directly stored in specific storage classes like Archive. <br>To retain data for three years at the lowest cost, you must manually schedule an export job to write a dump file to a Cloud Storage bucket configured with the Archive storage class.<br>Options B and C are invalid because backups cannot be moved to external storage buckets, and Option D is technically impossible as backups cannot be converted to export files.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F35\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 172,
+          "question_text": "You are monitoring an application and receive user feedback that a specific error is spiking. You notice that the error is caused by a Service Account having insufficient permissions. You are able to solve the problem but want to be notified if the problem recurs. What should you do?<br>",
+          "solution_text": "To be automatically notified when a specific error recurs, you must trigger an alert based on that error&#x27;s occurrence. Creating a custom log-based metric allows you to count instances of the specific error, which can then feed into an Alerting Policy to send notifications. Filtering logs (A) requires manual review, BigQuery exports (B) are for analytics rather than real-time alerts, and granting excessive permissions (D) violates security best practices.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "In the Log Viewer, filter the logs on severity &#x27;Error&#x27; and the name of the Service Account.",
+              "is_correct": null
+            },
+            {
+              "letter": "B",
+              "text": "Create a sink to BigQuery to export all the logs. Create a Data Studio dashboard on the exported logs.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Create a custom log-based metric for the specific error to be used in an Alerting Policy.",
+              "is_correct": true
+            },
+            {
+              "letter": "D",
+              "text": "Grant Project Owner access to the Service Account.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 172</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 172\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You are monitoring an application and receive user feedback that a specific error is spiking. You notice that the error is caused by a Service Account having insufficient permissions. You are able to solve the problem but want to be notified if the problem recurs. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">In the Log Viewer, filter the logs on severity &#x27;Error&#x27; and the name of the Service Account.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create a sink to BigQuery to export all the logs. Create a Data Studio dashboard on the exported logs.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create a custom log-based metric for the specific error to be used in an Alerting Policy.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Grant Project Owner access to the Service Account.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">To be automatically notified when a specific error recurs, you must trigger an alert based on that error&#x27;s occurrence. Creating a custom log-based metric allows you to count instances of the specific error, which can then feed into an Alerting Policy to send notifications. Filtering logs (A) requires manual review, BigQuery exports (B) are for analytics rather than real-time alerts, and granting excessive permissions (D) violates security best practices.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F35\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 173,
+          "question_text": "You are developing a financial trading application that will be used globally. Data is stored and queried using a relational structure, and clients from all over the world should get the exact identical state of the data. The application will be deployed in multiple regions to provide the lowest latency to end users. You need to select a storage option for the application data while minimizing latency. What should you do?<br>",
+          "solution_text": "Cloud Spanner is the only solution that combines global scalability with full relational (ACID) compliance and strong consistency. It allows deployment across multiple regions to minimize latency while ensuring all clients see the exact identical state of the data, unlike Cloud SQL which is regional or Firestore/Bigtable which are NoSQL.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Use Cloud Bigtable for data storage.",
+              "is_correct": null
+            },
+            {
+              "letter": "B",
+              "text": "Use Cloud SQL for data storage.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Use Cloud Spanner for data storage.",
+              "is_correct": true
+            },
+            {
+              "letter": "D",
+              "text": "Use Firestore for data storage.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 173</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 173\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You are developing a financial trading application that will be used globally. Data is stored and queried using a relational structure, and clients from all over the world should get the exact identical state of the data. The application will be deployed in multiple regions to provide the lowest latency to end users. You need to select a storage option for the application data while minimizing latency. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Use Cloud Bigtable for data storage.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Use Cloud SQL for data storage.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Use Cloud Spanner for data storage.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Use Firestore for data storage.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">Cloud Spanner is the only solution that combines global scalability with full relational (ACID) compliance and strong consistency. It allows deployment across multiple regions to minimize latency while ensuring all clients see the exact identical state of the data, unlike Cloud SQL which is regional or Firestore/Bigtable which are NoSQL.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F35\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 174,
+          "question_text": "You are about to deploy a new Enterprise Resource Planning (ERP) system on Google Cloud. The application holds the full database in-memory for fast data access, and you need to configure the most appropriate resources on Google Cloud for this application. What should you do?<br>",
+          "solution_text": "The application requires holding the full database in-memory for fast access, which necessitates a machine type optimized for high memory capacity and performance. <br>M1 machine types are specifically designed for memory-intensive workloads such as SAP HANA and other in-memory databases.<br>Other options like preemptible instances lack reliability for ERP systems, GPUs are for parallel compute tasks, and local SSDs address storage I/O rather than the primary need for large RAM capacity.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Provision preemptible Compute Engine instances.",
+              "is_correct": null
+            },
+            {
+              "letter": "B",
+              "text": "Provision Compute Engine instances with GPUs attached.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Provision Compute Engine instances with local SSDs attached.",
+              "is_correct": null
+            },
+            {
+              "letter": "D",
+              "text": "Provision Compute Engine instances with M1 machine type.",
+              "is_correct": true
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 174</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 174\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You are about to deploy a new Enterprise Resource Planning (ERP) system on Google Cloud. The application holds the full database in-memory for fast data access, and you need to configure the most appropriate resources on Google Cloud for this application. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Provision preemptible Compute Engine instances.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Provision Compute Engine instances with GPUs attached.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Provision Compute Engine instances with local SSDs attached.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Provision Compute Engine instances with M1 machine type.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">The application requires holding the full database in-memory for fast access, which necessitates a machine type optimized for high memory capacity and performance. <br>M1 machine types are specifically designed for memory-intensive workloads such as SAP HANA and other in-memory databases.<br>Other options like preemptible instances lack reliability for ERP systems, GPUs are for parallel compute tasks, and local SSDs address storage I/O rather than the primary need for large RAM capacity.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F35\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 175,
+          "question_text": "You have developed an application that consists of multiple microservices, with each microservice packaged in its own Docker container image. You want to deploy the entire application on Google Kubernetes Engine so that each microservice can be scaled individually. What should you do?<br>",
+          "solution_text": "In Kubernetes, a Deployment is the standard workload controller for managing stateless applications like microservices. It allows you to define the desired number of replicas and update strategies, enabling independent horizontal scaling for each individual service. Other options are incorrect because CRDs define new resource types rather than deploying workloads, Docker Compose is not used for GKE deployments, and Jobs are designed for finite tasks that terminate upon completion.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Create and deploy a Custom Resource Definition per microservice.",
+              "is_correct": null
+            },
+            {
+              "letter": "B",
+              "text": "Create and deploy a Docker Compose File.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Create and deploy a Job per microservice.",
+              "is_correct": null
+            },
+            {
+              "letter": "D",
+              "text": "Create and deploy a Deployment per microservice.",
+              "is_correct": true
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 175</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 175\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You have developed an application that consists of multiple microservices, with each microservice packaged in its own Docker container image. You want to deploy the entire application on Google Kubernetes Engine so that each microservice can be scaled individually. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create and deploy a Custom Resource Definition per microservice.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create and deploy a Docker Compose File.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create and deploy a Job per microservice.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create and deploy a Deployment per microservice.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">In Kubernetes, a Deployment is the standard workload controller for managing stateless applications like microservices. It allows you to define the desired number of replicas and update strategies, enabling independent horizontal scaling for each individual service. Other options are incorrect because CRDs define new resource types rather than deploying workloads, Docker Compose is not used for GKE deployments, and Jobs are designed for finite tasks that terminate upon completion.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F35\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        }
+      ],
+      "topics": [],
+      "series": [],
+      "case_studies": []
+    }
+  },
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      171,
+      172,
+      173,
+      174,
+      175
+    ],
+    "attempts": [
+      {
+        "question": 171,
+        "answerVisible": true
+      },
+      {
+        "question": 172,
+        "answerVisible": true
+      },
+      {
+        "question": 173,
+        "answerVisible": true
+      },
+      {
+        "question": 174,
+        "answerVisible": true
+      },
+      {
+        "question": 175,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {
+      "application/json": 1
+    },
+    "validated_network_page": false
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/25",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 25,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10902,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 121,
+          "question_type": "mc_single",
+          "question_text": "Your managed instance group raised an alert stating that new instance creation has failed to create new instances. You need to maintain the number of running instances specified by the template to be able to process expected application traffic. What should you do?<br/>",
+          "solution_text": "Instance templates are immutable resources in Google Cloud, meaning they cannot be directly updated or deleted if they are currently in use by a managed instance group. This immutability eliminates options C and D, which incorrectly suggest modifying the existing template's `autoDelete` property. Option B is incorrect because it suggests verifying name uniqueness within the template definition rather than resolving the conflicting persistent disks already provisioned in the project. Option A is the correct remediation: you must create a new valid instance template with `disks.autoDelete` set to true and manually delete the orphaned persistent disks that are preventing new instances from being created due to naming conflicts.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41688,
+              "letter": "A",
+              "text": "Create an instance template that contains valid syntax which will be used by the instance group. Delete any persistent disks with the same name as instance names.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41689,
+              "letter": "B",
+              "text": "Create an instance template that contains valid syntax that will be used by the instance group. Verify that the instance name and persistent disk name values are not the same in the template.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41690,
+              "letter": "C",
+              "text": "Verify that the instance template being used by the instance group contains valid syntax. Delete any persistent disks with the same name as instance names. Set the disks.autoDelete property to true in the instance template.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41691,
+              "letter": "D",
+              "text": "Delete the current instance template and replace it with a new instance template. Verify that the instance name and persistent disk name values are not the same in the template. Set the disks.autoDelete property to true in the instance template.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10903,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 122,
+          "question_type": "mc_single",
+          "question_text": "Your company is moving from an on-premises environment to Google Cloud. You have multiple development teams that use Cassandra environments as backend databases. They all need a development environment that is isolated from other Cassandra instances. You want to move to Google Cloud quickly and with minimal support effort. What should you do?<br/>",
+          "solution_text": "Option B is correct because deploying a pre-configured image from the Google Cloud Marketplace allows developers to launch isolated environments in minutes with minimal administrative oversight. This approach directly satisfies the requirements for speed and reduced support effort, unlike manual installations or snapshot management which involve higher operational overhead.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41692,
+              "letter": "A",
+              "text": "1. Build an instruction guide to install Cassandra on Google Cloud. 2. Make the instruction guide accessible to your developers.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41693,
+              "letter": "B",
+              "text": "1. Advise your developers to go to Cloud Marketplace. 2. Ask the developers to launch a Cassandra image for their development work.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41694,
+              "letter": "C",
+              "text": "1. Build a Cassandra Compute Engine instance and take a snapshot of it. 2. Use the snapshot to create instances for your developers.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41695,
+              "letter": "D",
+              "text": "1. Build a Cassandra Compute Engine instance and take a snapshot of it. 2. Upload the snapshot to Cloud Storage and make it accessible to your developers. 3. Build instructions to create a Compute Engine instance from the snapshot so that developers can do it themselves.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10904,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 123,
+          "question_type": "mc_single",
+          "question_text": "You have a Compute Engine instance hosting a production application. You want to receive an email if the instance consumes more than 90% of its CPU resources for more than 15 minutes. You want to use Google services. What should you do?<br/>",
+          "solution_text": "Option B is the correct approach because Cloud Monitoring natively collects CPU usage metrics for Compute Engine instances without requiring custom scripts or manual metric creation. You can define an Alerting Policy that triggers when the CPU utilization exceeds 90% for a sustained period of 15 minutes, and configure an email notification channel to receive the alert. Options A and C involve unnecessary custom scripting, while Option D incorrectly suggests creating a logs-based metric from scratch when system metrics are already available.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41696,
+              "letter": "A",
+              "text": "1. Create a consumer Gmail account. 2. Write a script that monitors the CPU usage. 3. When the CPU usage exceeds the threshold, have that script send an email using the Gmail account and smtp.gmail.com on port 25 as SMTP server.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41697,
+              "letter": "B",
+              "text": "1. Create a Cloud Monitoring Workspace and associate your Google Cloud Platform (GCP) project with it. 2. Create a Cloud Monitoring Alerting Policy that uses the threshold as a trigger condition. 3. Configure your email address in the notification channel.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41698,
+              "letter": "C",
+              "text": "1. Create a Cloud Monitoring Workspace and associate your GCP project with it. 2. Write a script that monitors the CPU usage and sends it as a custom metric to Cloud Monitoring. 3. Create an uptime check for the instance in Cloud Monitoring.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41699,
+              "letter": "D",
+              "text": "1. In Cloud Logging, create a logs-based metric to extract the CPU usage by using this regular expression: CPU Usage: ([0-9] {1,3})% 2. In Cloud Monitoring, create an Alerting Policy based on this metric. 3. Configure your email address in the notification channel.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10905,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 124,
+          "question_type": "mc_single",
+          "question_text": "You have an application that uses Cloud Spanner as a backend database. The application has a very predictable traffic pattern. You want to automatically scale up or down the number of Spanner nodes depending on traffic. What should you do?<br/>",
+          "solution_text": "Cloud Spanner does not support automatic scaling natively; it requires manual intervention or custom automation to change node counts. <br/>Option D provides the best automated solution by using Cloud Monitoring to detect threshold breaches and triggering a Cloud Function via webhook to execute the resize operation programmatically. <br/>This approach ensures immediate response to traffic changes without relying on fixed schedules (Option A) or human intervention (Options B and C).",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41700,
+              "letter": "A",
+              "text": "Create a cron job that runs on a scheduled basis to review Cloud Monitoring metrics, and then resize the Spanner instance accordingly.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41701,
+              "letter": "B",
+              "text": "Create a Cloud Monitoring alerting policy to send an alert to oncall SRE emails when Cloud Spanner CPU exceeds the threshold. SREs would scale resources up or down accordingly.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41702,
+              "letter": "C",
+              "text": "Create a Cloud Monitoring alerting policy to send an alert to Google Cloud Support email when Cloud Spanner CPU exceeds your threshold. Google support would scale resources up or down accordingly.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41703,
+              "letter": "D",
+              "text": "Create a Cloud Monitoring alerting policy to send an alert to webhook when Cloud Spanner CPU is over or under your threshold. Create a Cloud Function that listens to HTTP and resizes Spanner resources accordingly.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10906,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 125,
+          "question_type": "mc_single",
+          "question_text": "Your company publishes large files on an Apache web server that runs on a Compute Engine instance. The Apache web server is not the only application running in the project. You want to receive an email when the egress network costs for the server exceed 100 dollars for the current month as measured by Google Cloud.<br/>What should you do?<br/>",
+          "solution_text": "Budget alerts (Options A and B) apply to the entire project or billing account, making it impossible to isolate costs for a single resource like the Apache web server. <br/>Option D attempts to calculate costs manually from logs, which does not meet the requirement to measure costs 'as measured by Google Cloud.' <br/>Option C correctly exports official billing data to BigQuery, allowing you to filter specifically for the egress network costs of that server and trigger an alert based on accurate GCP billing records.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41704,
+              "letter": "A",
+              "text": "Set up a budget alert on the project with an amount of 100 dollars, a threshold of 100%, and notification type of \"email.\"",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41705,
+              "letter": "B",
+              "text": "Set up a budget alert on the billing account with an amount of 100 dollars, a threshold of 100%, and notification type of \"email.\"",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41706,
+              "letter": "C",
+              "text": "Export the billing data to BigQuery. Create a Cloud Function that uses BigQuery to sum the egress network costs of the exported billing data for the Apache web server for the current month and sends an email if it is over 100 dollars. Schedule the Cloud Function using Cloud Scheduler to run hourly.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 41707,
+              "letter": "D",
+              "text": "Use the Cloud Logging Agent to export the Apache web server logs to Cloud Logging. Create a Cloud Function that uses BigQuery to parse the HTTP response log data in Cloud Logging for the current month and sends an email if the size of all HTTP responses, multiplied by current Google Cloud egress prices, totals over 100 dollars. Schedule the Cloud Function using Cloud Scheduler to run hourly.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 25,
+    "discussions": {
+      "10902": {
+        "target_type": "question",
+        "target_id": 10902,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10903": {
+        "target_type": "question",
+        "target_id": 10903,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10904": {
+        "target_type": "question",
+        "target_id": 10904,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10905": {
+        "target_type": "question",
+        "target_id": 10905,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10906": {
+        "target_type": "question",
+        "target_id": 10906,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      121,
+      122,
+      123,
+      124,
+      125
+    ],
+    "attempts": [
+      {
+        "question": 121,
+        "answerVisible": true
+      },
+      {
+        "question": 122,
+        "answerVisible": true
+      },
+      {
+        "question": 123,
+        "answerVisible": true
+      },
+      {
+        "question": 124,
+        "answerVisible": true
+      },
+      {
+        "question": 125,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/31",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 31,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10932,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 151,
+          "question_type": "mc_single",
+          "question_text": "You are working with a user to set up an application in a new VPC behind a firewall. The user is concerned about data egress. You want to configure the fewest open egress ports. What should you do?<br/>",
+          "solution_text": "In Google Cloud Firewall rules, lower numerical values indicate higher priority. To restrict egress traffic while allowing specific ports, you must create a low-priority rule (high number like 65534) that blocks all egress by default.<br/>A high-priority rule (low number like 1000) is then applied to explicitly allow only the necessary ports, overriding the block for those specific connections.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41808,
+              "letter": "A",
+              "text": "Set up a low-priority (65534) rule that blocks all egress and a high-priority rule (1000) that allows only the appropriate ports.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41809,
+              "letter": "B",
+              "text": "Set up a high-priority (1000) rule that pairs both ingress and egress ports.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41810,
+              "letter": "C",
+              "text": "Set up a high-priority (1000) rule that blocks all egress and a low-priority (65534) rule that allows only the appropriate ports.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41811,
+              "letter": "D",
+              "text": "Set up a high-priority (1000) rule to allow the appropriate ports.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10933,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 152,
+          "question_type": "mc_single",
+          "question_text": "Your company runs its Linux workloads on Compute Engine instances. Your company will be working with a new operations partner that does not use Google<br/>Accounts. You need to grant access to the instances to your operations partner so they can maintain the installed tooling. What should you do?<br/>",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41812,
+              "letter": "A",
+              "text": "Enable Cloud IAP for the Compute Engine instances, and add the operations partner as a Cloud IAP Tunnel User.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41813,
+              "letter": "B",
+              "text": "Tag all the instances with the same network tag. Create a firewall rule in the VPC to grant TCP access on port 22 for traffic from the operations partner to instances with the network tag.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41814,
+              "letter": "C",
+              "text": "Set up Cloud VPN between your Google Cloud VPC and the internal network of the operations partner.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41815,
+              "letter": "D",
+              "text": "Ask the operations partner to generate SSH key pairs, and add the public keys to the VM instances.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10934,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 153,
+          "question_type": "mc_single",
+          "question_text": "You have created a code snippet that should be triggered whenever a new file is uploaded to a Cloud Storage bucket. You want to deploy this code snippet. What should you do?<br/>",
+          "solution_text": "Cloud Functions is the serverless compute service designed to run small snippets of code in response to specific events.<br/>By configuring a Cloud Storage bucket as the trigger resource, the function automatically executes upon the 'google.storage.object.finalize' event, which occurs when a new file is uploaded.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41816,
+              "letter": "A",
+              "text": "Use App Engine and configure Cloud Scheduler to trigger the application using Pub/Sub.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41817,
+              "letter": "B",
+              "text": "Use Cloud Functions and configure the bucket as a trigger resource.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41818,
+              "letter": "C",
+              "text": "Use Google Kubernetes Engine and configure a CronJob to trigger the application using Pub/Sub.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41819,
+              "letter": "D",
+              "text": "Use Dataflow as a batch job, and configure the bucket as a data source.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10935,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 154,
+          "question_type": "mc_single",
+          "question_text": "You have been asked to set up Object Lifecycle Management for objects stored in storage buckets. The objects are written once and accessed frequently for 30 days. After 30 days, the objects are not read again unless there is a special need. The objects should be kept for three years, and you need to minimize cost.<br/>What should you do?<br/>",
+          "solution_text": "Standard storage is required because the objects are accessed frequently for the first 30 days, and using Nearline would incur high early-deletion penalties due to its 30-day minimum retention period. <br/>Archive storage provides the lowest cost for long-term retention of data that is rarely accessed (less than once a year), satisfying the requirement to minimize costs after the initial active period.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41820,
+              "letter": "A",
+              "text": "Set up a policy that uses Nearline storage for 30 days and then moves to Archive storage for three years.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41821,
+              "letter": "B",
+              "text": "Set up a policy that uses Standard storage for 30 days and then moves to Archive storage for three years.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41822,
+              "letter": "C",
+              "text": "Set up a policy that uses Nearline storage for 30 days, then moves the Coldline for one year, and then moves to Archive storage for two years.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41823,
+              "letter": "D",
+              "text": "Set up a policy that uses Standard storage for 30 days, then moves to Coldline for one year, and then moves to Archive storage for two years.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10936,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 155,
+          "question_type": "mc_single",
+          "question_text": "You are storing sensitive information in a Cloud Storage bucket. For legal reasons, you need to be able to record all requests that read any of the stored data. You want to make sure you comply with these requirements. What should you do?<br/>",
+          "solution_text": "Data Access audit logs are specifically designed to record all API operations that read or modify data, including reading objects from Cloud Storage. Unlike Admin Activity logs, which track configuration changes, Data Access logs provide the necessary audit trail of every data read event required for legal compliance.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41824,
+              "letter": "A",
+              "text": "Enable the Identity Aware Proxy API on the project.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41825,
+              "letter": "B",
+              "text": "Scan the bucket using the Data Loss Prevention API.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41826,
+              "letter": "C",
+              "text": "Allow only a single Service Account access to read the data.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41827,
+              "letter": "D",
+              "text": "Enable Data Access audit logs for the Cloud Storage API.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 31,
+    "discussions": {
+      "10932": {
+        "target_type": "question",
+        "target_id": 10932,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10933": {
+        "target_type": "question",
+        "target_id": 10933,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10934": {
+        "target_type": "question",
+        "target_id": 10934,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10935": {
+        "target_type": "question",
+        "target_id": 10935,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10936": {
+        "target_type": "question",
+        "target_id": 10936,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      151,
+      152,
+      153,
+      154,
+      155
+    ],
+    "attempts": [
+      {
+        "question": 151,
+        "answerVisible": true
+      },
+      {
+        "question": 152,
+        "answerVisible": true
+      },
+      {
+        "question": 153,
+        "answerVisible": true
+      },
+      {
+        "question": 154,
+        "answerVisible": true
+      },
+      {
+        "question": 155,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

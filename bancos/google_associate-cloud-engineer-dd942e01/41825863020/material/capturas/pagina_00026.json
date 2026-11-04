@@ -1,0 +1,218 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/26",
+  "parser": "dom",
+  "warnings": [
+    "El HTML guardado no conserva el objeto de respuestas. Las claves ausentes quedan pendientes; no se deducen de la explicación."
+  ],
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 26,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": null,
+          "order": 126,
+          "question_text": "You have designed a solution on Google Cloud that uses multiple Google Cloud products. Your company has asked you to estimate the costs of the solution. You need to provide estimates for the monthly total cost. What should you do?<br>",
+          "solution_text": "The Google Cloud Pricing Calculator is the designated tool for estimating monthly costs before provisioning resources. It allows you to aggregate prices for multiple products based on expected usage without incurring actual charges or waiting for real-world data accumulation. Provisioning the solution first (Options C and D) generates unnecessary expenses, while creating a manual spreadsheet (Option B) lacks the automation and accuracy of the official calculator.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "For each Google Cloud product in the solution, review the pricing details on the products pricing page. Use the pricing calculator to total the monthly costs for each Google Cloud product.",
+              "is_correct": true
+            },
+            {
+              "letter": "B",
+              "text": "For each Google Cloud product in the solution, review the pricing details on the products pricing page. Create a Google Sheet that summarizes the expected monthly costs for each product.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Provision the solution on Google Cloud. Leave the solution provisioned for 1 week. Navigate to the Billing Report page in the Cloud Console. Multiply the 1 week cost to determine the monthly costs.",
+              "is_correct": null
+            },
+            {
+              "letter": "D",
+              "text": "Provision the solution on Google Cloud. Leave the solution provisioned for 1 week. Use Cloud Monitoring to determine the provisioned and used resource amounts. Multiply the 1 week cost to determine the monthly costs.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 126</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 126\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You have designed a solution on Google Cloud that uses multiple Google Cloud products. Your company has asked you to estimate the costs of the solution. You need to provide estimates for the monthly total cost. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">For each Google Cloud product in the solution, review the pricing details on the products pricing page. Use the pricing calculator to total the monthly costs for each Google Cloud product.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">For each Google Cloud product in the solution, review the pricing details on the products pricing page. Create a Google Sheet that summarizes the expected monthly costs for each product.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Provision the solution on Google Cloud. Leave the solution provisioned for 1 week. Navigate to the Billing Report page in the Cloud Console. Multiply the 1 week cost to determine the monthly costs.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Provision the solution on Google Cloud. Leave the solution provisioned for 1 week. Use Cloud Monitoring to determine the provisioned and used resource amounts. Multiply the 1 week cost to determine the monthly costs.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">The Google Cloud Pricing Calculator is the designated tool for estimating monthly costs before provisioning resources. It allows you to aggregate prices for multiple products based on expected usage without incurring actual charges or waiting for real-world data accumulation. Provisioning the solution first (Options C and D) generates unnecessary expenses, while creating a manual spreadsheet (Option B) lacks the automation and accuracy of the official calculator.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F26\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 127,
+          "question_text": "You have an application that receives SSL-encrypted TCP traffic on port 443. Clients for this application are located all over the world. You want to minimize latency for the clients. Which load balancing option should you use?<br>",
+          "solution_text": "The question specifies SSL-encrypted TCP traffic, which implies a generic Layer 4 load balancing requirement rather than HTTP/HTTPS application-layer logic.<br>SSL Proxy Load Balancer is a global, anycast-based service designed specifically for terminating SSL connections on supported ports (including 443) and forwarding decrypted traffic to backend instances.<br>This configuration minimizes latency for global clients by leveraging the nearest Google edge point, whereas Network Load Balancer is regional and Internal LB is not suitable for public ingress.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "HTTPS Load Balancer",
+              "is_correct": null
+            },
+            {
+              "letter": "B",
+              "text": "Network Load Balancer",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "SSL Proxy Load Balancer",
+              "is_correct": true
+            },
+            {
+              "letter": "D",
+              "text": "Internal TCP/UDP Load Balancer. Add a firewall rule allowing ingress traffic from 0.0.0.0/0 on the target instances.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 127</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 127\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You have an application that receives SSL-encrypted TCP traffic on port 443. Clients for this application are located all over the world. You want to minimize latency for the clients. Which load balancing option should you use?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">HTTPS Load Balancer</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Network Load Balancer</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">SSL Proxy Load Balancer</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Internal TCP/UDP Load Balancer. Add a firewall rule allowing ingress traffic from 0.0.0.0/0 on the target instances.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">The question specifies SSL-encrypted TCP traffic, which implies a generic Layer 4 load balancing requirement rather than HTTP/HTTPS application-layer logic.<br>SSL Proxy Load Balancer is a global, anycast-based service designed specifically for terminating SSL connections on supported ports (including 443) and forwarding decrypted traffic to backend instances.<br>This configuration minimizes latency for global clients by leveraging the nearest Google edge point, whereas Network Load Balancer is regional and Internal LB is not suitable for public ingress.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F26\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 128,
+          "question_text": "You have an application on a general-purpose Compute Engine instance that is experiencing excessive disk read throttling on its Zonal SSD Persistent Disk. The application primarily reads large files from disk. The disk size is currently 350 GB. You want to provide the maximum amount of throughput while minimizing costs.<br>What should you do?<br>",
+          "solution_text": "Local SSDs provide significantly higher throughput and IOPS compared to Persistent Disks, addressing the throttling issue more effectively. Although Local SSDs are ephemeral, the scenario does not require data persistence across instance stops, making this a valid optimization. Additionally, Local SSDs offer better performance-to-cost efficiency for high-throughput workloads than scaling up Persistent Disk size.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Increase the size of the disk to 1 TB.",
+              "is_correct": null
+            },
+            {
+              "letter": "B",
+              "text": "Increase the allocated CPU to the instance.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Migrate to use a Local SSD on the instance.",
+              "is_correct": true
+            },
+            {
+              "letter": "D",
+              "text": "Migrate to use a Regional SSD on the instance.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 128</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 128\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You have an application on a general-purpose Compute Engine instance that is experiencing excessive disk read throttling on its Zonal SSD Persistent Disk. The application primarily reads large files from disk. The disk size is currently 350 GB. You want to provide the maximum amount of throughput while minimizing costs.<br>What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Increase the size of the disk to 1 TB.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Increase the allocated CPU to the instance.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Migrate to use a Local SSD on the instance.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Migrate to use a Regional SSD on the instance.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">Local SSDs provide significantly higher throughput and IOPS compared to Persistent Disks, addressing the throttling issue more effectively. Although Local SSDs are ephemeral, the scenario does not require data persistence across instance stops, making this a valid optimization. Additionally, Local SSDs offer better performance-to-cost efficiency for high-throughput workloads than scaling up Persistent Disk size.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F26\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 129,
+          "question_text": "Your Dataproc cluster runs in a single Virtual Private Cloud (VPC) network in a single subnet with range 172.16.20.128/25. There are no private IP addresses available in the VPC network. You want to add new VMs to communicate with your cluster using the minimum number of steps. What should you do?<br>",
+          "solution_text": "In Google Cloud, subnets can be expanded to use unused IP space within the same VPC network range, even if the specific subnet is currently full. Since the VPC itself is not fully utilized (only one /25 subnet exists), expanding the subnet from /25 to /24 provides additional IP addresses for new VMs. This approach requires fewer steps than creating a new VPC or configuring peering, satisfying the &#x27;minimum number of steps&#x27; requirement.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Modify the existing subnet range to 172.16.20.0/24.",
+              "is_correct": true
+            },
+            {
+              "letter": "B",
+              "text": "Create a new Secondary IP Range in the VPC and configure the VMs to use that range.",
+              "is_correct": null
+            },
+            {
+              "letter": "C",
+              "text": "Create a new VPC network for the VMs. Enable VPC Peering between the VMs&#x27; VPC network and the Dataproc cluster VPC network.",
+              "is_correct": null
+            },
+            {
+              "letter": "D",
+              "text": "Create a new VPC network for the VMs with a subnet of 172.32.0.0/16. Enable VPC network Peering between the Dataproc VPC network and the VMs VPC network. Configure a custom Route exchange.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 129</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 129\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">Your Dataproc cluster runs in a single Virtual Private Cloud (VPC) network in a single subnet with range 172.16.20.128/25. There are no private IP addresses available in the VPC network. You want to add new VMs to communicate with your cluster using the minimum number of steps. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Modify the existing subnet range to 172.16.20.0/24.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create a new Secondary IP Range in the VPC and configure the VMs to use that range.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create a new VPC network for the VMs. Enable VPC Peering between the VMs&#x27; VPC network and the Dataproc cluster VPC network.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create a new VPC network for the VMs with a subnet of 172.32.0.0/16. Enable VPC network Peering between the Dataproc VPC network and the VMs VPC network. Configure a custom Route exchange.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">In Google Cloud, subnets can be expanded to use unused IP space within the same VPC network range, even if the specific subnet is currently full. Since the VPC itself is not fully utilized (only one /25 subnet exists), expanding the subnet from /25 to /24 provides additional IP addresses for new VMs. This approach requires fewer steps than creating a new VPC or configuring peering, satisfying the &#x27;minimum number of steps&#x27; requirement.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F26\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        },
+        {
+          "id": null,
+          "order": 130,
+          "question_text": "You manage an App Engine Service that aggregates and visualizes data from BigQuery. The application is deployed with the default App Engine Service account.<br>The data that needs to be visualized resides in a different project managed by another team. You do not have access to this project, but you want your application to be able to read data from the BigQuery dataset. What should you do?<br>",
+          "solution_text": "The application needs to read data from a BigQuery dataset located in a different project, which requires cross-project IAM permissions.<br>The BigQuery Data Viewer role (roles/bigquery.dataViewer) grants the permission to read data and metadata from tables and datasets.<br>Since the resource is in the other team&#x27;s project, they must grant this role to your service account; you cannot grant it yourself via your project&#x27;s IAM.",
+          "choices": [
+            {
+              "letter": "A",
+              "text": "Ask the other team to grant your default App Engine Service account the role of BigQuery Job User.",
+              "is_correct": null
+            },
+            {
+              "letter": "B",
+              "text": "Ask the other team to grant your default App Engine Service account the role of BigQuery Data Viewer.",
+              "is_correct": true
+            },
+            {
+              "letter": "C",
+              "text": "In Cloud IAM of your project, ensure that the default App Engine service account has the role of BigQuery Data Viewer.",
+              "is_correct": null
+            },
+            {
+              "letter": "D",
+              "text": "In Cloud IAM of your project, grant a newly created service account from the other team the role of BigQuery Job User in your project.",
+              "is_correct": null
+            }
+          ],
+          "type_data": {},
+          "topic_label": "Topic 1",
+          "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 130</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 130\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You manage an App Engine Service that aggregates and visualizes data from BigQuery. The application is deployed with the default App Engine Service account.<br>The data that needs to be visualized resides in a different project managed by another team. You do not have access to this project, but you want your application to be able to read data from the BigQuery dataset. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Ask the other team to grant your default App Engine Service account the role of BigQuery Job User.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Ask the other team to grant your default App Engine Service account the role of BigQuery Data Viewer.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">In Cloud IAM of your project, ensure that the default App Engine service account has the role of BigQuery Data Viewer.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">In Cloud IAM of your project, grant a newly created service account from the other team the role of BigQuery Job User in your project.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">The application needs to read data from a BigQuery dataset located in a different project, which requires cross-project IAM permissions.<br>The BigQuery Data Viewer role (roles/bigquery.dataViewer) grants the permission to read data and metadata from tables and datasets.<br>Since the resource is in the other team&#x27;s project, they must grant this role to your service account; you cannot grant it yourself via your project&#x27;s IAM.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F26\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+        }
+      ],
+      "topics": [],
+      "series": [],
+      "case_studies": []
+    }
+  },
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      126,
+      127,
+      128,
+      129,
+      130
+    ],
+    "attempts": [
+      {
+        "question": 126,
+        "answerVisible": true
+      },
+      {
+        "question": 127,
+        "answerVisible": true
+      },
+      {
+        "question": 128,
+        "answerVisible": true
+      },
+      {
+        "question": 129,
+        "answerVisible": true
+      },
+      {
+        "question": 130,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {
+      "application/json": 1
+    },
+    "validated_network_page": false
+  }
+}

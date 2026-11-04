@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 30,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 10927,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 146,
+        "question_type": "mc_single",
+        "question_text": "You have an application that uses Cloud Spanner as a database backend to keep current state information about users. Cloud Bigtable logs all events triggered by users. You export Cloud Spanner data to Cloud Storage during daily backups. One of your analysts asks you to join data from Cloud Spanner and Cloud<br/>Bigtable for specific users. You want to complete this ad hoc request as efficiently as possible. What should you do?<br/>",
+        "solution_text": "For an ad hoc request, creating persistent Dataflow jobs or Dataproc clusters (Options A, B, C) is inefficient in terms of setup time and cost. BigQuery supports external tables that allow querying data directly from Cloud Storage (where Spanner backups reside) and Cloud Bigtable without copying it. This enables immediate joins using SQL filters for specific users, satisfying the 'efficiently' and 'ad hoc' requirements.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41788,
+            "letter": "A",
+            "text": "Create a dataflow job that copies data from Cloud Bigtable and Cloud Storage for specific users.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41789,
+            "letter": "B",
+            "text": "Create a dataflow job that copies data from Cloud Bigtable and Cloud Spanner for specific users.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41790,
+            "letter": "C",
+            "text": "Create a Cloud Dataproc cluster that runs a Spark job to extract data from Cloud Bigtable and Cloud Storage for specific users.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41791,
+            "letter": "D",
+            "text": "Create two separate BigQuery external tables on Cloud Storage and Cloud Bigtable. Use the BigQuery console to join these tables through user fields, and apply appropriate filters.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10928,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 147,
+        "question_type": "mc_single",
+        "question_text": "You are hosting an application from Compute Engine virtual machines (VMs) in us`\"central1`\"a. You want to adjust your design to support the failure of a single<br/>Compute Engine zone, eliminate downtime, and minimize cost. What should you do?<br/>",
+        "solution_text": "To survive the failure of a single zone (us-central1-a), you must distribute your workload across multiple availability zones within the same region.<br/>Option A achieves this by deploying resources to us-central1-b and balancing traffic between both zones, ensuring redundancy if one zone goes down.<br/>Options B, C, and D fail to provide multi-zone redundancy as described in their specific steps (B specifies a single zone, C lacks backend distribution details, D relies on reactive backups causing downtime).",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41792,
+            "letter": "A",
+            "text": "— Create Compute Engine resources in us—central1—b. — Balance the load across both us—central1—a and us—central1—b.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 41793,
+            "letter": "B",
+            "text": "— Create a Managed Instance Group and specify us—central1—a as the zone. — Configure the Health Check with a short Health Interval.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41794,
+            "letter": "C",
+            "text": "— Create an HTTP(S) Load Balancer. — Create one or more global forwarding rules to direct traffic to your VMs.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41795,
+            "letter": "D",
+            "text": "— Perform regular backups of your application. — Create a Cloud Monitoring Alert and be notified if your application becomes unavailable. — Restore from backups when notified.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10929,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 148,
+        "question_type": "mc_single",
+        "question_text": "A colleague handed over a Google Cloud Platform project for you to maintain. As part of a security checkup, you want to review who has been granted the Project<br/>Owner role. What should you do?<br/>",
+        "solution_text": "The `gcloud projects get-iam-policy` command directly retrieves the Identity and Access Management (IAM) policy for a GCP project. This policy explicitly lists all bindings, allowing you to identify which members have been assigned specific roles, such as Project Owner. Other options like SSH keys or Audit Logs do not provide a direct, comprehensive view of current static role assignments.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41796,
+            "letter": "A",
+            "text": "In the console, validate which SSH keys have been stored as project-wide keys.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41797,
+            "letter": "B",
+            "text": "Navigate to Identity-Aware Proxy and check the permissions for these resources.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41798,
+            "letter": "C",
+            "text": "Enable Audit Logs on the IAM &amp; admin page for all resources, and validate the results.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41799,
+            "letter": "D",
+            "text": "Use the command gcloud projects get—iam—policy to view the current role assignments.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10930,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 149,
+        "question_type": "mc_single",
+        "question_text": "You are running multiple VPC-native Google Kubernetes Engine clusters in the same subnet. The IPs available for the nodes are exhausted, and you want to ensure that the clusters can grow in nodes when needed. What should you do?<br/>",
+        "solution_text": "GKE node IPs are allocated from the primary IP range of the subnet. Since the available IPs for nodes are exhausted, you must increase the number of usable addresses in that specific subnet.<br/>Google Cloud allows you to expand the primary IP address range (CIDR) of an existing subnet at any time, even while resources are using it, which directly resolves the node IP exhaustion issue.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41800,
+            "letter": "A",
+            "text": "Create a new subnet in the same region as the subnet being used.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41801,
+            "letter": "B",
+            "text": "Add an alias IP range to the subnet used by the GKE clusters.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41802,
+            "letter": "C",
+            "text": "Create a new VPC, and set up VPC peering with the existing VPC.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41803,
+            "letter": "D",
+            "text": "Expand the CIDR range of the relevant subnet for the cluster.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10931,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 150,
+        "question_type": "mc_single",
+        "question_text": "You have a batch workload that runs every night and uses a large number of virtual machines (VMs). It is fault-tolerant and can tolerate some of the VMs being terminated. The current cost of VMs is too high. What should you do?<br/>",
+        "solution_text": "Preemptible VMs offer significant cost savings compared to standard instances but can be terminated by Google Cloud with little notice.<br/>Since the workload is explicitly fault-tolerant and batch-oriented, it is well-suited for preemptible instances provided it can handle unexpected terminations.<br/>Simulated maintenance events validate this resilience before committing to the lower-cost option.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41804,
+            "letter": "A",
+            "text": "Run a test using simulated maintenance events. If the test is successful, use preemptible N1 Standard VMs when running future jobs.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 41805,
+            "letter": "B",
+            "text": "Run a test using simulated maintenance events. If the test is successful, use N1 Standard VMs when running future jobs.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41806,
+            "letter": "C",
+            "text": "Run a test using a managed instance group. If the test is successful, use N1 Standard VMs in the managed instance group when running future jobs.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41807,
+            "letter": "D",
+            "text": "Run a test using N1 standard VMs instead of N2. If the test is successful, use N1 Standard VMs when running future jobs.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 30,
+  "discussions": {
+    "10927": {
+      "target_type": "question",
+      "target_id": 10927,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10928": {
+      "target_type": "question",
+      "target_id": 10928,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10929": {
+      "target_type": "question",
+      "target_id": 10929,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10930": {
+      "target_type": "question",
+      "target_id": 10930,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10931": {
+      "target_type": "question",
+      "target_id": 10931,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

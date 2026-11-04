@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 36,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 10957,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 176,
+        "question_type": "mc_single",
+        "question_text": "You will have several applications running on different Compute Engine instances in the same project. You want to specify at a more granular level the service account each instance uses when calling Google Cloud APIs. What should you do?<br/>",
+        "solution_text": "Google Cloud allows you to associate a specific service account with a Compute Engine instance directly during its creation via the Console, API, or gcloud CLI. This association defines which identity the instance uses when authenticating requests to other Google Cloud APIs. Specifying this at creation time is the standard and most secure method for granular access control.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41909,
+            "letter": "A",
+            "text": "When creating the instances, specify a Service Account for each instance.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 41910,
+            "letter": "B",
+            "text": "When creating the instances, assign the name of each Service Account as instance metadata.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41911,
+            "letter": "C",
+            "text": "After starting the instances, use gcloud compute instances update to specify a Service Account for each instance.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41912,
+            "letter": "D",
+            "text": "After starting the instances, use gcloud compute instances update to assign the name of the relevant Service Account as instance metadata.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10958,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 177,
+        "question_type": "mc_single",
+        "question_text": "You are creating an application that will run on Google Kubernetes Engine. You have identified MongoDB as the most suitable database system for your application and want to deploy a managed MongoDB environment that provides a support SLA. What should you do?<br/>",
+        "solution_text": "The question requires a managed MongoDB environment with a support SLA. Options C and D involve self-managed deployments on Compute Engine, which lack the guaranteed support SLA of a fully managed service. Option A suggests Cloud Bigtable, which is not MongoDB. Deploying MongoDB Atlas via the Google Cloud Marketplace provides a fully managed database service with official support agreements.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41913,
+            "letter": "A",
+            "text": "Create a Cloud Bigtable cluster, and use the HBase API.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41914,
+            "letter": "B",
+            "text": "Deploy MongoDB Atlas from the Google Cloud Marketplace.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 41915,
+            "letter": "C",
+            "text": "Download a MongoDB installation package, and run it on Compute Engine instances.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41916,
+            "letter": "D",
+            "text": "Download a MongoDB installation package, and run it on a Managed Instance Group.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10959,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 178,
+        "question_type": "mc_single",
+        "question_text": "You are managing a project for the Business Intelligence (BI) department in your company. A data pipeline ingests data into BigQuery via streaming. You want the users in the BI department to be able to run the custom SQL queries against the latest data in BigQuery. What should you do?<br/>",
+        "solution_text": "The BI team needs the ability to execute custom SQL queries directly against BigQuery. Assigning the `BigQuery User` role via IAM provides the necessary permissions to run jobs and query data.<br/>Using a Google Group ensures efficient management of access for all team members without distributing individual keys or creating unnecessary intermediate dashboards.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41917,
+            "letter": "A",
+            "text": "Create a Data Studio dashboard that uses the related BigQuery tables as a source and give the BI team view access to the Data Studio dashboard.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41918,
+            "letter": "B",
+            "text": "Create a Service Account for the BI team and distribute a new private key to each member of the BI team.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41919,
+            "letter": "C",
+            "text": "Use Cloud Scheduler to schedule a batch Dataflow job to copy the data from BigQuery to the BI team's internal data warehouse.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41920,
+            "letter": "D",
+            "text": "Assign the IAM role of BigQuery User to a Google Group that contains the members of the BI team.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10960,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 179,
+        "question_type": "mc_single",
+        "question_text": "Your company is moving its entire workload to Compute Engine. Some servers should be accessible through the Internet, and other servers should only be accessible over the internal network. All servers need to be able to talk to each other over specific ports and protocols. The current on-premises network relies on a demilitarized zone (DMZ) for the public servers and a Local Area Network (LAN) for the private servers. You need to design the networking infrastructure on<br/>Google Cloud to match these requirements. What should you do?<br/>",
+        "solution_text": "A single VPC should be used to host both the DMZ and LAN subnets because subnets within the same VPC communicate directly via internal IP addresses without requiring complex configurations like VPC peering.<br/>Firewall rules are necessary to explicitly allow public ingress traffic to the DMZ subnet (since inbound traffic is denied by default) and to control specific port/protocol access between the two subnets, ensuring proper segmentation.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41921,
+            "letter": "A",
+            "text": "1. Create a single VPC with a subnet for the DMZ and a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public ingress traffic for the DMZ.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 41922,
+            "letter": "B",
+            "text": "1. Create a single VPC with a subnet for the DMZ and a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public egress traffic for the DMZ.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41923,
+            "letter": "C",
+            "text": "1. Create a VPC with a subnet for the DMZ and another VPC with a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public ingress traffic for the DMZ.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41924,
+            "letter": "D",
+            "text": "1. Create a VPC with a subnet for the DMZ and another VPC with a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public egress traffic for the DMZ.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10961,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 180,
+        "question_type": "mc_single",
+        "question_text": "You have just created a new project which will be used to deploy a globally distributed application. You will use Cloud Spanner for data storage. You want to create a Cloud Spanner instance. You want to perform the first step in preparation of creating the instance. What should you do?<br/>",
+        "solution_text": "Before using any Google Cloud service, including Cloud Spanner, the corresponding API must be enabled in your project. This is a mandatory prerequisite step that unlocks access to the service's resources and functionality via both the Console and the gcloud CLI.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41925,
+            "letter": "A",
+            "text": "Enable the Cloud Spanner API.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 41926,
+            "letter": "B",
+            "text": "Configure your Cloud Spanner instance to be multi-regional.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41927,
+            "letter": "C",
+            "text": "Create a new VPC network with subnetworks in all desired regions.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41928,
+            "letter": "D",
+            "text": "Grant yourself the IAM role of Cloud Spanner Admin.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 36,
+  "discussions": {
+    "10957": {
+      "target_type": "question",
+      "target_id": 10957,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10958": {
+      "target_type": "question",
+      "target_id": 10958,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10959": {
+      "target_type": "question",
+      "target_id": 10959,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10960": {
+      "target_type": "question",
+      "target_id": 10960,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10961": {
+      "target_type": "question",
+      "target_id": 10961,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

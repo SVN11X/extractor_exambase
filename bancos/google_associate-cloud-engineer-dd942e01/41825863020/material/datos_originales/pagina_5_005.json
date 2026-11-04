@@ -1,0 +1,168 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": null,
+        "order": 21,
+        "question_text": "You have one GCP account running in your default region and zone and another account running in a non-default region and zone. You want to start a new<br>Compute Engine instance in these two Google Cloud Platform accounts using the command line interface. What should you do?<br>",
+        "solution_text": "Option A is correct because it properly uses `gcloud config configurations create` to establish separate environments for each account and `gcloud config configurations activate` to switch the active context before provisioning resources. <br>Options B, C, and D are incorrect because they suggest using listing commands (`list`) to start instances, which only displays configuration data rather than executing resource creation.",
+        "choices": [
+          {
+            "letter": "A",
+            "text": "Create two configurations using gcloud config configurations create [NAME]. Run gcloud config configurations activate [NAME] to switch between accounts when running the commands to start the Compute Engine instances.",
+            "is_correct": true
+          },
+          {
+            "letter": "B",
+            "text": "Create two configurations using gcloud config configurations create [NAME]. Run gcloud configurations list to start the Compute Engine instances.",
+            "is_correct": null
+          },
+          {
+            "letter": "C",
+            "text": "Activate two configurations using gcloud configurations activate [NAME]. Run gcloud config list to start the Compute Engine instances.",
+            "is_correct": null
+          },
+          {
+            "letter": "D",
+            "text": "Activate two configurations using gcloud configurations activate [NAME]. Run gcloud configurations list to start the Compute Engine instances.",
+            "is_correct": null
+          }
+        ],
+        "type_data": {},
+        "topic_label": "Topic 1",
+        "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 21</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 21\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You have one GCP account running in your default region and zone and another account running in a non-default region and zone. You want to start a new<br>Compute Engine instance in these two Google Cloud Platform accounts using the command line interface. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create two configurations using gcloud config configurations create [NAME]. Run gcloud config configurations activate [NAME] to switch between accounts when running the commands to start the Compute Engine instances.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create two configurations using gcloud config configurations create [NAME]. Run gcloud configurations list to start the Compute Engine instances.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Activate two configurations using gcloud configurations activate [NAME]. Run gcloud config list to start the Compute Engine instances.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Activate two configurations using gcloud configurations activate [NAME]. Run gcloud configurations list to start the Compute Engine instances.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">Option A is correct because it properly uses `gcloud config configurations create` to establish separate environments for each account and `gcloud config configurations activate` to switch the active context before provisioning resources. <br>Options B, C, and D are incorrect because they suggest using listing commands (`list`) to start instances, which only displays configuration data rather than executing resource creation.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F5\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+      },
+      {
+        "id": null,
+        "order": 22,
+        "question_text": "You significantly changed a complex Deployment Manager template and want to confirm that the dependencies of all defined resources are properly met before committing it to the project. You want the most rapid feedback on your changes. What should you do?<br>",
+        "solution_text": "The --preview option in Deployment Manager expands the configuration and creates &#x27;shell&#x27; resources without instantiating actual infrastructure. This allows you to validate dependency resolution and configuration syntax immediately within the same project, providing the fastest feedback loop before committing changes.",
+        "choices": [
+          {
+            "letter": "A",
+            "text": "Use granular logging statements within a Deployment Manager template authored in Python.",
+            "is_correct": null
+          },
+          {
+            "letter": "B",
+            "text": "Monitor activity of the Deployment Manager execution on the Stackdriver Logging page of the GCP Console.",
+            "is_correct": null
+          },
+          {
+            "letter": "C",
+            "text": "Execute the Deployment Manager template against a separate project with the same configuration, and monitor for failures.",
+            "is_correct": null
+          },
+          {
+            "letter": "D",
+            "text": "Execute the Deployment Manager template using the —-preview option in the same project, and observe the state of interdependent resources.",
+            "is_correct": true
+          }
+        ],
+        "type_data": {},
+        "topic_label": "Topic 1",
+        "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 22</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 22\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You significantly changed a complex Deployment Manager template and want to confirm that the dependencies of all defined resources are properly met before committing it to the project. You want the most rapid feedback on your changes. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Use granular logging statements within a Deployment Manager template authored in Python.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Monitor activity of the Deployment Manager execution on the Stackdriver Logging page of the GCP Console.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Execute the Deployment Manager template against a separate project with the same configuration, and monitor for failures.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Execute the Deployment Manager template using the —-preview option in the same project, and observe the state of interdependent resources.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">The --preview option in Deployment Manager expands the configuration and creates &#x27;shell&#x27; resources without instantiating actual infrastructure. This allows you to validate dependency resolution and configuration syntax immediately within the same project, providing the fastest feedback loop before committing changes.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F5\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+      },
+      {
+        "id": null,
+        "order": 23,
+        "question_text": "You are building a pipeline to process time-series data. Which Google Cloud Platform services should you put in boxes 1,2,3, and 4?<br><img class=\"in-exam-image\" src=\"/media/question_images/imported/ASSOCIATE-CLOUD-ENGINEER/0001200001.jpg\"><br>\n",
+        "solution_text": "Cloud Pub/Sub is the standard ingestion point for high-throughput streaming data from IoT or time-series sources. Cloud Dataflow provides the necessary stream processing capabilities to transform and analyze this data in real-time.<br>Cloud Bigtable is a NoSQL wide-column store optimized specifically for storing large-scale time-series data, unlike Datastore which is better suited for general-purpose document storage.<br>Finally, BigQuery serves as the analytics engine to query the processed data stored in Bigtable for insights.",
+        "choices": [
+          {
+            "letter": "A",
+            "text": "Cloud Pub/Sub, Cloud Dataflow, Cloud Datastore, BigQuery",
+            "is_correct": null
+          },
+          {
+            "letter": "B",
+            "text": "Firebase Messages, Cloud Pub/Sub, Cloud Spanner, BigQuery",
+            "is_correct": null
+          },
+          {
+            "letter": "C",
+            "text": "Cloud Pub/Sub, Cloud Storage, BigQuery, Cloud Bigtable",
+            "is_correct": null
+          },
+          {
+            "letter": "D",
+            "text": "Cloud Pub/Sub, Cloud Dataflow, Cloud Bigtable, BigQuery",
+            "is_correct": true
+          }
+        ],
+        "type_data": {},
+        "topic_label": "Topic 1",
+        "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 23</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 23\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You are building a pipeline to process time-series data. Which Google Cloud Platform services should you put in boxes 1,2,3, and 4?<br><img class=\"in-exam-image\" src=\"/media/question_images/imported/ASSOCIATE-CLOUD-ENGINEER/0001200001.jpg\"><br>\n</div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Cloud Pub/Sub, Cloud Dataflow, Cloud Datastore, BigQuery</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Firebase Messages, Cloud Pub/Sub, Cloud Spanner, BigQuery</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Cloud Pub/Sub, Cloud Storage, BigQuery, Cloud Bigtable</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Cloud Pub/Sub, Cloud Dataflow, Cloud Bigtable, BigQuery</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">Cloud Pub/Sub is the standard ingestion point for high-throughput streaming data from IoT or time-series sources. Cloud Dataflow provides the necessary stream processing capabilities to transform and analyze this data in real-time.<br>Cloud Bigtable is a NoSQL wide-column store optimized specifically for storing large-scale time-series data, unlike Datastore which is better suited for general-purpose document storage.<br>Finally, BigQuery serves as the analytics engine to query the processed data stored in Bigtable for insights.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F5\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+      },
+      {
+        "id": null,
+        "order": 24,
+        "question_text": "You have a project for your App Engine application that serves a development environment. The required testing has succeeded and you want to create a new project to serve as your production environment. What should you do?<br>",
+        "solution_text": "GCP projects are distinct resource containers that must be explicitly created before any application code or resources can be deployed to them. Therefore, the correct workflow is to first use `gcloud projects create` to establish the new production project ID, and then use `gcloud app deploy` (targeting the new project) to push the application. Options B, C, and D are incorrect because there is no native `gcloud app cp` command, Deployment Manager creates resources rather than copying deployed states, and `gcloud app deploy` cannot create a non-existent project.",
+        "choices": [
+          {
+            "letter": "A",
+            "text": "Use gcloud to create the new project, and then deploy your application to the new project.",
+            "is_correct": true
+          },
+          {
+            "letter": "B",
+            "text": "Use gcloud to create the new project and to copy the deployed application to the new project.",
+            "is_correct": null
+          },
+          {
+            "letter": "C",
+            "text": "Create a Deployment Manager configuration file that copies the current App Engine deployment into a new project.",
+            "is_correct": null
+          },
+          {
+            "letter": "D",
+            "text": "Deploy your application again using gcloud and specify the project parameter with the new project name to create the new project.",
+            "is_correct": null
+          }
+        ],
+        "type_data": {},
+        "topic_label": "Topic 1",
+        "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 24</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 24\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You have a project for your App Engine application that serves a development environment. The required testing has succeeded and you want to create a new project to serve as your production environment. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Use gcloud to create the new project, and then deploy your application to the new project.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Use gcloud to create the new project and to copy the deployed application to the new project.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Create a Deployment Manager configuration file that copies the current App Engine deployment into a new project.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Deploy your application again using gcloud and specify the project parameter with the new project name to create the new project.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">GCP projects are distinct resource containers that must be explicitly created before any application code or resources can be deployed to them. Therefore, the correct workflow is to first use `gcloud projects create` to establish the new production project ID, and then use `gcloud app deploy` (targeting the new project) to push the application. Options B, C, and D are incorrect because there is no native `gcloud app cp` command, Deployment Manager creates resources rather than copying deployed states, and `gcloud app deploy` cannot create a non-existent project.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F5\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+      },
+      {
+        "id": null,
+        "order": 25,
+        "question_text": "You need to configure IAM access audit logging in BigQuery for external auditors. You want to follow Google-recommended practices. What should you do?<br>",
+        "solution_text": "Google Cloud IAM best practices recommend using predefined roles to minimize configuration effort and relying on security teams for role updates. Additionally, managing access via groups rather than individual user accounts simplifies lifecycle management and ensures consistent permissions for all members of the auditor group.",
+        "choices": [
+          {
+            "letter": "A",
+            "text": "Add the auditors group to the &#x27;logging.viewer&#x27; and &#x27;bigQuery.dataViewer&#x27; predefined IAM roles.",
+            "is_correct": true
+          },
+          {
+            "letter": "B",
+            "text": "Add the auditors group to two new custom IAM roles.",
+            "is_correct": null
+          },
+          {
+            "letter": "C",
+            "text": "Add the auditor user accounts to the &#x27;logging.viewer&#x27; and &#x27;bigQuery.dataViewer&#x27; predefined IAM roles.",
+            "is_correct": null
+          },
+          {
+            "letter": "D",
+            "text": "Add the auditor user accounts to two new custom IAM roles.",
+            "is_correct": null
+          }
+        ],
+        "type_data": {},
+        "topic_label": "Topic 1",
+        "_dom_card_html": "<div class=\"card\"><div class=\"card-header\"><div class=\"d-flex align-items-center flex-wrap gap-2\"><h4 class=\"card-title mb-0 flex-grow-1\">Question 25</h4> <span class=\"badge bg-primary-subtle text-primary fs-12 text-uppercase\">Single Answer</span> <div class=\"position-relative d-inline-flex svelte-59rrpt\"><button type=\"button\" class=\"btn btn-sm ebo-save-btn btn-soft-secondary svelte-59rrpt\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-label=\"Save Question 25\"><i aria-hidden=\"true\" class=\"ri-bookmark-line align-middle svelte-59rrpt\"></i> <span class=\"d-none d-sm-inline ms-1 svelte-59rrpt\">Save</span></button>   <span class=\"visually-hidden svelte-59rrpt\" aria-live=\"polite\"></span></div></div> <p class=\"card-subtitle text-muted mt-1 mb-0 d-flex flex-wrap align-items-center gap-2\"><span>Topic 1</span>  </p></div> <div class=\"card-body\"><div class=\"exambase-question__rich-text mb-3\">You need to configure IAM access audit logging in BigQuery for external auditors. You want to follow Google-recommended practices. What should you do?<br></div>  <ul class=\"list-group list-group-flush mb-0\"><li class=\"list-group-item d-flex align-items-start gap-3 px-0 text-success\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-success-subtle text-success\">A</span> <div class=\"exambase-question__rich-text flex-grow-1\">Add the auditors group to the &#x27;logging.viewer&#x27; and &#x27;bigQuery.dataViewer&#x27; predefined IAM roles.</div> <span class=\"badge bg-success-subtle text-success flex-shrink-0\"><i class=\"ri-check-line align-middle me-1\" aria-hidden=\"true\"></i> Correct</span></li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">B</span> <div class=\"exambase-question__rich-text flex-grow-1\">Add the auditors group to two new custom IAM roles.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">C</span> <div class=\"exambase-question__rich-text flex-grow-1\">Add the auditor user accounts to the &#x27;logging.viewer&#x27; and &#x27;bigQuery.dataViewer&#x27; predefined IAM roles.</div> </li><li class=\"list-group-item d-flex align-items-start gap-3 px-0\"><span aria-hidden=\"true\" class=\"avatar-xxs flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center fw-semibold bg-light text-body\">D</span> <div class=\"exambase-question__rich-text flex-grow-1\">Add the auditor user accounts to two new custom IAM roles.</div> </li></ul> <div class=\"mt-3\"><button type=\"button\" class=\"btn btn-soft-primary btn-sm\" aria-pressed=\"true\">Hide Answer</button></div>  <div class=\"mt-3 border-info-subtle  card\"><div class=\"bg-info-subtle text-info-emphasis py-2 fw-semibold card-header\"><i class=\"ri-information-line align-middle me-1\" aria-hidden=\"true\"></i> Explanation</div> <div class=\"bg-light-subtle card-body\"><div class=\"exambase-question__rich-text \">Google Cloud IAM best practices recommend using predefined roles to minimize configuration effort and relying on security teams for role updates. Additionally, managing access via groups rather than individual user accounts simplifies lifecycle management and ensures consistent permissions for all members of the auditor group.</div></div></div> <div class=\"border-top border-top-dashed pt-3 mt-4\"><button type=\"button\" class=\"btn btn-link p-0 text-body text-decoration-none text-start\" aria-expanded=\"false\"><h5 class=\"mb-0 d-inline\" style=\"font-size: 0.9rem;\"><i class=\"ri-chat-3-line align-middle me-1\" aria-hidden=\"true\"></i> Discussion  <i aria-hidden=\"true\" class=\"ri-arrow-down-s-line align-middle ms-1\"></i></h5></button> <div class=\"mt-3 d-none\"><p class=\"text-muted small mb-3\">No comments yet. Be the first to weigh in.</p>  <div class=\"mt-4 pt-3 border-top text-center\"><p class=\"text-muted small mb-2\">Sign in to join the discussion.</p> <a rel=\"nofollow\" class=\"btn btn-soft-primary btn-sm\" href=\"/login?redirectTo=%2Fexams%2Fgoogle%2Fassociate-cloud-engineer%2Fpractice-questions%2F5\"><i class=\"ri-login-box-line align-middle me-1\" aria-hidden=\"true\"></i> Sign in</a></div></div></div></div></div>"
+      }
+    ],
+    "topics": [],
+    "series": [],
+    "case_studies": []
+  }
+}

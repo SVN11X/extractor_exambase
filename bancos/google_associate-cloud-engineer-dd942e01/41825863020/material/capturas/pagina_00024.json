@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/24",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 24,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10897,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 116,
+          "question_type": "mc_single",
+          "question_text": "You are configuring service accounts for an application that spans multiple projects. Virtual machines (VMs) running in the web-applications project need access to BigQuery datasets in crm-databases-proj. You want to follow Google-recommended practices to give access to the service account in the web-applications project. What should you do?<br/>",
+          "solution_text": "Google-recommended practices emphasize the Principle of Least Privilege, requiring service accounts to receive only the permissions necessary for their specific tasks. Granting the 'Project Owner' role (as in options A, B, and C) provides excessive administrative access that violates security best practices. Option D is the correct choice because it assigns the `bigquery.dataViewer` role, which grants the minimum required read-only access to the BigQuery datasets needed by the web applications.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41668,
+              "letter": "A",
+              "text": "Give \"project owner\" for web-applications appropriate roles to crm-databases-proj.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41669,
+              "letter": "B",
+              "text": "Give \"project owner\" role to crm-databases-proj and the web-applications project.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41670,
+              "letter": "C",
+              "text": "Give \"project owner\" role to crm-databases-proj and bigquery.dataViewer role to web-applications.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41671,
+              "letter": "D",
+              "text": "Give bigquery.dataViewer role to crm-databases-proj and appropriate roles to web-applications.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10898,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 117,
+          "question_type": "mc_single",
+          "question_text": "An employee was terminated, but their access to Google Cloud was not removed until 2 weeks later. You need to find out if this employee accessed any sensitive customer information after their termination. What should you do?<br/>",
+          "solution_text": "Data access audit logs specifically record API calls that read user-provided data, such as accessing sensitive customer information. System event logs only track administrative changes to resource configuration and metadata, not the content itself. Therefore, searching Data Access logs for the terminated user's email is the correct method to verify data retrieval.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41672,
+              "letter": "A",
+              "text": "View System Event Logs in Cloud Logging. Search for the user's email as the principal.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41673,
+              "letter": "B",
+              "text": "View System Event Logs in Cloud Logging. Search for the service account associated with the user.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41674,
+              "letter": "C",
+              "text": "View Data Access audit logs in Cloud Logging. Search for the user's email as the principal.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 41675,
+              "letter": "D",
+              "text": "View the Admin Activity log in Cloud Logging. Search for the service account associated with the user.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10899,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 118,
+          "question_type": "mc_single",
+          "question_text": "You need to create a custom IAM role for use with a GCP service. All permissions in the role must be suitable for production use. You also want to clearly share with your organization the status of the custom role. This will be the first version of the custom role. What should you do?<br/>",
+          "solution_text": "To ensure permissions are suitable for production use, you must select permissions with a 'supported' support level, as the 'testing' level is explicitly not recommended for production due to potential unexpected behavior.<br/>Since this is the first version of the custom role and it is being developed or tested, the launch stage should be set to ALPHA, which indicates the role is not yet ready for widespread use.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41676,
+              "letter": "A",
+              "text": "Use permissions in your role that use the 'supported' support level for role permissions. Set the role stage to ALPHA while testing the role permissions.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41677,
+              "letter": "B",
+              "text": "Use permissions in your role that use the 'supported' support level for role permissions. Set the role stage to BETA while testing the role permissions.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41678,
+              "letter": "C",
+              "text": "Use permissions in your role that use the 'testing' support level for role permissions. Set the role stage to ALPHA while testing the role permissions.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41679,
+              "letter": "D",
+              "text": "Use permissions in your role that use the 'testing' support level for role permissions. Set the role stage to BETA while testing the role permissions.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10900,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 119,
+          "question_type": "mc_single",
+          "question_text": "Your company has a large quantity of unstructured data in different file formats. You want to perform ETL transformations on the data. You need to make the data accessible on Google Cloud so it can be processed by a Dataflow job. What should you do?<br/>",
+          "solution_text": "Google Cloud Storage is the object storage service designed specifically for storing large quantities of unstructured data in various file formats.<br/>Dataflow jobs natively read from and write to Cloud Storage, making it the standard landing zone for raw data before ETL transformations.<br/>BigQuery is optimized for structured analytics queries, while Cloud SQL and Spanner are relational databases unsuited for raw, multi-format file ingestion.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41680,
+              "letter": "A",
+              "text": "Upload the data to BigQuery using the bq command line tool.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41681,
+              "letter": "B",
+              "text": "Upload the data to Cloud Storage using the gsutil command line tool.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41682,
+              "letter": "C",
+              "text": "Upload the data into Cloud SQL using the import function in the console.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41683,
+              "letter": "D",
+              "text": "Upload the data into Cloud Spanner using the import function in the console.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10901,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 120,
+          "question_type": "mc_single",
+          "question_text": "You need to manage multiple Google Cloud projects in the fewest steps possible. You want to configure the Google Cloud SDK command line interface (CLI) so that you can easily manage multiple projects. What should you do?<br/>",
+          "solution_text": "The Google Cloud SDK supports multiple named configurations to isolate settings like project ID and account for different environments. You should use `gcloud config configurations create` to establish a distinct configuration profile for each project you manage. Then, use `gcloud config configurations activate` to switch the active context between these profiles efficiently, avoiding the need to re-run initialization or manually override every setting.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41684,
+              "letter": "A",
+              "text": "1. Create a configuration for each project you need to manage. 2. Activate the appropriate configuration when you work with each of your assigned Google Cloud projects.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41685,
+              "letter": "B",
+              "text": "1. Create a configuration for each project you need to manage. 2. Use gcloud init to update the configuration values when you need to work with a non-default project",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41686,
+              "letter": "C",
+              "text": "1. Use the default configuration for one project you need to manage. 2. Activate the appropriate configuration when you work with each of your assigned Google Cloud projects.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41687,
+              "letter": "D",
+              "text": "1. Use the default configuration for one project you need to manage. 2. Use gcloud init to update the configuration values when you need to work with a non-default project.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 24,
+    "discussions": {
+      "10897": {
+        "target_type": "question",
+        "target_id": 10897,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10898": {
+        "target_type": "question",
+        "target_id": 10898,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10899": {
+        "target_type": "question",
+        "target_id": 10899,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10900": {
+        "target_type": "question",
+        "target_id": 10900,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10901": {
+        "target_type": "question",
+        "target_id": 10901,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      116,
+      117,
+      118,
+      119,
+      120
+    ],
+    "attempts": [
+      {
+        "question": 116,
+        "answerVisible": true
+      },
+      {
+        "question": 117,
+        "answerVisible": true
+      },
+      {
+        "question": 118,
+        "answerVisible": true
+      },
+      {
+        "question": 119,
+        "answerVisible": true
+      },
+      {
+        "question": 120,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 51,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 11032,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 251,
+        "question_type": "mc_single",
+        "question_text": "You installed the Google Cloud CLI on your workstation and set the proxy configuration. However, you are worried that your proxy credentials will be recorded in the gcloud CLI logs. You want to prevent your proxy credential from being logged. What should you do?",
+        "solution_text": "Setting proxy credentials via environment variables (CLOUDSDK_PROXY_USERNAME and CLOUDSDK_PROXY_PASSWORD) ensures they are not persisted in the gcloud configuration file or logged by the CLI, addressing security concerns about credential exposure.<br/>In contrast, using 'gcloud config set' stores values in the configuration file, which may be logged or visible, while custom CA cert files are unrelated to proxy authentication.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42209,
+            "letter": "A",
+            "text": "Configure username and password by using gcloud config set proxy/username and gcloud config set proxy/password commands.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42210,
+            "letter": "B",
+            "text": "Encode username and password in sha256 encoding, and save in to a text file. Use filename as a value in the gcloud config set core/custom_ca_certs_file command.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42211,
+            "letter": "C",
+            "text": "Provide values for CLOUDSDK_PROXY_USERNAME and CLOUDSDK_PROXY_PASSWORD in the gcloud CLI tool configuration file.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42212,
+            "letter": "D",
+            "text": "Set the CLOUDSDK_PROXY_USERNAME and CLOUDSDK_PROXY_PASSWORD properties by using environment variables in your command line tool.<br/>",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11033,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 252,
+        "question_type": "mc_single",
+        "question_text": "Your company developed an application to deploy on Google Kubernetes Engine. Certain parts of the application are not fault-tolerant and are allowed to have downtime. Other parts of the application are critical and must always be available. You need to configure a Google Kubernetes Engine cluster while optimizing for cost. What should you do?",
+        "solution_text": "Spot VMs provide significant cost savings but can be preempted by the cloud provider with little notice, making them suitable only for fault-tolerant workloads that tolerate interruptions.<br/><br/>Critical components requiring high availability must run on standard VMs to ensure reliability and prevent disruption from preemption.<br/><br/>Therefore, you should create separate node pools: deploy fault-tolerant parts on Spot VMs to optimize cost and critical parts on standard VMs to guarantee uptime.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42213,
+            "letter": "A",
+            "text": "Create a cluster with a single node-pool by using standard VMs. Label he fault-tolerant Deployments as spot_true.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42214,
+            "letter": "B",
+            "text": "Create a cluster with a single node-pool by using Spot VMs. Label the critical Deployments as spot_false.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42215,
+            "letter": "C",
+            "text": "Create a cluster with both a Spot VM node pool and a node pool by using standard VMs. Deploy the critical deployments on the Spot VM node pool and the fault-tolerant deployments on the node pool by using standard VMs.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42216,
+            "letter": "D",
+            "text": "Create a cluster with both a Spot VM node pool and a nods pool by using standard VMs. Deploy the critical deployments on the node pool by using standard VMs and the fault-tolerant deployments on the Spot VM node pool.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11034,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 253,
+        "question_type": "mc_single",
+        "question_text": "You need to deploy an application in Google Cloud using serverless technology. You want to test a new version of the application with a small percentage of production traffic. What should you do?",
+        "solution_text": "Cloud Run is a fully managed serverless platform that supports traffic splitting between different revisions of the same service.<br/>By using tags and the `gcloud run services update-traffic` command, you can gradually shift a specific percentage of production traffic to a new version for testing.<br/>Other options are incorrect because GKE is not strictly serverless, Cloud Functions do not support native traffic splitting by function name, and App Engine requires updating the same service rather than creating new services for versions.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42217,
+            "letter": "A",
+            "text": "Deploy the application to Cloud Run. Use gradual rollouts for traffic splitting.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 42218,
+            "letter": "B",
+            "text": "Deploy the application to Google Kubernetes Engine. Use Anthos Service Mash for traffic splitting.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42219,
+            "letter": "C",
+            "text": "Deploy the application to Cloud Functions. Specify the version number in the functions name.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42220,
+            "letter": "D",
+            "text": "Deploy the application to App Engine. For each new version, create a new service.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11035,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 254,
+        "question_type": "mc_single",
+        "question_text": "Your company's security vulnerability management policy wants a member of the security team to have visibility into vulnerabilities and other OS metadata for a specific Compute Engine instance. This Compute Engine instance hosts a critical application in your Google Cloud project. You need to implement your company's security vulnerability management policy. What should you do?",
+        "solution_text": "The OS Config agent is required to collect vulnerability data and OS inventory metadata from Compute Engine instances, whereas the Ops Agent focuses on metrics and logs.<br/>Granting the roles/osconfig.vulnerabilityReportViewer IAM role provides the security team member with the specific visibility into vulnerabilities needed by the policy, adhering to the principle of least privilege.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42221,
+            "letter": "A",
+            "text": "•\tEnsure that the Ops Agent is installed on the Compute Engine instance.<br/>•\tCreate a custom metric in the Cloud Monitoring dashboard.<br/>•\tProvide the security team member with access to this dashboard.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42222,
+            "letter": "B",
+            "text": "•\tEnsure that the Ops Agent is installed on the Compute Engine instance.<br/>•\tProvide the security team member roles/osconfig.inventoryViewer permission.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42223,
+            "letter": "C",
+            "text": "•\tEnsure that the OS Config agent is installed on the Compute Engine instance.<br/>•\tProvide the security team member roles/osconfig.vulnerabilityReportViewer permission.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 42224,
+            "letter": "D",
+            "text": "•\tEnsure that the OS Config agent is installed on the Compute Engine instance.<br/>•\tCreate a log sink to BigQuery dataset.<br/>•\tProvide the security team member with access to this dataset.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11036,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 255,
+        "question_type": "mc_single",
+        "question_text": "You want to enable your development team to deploy new features to an existing Cloud Run service in production. To minimize the risk associated with a new revision, you want to reduce the number of customers who might be affected by an outage without introducing any development or operational costs to your customers. You want to follow Google-recommended practices for managing revisions to a service. What should you do?",
+        "solution_text": "Gradually rolling out the new revision allows you to split traffic between revisions, minimizing the blast radius of a potential outage by limiting initial exposure. This approach aligns with Google-recommended practices for risk mitigation and ensures no development or operational costs are incurred by customers.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42225,
+            "letter": "A",
+            "text": "Ask your customers to retry access to your service with exponential backoff to mitigate any potential problems after the new revision is deployed.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42226,
+            "letter": "B",
+            "text": "Gradually roll out the new revision and split customer traffic between the revisions to allow rollback in case a problem occurs.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 42227,
+            "letter": "C",
+            "text": "Send all customer traffic to the new revision, and roll back to a previous revision if you witness any problems in production.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42228,
+            "letter": "D",
+            "text": "Deploy your application to a second Cloud Run service, and ask your customers to use the second Cloud Run service.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 51,
+  "discussions": {
+    "11032": {
+      "target_type": "question",
+      "target_id": 11032,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11033": {
+      "target_type": "question",
+      "target_id": 11033,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11034": {
+      "target_type": "question",
+      "target_id": 11034,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11035": {
+      "target_type": "question",
+      "target_id": 11035,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11036": {
+      "target_type": "question",
+      "target_id": 11036,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

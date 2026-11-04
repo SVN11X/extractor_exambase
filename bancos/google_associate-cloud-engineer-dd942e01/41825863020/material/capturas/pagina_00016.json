@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/16",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 16,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10857,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 76,
+          "question_type": "mc_single",
+          "question_text": "You are building a new version of an application hosted in an App Engine environment. You want to test the new version with 1% of users before you completely switch your application over to the new version. What should you do?<br/>",
+          "solution_text": "Google App Engine natively supports deploying multiple versions of an application within the same service. You can configure traffic splitting directly in the App Engine settings via the GCP Console to route a specific percentage (e.g., 1%) of requests to the new version for testing purposes, without needing to migrate to other services or create separate apps.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41507,
+              "letter": "A",
+              "text": "Deploy a new version of your application in Google Kubernetes Engine instead of App Engine and then use GCP Console to split traffic.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41508,
+              "letter": "B",
+              "text": "Deploy a new version of your application in a Compute Engine instance instead of App Engine and then use GCP Console to split traffic.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41509,
+              "letter": "C",
+              "text": "Deploy a new version as a separate app in App Engine. Then configure App Engine using GCP Console to split traffic between the two apps.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41510,
+              "letter": "D",
+              "text": "Deploy a new version of your application in App Engine. Then go to App Engine settings in GCP Console and split traffic between the current version and newly deployed versions accordingly.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10858,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 77,
+          "question_type": "mc_single",
+          "question_text": "You need to provide a cost estimate for a Kubernetes cluster using the GCP pricing calculator for Kubernetes. Your workload requires high IOPs, and you will also be using disk snapshots. You start by entering the number of nodes, average hours, and average days. What should you do next?<br/>",
+          "solution_text": "The requirement for high IOPS necessitates selecting Local SSDs, which provide the highest performance block storage in GCP. Since disk snapshots are also explicitly required, you must configure both Local SSD and persistent disk snapshot storage fields to generate an accurate cost estimate.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41511,
+              "letter": "A",
+              "text": "Fill in local SSD. Fill in persistent disk storage and snapshot storage.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41512,
+              "letter": "B",
+              "text": "Fill in local SSD. Add estimated cost for cluster management.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41513,
+              "letter": "C",
+              "text": "Select Add GPUs. Fill in persistent disk storage and snapshot storage.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41514,
+              "letter": "D",
+              "text": "Select Add GPUs. Add estimated cost for cluster management.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10859,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 78,
+          "question_type": "mc_single",
+          "question_text": "You are using Google Kubernetes Engine with autoscaling enabled to host a new application. You want to expose this new application to the public, using HTTPS on a public IP address. What should you do?<br/>",
+          "solution_text": "Option A is correct because Kubernetes Ingress resources in GKE automatically provision a Global HTTP(S) Load Balancer, which provides a single public IP address and handles SSL/TLS termination for HTTPS traffic.<br/><br/>ClusterIP services (B) are internal-only and cannot be exposed directly to the public internet.<br/><br/>NodePort services (C) expose individual node IPs rather than a unified load-balanced endpoint, requiring external DNS management that GKE does not provide automatically.<br/><br/>Option D is incorrect because manually managing HAProxy pods and iptables rules bypasses GKE's native load balancing capabilities and is not the recommended approach for public HTTPS exposure.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41515,
+              "letter": "A",
+              "text": "Create a Kubernetes Service of type NodePort for your application, and a Kubernetes Ingress to expose this Service via a Cloud Load Balancer.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41516,
+              "letter": "B",
+              "text": "Create a Kubernetes Service of type ClusterIP for your application. Configure the public DNS name of your application using the IP of this Service.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41517,
+              "letter": "C",
+              "text": "Create a Kubernetes Service of type NodePort to expose the application on port 443 of each node of the Kubernetes cluster. Configure the public DNS name of your application with the IP of every node of the cluster to achieve load-balancing.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41518,
+              "letter": "D",
+              "text": "Create a HAProxy pod in the cluster to load-balance the traffic to all the pods of the application. Forward the public traffic to HAProxy with an iptable rule. Configure the DNS name of your application using the public IP of the node HAProxy is running on.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10860,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 79,
+          "question_type": "mc_single",
+          "question_text": "You need to enable traffic between multiple groups of Compute Engine instances that are currently running two different GCP projects. Each group of Compute<br/>Engine instances is running in its own VPC. What should you do?<br/>",
+          "solution_text": "Shared VPC is the recommended GCP architecture pattern for enabling communication between Compute Engine instances across multiple projects within the same organization.<br/>It allows a central host project to manage network resources while granting service projects access to those resources, ensuring centralized security and management.<br/>The other options incorrectly suggest migrating instances to new VPCs or imply administrative requirements not strictly necessary for network connectivity configuration.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41519,
+              "letter": "A",
+              "text": "Verify that both projects are in a GCP Organization. Create a new VPC and add all instances.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41520,
+              "letter": "B",
+              "text": "Verify that both projects are in a GCP Organization. Share the VPC from one project and request that the Compute Engine instances in the other project use this shared VPC.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41521,
+              "letter": "C",
+              "text": "Verify that you are the Project Administrator of both projects. Create two new VPCs and add all instances.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41522,
+              "letter": "D",
+              "text": "Verify that you are the Project Administrator of both projects. Create a new VPC and add all instances.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10861,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 80,
+          "question_type": "mc_single",
+          "question_text": "You want to add a new auditor to a Google Cloud Platform project. The auditor should be allowed to read, but not modify, all project items.<br/>How should you configure the auditor's permissions?<br/>",
+          "solution_text": "The built-in IAM Project Viewer role is specifically designed to provide read-only access to all resources within a project without allowing modifications. <br/>While custom roles are recommended for strict least-privilege adherence in production, the requirement to grant read access to *all* project items makes the predefined Viewer role the most appropriate and efficient choice, as creating a custom role would require manually aggregating thousands of individual view permissions.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41523,
+              "letter": "A",
+              "text": "Create a custom role with view-only project permissions. Add the user's account to the custom role.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41524,
+              "letter": "B",
+              "text": "Create a custom role with view-only service permissions. Add the user's account to the custom role.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41525,
+              "letter": "C",
+              "text": "Select the built-in IAM project Viewer role. Add the user's account to this role.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 41526,
+              "letter": "D",
+              "text": "Select the built-in IAM service Viewer role. Add the user's account to this role.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 16,
+    "discussions": {
+      "10857": {
+        "target_type": "question",
+        "target_id": 10857,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10858": {
+        "target_type": "question",
+        "target_id": 10858,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10859": {
+        "target_type": "question",
+        "target_id": 10859,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10860": {
+        "target_type": "question",
+        "target_id": 10860,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10861": {
+        "target_type": "question",
+        "target_id": 10861,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      76,
+      77,
+      78,
+      79,
+      80
+    ],
+    "attempts": [
+      {
+        "question": 76,
+        "answerVisible": true
+      },
+      {
+        "question": 77,
+        "answerVisible": true
+      },
+      {
+        "question": 78,
+        "answerVisible": true
+      },
+      {
+        "question": 79,
+        "answerVisible": true
+      },
+      {
+        "question": 80,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 3,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 10792,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 11,
+        "question_type": "mc_single",
+        "question_text": "You need a dynamic way of provisioning VMs on Compute Engine. The exact specifications will be in a dedicated configuration file. You want to follow Google's recommended practices. Which method should you use?<br/>",
+        "solution_text": "Deployment Manager is the correct choice because it is Google Cloud's infrastructure-as-code service designed to deploy and manage resources using declarative configuration files (Jinja/YAML). It allows for dynamic, version-controlled provisioning of VMs and other resources, adhering to recommended practices for reproducible infrastructure. While Managed Instance Groups handle scaling, they rely on instance templates rather than a standalone configuration file for the initial deployment topology.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41247,
+            "letter": "A",
+            "text": "Deployment Manager",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 41248,
+            "letter": "B",
+            "text": "Cloud Composer",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41249,
+            "letter": "C",
+            "text": "Managed Instance Group",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41250,
+            "letter": "D",
+            "text": "Unmanaged Instance Group",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10793,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 12,
+        "question_type": "mc_single",
+        "question_text": "You have a Dockerfile that you need to deploy on Kubernetes Engine. What should you do?<br/>",
+        "solution_text": "To deploy on Kubernetes Engine, you must first build a container image from the Dockerfile and push it to a container registry (historically Container Registry, now Artifact Registry), as Kubernetes pulls images from registries rather than file systems or object storage. Option D is incorrect because Cloud Storage stores files, not accessible container images for direct runtime execution. Options A and B are invalid because 'kubectl app deploy' does not exist and 'gcloud app deploy' targets App Engine, not GKE.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41251,
+            "letter": "A",
+            "text": "Use kubectl app deploy &lt;dockerfilename&gt;.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41252,
+            "letter": "B",
+            "text": "Use gcloud app deploy &lt;dockerfilename&gt;.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41253,
+            "letter": "C",
+            "text": "Create a docker image from the Dockerfile and upload it to Container Registry. Create a Deployment YAML file to point to that image. Use kubectl to create the deployment with that file.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 41254,
+            "letter": "D",
+            "text": "Create a docker image from the Dockerfile and upload it to Cloud Storage. Create a Deployment YAML file to point to that image. Use kubectl to create the deployment with that file.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10794,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 13,
+        "question_type": "mc_single",
+        "question_text": "Your development team needs a new Jenkins server for their project. You need to deploy the server using the fewest steps possible. What should you do?<br/>",
+        "solution_text": "The GCP Marketplace provides pre-configured solutions that streamline deployment by handling infrastructure provisioning and software installation automatically. This method requires fewer steps than manually installing Jenkins on Compute Engine (B), configuring Kubernetes deployments (C), or deploying WAR files to App Engine (A).",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41255,
+            "letter": "A",
+            "text": "Download and deploy the Jenkins Java WAR to App Engine Standard.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41256,
+            "letter": "B",
+            "text": "Create a new Compute Engine instance and install Jenkins through the command line interface.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41257,
+            "letter": "C",
+            "text": "Create a Kubernetes cluster on Compute Engine and create a deployment with the Jenkins Docker image.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41258,
+            "letter": "D",
+            "text": "Use GCP Marketplace to launch the Jenkins solution.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10795,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 14,
+        "question_type": "mc_single",
+        "question_text": "You need to update a deployment in Deployment Manager without any resource downtime in the deployment. Which command should you use?<br/>",
+        "solution_text": "The `gcloud deployment-manager deployments update` command is designed to modify an existing deployment by applying a new configuration file.<br/>Deployment Manager calculates the difference between the current state and the desired state defined in the config, then updates resources incrementally to minimize or eliminate downtime during the transition.<br/>Option A creates a new deployment, while Options C and D manage individual resources rather than the deployment as a whole, which does not align with the requirement to update the deployment without downtime.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41259,
+            "letter": "A",
+            "text": "gcloud deployment-manager deployments create --config &lt;deployment-config-path&gt;",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41260,
+            "letter": "B",
+            "text": "gcloud deployment-manager deployments update --config &lt;deployment-config-path&gt;",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 41261,
+            "letter": "C",
+            "text": "gcloud deployment-manager resources create --config &lt;deployment-config-path&gt;",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41262,
+            "letter": "D",
+            "text": "gcloud deployment-manager resources update --config &lt;deployment-config-path&gt;",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10796,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 15,
+        "question_type": "mc_single",
+        "question_text": "You need to run an important query in BigQuery but expect it to return a lot of records. You want to find out how much it will cost to run the query. You are using on-demand pricing. What should you do?<br/>",
+        "solution_text": "BigQuery on-demand pricing charges based on the amount of data processed (bytes read) during query execution, not the number of rows returned or simple row counts.<br/>Using the `--dry_run` option with the bq command-line tool allows you to estimate the total bytes that will be scanned without actually running the query or incurring costs.<br/>This byte estimate can then be converted to a cost using Google Cloud's Pricing Calculator, providing an accurate prediction of expenses before execution.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41263,
+            "letter": "A",
+            "text": "Arrange to switch to Flat-Rate pricing for this query, then move back to on-demand.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41264,
+            "letter": "B",
+            "text": "Use the command line to run a dry run query to estimate the number of bytes read. Then convert that bytes estimate to dollars using the Pricing Calculator.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 41265,
+            "letter": "C",
+            "text": "Use the command line to run a dry run query to estimate the number of bytes returned. Then convert that bytes estimate to dollars using the Pricing Calculator.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41266,
+            "letter": "D",
+            "text": "Run a select count (*) to get an idea of how many records your query will look through. Then convert that number of rows to dollars using the Pricing Calculator.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 3,
+  "discussions": {
+    "10792": {
+      "target_type": "question",
+      "target_id": 10792,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10793": {
+      "target_type": "question",
+      "target_id": 10793,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10794": {
+      "target_type": "question",
+      "target_id": 10794,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10795": {
+      "target_type": "question",
+      "target_id": 10795,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10796": {
+      "target_type": "question",
+      "target_id": 10796,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

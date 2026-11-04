@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/6",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 6,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10807,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 26,
+          "question_type": "mc_single",
+          "question_text": "You need to set up permissions for a set of Compute Engine instances to enable them to write data into a particular Cloud Storage bucket. You want to follow<br/>Google-recommended practices. What should you do?<br/>",
+          "solution_text": "Google recommends using Identity and Access Management (IAM) roles for fine-grained permissions rather than legacy access scopes. The principle of least privilege dictates granting only the necessary permissions; 'storage.objectCreator' allows writing objects without providing read, delete, or list capabilities.<br/>Therefore, creating a service account and assigning the 'storage.objectCreator' role to the specific bucket is the correct approach.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41307,
+              "letter": "A",
+              "text": "Create a service account with an access scope. Use the access scope 'https://www.googleapis.com/auth/devstorage.write_only'.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41308,
+              "letter": "B",
+              "text": "Create a service account with an access scope. Use the access scope 'https://www.googleapis.com/auth/cloud-platform'.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41309,
+              "letter": "C",
+              "text": "Create a service account and add it to the IAM role 'storage.objectCreator' for that bucket.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 41310,
+              "letter": "D",
+              "text": "Create a service account and add it to the IAM role 'storage.objectAdmin' for that bucket.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10808,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 27,
+          "question_type": "mc_single",
+          "question_text": "You have sensitive data stored in three Cloud Storage buckets and have enabled data access logging. You want to verify activities for a particular user for these buckets, using the fewest possible steps. You need to verify the addition of metadata labels and which files have been viewed from those buckets. What should you do?<br/>",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41311,
+              "letter": "A",
+              "text": "Using the GCP Console, filter the Activity log to view the information.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41312,
+              "letter": "B",
+              "text": "Using the GCP Console, filter the Stackdriver log to view the information.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41313,
+              "letter": "C",
+              "text": "View the bucket in the Storage section of the GCP Console.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41314,
+              "letter": "D",
+              "text": "Create a trace in Stackdriver to view the information.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10809,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 28,
+          "question_type": "mc_single",
+          "question_text": "You are the project owner of a GCP project and want to delegate control to colleagues to manage buckets and files in Cloud Storage. You want to follow Google- recommended practices. Which IAM roles should you grant your colleagues?<br/>",
+          "solution_text": "The requirement is to manage both buckets and files. The Storage Admin role grants full control over Cloud Storage resources, including creating, modifying, and deleting buckets as well as managing objects within them.<br/><br/>In contrast, Project Editor grants excessive permissions across all project resources, while Storage Object Admin lacks the necessary permissions to create or modify bucket configurations.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41315,
+              "letter": "A",
+              "text": "Project Editor",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41316,
+              "letter": "B",
+              "text": "Storage Admin",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41317,
+              "letter": "C",
+              "text": "Storage Object Admin",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41318,
+              "letter": "D",
+              "text": "Storage Object Creator",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10810,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 29,
+          "question_type": "mc_single",
+          "question_text": "You have an object in a Cloud Storage bucket that you want to share with an external company. The object contains sensitive data. You want access to the content to be removed after four hours. The external company does not have a Google account to which you can grant specific user-based access privileges. You want to use the most secure method that requires the fewest steps. What should you do?<br/>",
+          "solution_text": "Signed URLs are the recommended method for granting temporary, secure access to Cloud Storage objects without creating user accounts or making resources public. By setting a four-hour expiration, access is automatically revoked after the specified time, satisfying the security requirement efficiently.<br/>Other options fail because making the object public (B) or configuring static website hosting (C) exposes sensitive data indefinitely until manual deletion, while creating and deleting a bucket (D) is operationally complex and unnecessary.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41319,
+              "letter": "A",
+              "text": "Create a signed URL with a four-hour expiration and share the URL with the company.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41320,
+              "letter": "B",
+              "text": "Set object access to 'public' and use object lifecycle management to remove the object after four hours.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41321,
+              "letter": "C",
+              "text": "Configure the storage bucket as a static website and furnish the object's URL to the company. Delete the object from the storage bucket after four hours.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41322,
+              "letter": "D",
+              "text": "Create a new Cloud Storage bucket specifically for the external company to access. Copy the object to that bucket. Delete the bucket after four hours have passed.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10811,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 30,
+          "question_type": "mc_single",
+          "question_text": "You are creating a Google Kubernetes Engine (GKE) cluster with a cluster autoscaler feature enabled. You need to make sure that each node of the cluster will run a monitoring pod that sends container metrics to a third-party monitoring solution. What should you do?<br/>",
+          "solution_text": "A DaemonSet is designed to run exactly one instance of a Pod on each node in the cluster. This ensures that as the GKE cluster autoscaler adds new nodes, the monitoring pod is automatically scheduled on them without manual intervention.<br/>In contrast, Deployments manage replica counts rather than per-node coverage, StatefulSets are for stateful applications requiring stable identities, and cluster initializers do not handle ongoing node lifecycle events.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41323,
+              "letter": "A",
+              "text": "Deploy the monitoring pod in a StatefulSet object.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41324,
+              "letter": "B",
+              "text": "Deploy the monitoring pod in a DaemonSet object.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41325,
+              "letter": "C",
+              "text": "Reference the monitoring pod in a Deployment object.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41326,
+              "letter": "D",
+              "text": "Reference the monitoring pod in a cluster initializer at the GKE cluster creation time.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 6,
+    "discussions": {
+      "10807": {
+        "target_type": "question",
+        "target_id": 10807,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10808": {
+        "target_type": "question",
+        "target_id": 10808,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10809": {
+        "target_type": "question",
+        "target_id": 10809,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10810": {
+        "target_type": "question",
+        "target_id": 10810,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10811": {
+        "target_type": "question",
+        "target_id": 10811,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "attempts": [
+      {
+        "question": 26,
+        "answerVisible": true
+      },
+      {
+        "question": 27,
+        "answerVisible": true
+      },
+      {
+        "question": 28,
+        "answerVisible": true
+      },
+      {
+        "question": 29,
+        "answerVisible": true
+      },
+      {
+        "question": 30,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

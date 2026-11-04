@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/39",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 39,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10972,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 191,
+          "question_type": "mc_single",
+          "question_text": "You have deployed multiple Linux instances on Compute Engine. You plan on adding more instances in the coming weeks. You want to be able to access all of these instances through your SSH client over the internet without having to configure specific access on the existing and new instances. You do not want the<br/>Compute Engine instances to have a public IP. What should you do?<br/>",
+          "solution_text": "Cloud Identity-Aware Proxy (IAP) TCP forwarding enables secure SSH access to Compute Engine instances without requiring external IP addresses.<br/>By configuring IAP for SSH and TCP resources, you can tunnel connections through Google's infrastructure, bypassing the need for public IPs on individual VMs.<br/>This approach centralizes access control via IAM policies, ensuring new instances are automatically accessible if the user has the correct permissions.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41969,
+              "letter": "A",
+              "text": "Configure Cloud Identity-Aware Proxy for HTTPS resources.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41970,
+              "letter": "B",
+              "text": "Configure Cloud Identity-Aware Proxy for SSH and TCP resources",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41971,
+              "letter": "C",
+              "text": "Create an SSH keypair and store the public key as a project-wide SSH Key.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41972,
+              "letter": "D",
+              "text": "Create an SSH keypair and store the private key as a project-wide SSH Key.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10973,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 192,
+          "question_type": "mc_single",
+          "question_text": "You have created an application that is packaged into a Docker image. You want to deploy the Docker image as a workload on Google Kubernetes Engine. What should you do?<br/>",
+          "solution_text": "Google Kubernetes Engine requires container images to be stored in a registry, such as Container Registry (now Artifact Registry), rather than Cloud Storage which is for general object storage. <br/>To deploy the application as a workload, you must create a Deployment resource, which manages the creation and scaling of Pods running the image; Services are used only for network exposure, not for defining the workload itself.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41973,
+              "letter": "A",
+              "text": "Upload the image to Cloud Storage and create a Kubernetes Service referencing the image.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41974,
+              "letter": "B",
+              "text": "Upload the image to Cloud Storage and create a Kubernetes Deployment referencing the image.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41975,
+              "letter": "C",
+              "text": "Upload the image to Container Registry and create a Kubernetes Service referencing the image.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41976,
+              "letter": "D",
+              "text": "Upload the image to Container Registry and create a Kubernetes Deployment referencing the image.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10974,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 193,
+          "question_type": "mc_single",
+          "question_text": "You are using Data Studio to visualize a table from your data warehouse that is built on top of BigQuery. Data is appended to the data warehouse during the day.<br/>At night, the daily summary is recalculated by overwriting the table. You just noticed that the charts in Data Studio are broken, and you want to analyze the problem. What should you do?<br/>",
+          "solution_text": "The issue stems from the nightly data overwrite process in BigQuery, so reviewing the job history in the BigQuery interface is the most direct way to identify execution errors or failures. Cloud Debugger is designed for application code inspection and is irrelevant for data pipeline jobs, while Error Reporting and Cloud Logging are less targeted for diagnosing specific SQL query outcomes.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41977,
+              "letter": "A",
+              "text": "Review the Error Reporting page in the Cloud Console to find any errors.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41978,
+              "letter": "B",
+              "text": "Use the BigQuery interface to review the nightly job and look for any errors.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41979,
+              "letter": "C",
+              "text": "Use Cloud Debugger to find out why the data was not refreshed correctly.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41980,
+              "letter": "D",
+              "text": "In Cloud Logging, create a filter for your Data Studio report.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10975,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 194,
+          "question_type": "mc_single",
+          "question_text": "You have been asked to set up the billing configuration for a new Google Cloud customer. Your customer wants to group resources that share common IAM policies. What should you do?<br/>",
+          "solution_text": "Google Cloud Resource Manager uses folders to create a hierarchical structure for organizing projects and other folders. <br/>Folders enable administrators to group resources and apply common IAM policies at the folder level, which then inherit down to all contained child resources. <br/>Labels are metadata tags and do not support IAM policy inheritance, while billing accounts handle costs rather than access control.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41981,
+              "letter": "A",
+              "text": "Use labels to group resources that share common IAM policies.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41982,
+              "letter": "B",
+              "text": "Use folders to group resources that share common IAM policies.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41983,
+              "letter": "C",
+              "text": "Set up a proper billing account structure to group IAM policies.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41984,
+              "letter": "D",
+              "text": "Set up a proper project naming structure to group IAM policies.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10976,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 195,
+          "question_type": "mc_single",
+          "question_text": "You have been asked to create robust Virtual Private Network (VPN) connectivity between a new Virtual Private Cloud (VPC) and a remote site. Key requirements include dynamic routing, a shared address space of 10.19.0.1/22, and no overprovisioning of tunnels during a failover event. You want to follow Google- recommended practices to set up a high availability Cloud VPN. What should you do?<br/>",
+          "solution_text": "A custom mode VPC network is required to manually define the specific subnet range (10.19.0.1/22) rather than using auto-generated subnets. Dynamic routing is achieved via Cloud Router and BGP, which automatically propagates route changes without manual intervention. Finally, an active/passive tunnel configuration ensures that only one tunnel handles traffic at a time, preventing the overprovisioning of bandwidth during failover events.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41985,
+              "letter": "A",
+              "text": "Use a custom mode VPC network, configure static routes, and use active/passive routing.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41986,
+              "letter": "B",
+              "text": "Use an automatic mode VPC network, configure static routes, and use active/active routing.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41987,
+              "letter": "C",
+              "text": "Use a custom mode VPC network, use Cloud Router border gateway protocol (BGP) routes, and use active/passive routing.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 41988,
+              "letter": "D",
+              "text": "Use an automatic mode VPC network, use Cloud Router border gateway protocol (BGP) routes, and configure policy-based routing.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 39,
+    "discussions": {
+      "10972": {
+        "target_type": "question",
+        "target_id": 10972,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10973": {
+        "target_type": "question",
+        "target_id": 10973,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10974": {
+        "target_type": "question",
+        "target_id": 10974,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10975": {
+        "target_type": "question",
+        "target_id": 10975,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10976": {
+        "target_type": "question",
+        "target_id": 10976,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      191,
+      192,
+      193,
+      194,
+      195
+    ],
+    "attempts": [
+      {
+        "question": 191,
+        "answerVisible": true
+      },
+      {
+        "question": 192,
+        "answerVisible": true
+      },
+      {
+        "question": 193,
+        "answerVisible": true
+      },
+      {
+        "question": 194,
+        "answerVisible": true
+      },
+      {
+        "question": 195,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}
