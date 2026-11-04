@@ -1,0 +1,334 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/67",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 67,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 11112,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 331,
+          "question_type": "mc_multi",
+          "question_text": "You host your website on Compute Engine. The number of global users visiting your website is rapidly expanding. You need to minimize latency and support user growth in multiple geographical regions. You also want to follow Google-recommended practices and minimize operational costs. Which two actions should you take? (Choose two.)",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42532,
+              "letter": "A",
+              "text": "Use an external Application Load Balancer in Regional mode.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42533,
+              "letter": "B",
+              "text": "Deploy your VMs in multiple Google Cloud regions closest to your user’s geographical locations.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42534,
+              "letter": "C",
+              "text": "Use a Network Load Balancer.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42535,
+              "letter": "D",
+              "text": "Use an external Application Load Balancer in Global mode.",
+              "is_correct": true,
+              "order": 3
+            },
+            {
+              "id": 42536,
+              "letter": "E",
+              "text": "Deploy all of your VMs in a single Google Cloud region with the largest available CIDR range.",
+              "is_correct": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": 11113,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 332,
+          "question_type": "mc_single",
+          "question_text": "You are writing a shell script that includes a few gcloud CLI commands to access some Google Cloud resources. You want to test the script in your local development environment with a service account in the most secure way. What should you do?",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42537,
+              "letter": "A",
+              "text": "Generate an ID token for the service account. Use the token with the gcloud CLI commands.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42538,
+              "letter": "B",
+              "text": "Enable service account impersonation, and use the gcloud config set command to use it by default.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42539,
+              "letter": "C",
+              "text": "Download the service account key file and save it in a secure location. Set the GOOGLE_APPLICATION_CREDENTIALS environment variable to the key file.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42540,
+              "letter": "D",
+              "text": "Download the service account key file, and use it to generate an access token. Use the token with the gcloud CLI commands.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11114,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 333,
+          "question_type": "mc_single",
+          "question_text": "Your company is active in the European Economic Area (EEA), and will adopt Google Cloud for its workloads. Projects are currently structured within different folders. You need to ensure any resources that will be deployed are using Google Cloud locations within the EEA by using the Organization Policy Service resource locations constraint. What should you do?",
+          "solution_text": "To enforce compliance across the entire hierarchy, configure the organization policy at the organization level. <br/>When using an allowlist constraint like 'allowed resource locations', you must explicitly list all permitted regions (e.g., those in the EEA) rather than trying to block specific non-EEA regions, which ensures no resources are deployed outside the allowed set.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42541,
+              "letter": "A",
+              "text": "Configure the policy at the folder level, and add all allowed locations to the policy.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42542,
+              "letter": "B",
+              "text": "Configure the policy at the organization level, and add all allowed locations to the policy.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42543,
+              "letter": "C",
+              "text": "Configure the policy at the folder level, and add all disallowed locations to the policy.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42544,
+              "letter": "D",
+              "text": "Configure the policy at the organization level, and add all disallowed locations to the policy.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11115,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 334,
+          "question_type": "mc_single",
+          "question_text": "You are deploying a large, multi-tiered application with more than 1,000 IP addresses in a Google Cloud project that needs to be securely isolated. The application includes the:<br/><br/>1. web tier with frontend servers for public traffic,<br/>2. application tier with servers running core application logic that only need access from the web tier, and<br/>3. database tier with database servers that only need access from the application tier.<br/><br/>You want to minimize cost, complexity, and administrative overhead in the network architecture. What should you do?",
+          "solution_text": "A single VPC with three subnets is the most cost-effective and least complex architecture for multi-tier isolation. Using custom mode firewall rules that restrict traffic based on source IP ranges allows precise segmentation between tiers without the overhead of Shared VPC or Network Peering.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42545,
+              "letter": "A",
+              "text": "Create a /24 Shared VPC with separate subnets for each tier. Use firewall rules that reference network tags to control traffic.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42546,
+              "letter": "B",
+              "text": "Create one custom mode /16 VPC with three subnets. Place each tier in its own subnet and use firewall rules that reference IP subnets to control traffic.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42547,
+              "letter": "C",
+              "text": "Deploy each tier into a separate custom mode /16 VPUse VPC Network Peering to securely connect each custom mode VPManage firewall rules individually in each VPC.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42548,
+              "letter": "D",
+              "text": "Deploy each tier in a /24 VPC by using network tags to identify instances. Implement firewall rules for fine-grained network segmentation.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11116,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 335,
+          "question_type": "mc_single",
+          "question_text": "Your company is closely monitoring their cloud spend. You need to allow different teams to monitor their Google Cloud costs. You must ensure that team members receive notifications when their cloud spend reaches certain thresholds and give team members the ability to create dashboards for additional insights with detailed billing data. You want to follow Google-recommended practices and minimize engineering costs. What should you do?",
+          "solution_text": "Option D is correct because Cloud Billing budgets provide native alerting for cost thresholds without custom code, and exporting billing data to BigQuery is the recommended method for granular analysis.<br/>This approach minimizes engineering costs by avoiding the operational overhead of deploying and maintaining third-party tools like Grafana or writing custom scripts.<br/>BigQuery provides the detailed, queryable data needed for teams to create their own dashboards using standard visualization tools.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42549,
+              "letter": "A",
+              "text": "Deploy Grafana to Compute Engine. Create a dashboard for each team that uses the data from the Cloud Billing API. Ask each team to create their own alerts in Cloud Monitoring.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42550,
+              "letter": "B",
+              "text": "Set up alerts for each team based on required thresholds. Create a shell script to read data from the Cloud Billing API, and push the results to BigQuery. Grant team members access to BigQuery.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42551,
+              "letter": "C",
+              "text": "Deploy Grafana to Compute Engine. Create a dashboard for each team that uses the data from the Cloud Billing Budget API. Ask each team to create their own alerts in Grafana.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42552,
+              "letter": "D",
+              "text": "Set up alerts for each team based on required thresholds. Set up billing exports to BigQuery. Grant team members access to BigQuery.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 67,
+    "discussions": {
+      "11112": {
+        "target_type": "question",
+        "target_id": 11112,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11113": {
+        "target_type": "question",
+        "target_id": 11113,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11114": {
+        "target_type": "question",
+        "target_id": 11114,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11115": {
+        "target_type": "question",
+        "target_id": 11115,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11116": {
+        "target_type": "question",
+        "target_id": 11116,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      331,
+      332,
+      333,
+      334,
+      335
+    ],
+    "attempts": [
+      {
+        "question": 331,
+        "answerVisible": true
+      },
+      {
+        "question": 332,
+        "answerVisible": true
+      },
+      {
+        "question": 333,
+        "answerVisible": true
+      },
+      {
+        "question": 334,
+        "answerVisible": true
+      },
+      {
+        "question": 335,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

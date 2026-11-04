@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/61",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 61,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 11082,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 301,
+          "question_type": "mc_single",
+          "question_text": "You are deploying an application to Google Kubernetes Engine (GKE). The application needs to make API calls to a private Cloud Storage bucket. You need to configure your application Pods to authenticate to the Cloud Storage API, but your organization policy prevents the usage of service account keys. You want to follow Google-recommended practices. What should you do?",
+          "solution_text": "Workload Identity is the Google-recommended practice for authenticating GKE workloads to Cloud services without using long-lived service account keys. Option B correctly describes binding a Kubernetes ServiceAccount to a Google Cloud service account via Workload Identity, allowing pods to authenticate securely using short-lived tokens while adhering to organization policies.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42411,
+              "letter": "A",
+              "text": "Create the GKE cluster with Workload Identity Federation. Configure the default node service account to access the bucket. Deploy the application into the cluster so the application can use the node service account permissions. Use Identity and Access Management (IAM) to grant the service account access to the bucket.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42412,
+              "letter": "B",
+              "text": "Create the GKE cluster with Workload Identity Federation. Create a Google service account and a Kubernetes ServiceAccount, and configure both service accounts to use Workload Identity Federation. Attach the Kubernetes ServiceAccount to the application Pods and configure the Google service account to access the bucket with Identity and Access Management (IAM).",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42413,
+              "letter": "C",
+              "text": "Create the GKE cluster and deploy the application. Request a security exception to create a Google service account key. Set the constraints/iam.serviceAccountKeyExpiryHours organization policy to 24 hours.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42414,
+              "letter": "D",
+              "text": "Create the GKE cluster and deploy the application. Request a security exception to create a Google service account key. Set the constraints/iam.serviceAccountKeyExpiryHours organization policy to 8 hours.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11083,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 302,
+          "question_type": "mc_single",
+          "question_text": "Your company’s developers use an automation that you recently built to provision Linux VMs in Compute Engine within a Google Cloud project to perform various tasks. You need to manage the Linux account lifecycle and access for these users. You want to follow Google-recommended practices to simplify access management while minimizing operational costs. What should you do?",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42415,
+              "letter": "A",
+              "text": "Enable OS Login for all VMs. Use IAM roles to grant user permissions.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 42416,
+              "letter": "B",
+              "text": "Require your developers to create public SSH keys. Write custom startup scripts to update user permissions.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42417,
+              "letter": "C",
+              "text": "Require your developers to create public SSH keys. Make the owner of the public key the root user.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42418,
+              "letter": "D",
+              "text": "Enable OS Login for all VMs. Write custom startup scripts to update user permissions.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11084,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 303,
+          "question_type": "mc_single",
+          "question_text": "You are managing the security configuration of your company’s Google Cloud organization. The Operations team needs specific permissions on both a Google Kubernetes Engine (GKE) cluster and a Cloud SQL instance. Two predefined Identity and Access Management (IAM) roles exist that contain a subset of the permissions needed by the team. You need to configure the necessary IAM permissions for this team while following Google-recommended practices. What should you do?",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42419,
+              "letter": "A",
+              "text": "Create a custom IAM role that combines the permissions from the two relevant predefined roles.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42420,
+              "letter": "B",
+              "text": "Grant the team the two predefined IAM roles.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42421,
+              "letter": "C",
+              "text": "Create a custom IAM role that includes only the required permissions from the predefined roles.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 42422,
+              "letter": "D",
+              "text": "Grant the team the IAM roles of Kubernetes Engine Admin and Cloud SQL Admin.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11085,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 304,
+          "question_type": "mc_single",
+          "question_text": "Your organization has decided to deploy all its compute workloads to Kubernetes on Google Cloud and two other cloud providers. You want to build an Infrastructure-as-code solution to automate the provisioning process for all cloud resources. What should you do?",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42423,
+              "letter": "A",
+              "text": "Build the solution by using Config Connector, and provision the resources.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42424,
+              "letter": "B",
+              "text": "Build the solution by using Terraform, and provision the resources.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42425,
+              "letter": "C",
+              "text": "Build solution by using Python and the cloud SDKs from all providers to provision the resources.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42426,
+              "letter": "D",
+              "text": "Build the solution by using YAML manifests, and provision the resources.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11086,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 305,
+          "question_type": "mc_single",
+          "question_text": "You are planning to deploy an application to Google Cloud. Your application processes asynchronous events from Google services and must be accessible from the public Internet. You need to identify how to deploy your application. You want to follow a standardized process while minimizing development costs. You also want to have no costs when your workloads are not in use. What should you do?",
+          "solution_text": "Cloud Run is the optimal choice because it scales to zero when idle, satisfying the requirement of no costs during inactivity. Eventarc is the standardized serverless event router for Cloud Run, replacing direct Pub/Sub integrations and simplifying asynchronous event handling.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42427,
+              "letter": "A",
+              "text": "Deploy your code to GKE. Use Pub/Sub for event delivery.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42428,
+              "letter": "B",
+              "text": "Deploy your code to Compute Engine. Use Pub/Sub for event delivery.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42429,
+              "letter": "C",
+              "text": "Deploy your code to GKE. Use Eventarc for event delivery.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42430,
+              "letter": "D",
+              "text": "Deploy your code to Cloud Run. Use Eventarc for event delivery.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 61,
+    "discussions": {
+      "11082": {
+        "target_type": "question",
+        "target_id": 11082,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11083": {
+        "target_type": "question",
+        "target_id": 11083,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11084": {
+        "target_type": "question",
+        "target_id": 11084,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11085": {
+        "target_type": "question",
+        "target_id": 11085,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11086": {
+        "target_type": "question",
+        "target_id": 11086,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      301,
+      302,
+      303,
+      304,
+      305
+    ],
+    "attempts": [
+      {
+        "question": 301,
+        "answerVisible": true
+      },
+      {
+        "question": 302,
+        "answerVisible": true
+      },
+      {
+        "question": 303,
+        "answerVisible": true
+      },
+      {
+        "question": 304,
+        "answerVisible": true
+      },
+      {
+        "question": 305,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/64",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 64,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 11097,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 316,
+          "question_type": "mc_single",
+          "question_text": "Your company wants to provide engineers with access to explore Google Cloud freely in a sandbox environment. The total budget for testing across your organization is $1,000. You need to ensure that engineers are notified when the budget is about to be reached. You want to automate your solution as much as possible. What should you do?",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42471,
+              "letter": "A",
+              "text": "Create a separate Cloud Billing account for all sandbox projects. Link a credit card with a limit of $1,000 to this billing account. Ensure all sandbox projects are linked to this new Cloud Billing account.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42472,
+              "letter": "B",
+              "text": "Create a Google Cloud Folder and ensure that all sandbox projects are located under that Folder. Create a Budget Alert for $1,000 and scope it to the Folder. Configure an email alert to billing administrators and users once the budget is 90% reached.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42473,
+              "letter": "C",
+              "text": "Create an email template reminding people to regularly check their Google Cloud spend. Create a Cloud Function that sends the email to all the project owners. Create a daily job in Cloud Scheduler that triggers the Cloud Function. Deploy this solution for each sandbox.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42474,
+              "letter": "D",
+              "text": "Configure a billing data export to a BigQuery dataset on the Cloud Billing account. Create a dashboard for all costs related to the sandbox experiments. Share the dashboard with all engineers.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11098,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 317,
+          "question_type": "mc_single",
+          "question_text": "You are planning to migrate your on-premises VMs to Google Cloud. You need to set up a landing zone in Google Cloud before migrating the VMs. You must ensure that all VM in your production environment can communicate with each other through private IP addresses. You need to allow all VMs in your Google Cloud organization to accept connections on specific TCP ports. You want to follow Google-recommended practices, and you need to minimize your operational costs. What should you do?",
+          "solution_text": "Shared VPC is the recommended architecture for landing zones to centralize networking and reduce operational costs by avoiding complex VPC peering.<br/>Hierarchical firewall policies are required because organization policies cannot define specific TCP port rules, while hierarchical firewalls allow centralized network security enforcement across all service projects.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42475,
+              "letter": "A",
+              "text": "Create individual VPCs per Google Cloud project. Peer all he VPC together. Apply organization policies on the organization level.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42476,
+              "letter": "B",
+              "text": "Create individual VPCs for each Google Cloud project. Peer ail ne VPCs together. Apply hierarchical firewall policies on the organization level.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42477,
+              "letter": "C",
+              "text": "Create a host VPC project with each production project as its service project. Apply organization policies on the organization level.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42478,
+              "letter": "D",
+              "text": "Create a host VPC project with each production project as its service project. Apply hierarchical firewall policies on the organization level.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11099,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 318,
+          "question_type": "mc_single",
+          "question_text": "You assist different engineering teams in deploying their infrastructure on Google Cloud. Your company has defined certain practices required for all workloads. You need to provide the engineering teams with a solution that enables teams to deploy their infrastructure independently without having to know all implementation details of the company’s required practices. What should you do?",
+          "solution_text": "The requirement is to allow independent deployment without teams needing to know implementation details of company practices. Terraform modules encapsulate configuration and enforce compliance internally, allowing teams to deploy infrastructure by simply using the module interface.<br/>Organization policies (Option A) restrict capabilities but do not abstract implementation details for complex infrastructure patterns. Options B and D rely on manual adherence or training, which does not satisfy the requirement of hiding implementation complexity.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42479,
+              "letter": "A",
+              "text": "Configure organization policies to enforce your company's required practices. Ask the teams to provision their infrastructure by using the Google Cloud console.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42480,
+              "letter": "B",
+              "text": "Create a service account per team, and grant the service account the Project Editor role. Ask the teams to provision their infrastructure through the Google Cloud CLI (gcloud CL), while impersonating their dedicated service account.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42481,
+              "letter": "C",
+              "text": "Write Terraform modules for each component that are compliant with the company's required practices, and ask teams to implement their infrastructure through these modules.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 42482,
+              "letter": "D",
+              "text": "Provide training for all engineering teams you work with to understand the company’s required practices. Allow the engineering teams to provision the infrastructure to best meet their needs.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11100,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 319,
+          "question_type": "mc_single",
+          "question_text": "You ate managing an application deployed on Cloud Run. The development team has released a new version of the application. You want to deploy and redirect traffic to this new version of the application. To ensure traffic to the new version of the application is served with no startup time, you want to ensure that there are two idle instances available for incoming traffic before adjusting the traffic flow. You also want to minimize administrative overhead. What should you do?",
+          "solution_text": "Cloud Run autoscaling settings, including the minimum number of instances, are configured at the revision level rather than the service level. Setting the minimum instances to 2 for the new revision ensures that two idle containers are always available, eliminating cold start latency before traffic is shifted.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42483,
+              "letter": "A",
+              "text": "Ensure the checkbox “Serve this revision immediately” is unchecked when deploying the new revision. Before changing the traffic rules, use a traffic simulation tool to send load to the new revision.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42484,
+              "letter": "B",
+              "text": "Configure service autoscaling and set the minimum number of instances to 2.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42485,
+              "letter": "C",
+              "text": "Configure revision autoscaling for the new revision and set the minimum number of instances to 2.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 42486,
+              "letter": "D",
+              "text": "Configure revision autoscaling for the existing revision and set the minimum number of instances to 2.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11101,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 320,
+          "question_type": "mc_single",
+          "question_text": "You are managing a stateful application deployed on Google Kubernetes Engine (GKE) that can only have one replica. You recently discovered that the application becomes unstable at peak times. You have identified that the application needs more CPU than what has been configured in the manifest at these peak times. You want Kubernetes to allocate the application sufficient CPU resources during these peak times, while ensuring cost efficiency during off-peak periods. What should you do?",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42487,
+              "letter": "A",
+              "text": "Enable node auto-provisioning on the GKE cluster.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42488,
+              "letter": "B",
+              "text": "Configure a Vertical Pod Autoscaler on the Deployment.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42489,
+              "letter": "C",
+              "text": "Configure a Horizontal Pod Autoscaler on the Deployment.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42490,
+              "letter": "D",
+              "text": "Enable cluster autoscaling on the GKE cluster.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 64,
+    "discussions": {
+      "11097": {
+        "target_type": "question",
+        "target_id": 11097,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11098": {
+        "target_type": "question",
+        "target_id": 11098,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11099": {
+        "target_type": "question",
+        "target_id": 11099,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11100": {
+        "target_type": "question",
+        "target_id": 11100,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11101": {
+        "target_type": "question",
+        "target_id": 11101,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      316,
+      317,
+      318,
+      319,
+      320
+    ],
+    "attempts": [
+      {
+        "question": 316,
+        "answerVisible": true
+      },
+      {
+        "question": 317,
+        "answerVisible": true
+      },
+      {
+        "question": 318,
+        "answerVisible": true
+      },
+      {
+        "question": 319,
+        "answerVisible": true
+      },
+      {
+        "question": 320,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 28,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 10917,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 136,
+        "question_type": "mc_single",
+        "question_text": "Your company runs one batch process in an on-premises server that takes around 30 hours to complete. The task runs monthly, can be performed offline, and must be restarted if interrupted. You want to migrate this workload to the cloud while minimizing cost. What should you do?<br/>",
+        "solution_text": "Preemptible VMs have a maximum lifetime of 24 hours and can be terminated at any time by Google. Since the batch process takes 30 hours and must restart from scratch if interrupted, using Preemptible VMs (Options A, B, D) would result in data loss or incomplete execution. Option C allows you to start a standard Compute Engine VM only during the monthly run window and stop it immediately after completion, ensuring the job finishes while minimizing costs by avoiding idle time.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41748,
+            "letter": "A",
+            "text": "Migrate the workload to a Compute Engine Preemptible VM.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41749,
+            "letter": "B",
+            "text": "Migrate the workload to a Google Kubernetes Engine cluster with Preemptible nodes.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41750,
+            "letter": "C",
+            "text": "Migrate the workload to a Compute Engine VM. Start and stop the instance as needed.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 41751,
+            "letter": "D",
+            "text": "Create an Instance Template with Preemptible VMs On. Create a Managed Instance Group from the template and adjust Target CPU Utilization. Migrate the workload.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10918,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 137,
+        "question_type": "mc_single",
+        "question_text": "You are developing a new application and are looking for a Jenkins installation to build and deploy your source code. You want to automate the installation as quickly and easily as possible. What should you do?<br/>",
+        "solution_text": "The question emphasizes automating installation 'as quickly and easily as possible.' The Google Cloud Marketplace (Option A) provides pre-configured, one-click deployment solutions for Jenkins, significantly reducing manual setup time compared to manually creating instances, configuring clusters, or building instance templates.<br/><br/>Options B, C, and D require manual provisioning steps and configuration, which contradict the goal of speed and simplicity.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41752,
+            "letter": "A",
+            "text": "Deploy Jenkins through the Google Cloud Marketplace.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 41753,
+            "letter": "B",
+            "text": "Create a new Compute Engine instance. Run the Jenkins executable.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41754,
+            "letter": "C",
+            "text": "Create a new Kubernetes Engine cluster. Create a deployment for the Jenkins image.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41755,
+            "letter": "D",
+            "text": "Create an instance template with the Jenkins executable. Create a managed instance group with this template.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10919,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 138,
+        "question_type": "mc_single",
+        "question_text": "You have downloaded and installed the gcloud command line interface (CLI) and have authenticated with your Google Account. Most of your Compute Engine instances in your project run in the europe-west1-d zone. You want to avoid having to specify this zone with each CLI command when managing these instances.<br/>What should you do?<br/>",
+        "solution_text": "The gcloud CLI maintains local configuration properties that define defaults for commands. To avoid repeatedly specifying the zone, you must set the `compute/zone` property in your active configuration using the `gcloud config set compute/zone europe-west1-d` command.<br/>This persistently applies the default zone to subsequent zonal Compute Engine operations within that CLI context.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41756,
+            "letter": "A",
+            "text": "Set the europe-west1-d zone as the default zone using the gcloud config subcommand.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 41757,
+            "letter": "B",
+            "text": "In the Settings page for Compute Engine under Default location, set the zone to europe—west1-d.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41758,
+            "letter": "C",
+            "text": "In the CLI installation directory, create a file called default.conf containing zone=europe—west1—d.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41759,
+            "letter": "D",
+            "text": "Create a Metadata entry on the Compute Engine page with key compute/zone and value europe—west1—d.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10920,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 139,
+        "question_type": "mc_single",
+        "question_text": "The core business of your company is to rent out construction equipment at large scale. All the equipment that is being rented out has been equipped with multiple sensors that send event information every few seconds. These signals can vary from engine status, distance traveled, fuel level, and more. Customers are billed based on the consumption monitored by these sensors. You expect high throughput `\" up to thousands of events per hour per device `\" and need to retrieve consistent data based on the time of the event. Storing and retrieving individual signals should be atomic. What should you do?<br/>",
+        "solution_text": "Cloud Bigtable is the optimal choice because it is a wide-column NoSQL database designed for high-throughput, low-latency time-series data from IoT sensors. It supports atomic reads and writes at the row level, satisfying the requirement for atomic signal storage, while scaling to petabytes of data efficiently. In contrast, Cloud Storage lacks query capabilities for real-time retrieval, and Datastore has write throughput limits on entity groups that would bottleneck high-frequency sensor updates.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41760,
+            "letter": "A",
+            "text": "Create a file in Cloud Storage per device and append new data to that file.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41761,
+            "letter": "B",
+            "text": "Create a file in Cloud Filestore per device and append new data to that file.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41762,
+            "letter": "C",
+            "text": "Ingest the data into Datastore. Store data in an entity group based on the device.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41763,
+            "letter": "D",
+            "text": "Ingest the data into Cloud Bigtable. Create a row key based on the event timestamp.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10921,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 140,
+        "question_type": "mc_single",
+        "question_text": "You are asked to set up application performance monitoring on Google Cloud projects A, B, and C as a single pane of glass. You want to monitor CPU, memory, and disk. What should you do?<br/>",
+        "solution_text": "Google Cloud Monitoring Workspaces are designed to aggregate metrics from multiple resources into a single pane of glass.<br/>By creating a workspace in one project (Project A) and adding the other projects (B and C) as monitored resources, you consolidate CPU, memory, and disk metrics for all three.<br/>Other options like sharing charts or using default dashboards do not provide a unified monitoring environment across distinct projects.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41764,
+            "letter": "A",
+            "text": "Enable API and then share charts from project A, B, and C.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41765,
+            "letter": "B",
+            "text": "Enable API and then give the metrics.reader role to projects A, B, and C.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41766,
+            "letter": "C",
+            "text": "Enable API and then use default dashboards to view all projects in sequence.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41767,
+            "letter": "D",
+            "text": "Enable API, create a workspace under project A, and then add projects B and C.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 28,
+  "discussions": {
+    "10917": {
+      "target_type": "question",
+      "target_id": 10917,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10918": {
+      "target_type": "question",
+      "target_id": 10918,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10919": {
+      "target_type": "question",
+      "target_id": 10919,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10920": {
+      "target_type": "question",
+      "target_id": 10920,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10921": {
+      "target_type": "question",
+      "target_id": 10921,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

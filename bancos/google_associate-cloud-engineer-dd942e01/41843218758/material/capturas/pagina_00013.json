@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/13",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 13,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10842,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 61,
+          "question_type": "mc_single",
+          "question_text": "Your organization is a financial company that needs to store audit log files for 3 years. Your organization has hundreds of Google Cloud projects. You need to implement a cost-effective approach for log file retention. What should you do?<br/>",
+          "solution_text": "The requirement is for a cost-effective long-term retention strategy (3 years) for audit logs that are infrequently accessed. <br/>Cloud Storage Coldline is specifically designed for archival data and offers significantly lower storage costs compared to BigQuery or Standard storage classes, making it the most economical choice for this use case. <br/>Exporting via a Log Sink is the native, managed, and efficient method to route Cloud Audit logs to Cloud Storage without the overhead of custom scripts or complex Dataflow pipelines.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41447,
+              "letter": "A",
+              "text": "Create an export to the sink that saves logs from Cloud Audit to BigQuery.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41448,
+              "letter": "B",
+              "text": "Create an export to the sink that saves logs from Cloud Audit to a Coldline Storage bucket.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41449,
+              "letter": "C",
+              "text": "Write a custom script that uses logging API to copy the logs from Stackdriver logs to BigQuery.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41450,
+              "letter": "D",
+              "text": "Export these logs to Cloud Pub/Sub and write a Cloud Dataflow pipeline to store logs to Cloud SQL.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10843,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 62,
+          "question_type": "mc_single",
+          "question_text": "You want to run a single caching HTTP reverse proxy on GCP for a latency-sensitive website. This specific reverse proxy consumes almost no CPU. You want to have a 30-GB in-memory cache, and need an additional 2 GB of memory for the rest of the processes. You want to minimize cost. How should you run this reverse proxy?<br/>",
+          "solution_text": "Cloud Memorystore for Redis is the optimal choice because it provides a dedicated, managed in-memory cache environment that minimizes operational overhead and cost compared to provisioning a general-purpose VM.<br/>A 32-GB Memorystore instance satisfies the requirement for 30 GB of cache plus 2 GB for overhead without paying for unnecessary CPU cycles, which would be charged in Compute Engine or GKE solutions.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41451,
+              "letter": "A",
+              "text": "Create a Cloud Memorystore for Redis instance with 32-GB capacity.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41452,
+              "letter": "B",
+              "text": "Run it on Compute Engine, and choose a custom instance type with 6 vCPUs and 32 GB of memory.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41453,
+              "letter": "C",
+              "text": "Package it in a container image, and run it on Kubernetes Engine, using n1-standard-32 instances as nodes.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41454,
+              "letter": "D",
+              "text": "Run it on Compute Engine, choose the instance type n1-standard-1, and add an SSD persistent disk of 32 GB.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10844,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 63,
+          "question_type": "mc_single",
+          "question_text": "You are hosting an application on bare-metal servers in your own data center. The application needs access to Cloud Storage. However, security policies prevent the servers hosting the application from having public IP addresses or access to the internet. You want to follow Google-recommended practices to provide the application with access to Cloud Storage. What should you do?<br/>",
+          "solution_text": "Option D is correct because it implements Private Google Access via a hybrid connection (Cloud VPN or Interconnect), allowing on-premises servers without public IPs to reach Google services securely. By advertising the specific private IP range 199.36.153.4/30 and resolving DNS to restricted.googleapis.com, traffic is routed through the private tunnel rather than the public internet.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41455,
+              "letter": "A",
+              "text": "1. Use nslookup to get the IP address for storage.googleapis.com. 2. Negotiate with the security team to be able to give a public IP address to the servers. 3. Only allow egress traffic from those servers to the IP addresses for storage.googleapis.com.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41456,
+              "letter": "B",
+              "text": "1. Using Cloud VPN, create a VPN tunnel to a Virtual Private Cloud (VPC) in Google Cloud. 2. In this VPC, create a Compute Engine instance and install the Squid proxy server on this instance. 3. Configure your servers to use that instance as a proxy to access Cloud Storage.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41457,
+              "letter": "C",
+              "text": "1. Use Migrate for Compute Engine (formerly known as Velostrata) to migrate those servers to Compute Engine. 2. Create an internal load balancer (ILB) that uses storage.googleapis.com as backend. 3. Configure your new instances to use this ILB as proxy.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41458,
+              "letter": "D",
+              "text": "1. Using Cloud VPN or Interconnect, create a tunnel to a VPC in Google Cloud. 2. Use Cloud Router to create a custom route advertisement for 199.36.153.4/30. Announce that network to your on-premises network through the VPN tunnel. 3. In your on-premises network, configure your DNS server to resolve *.googleapis.com as a CNAME to restricted.googleapis.com.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10845,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 64,
+          "question_type": "mc_single",
+          "question_text": "You want to deploy an application on Cloud Run that processes messages from a Cloud Pub/Sub topic. You want to follow Google-recommended practices. What should you do?<br/>",
+          "solution_text": "Option C is correct because Google recommends using Cloud Pub/Sub push subscriptions to integrate with Cloud Run.<br/>This architecture allows Cloud Run services to scale to zero when idle, as the service only scales up in response to incoming HTTP requests from Pub/Sub.<br/>Using pull subscriptions (Option B) requires the service to stay alive to poll for messages, preventing true scale-to-zero behavior and increasing costs.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41459,
+              "letter": "A",
+              "text": "1. Create a Cloud Function that uses a Cloud Pub/Sub trigger on that topic. 2. Call your application on Cloud Run from the Cloud Function for every message.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41460,
+              "letter": "B",
+              "text": "1. Grant the Pub/Sub Subscriber role to the service account used by Cloud Run. 2. Create a Cloud Pub/Sub subscription for that topic. 3. Make your application pull messages from that subscription.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41461,
+              "letter": "C",
+              "text": "1. Create a service account. 2. Give the Cloud Run Invoker role to that service account for your Cloud Run application. 3. Create a Cloud Pub/Sub subscription that uses that service account and uses your Cloud Run application as the push endpoint.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 41462,
+              "letter": "D",
+              "text": "1. Deploy your application on Cloud Run on GKE with the connectivity set to Internal. 2. Create a Cloud Pub/Sub subscription for that topic. 3. In the same Google Kubernetes Engine cluster as your application, deploy a container that takes the messages and sends them to your application.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10846,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 65,
+          "question_type": "mc_single",
+          "question_text": "You need to deploy an application, which is packaged in a container image, in a new project. The application exposes an HTTP endpoint and receives very few requests per day. You want to minimize costs. What should you do?<br/>",
+          "solution_text": "Cloud Run is a fully managed serverless platform that scales down to zero instances when there is no traffic. Since the application receives very few requests, this pay-per-request pricing model minimizes costs compared to always-on infrastructure like GKE or App Engine Flexible.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41463,
+              "letter": "A",
+              "text": "Deploy the container on Cloud Run.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41464,
+              "letter": "B",
+              "text": "Deploy the container on Cloud Run on GKE.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41465,
+              "letter": "C",
+              "text": "Deploy the container on App Engine Flexible.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41466,
+              "letter": "D",
+              "text": "Deploy the container on GKE with cluster autoscaling and horizontal pod autoscaling enabled.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 13,
+    "discussions": {
+      "10842": {
+        "target_type": "question",
+        "target_id": 10842,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10843": {
+        "target_type": "question",
+        "target_id": 10843,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10844": {
+        "target_type": "question",
+        "target_id": 10844,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10845": {
+        "target_type": "question",
+        "target_id": 10845,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10846": {
+        "target_type": "question",
+        "target_id": 10846,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      61,
+      62,
+      63,
+      64,
+      65
+    ],
+    "attempts": [
+      {
+        "question": 61,
+        "answerVisible": true
+      },
+      {
+        "question": 62,
+        "answerVisible": true
+      },
+      {
+        "question": 63,
+        "answerVisible": true
+      },
+      {
+        "question": 64,
+        "answerVisible": true
+      },
+      {
+        "question": 65,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

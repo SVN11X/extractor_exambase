@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/19",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 19,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10872,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 91,
+          "question_type": "mc_single",
+          "question_text": "Your company's infrastructure is on-premises, but all machines are running at maximum capacity. You want to burst to Google Cloud. The workloads on Google<br/>Cloud must be able to directly communicate to the workloads on-premises using a private IP range. What should you do?<br/>",
+          "solution_text": "Cloud VPN (Option D) establishes a secure IPsec tunnel that enables direct private IP communication between on-premises infrastructure and Google Cloud VPCs. VPC Network Peering (Option B) only connects two distinct VPC networks within GCP, not on-premises environments. Shared VPC (Option A) manages access across projects in GCP but does not extend connectivity to local data centers. Bastion hosts (Option C) use public IPs and proxy traffic, failing the requirement for direct private IP range communication.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41567,
+              "letter": "A",
+              "text": "In Google Cloud, configure the VPC as a host for Shared VPC.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41568,
+              "letter": "B",
+              "text": "In Google Cloud, configure the VPC for VPC Network Peering.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41569,
+              "letter": "C",
+              "text": "Create bastion hosts both in your on-premises environment and on Google Cloud. Configure both as proxy servers using their public IP addresses.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41570,
+              "letter": "D",
+              "text": "Set up Cloud VPN between the infrastructure on-premises and Google Cloud.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10873,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 92,
+          "question_type": "mc_single",
+          "question_text": "You want to select and configure a solution for storing and archiving data on Google Cloud Platform. You need to support compliance objectives for data from one geographic location. This data is archived after 30 days and needs to be accessed annually. What should you do?<br/>",
+          "solution_text": "Regional Storage is required to meet the compliance objective of keeping data in one specific geographic location. Coldline Storage is the correct archival class because the data is accessed only annually, which is far less frequent than Nearline's monthly usage pattern.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41571,
+              "letter": "A",
+              "text": "Select Multi-Regional Storage. Add a bucket lifecycle rule that archives data after 30 days to Coldline Storage.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41572,
+              "letter": "B",
+              "text": "Select Multi-Regional Storage. Add a bucket lifecycle rule that archives data after 30 days to Nearline Storage.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41573,
+              "letter": "C",
+              "text": "Select Regional Storage. Add a bucket lifecycle rule that archives data after 30 days to Nearline Storage.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41574,
+              "letter": "D",
+              "text": "Select Regional Storage. Add a bucket lifecycle rule that archives data after 30 days to Coldline Storage.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10874,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 93,
+          "question_type": "mc_single",
+          "question_text": "Your company uses BigQuery for data warehousing. Over time, many different business units in your company have created 1000+ datasets across hundreds of projects. Your CIO wants you to examine all datasets to find tables that contain an employee_ssn column. You want to minimize effort in performing this task.<br/>What should you do?<br/>",
+          "solution_text": "Google Cloud Data Catalog is a fully managed metadata management service designed specifically to discover and understand data across an organization. By searching for 'employee_ssn' in the Data Catalog UI, you can instantly locate all tables containing that column without writing scripts or querying INFORMATION_SCHEMA views manually. This approach minimizes effort by leveraging built-in search capabilities rather than requiring custom automation.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41575,
+              "letter": "A",
+              "text": "Go to Data Catalog and search for employee_ssn in the search box.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41576,
+              "letter": "B",
+              "text": "Write a shell script that uses the bq command line tool to loop through all the projects in your organization.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41577,
+              "letter": "C",
+              "text": "Write a script that loops through all the projects in your organization and runs a query on INFORMATION_SCHEMA.COLUMNS view to find the employee_ssn column.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41578,
+              "letter": "D",
+              "text": "Write a Cloud Dataflow job that loops through all the projects in your organization and runs a query on INFORMATION_SCHEMA.COLUMNS view to find employee_ssn column.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10875,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 94,
+          "question_type": "mc_single",
+          "question_text": "You create a Deployment with 2 replicas in a Google Kubernetes Engine cluster that has a single preemptible node pool. After a few minutes, you use kubectl to examine the status of your Pod and observe that one of them is still in Pending status:<br/><img class=\"in-exam-image\" src=\"/media/question_images/imported/ASSOCIATE-CLOUD-ENGINEER/0004900001.jpg\"/><br/>What is the most likely cause?<br/>\n",
+          "solution_text": "A single node pool in GKE can contain multiple nodes, so the preemption of one specific node would cause only the pods scheduled on that node to become pending while others remain running. Option B is incorrect because if resources were globally insufficient, neither pod would likely schedule successfully on a small cluster. The scenario describes a transient state where a preemptible node was terminated, leaving its assigned pod pending until the scheduler places it on an available node within the pool.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41579,
+              "letter": "A",
+              "text": "The pending Pod's resource requests are too large to fit on a single node of the cluster.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41580,
+              "letter": "B",
+              "text": "Too many Pods are already running in the cluster, and there are not enough resources left to schedule the pending Pod.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41581,
+              "letter": "C",
+              "text": "The node pool is configured with a service account that does not have permission to pull the container image used by the pending Pod.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41582,
+              "letter": "D",
+              "text": "The pending Pod was originally scheduled on a node that has been preempted between the creation of the Deployment and your verification of the Pods' status. It is currently being rescheduled on a new node.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10876,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 95,
+          "question_type": "mc_single",
+          "question_text": "You want to find out when users were added to Cloud Spanner Identity Access Management (IAM) roles on your Google Cloud Platform (GCP) project. What should you do in the GCP Console?<br/>",
+          "solution_text": "To determine when specific IAM changes occurred, you must consult the audit trail rather than static configuration views.<br/>Cloud Audit Logs (accessible via Cloud Logging) record administrative activity events, including who made changes to IAM policies and when those changes were applied.<br/>The IAM & Admin console displays current policy assignments but lacks historical timestamps for role additions, while Monitoring focuses on performance metrics.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41583,
+              "letter": "A",
+              "text": "Open the Cloud Spanner console to review configurations.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41584,
+              "letter": "B",
+              "text": "Open the IAM &amp; admin console to review IAM policies for Cloud Spanner roles.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41585,
+              "letter": "C",
+              "text": "Go to the Stackdriver Monitoring console and review information for Cloud Spanner.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41586,
+              "letter": "D",
+              "text": "Go to the Stackdriver Logging console, review admin activity logs, and filter them for Cloud Spanner IAM roles.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 19,
+    "discussions": {
+      "10872": {
+        "target_type": "question",
+        "target_id": 10872,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10873": {
+        "target_type": "question",
+        "target_id": 10873,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10874": {
+        "target_type": "question",
+        "target_id": 10874,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10875": {
+        "target_type": "question",
+        "target_id": 10875,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10876": {
+        "target_type": "question",
+        "target_id": 10876,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      91,
+      92,
+      93,
+      94,
+      95
+    ],
+    "attempts": [
+      {
+        "question": 91,
+        "answerVisible": true
+      },
+      {
+        "question": 92,
+        "answerVisible": true
+      },
+      {
+        "question": 93,
+        "answerVisible": true
+      },
+      {
+        "question": 94,
+        "answerVisible": true
+      },
+      {
+        "question": 95,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

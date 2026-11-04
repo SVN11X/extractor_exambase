@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/50",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 50,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 11027,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 246,
+          "question_type": "mc_single",
+          "question_text": "Your company wants to migrate their on-premises workloads to Google Cloud. The current on-premises workloads consist of:<br/><br/>•\tA Flask web application<br/>•\tA backend API<br/>•\tA scheduled long-running background job for ETL and reporting<br/><br/>You need to keep operational costs low. You want to follow Google-recommended practices to migrate these workloads to serverless solutions on Google Cloud. What should you do?",
+          "solution_text": "Options A and D are incorrect because Compute Engine is a virtual machine service, not a serverless solution. Option C is invalid because Cloud Storage is designed for static content hosting, not for running dynamic Flask web applications. Option B correctly utilizes fully serverless services: App Engine for the web app, Cloud Run for the API and background tasks via Cloud Tasks, ensuring low operational costs.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42189,
+              "letter": "A",
+              "text": "Migrate the web application to App Engine and the backend API to Cloud Run. Use Cloud Tasks to run your background job on Compute Engine.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42190,
+              "letter": "B",
+              "text": "Migrate the web application to App Engine and the backend API to Cloud Run. Use Cloud Tasks to run your background job on Cloud Run.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42191,
+              "letter": "C",
+              "text": "Run the web application on a Cloud Storage bucket and the backend API on Cloud Run. Use Cloud Tasks to run your background job on Cloud Run.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42192,
+              "letter": "D",
+              "text": "Run the web application on a Cloud Storage bucket and the backend API on Cloud Run. Use Cloud Tasks to run your background job on Compute Engine.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11028,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 247,
+          "question_type": "mc_single",
+          "question_text": "Your company is moving its continuous integration and delivery (CI/CD) pipeline to Compute Engine instances. The pipeline will manage the entire cloud infrastructure through code. How can you ensure that the pipeline has appropriate permissions while your system is following security best practices?",
+          "solution_text": "Option D is correct because it enforces the Principle of Least Privilege by creating distinct service accounts with minimal IAM permissions for each pipeline stage.<br/><br/>Storing credentials in Secret Manager ensures keys are not exposed on the instance filesystem and are retrieved securely only during execution, adhering to security best practices.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42193,
+              "letter": "A",
+              "text": "•\tAttach a single service account to the compute instances.<br/>•\tAdd minimal rights to the service account.<br/>•\tAllow the service account to impersonate a Cloud Identity user with elevated permissions to create, update, or delete resources.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42194,
+              "letter": "B",
+              "text": "•\tAdd a step for human approval to the CI/CD pipeline before the execution of the infrastructure provisioning.<br/>•\tUse the human approvals IAM account for the provisioning.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42195,
+              "letter": "C",
+              "text": "•\tAttach a single service account to the compute instances.<br/>•\tAdd all required Identity and Access Management (IAM) permissions to this service account to create, update, or delete resources.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42196,
+              "letter": "D",
+              "text": "•\tCreate multiple service accounts, one for each pipeline with the appropriate minimal Identity and Access Management (IAM) permissions.<br/>•\tUse a secret manager service to store the key files of the service accounts.<br/>•\tAllow the CI/CD pipeline to request the appropriate secrets during the execution of the pipeline.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11029,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 248,
+          "question_type": "mc_single",
+          "question_text": "Your application stores files on Cloud Storage by using the Standard Storage class. The application only requires access to files created in the last 30 days. You want to automatically save costs on files that are no longer accessed by the application. What should you do?",
+          "solution_text": "Option A is correct because Google Cloud Storage lifecycle management allows automatic transitions between storage classes based on object age.<br/>Moving objects to Archive Storage after 30 days significantly reduces storage costs while retaining the data, which aligns with best practices for cost optimization without risking data loss via deletion.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42197,
+              "letter": "A",
+              "text": "Create an object lifecycle on the storage bucket to change the storage class to Archive Storage for objects with an age over 30 days.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 42198,
+              "letter": "B",
+              "text": "Create a cron job in Cloud Scheduler to call a Cloud Functions instance every day to delete files older than 30 days.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42199,
+              "letter": "C",
+              "text": "Create a retention policy on the storage bucket of 30 days, and lock the bucket by using a retention policy lock.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42200,
+              "letter": "D",
+              "text": "Enable object versioning on the storage bucket and add lifecycle rules to expire non-current versions after 30 days.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11030,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 249,
+          "question_type": "mc_single",
+          "question_text": "Your manager asks you to deploy a workload to a Kubernetes cluster. You are not sure of the workload's resource requirements or how the requirements might vary depending on usage patterns, external dependencies, or other factors. You need a solution that makes cost-effective recommendations regarding CPU and memory requirements, and allows the workload to function consistently in any situation. You want to follow Google-recommended practices. What should you do?",
+          "solution_text": "The Vertical Pod Autoscaler (VPA) in recommendation mode analyzes historical resource usage to provide cost-effective suggestions for CPU and memory requests/limits, addressing the uncertainty in requirements. <br/>The Horizontal Pod Autoscaler (HPA) ensures availability by automatically scaling the number of pod replicas based on real-time metrics like CPU utilization. <br/>Using VPA for sizing suggestions and HPA for dynamic availability management aligns with Google-recommended Kubernetes best practices.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42201,
+              "letter": "A",
+              "text": "Configure the Horizontal Pod Autoscaler for availability, and configure the cluster autoscaler for suggestions.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42202,
+              "letter": "B",
+              "text": "Configure the Horizontal Pod Autoscaler for availability, and configure the Vertical Pod Autoscaler recommendations for suggestions.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42203,
+              "letter": "C",
+              "text": "Configure the Vertical Pod Autoscaler recommendations for availability, and configure the Cluster autoscaler for suggestions.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42204,
+              "letter": "D",
+              "text": "Configure the Vertical Pod Autoscaler recommendations for availability, and configure the Horizontal Pod Autoscaler for suggestions.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11031,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 250,
+          "question_type": "mc_single",
+          "question_text": "You need to migrate invoice documents stored on-premises to Cloud Storage. The documents have the following storage requirements:<br/><br/>•\tDocuments must be kept for five years.<br/>•\tUp to five revisions of the same invoice document must be stored, to allow for corrections.<br/>•\tDocuments older than 365 days should be moved to lower cost storage tiers.<br/><br/>You want to follow Google-recommended practices to minimize your operational and development costs. What should you do?",
+          "solution_text": "Object versioning is required to retain multiple revisions of the same invoice document, as retention policies are mutually exclusive with versioning. <br/>Lifecycle rules provide the automated, low-cost mechanism to transition objects older than 365 days to lower-cost storage classes and manage version cleanup. <br/>Using Cloud Scheduler and Cloud Functions (Options A and C) incurs higher operational and development costs compared to native lifecycle automation.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42205,
+              "letter": "A",
+              "text": "Enable retention policies on the bucket, and use Cloud Scheduler to invoke a Cloud Function to move or delete your documents based on their metadata.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42206,
+              "letter": "B",
+              "text": "Enable retention policies on the bucket, use lifecycle rules to change the storage classes of the objects, set the number of versions, and delete old files.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42207,
+              "letter": "C",
+              "text": "Enable object versioning on the bucket, and use Cloud Scheduler to invoke a Cloud Functions instance to move or delete your documents based on their metadata.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42208,
+              "letter": "D",
+              "text": "Enable object versioning on the bucket, use lifecycle conditions to change the storage class of the objects, set the number of versions, and delete old files.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 50,
+    "discussions": {
+      "11027": {
+        "target_type": "question",
+        "target_id": 11027,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11028": {
+        "target_type": "question",
+        "target_id": 11028,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11029": {
+        "target_type": "question",
+        "target_id": 11029,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11030": {
+        "target_type": "question",
+        "target_id": 11030,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11031": {
+        "target_type": "question",
+        "target_id": 11031,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      246,
+      247,
+      248,
+      249,
+      250
+    ],
+    "attempts": [
+      {
+        "question": 246,
+        "answerVisible": true
+      },
+      {
+        "question": 247,
+        "answerVisible": true
+      },
+      {
+        "question": 248,
+        "answerVisible": true
+      },
+      {
+        "question": 249,
+        "answerVisible": true
+      },
+      {
+        "question": 250,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

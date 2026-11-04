@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/37",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 37,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10962,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 181,
+          "question_type": "mc_single",
+          "question_text": "You have created a new project in Google Cloud through the gcloud command line interface (CLI) and linked a billing account. You need to create a new Compute<br/>Engine instance using the CLI. You need to perform the prerequisite steps. What should you do?<br/>",
+          "solution_text": "To use Compute Engine resources via the gcloud CLI or API, the compute.googleapis.com API must be explicitly enabled in the project.<br/>This is a mandatory prerequisite because new projects do not have this API active by default, preventing any instance creation attempts until it is turned on.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41929,
+              "letter": "A",
+              "text": "Create a Cloud Monitoring Workspace.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41930,
+              "letter": "B",
+              "text": "Create a VPC network in the project.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41931,
+              "letter": "C",
+              "text": "Enable the compute googleapis.com API.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 41932,
+              "letter": "D",
+              "text": "Grant yourself the IAM role of Computer Admin.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10963,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 182,
+          "question_type": "mc_single",
+          "question_text": "Your company has developed a new application that consists of multiple microservices. You want to deploy the application to Google Kubernetes Engine (GKE), and you want to ensure that the cluster can scale as more applications are deployed in the future. You want to avoid manual intervention when each new application is deployed. What should you do?<br/>",
+          "solution_text": "The requirement to ensure the 'cluster can scale' and avoid manual intervention when deploying new applications points to cluster-level autoscaling.<br/>While Horizontal Pod Autoscalers (Option A) scale the number of pods, they do not add new nodes if resources are exhausted, which is necessary for accommodating entirely new workloads.<br/>Option C configures Node Auto Scaling on the node pool, allowing GKE to automatically add or remove nodes based on resource demand without manual intervention.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41933,
+              "letter": "A",
+              "text": "Deploy the application on GKE, and add a HorizontalPodAutoscaler to the deployment.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41934,
+              "letter": "B",
+              "text": "Deploy the application on GKE, and add a VerticalPodAutoscaler to the deployment.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41935,
+              "letter": "C",
+              "text": "Create a GKE cluster with autoscaling enabled on the node pool. Set a minimum and maximum for the size of the node pool.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 41936,
+              "letter": "D",
+              "text": "Create a separate node pool for each application, and deploy each application to its dedicated node pool.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10964,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 183,
+          "question_type": "mc_single",
+          "question_text": "You need to manage a third-party application that will run on a Compute Engine instance. Other Compute Engine instances are already running with default configuration. Application installation files are hosted on Cloud Storage. You need to access these files from the new instance without allowing other virtual machines (VMs) to access these files. What should you do?<br/>",
+          "solution_text": "Using the default Compute Engine service account (Options A and B) grants access to all instances sharing that identity, violating the requirement to restrict access from other VMs. Option C creates a unique service account for the new instance and uses IAM permissions to grant specific access to Cloud Storage, ensuring only that instance can retrieve the files. Metadata matching (Options B and D) is not a standard or secure method for controlling resource access in Google Cloud.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41937,
+              "letter": "A",
+              "text": "Create the instance with the default Compute Engine service account. Grant the service account permissions on Cloud Storage.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41938,
+              "letter": "B",
+              "text": "Create the instance with the default Compute Engine service account. Add metadata to the objects on Cloud Storage that matches the metadata on the new instance.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41939,
+              "letter": "C",
+              "text": "Create a new service account and assign this service account to the new instance. Grant the service account permissions on Cloud Storage.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 41940,
+              "letter": "D",
+              "text": "Create a new service account and assign this service account to the new instance. Add metadata to the objects on Cloud Storage that matches the metadata on the new instance.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10965,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 184,
+          "question_type": "mc_single",
+          "question_text": "You need to configure optimal data storage for files stored in Cloud Storage for minimal cost. The files are used in a mission-critical analytics pipeline that is used continually. The users are in Boston, MA (United States). What should you do?<br/>",
+          "solution_text": "The requirement for 'minimal cost' combined with users in a single location (Boston) dictates choosing Regional storage over the more expensive Dual-Regional option, as the latter introduces unnecessary redundancy costs for a localized user base. <br/>Since the data is used in a pipeline that is accessed 'continually,' the Standard storage class is required to avoid the high retrieval fees and minimum retention periods associated with Nearline, Coldline, or Archive classes.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41941,
+              "letter": "A",
+              "text": "Configure regional storage for the region closest to the users. Configure a Nearline storage class.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41942,
+              "letter": "B",
+              "text": "Configure regional storage for the region closest to the users. Configure a Standard storage class.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41943,
+              "letter": "C",
+              "text": "Configure dual-regional storage for the dual region closest to the users. Configure a Nearline storage class.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41944,
+              "letter": "D",
+              "text": "Configure dual-regional storage for the dual region closest to the users. Configure a Standard storage class.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10966,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 185,
+          "question_type": "mc_single",
+          "question_text": "You are developing a new web application that will be deployed on Google Cloud Platform. As part of your release cycle, you want to test updates to your application on a small portion of real user traffic. The majority of the users should still be directed towards a stable version of your application. What should you do?<br/>",
+          "solution_text": "Google App Engine natively supports deploying multiple versions of a single service and configuring traffic splitting between them.<br/>This feature allows you to route a small percentage of real user traffic to a new version for testing while maintaining the stable version for the majority of users.<br/>Kubernetes Engine does not provide native, built-in traffic splitting features in the same direct manner; it requires additional controllers like Istio or manual replica set adjustments.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41945,
+              "letter": "A",
+              "text": "Deploy the application on App Engine. For each update, create a new version of the same service. Configure traffic splitting to send a small percentage of traffic to the new version.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41946,
+              "letter": "B",
+              "text": "Deploy the application on App Engine. For each update, create a new service. Configure traffic splitting to send a small percentage of traffic to the new service.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41947,
+              "letter": "C",
+              "text": "Deploy the application on Kubernetes Engine. For a new release, update the deployment to use the new version.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41948,
+              "letter": "D",
+              "text": "Deploy the application on Kubernetes Engine. For a new release, create a new deployment for the new version. Update the service to use the new deployment.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 37,
+    "discussions": {
+      "10962": {
+        "target_type": "question",
+        "target_id": 10962,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10963": {
+        "target_type": "question",
+        "target_id": 10963,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10964": {
+        "target_type": "question",
+        "target_id": 10964,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10965": {
+        "target_type": "question",
+        "target_id": 10965,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10966": {
+        "target_type": "question",
+        "target_id": 10966,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      181,
+      182,
+      183,
+      184,
+      185
+    ],
+    "attempts": [
+      {
+        "question": 181,
+        "answerVisible": true
+      },
+      {
+        "question": 182,
+        "answerVisible": true
+      },
+      {
+        "question": 183,
+        "answerVisible": true
+      },
+      {
+        "question": 184,
+        "answerVisible": true
+      },
+      {
+        "question": 185,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

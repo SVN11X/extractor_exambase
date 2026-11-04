@@ -1,0 +1,334 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/53",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 53,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 11042,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 261,
+          "question_type": "mc_single",
+          "question_text": "You are in charge of provisioning access for all Google Cloud users in your organization. Your company recently acquired a startup company that has their own Google Cloud organization. You need to ensure that your Site Reliability Engineers (SREs) have the same project permissions in the startup company's organization as in your own organization. What should you do?",
+          "solution_text": "The gcloud iam roles copy command is the standard tool for duplicating custom IAM roles across different resource levels. To apply these permissions broadly to all projects within the acquired startup's organization efficiently, you should specify the destination Organization ID (Option C) rather than listing individual project IDs (Option D), which would be impractical and prone to error.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42249,
+              "letter": "A",
+              "text": "In the Google Cloud console for your organization, select Create role from selection, and choose destination as the startup company's organization.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42250,
+              "letter": "B",
+              "text": "In the Google Cloud console for the startup company, select Create role from selection and choose source as the startup company's Google Cloud organization.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42251,
+              "letter": "C",
+              "text": "Use the gcloud iam roles copy command, and provide the Organization ID of the startup company's Google Cloud Organization as the destination.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 42252,
+              "letter": "D",
+              "text": "Use the gcloud iam roles copy command, and provide the project IDs of all projects in the startup company's organization as the destination.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11043,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 262,
+          "question_type": "mc_single",
+          "question_text": "You need to extract text from audio files by using the Speech-to-Text API. The audio files are pushed to a Cloud Storage bucket. You need to implement a fully managed, serverless compute solution that requires authentication and aligns with Google-recommended practices. You want to automate the call to the API by submitting each file to the API as the audio file arrives in the bucket. What should you do?",
+          "solution_text": "Cloud Functions provide a fully managed, serverless compute environment that can be directly triggered by Cloud Storage bucket events.<br/>This event-driven architecture ensures immediate processing upon file arrival without the need for infrastructure management or polling mechanisms.<br/>It aligns with Google-recommended practices for scalable automation and handles authentication via service accounts securely.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42253,
+              "letter": "A",
+              "text": "Create an App Engine standard environment triggered by Cloud Storage bucket events to submit the file URI to the Google Speech-to-TextAPI.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42254,
+              "letter": "B",
+              "text": "Run a Kubernetes job to scan the bucket regularly for incoming files, and call the Speech-to-Text API for each unprocessed file.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42255,
+              "letter": "C",
+              "text": "Run a Python script by using a Linux cron job in Compute Engine to scan the bucket regularly for incoming files, and call the Speech-to-Text API for each unprocessed file.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42256,
+              "letter": "D",
+              "text": "Create a Cloud Function triggered by Cloud Storage bucket events to submit the file URI to the Google Speech-to-Text API.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11044,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 263,
+          "question_type": "mc_single",
+          "question_text": "Your customer wants you to create a secure website with autoscaling based on the compute instance CPU load. You want to enhance performance by storing static content in Cloud Storage. Which resources are needed to distribute the user traffic?",
+          "solution_text": "Option A is correct because an external HTTP(S) load balancer supports direct routing to Cloud Storage backends for static content via URL maps, enhancing performance. Using a managed SSL certificate offloads certificate management from autoscaling instances, simplifying operations and ensuring consistent security.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42257,
+              "letter": "A",
+              "text": "An external HTTP(S) load balancer with a managed SSL certificate to distribute the load and a URL map to target the requests for the static content to the Cloud Storage backend.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 42258,
+              "letter": "B",
+              "text": "An external network load balancer pointing to the backend instances to distribute the load evenly. The web servers will forward the request to the Cloud Storage as needed.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42259,
+              "letter": "C",
+              "text": "An internal HTTP(S) load balancer together with Identity-Aware Proxy to allow only HTTPS traffic.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42260,
+              "letter": "D",
+              "text": "An external HTTP(S) load balancer to distribute the load and a URL map to target the requests for the static content to the Cloud Storage backend. Install the HTTPS certificates on the instance.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11045,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 264,
+          "question_type": "mc_single",
+          "question_text": "The core business of your company is to rent out construction equipment at large scale. All the equipment that is being rented out has been equipped with multiple sensors that send event information every few seconds. These signals can vary from engine status, distance traveled, fuel level, and more. Customers are billed based on the consumption monitored by these sensors. You expect high throughput – up to thousands of events per hour per device – and need to retrieve consistent data based on the time of the event. Storing and retrieving individual signals should be atomic. What should you do?",
+          "solution_text": "Google Bigtable is a fully managed, scalable NoSQL database designed for low-latency, high-throughput workloads involving large volumes of data like sensor events. <br/>Using the event timestamp in the row key enables efficient, consistent retrieval and atomic access to individual signals, which file-based storage (A/B) or relational databases like Cloud SQL (C) cannot handle as effectively at this scale.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42261,
+              "letter": "A",
+              "text": "Create files in Cloud Storage as data comes in.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42262,
+              "letter": "B",
+              "text": "Create a file in Filestore per device, and append new data to that file.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42263,
+              "letter": "C",
+              "text": "Ingest the data into Cloud SQL. Use multiple read replicas to match the throughput.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42264,
+              "letter": "D",
+              "text": "Ingest the data into Bigtable. Create a row key based on the event timestamp.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11046,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 265,
+          "question_type": "mc_single",
+          "question_text": "You just installed the Google Cloud CLI on your new corporate laptop. You need to list the existing instances of your company on Google Cloud. What must you do before you run the gcloud compute instances list command? (Choose two.)",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42265,
+              "letter": "A",
+              "text": "Run gcloud auth login, enter your login credentials in the dialog window, and paste the received login token to gcloud CLI.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 42266,
+              "letter": "B",
+              "text": "Create a Google Cloud service account, and download the service account key. Place the key file in a folder on your machine where gcloud CLI can find it.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42267,
+              "letter": "C",
+              "text": "Download your Cloud Identity user account key. Place the key file in a folder on your machine where gcloud CLI can find it.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42268,
+              "letter": "D",
+              "text": "Run gcloud config set compute/zone $my_zone to set the default zone for gcloud CLI.",
+              "is_correct": false,
+              "order": 3
+            },
+            {
+              "id": 42269,
+              "letter": "E",
+              "text": "Run gcloud config set project $my_project to set the default project for gcloud CLI.",
+              "is_correct": false,
+              "order": 4
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 53,
+    "discussions": {
+      "11042": {
+        "target_type": "question",
+        "target_id": 11042,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11043": {
+        "target_type": "question",
+        "target_id": 11043,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11044": {
+        "target_type": "question",
+        "target_id": 11044,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11045": {
+        "target_type": "question",
+        "target_id": 11045,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11046": {
+        "target_type": "question",
+        "target_id": 11046,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      261,
+      262,
+      263,
+      264,
+      265
+    ],
+    "attempts": [
+      {
+        "question": 261,
+        "answerVisible": true
+      },
+      {
+        "question": 262,
+        "answerVisible": true
+      },
+      {
+        "question": 263,
+        "answerVisible": true
+      },
+      {
+        "question": 264,
+        "answerVisible": true
+      },
+      {
+        "question": 265,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

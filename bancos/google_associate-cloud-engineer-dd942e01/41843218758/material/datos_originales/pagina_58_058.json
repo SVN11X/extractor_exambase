@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 58,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 11067,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 286,
+        "question_type": "mc_single",
+        "question_text": "You are deploying an application to Cloud Run. Your application requires the use of an API that runs on Google Kubernetes Engine (GKE). You need to ensure that your Cloud Run service can privately reach the API on GKE, and you want to follow Google-recommended practices. What should you do?",
+        "solution_text": "Cloud Run services are isolated from VPCs by default and require a Serverless VPC Access connector (or Direct VPC Egress) to establish private connectivity. Using an Internal Application Load Balancer ensures the GKE API remains inaccessible from the public internet, adhering to security best practices. This combination provides secure, private communication without exposing sensitive endpoints.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42351,
+            "letter": "A",
+            "text": "Deploy an ingress resource on the GKE cluster to expose the API to the internet. Use Cloud Armor to filter for IP addresses that can connect to the API. On the Cloud Run service, configure the application to fetch its public IP address and update the Cloud Armor policy on startup to allow this IP address to call the API on ports 80 and 443.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42352,
+            "letter": "B",
+            "text": "Create an ingress firewall rule on the VPC to allow connections from 0.0.0.0/0 on ports 80 and 443.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42353,
+            "letter": "C",
+            "text": "Create an egress firewall rule on the VPC to allow connections to 0.0.0.0/ on ports 80 and 443.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42354,
+            "letter": "D",
+            "text": "Deploy an internal Application Load Balancer to expose the API on GKE to the VPC. Configure Cloud DNS with the IP address of the internal Application Load Balancer. Deploy a Serverless VPC Access connector to allow the Cloud Run service to call the API through the FQDN on Cloud DNS.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11068,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 287,
+        "question_type": "mc_single",
+        "question_text": "Your company uses a multi-cloud strategy that includes Google Cloud. You want to centralize application logs in a third-party software-as-a-service (SaaS) tool from all environments. You need to integrate logs originating from Cloud Logging, and you want to ensure the export occurs with the least amount of delay possible. What should you do?",
+        "solution_text": "To achieve the least amount of delay, you must use a near-real-time transport mechanism rather than batch-oriented storage.<br/>Cloud Pub/Sub is a fully managed real-time messaging service that delivers log entries immediately upon publication.<br/>In contrast, BigQuery and Cloud Storage involve processing latency or polling intervals, introducing higher delays.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42355,
+            "letter": "A",
+            "text": "Create a Cloud Logging sink and configure BigQuery as the destination. Configure the SaaS tool to query BigQuery to retrieve the logs.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42356,
+            "letter": "B",
+            "text": "Create a Cloud Logging sink and configure Pub/Sub as the destination. Configure the SaaS tool to subscribe to the Pub/Sub topic to retrieve the logs.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 42357,
+            "letter": "C",
+            "text": "Create a Cloud Logging sink and configure Cloud Storage as the destination. Configure the SaaS tool to read the Cloud Storage bucket to retrieve the logs.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42358,
+            "letter": "D",
+            "text": "Use a Cloud Scheduler cron job to trigger a Cloud Function that queries Cloud Logging and sends the logs to the SaaS tool.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11069,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 288,
+        "question_type": "mc_single",
+        "question_text": "You are planning to migrate a database and a backend application to a Standard Google Kubernetes Engine (GKE) cluster. You need to prevent data loss and make sure there are enough nodes available for your backend application based on the demands of your workloads. You want to follow Google-recommended practices and minimize the amount of manual work required. What should you do?",
+        "solution_text": "Databases require stable, unique network identifiers and persistent storage to prevent data loss, which are provided by StatefulSets rather than Deployments or DaemonSets. <br/>Cluster Autoscaling automatically adjusts the number of nodes based on workload demand, minimizing manual intervention compared to running resize commands.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42359,
+            "letter": "A",
+            "text": "Run your database as a StatefulSet. Configure cluster autoscaling to handle changes in the demands of your workloads.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 42360,
+            "letter": "B",
+            "text": "Run your database as a single Pod. Run the resize command when you notice changes in the demands of your workloads.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42361,
+            "letter": "C",
+            "text": "Run your database as a DaemonSet. Run the resize command when you notice changes in the demands of your workloads.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42362,
+            "letter": "D",
+            "text": "Run your database as a Deployment. Configure cluster autoscaling to handle changes in the demands of your workloads.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11070,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 289,
+        "question_type": "mc_single",
+        "question_text": "You are the Organization Administrator for your company's Google Cloud resources. Your company has strict compliance rules that require you to be notified about any modifications to files and documents hosted on Cloud Storage. In a recent incident, one of your team members was able to modify files and you did not receive any notifications, causing other production jobs to fail. You must ensure that you receive notifications for all changes to files and documents in Cloud Storage while minimizing management overhead. What should you do?",
+        "solution_text": "Option D is the correct answer because it directly addresses the requirement for notifications with minimal overhead. <br/>Cloud Storage object change notifications sent to Pub/Sub provide real-time alerts for file modifications without the additional storage costs and management complexity associated with enabling versioning (Options B and C). <br/>While Audit logs (Option A) record changes, they require manual querying or log-based alert configuration, which is less direct and efficient than native Pub/Sub notifications for this specific use case.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42363,
+            "letter": "A",
+            "text": "View Cloud Audit logs for all Cloud Storage files in Logs Explorer. Filter by Admin Activity logs.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42364,
+            "letter": "B",
+            "text": "Enable Cloud Storage object versioning on your bucket. Configure Pub/Sub notifications for your Cloud Storage buckets.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42365,
+            "letter": "C",
+            "text": "Enable versioning on the Cloud Storage bucket. Set up a custom script that scans versions of Cloud Storage objects being modified and alert the admin by using the script.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42366,
+            "letter": "D",
+            "text": "Configure Object change notifications on the Cloud Storage buckets. Send the events to Pub/Sub.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11071,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 290,
+        "question_type": "mc_single",
+        "question_text": "Your company would like to store invoices and other financial documents in Google Cloud. You need to identify a Google-managed solution to store this information for your company. You must ensure that the documents are kept for a duration of three years. Your company’s analysts need frequent access to invoices from the past six months. After six months, invoices should be archived for audit purposes only. You want to minimize costs and follow Google-recommended practices. What should you do?",
+        "solution_text": "Cloud Storage is the recommended Google-managed solution for storing unstructured data like documents, whereas Filestore is a managed NFS service better suited for shared file systems. <br/>Object Lifecycle Management allows automatic transitions between storage classes based on age; moving objects to Coldline after six months satisfies the audit-only access requirement while minimizing costs compared to Standard storage.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42367,
+            "letter": "A",
+            "text": "Use Cloud Storage with Object Lifecycle Management to change the object storage class to Coldline after six months.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 42368,
+            "letter": "B",
+            "text": "Use Cloud Storage with Object Lifecycle Management to change the object storage class to Standard after six months.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42369,
+            "letter": "C",
+            "text": "Store your documents on Filestore, and move the documents to Cloud Storage with object storage class set to Coldline after six months.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42370,
+            "letter": "D",
+            "text": "Store your documents on Filestore, and move the documents to Cloud Storage with object storage class set to Standard after six months.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 58,
+  "discussions": {
+    "11067": {
+      "target_type": "question",
+      "target_id": 11067,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11068": {
+      "target_type": "question",
+      "target_id": 11068,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11069": {
+      "target_type": "question",
+      "target_id": 11069,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11070": {
+      "target_type": "question",
+      "target_id": 11070,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11071": {
+      "target_type": "question",
+      "target_id": 11071,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

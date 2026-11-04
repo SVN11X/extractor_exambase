@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 35,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 10952,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 171,
+        "question_type": "mc_single",
+        "question_text": "You are working with a Cloud SQL MySQL database at your company. You need to retain a month-end copy of the database for three years for audit purposes.<br/>What should you do?<br/>",
+        "solution_text": "Option A is correct because Cloud SQL automatic backups have a retention limit (max 365 days) and cannot be directly stored in specific storage classes like Archive. <br/>To retain data for three years at the lowest cost, you must manually schedule an export job to write a dump file to a Cloud Storage bucket configured with the Archive storage class.<br/>Options B and C are invalid because backups cannot be moved to external storage buckets, and Option D is technically impossible as backups cannot be converted to export files.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41889,
+            "letter": "A",
+            "text": "Set up an export job for the first of the month. Write the export file to an Archive class Cloud Storage bucket.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 41890,
+            "letter": "B",
+            "text": "Save the automatic first-of-the-month backup for three years. Store the backup file in an Archive class Cloud Storage bucket.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41891,
+            "letter": "C",
+            "text": "Set up an on-demand backup for the first of the month. Write the backup to an Archive class Cloud Storage bucket.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41892,
+            "letter": "D",
+            "text": "Convert the automatic first-of-the-month backup to an export file. Write the export file to a Coldline class Cloud Storage bucket.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10953,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 172,
+        "question_type": "mc_single",
+        "question_text": "You are monitoring an application and receive user feedback that a specific error is spiking. You notice that the error is caused by a Service Account having insufficient permissions. You are able to solve the problem but want to be notified if the problem recurs. What should you do?<br/>",
+        "solution_text": "To be automatically notified when a specific error recurs, you must trigger an alert based on that error's occurrence. Creating a custom log-based metric allows you to count instances of the specific error, which can then feed into an Alerting Policy to send notifications. Filtering logs (A) requires manual review, BigQuery exports (B) are for analytics rather than real-time alerts, and granting excessive permissions (D) violates security best practices.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41893,
+            "letter": "A",
+            "text": "In the Log Viewer, filter the logs on severity 'Error' and the name of the Service Account.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41894,
+            "letter": "B",
+            "text": "Create a sink to BigQuery to export all the logs. Create a Data Studio dashboard on the exported logs.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41895,
+            "letter": "C",
+            "text": "Create a custom log-based metric for the specific error to be used in an Alerting Policy.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 41896,
+            "letter": "D",
+            "text": "Grant Project Owner access to the Service Account.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10954,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 173,
+        "question_type": "mc_single",
+        "question_text": "You are developing a financial trading application that will be used globally. Data is stored and queried using a relational structure, and clients from all over the world should get the exact identical state of the data. The application will be deployed in multiple regions to provide the lowest latency to end users. You need to select a storage option for the application data while minimizing latency. What should you do?<br/>",
+        "solution_text": "Cloud Spanner is the only solution that combines global scalability with full relational (ACID) compliance and strong consistency. It allows deployment across multiple regions to minimize latency while ensuring all clients see the exact identical state of the data, unlike Cloud SQL which is regional or Firestore/Bigtable which are NoSQL.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41897,
+            "letter": "A",
+            "text": "Use Cloud Bigtable for data storage.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41898,
+            "letter": "B",
+            "text": "Use Cloud SQL for data storage.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41899,
+            "letter": "C",
+            "text": "Use Cloud Spanner for data storage.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 41900,
+            "letter": "D",
+            "text": "Use Firestore for data storage.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10955,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 174,
+        "question_type": "mc_single",
+        "question_text": "You are about to deploy a new Enterprise Resource Planning (ERP) system on Google Cloud. The application holds the full database in-memory for fast data access, and you need to configure the most appropriate resources on Google Cloud for this application. What should you do?<br/>",
+        "solution_text": "The application requires holding the full database in-memory for fast access, which necessitates a machine type optimized for high memory capacity and performance. <br/>M1 machine types are specifically designed for memory-intensive workloads such as SAP HANA and other in-memory databases.<br/>Other options like preemptible instances lack reliability for ERP systems, GPUs are for parallel compute tasks, and local SSDs address storage I/O rather than the primary need for large RAM capacity.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41901,
+            "letter": "A",
+            "text": "Provision preemptible Compute Engine instances.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41902,
+            "letter": "B",
+            "text": "Provision Compute Engine instances with GPUs attached.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41903,
+            "letter": "C",
+            "text": "Provision Compute Engine instances with local SSDs attached.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41904,
+            "letter": "D",
+            "text": "Provision Compute Engine instances with M1 machine type.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10956,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 175,
+        "question_type": "mc_single",
+        "question_text": "You have developed an application that consists of multiple microservices, with each microservice packaged in its own Docker container image. You want to deploy the entire application on Google Kubernetes Engine so that each microservice can be scaled individually. What should you do?<br/>",
+        "solution_text": "In Kubernetes, a Deployment is the standard workload controller for managing stateless applications like microservices. It allows you to define the desired number of replicas and update strategies, enabling independent horizontal scaling for each individual service. Other options are incorrect because CRDs define new resource types rather than deploying workloads, Docker Compose is not used for GKE deployments, and Jobs are designed for finite tasks that terminate upon completion.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41905,
+            "letter": "A",
+            "text": "Create and deploy a Custom Resource Definition per microservice.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41906,
+            "letter": "B",
+            "text": "Create and deploy a Docker Compose File.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41907,
+            "letter": "C",
+            "text": "Create and deploy a Job per microservice.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41908,
+            "letter": "D",
+            "text": "Create and deploy a Deployment per microservice.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 35,
+  "discussions": {
+    "10952": {
+      "target_type": "question",
+      "target_id": 10952,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10953": {
+      "target_type": "question",
+      "target_id": 10953,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10954": {
+      "target_type": "question",
+      "target_id": 10954,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10955": {
+      "target_type": "question",
+      "target_id": 10955,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10956": {
+      "target_type": "question",
+      "target_id": 10956,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

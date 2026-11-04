@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 22,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 10887,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 106,
+        "question_type": "mc_single",
+        "question_text": "Your organization has a dedicated person who creates and manages all service accounts for Google Cloud projects. You need to assign this person the minimum role for projects. What should you do?<br/>",
+        "solution_text": "The question requires the ability to create and manage service accounts. <br/>The `roles/iam.serviceAccountAdmin` role includes permissions to list, get details, create, update, and delete service accounts, as well as modify their IAM policies. <br/>In contrast, `roles/iam.serviceAccountUser` only allows listing and impersonating service accounts, lacking the necessary create/delete privileges.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41628,
+            "letter": "A",
+            "text": "Add the user to roles/iam.roleAdmin role.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 41629,
+            "letter": "B",
+            "text": "Add the user to roles/iam.securityAdmin role.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41630,
+            "letter": "C",
+            "text": "Add the user to roles/iam.serviceAccountUser role.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41631,
+            "letter": "D",
+            "text": "Add the user to roles/iam.serviceAccountAdmin role.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10888,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 107,
+        "question_type": "mc_single",
+        "question_text": "You are building an archival solution for your data warehouse and have selected Cloud Storage to archive your data. Your users need to be able to access this archived data once a quarter for some regulatory requirements. You want to select a cost-efficient option. Which storage option should you use?<br/>",
+        "solution_text": "The question specifies data access once a quarter for regulatory requirements, which aligns with the use case for Coldline storage. In Google Cloud Platform terminology, 'Cold Storage' is often used as a general category or shorthand for low-frequency access classes like Coldline and Archive. Since 'Cold Storage' is the only option referencing this low-frequency tier (as Nearline is for monthly access), it is the correct choice despite the imprecise naming.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41632,
+            "letter": "A",
+            "text": "Cold Storage",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 41633,
+            "letter": "B",
+            "text": "Nearline Storage",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41634,
+            "letter": "C",
+            "text": "Regional Storage",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41635,
+            "letter": "D",
+            "text": "Multi-Regional Storage",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10889,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 108,
+        "question_type": "mc_single",
+        "question_text": "A team of data scientists infrequently needs to use a Google Kubernetes Engine (GKE) cluster that you manage. They require GPUs for some long-running, non- restartable jobs. You want to minimize cost. What should you do?<br/>",
+        "solution_text": "The correct answer is A because Node Auto-provisioning (NAP) dynamically creates and deletes node pools based on pending pod resource requests, including GPUs. This ensures that expensive GPU resources are only provisioned when the infrequent jobs require them, rather than idling in a fixed node pool with a minimum size of 1 (Option D), which minimizes cost.<br/><br/>Preemptible VMs (Option C) are unsuitable because the jobs are non-restartable and long-running, meaning any preemption would cause job failure. Vertical Pod Autoscaler (Option B) adjusts resource requests for pods but does not manage the underlying node provisioning or GPU availability.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41636,
+            "letter": "A",
+            "text": "Enable node auto-provisioning on the GKE cluster.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 41637,
+            "letter": "B",
+            "text": "Create a VerticalPodAutscaler for those workloads.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41638,
+            "letter": "C",
+            "text": "Create a node pool with preemptible VMs and GPUs attached to those VMs.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41639,
+            "letter": "D",
+            "text": "Create a node pool of instances with GPUs, and enable autoscaling on this node pool with a minimum size of 1.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10890,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 109,
+        "question_type": "mc_single",
+        "question_text": "Your organization has user identities in Active Directory. Your organization wants to use Active Directory as their source of truth for identities. Your organization wants to have full control over the Google accounts used by employees for all Google services, including your Google Cloud Platform (GCP) organization. What should you do?<br/>",
+        "solution_text": "Google Cloud Directory Sync (GCDS) is the official tool designed to synchronize user and group data from Active Directory or LDAP services to Google Cloud domains. Using GCDS ensures that Active Directory remains the single source of truth while maintaining consistent identity management across all Google services.<br/>Manual CSV imports or custom scripts do not provide continuous synchronization, and self-signup prevents organizational control over accounts.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41640,
+            "letter": "A",
+            "text": "Use Google Cloud Directory Sync (GCDS) to synchronize users into Cloud Identity.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 41641,
+            "letter": "B",
+            "text": "Use the cloud Identity APIs and write a script to synchronize users to Cloud Identity.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41642,
+            "letter": "C",
+            "text": "Export users from Active Directory as a CSV and import them to Cloud Identity via the Admin Console.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41643,
+            "letter": "D",
+            "text": "Ask each employee to create a Google account using self signup. Require that each employee use their company email address and password.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 10891,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 110,
+        "question_type": "mc_single",
+        "question_text": "You have successfully created a development environment in a project for an application. This application uses Compute Engine and Cloud SQL. Now you need to create a production environment for this application. The security team has forbidden the existence of network routes between these 2 environments and has asked you to follow Google-recommended practices. What should you do?<br/>",
+        "solution_text": "The requirement to forbid network routes between environments mandates complete isolation, which is best achieved by using separate projects for development and production. Google Cloud best practices recommend organizing resources into distinct projects per environment to enforce security boundaries and independent IAM policies. Creating a new project (Option A) ensures that the production Compute Engine and Cloud SQL resources are isolated from the development environment without any shared networking infrastructure.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 41644,
+            "letter": "A",
+            "text": "Create a new project, enable the Compute Engine and Cloud SQL APIs in that project, and replicate the setup you have created in the development environment.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 41645,
+            "letter": "B",
+            "text": "Create a new production subnet in the existing VPC and a new production Cloud SQL instance in your existing project, and deploy your application using those resources.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 41646,
+            "letter": "C",
+            "text": "Create a new project, modify your existing VPC to be a Shared VPC, share that VPC with your new project, and replicate the setup you have in the development environment in that new project in the Shared VPC.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 41647,
+            "letter": "D",
+            "text": "Ask the security team to grant you the Project Editor role in an existing production project used by another division of your company. Once they grant you that role, replicate the setup you have in the development environment in that project.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 22,
+  "discussions": {
+    "10887": {
+      "target_type": "question",
+      "target_id": 10887,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10888": {
+      "target_type": "question",
+      "target_id": 10888,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10889": {
+      "target_type": "question",
+      "target_id": 10889,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10890": {
+      "target_type": "question",
+      "target_id": 10890,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "10891": {
+      "target_type": "question",
+      "target_id": 10891,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

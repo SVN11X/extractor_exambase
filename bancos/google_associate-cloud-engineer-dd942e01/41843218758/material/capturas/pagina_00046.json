@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/46",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 46,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 11007,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 226,
+          "question_type": "mc_single",
+          "question_text": "You have created an application that is packaged into a Docker image. You want to deploy the Docker image as a workload on Google Kubernetes Engine. What should you do?",
+          "solution_text": "You must store the Docker image in Artifact Registry because it is Google Cloud's managed container registry designed for GKE integration, whereas Cloud Storage is for general object storage. A Kubernetes Deployment is required to manage the lifecycle of Pods running the workload, while a Service is only used for network exposure and cannot directly run containers.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42109,
+              "letter": "A",
+              "text": "Upload the image to Cloud Storage and create a Kubernetes Service referencing the image.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42110,
+              "letter": "B",
+              "text": "Upload the image to Cloud Storage and create a Kubernetes Deployment referencing the image.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42111,
+              "letter": "C",
+              "text": "Upload the image to Artifact Registry and create a Kubernetes Service referencing the image.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42112,
+              "letter": "D",
+              "text": "Upload the image to Artifact Registry and create a Kubernetes Deployment referencing the image.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11008,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 227,
+          "question_type": "mc_single",
+          "question_text": "You are using Looker Studio to visualize a table from your data warehouse that is built on top of BigQuery. Data is appended to the data warehouse during the day. At night, the daily summary is recalculated by overwriting the table. You just noticed that the charts in Looker Studio are broken, and you want to analyze the problem. What should you do?",
+          "solution_text": "The data pipeline issue originates in BigQuery, where the nightly job overwrites the table. Since Looker Studio is merely visualizing this data, errors causing broken charts are likely due to failed or erroneous query execution in BigQuery. Reviewing the nightly job history in the BigQuery interface provides direct access to job status, logs, and error messages specific to that transformation process.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42113,
+              "letter": "A",
+              "text": "In Cloud Logging, create a filter for your Looker Studio report.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42114,
+              "letter": "B",
+              "text": "Use the open source CLI tool, Snapshot Debugger, to find out why the data was not refreshed correctly.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42115,
+              "letter": "C",
+              "text": "Review the Error Reporting page in the Google Cloud console to find any errors.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42116,
+              "letter": "D",
+              "text": "Use the BigQuery interface to review the nightly job and look for any errors.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11009,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 228,
+          "question_type": "mc_single",
+          "question_text": "You have a batch workload that runs every night and uses a large number of virtual machines (VMs). It is fault-tolerant and can tolerate some of the VMs being terminated. The current cost of VMs is too high. What should you do?",
+          "solution_text": "Spot VMs are designed for fault-tolerant, interruptible workloads like batch processing, offering discounts of up to 91% compared to on-demand pricing. Since the scenario explicitly states the workload can tolerate VM termination and requires cost reduction, Spot instances are the optimal choice.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42117,
+              "letter": "A",
+              "text": "Run a test using simulated maintenance events. If the test is successful, use Spot N2 Standard VMs when running future jobs.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 42118,
+              "letter": "B",
+              "text": "Run a test using simulated maintenance events. If the test is successful, use N2 Standard VMs when running future jobs.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42119,
+              "letter": "C",
+              "text": "Run a test using a managed instance group. If the test is successful, use N2 Standard VMs in the managed instance group when running future jobs.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42120,
+              "letter": "D",
+              "text": "Run a test using N1 standard VMs instead of N2. If the test is successful, use N1 Standard VMs when running future jobs.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11010,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 229,
+          "question_type": "mc_single",
+          "question_text": "You created several resources in multiple Google Cloud projects. All projects are linked to different billing accounts. To better estimate future charges, you want to have a single visual representation of all costs incurred. You want to include new cost data as soon as possible. What should you do?",
+          "solution_text": "The requirement for a single visual representation across multiple billing accounts necessitates consolidating data, which the native Billing Console reports (Option B) cannot do as they are scoped to individual accounts. Exporting billing data to BigQuery allows you to combine costs from all projects and billing accounts into a unified dataset. Looker Studio then provides the flexible visualization capabilities needed to present this consolidated data with minimal latency.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42121,
+              "letter": "A",
+              "text": "Fill all resources in the Pricing Calculator to get an estimate of the monthly cost.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42122,
+              "letter": "B",
+              "text": "Use the Reports view in the Cloud Billing Console to view the desired cost information.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42123,
+              "letter": "C",
+              "text": "Visit the Cost Table page to get a CSV export and visualize it using Looker Studio.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42124,
+              "letter": "D",
+              "text": "Configure Billing Data Export to BigQuery and visualize the data in Looker Studio.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11011,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 230,
+          "question_type": "mc_single",
+          "question_text": "Your company has a large quantity of unstructured data in different file formats. You want to perform ETL transformations on the data. You need to make the data accessible on Google Cloud so it can be processed by a Dataflow job. What should you do?",
+          "solution_text": "Cloud Storage is the recommended repository for unstructured data, such as various file formats, because it provides scalable object storage without requiring a predefined schema.<br/><br/>BigQuery, Cloud SQL, and Cloud Spanner are designed for structured or semi-structured data analysis and management, making them unsuitable for raw file ingestion in this context.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42125,
+              "letter": "A",
+              "text": "Upload the data to BigQuery using the bq command line tool.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42126,
+              "letter": "B",
+              "text": "Upload the data to Cloud Storage using the gcloud storage command.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42127,
+              "letter": "C",
+              "text": "Upload the data into Cloud SQL using the import function in the Google Cloud console.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42128,
+              "letter": "D",
+              "text": "Upload the data into Cloud Spanner using the import function in the Google Cloud console.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 46,
+    "discussions": {
+      "11007": {
+        "target_type": "question",
+        "target_id": 11007,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11008": {
+        "target_type": "question",
+        "target_id": 11008,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11009": {
+        "target_type": "question",
+        "target_id": 11009,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11010": {
+        "target_type": "question",
+        "target_id": 11010,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11011": {
+        "target_type": "question",
+        "target_id": 11011,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      226,
+      227,
+      228,
+      229,
+      230
+    ],
+    "attempts": [
+      {
+        "question": 226,
+        "answerVisible": true
+      },
+      {
+        "question": 227,
+        "answerVisible": true
+      },
+      {
+        "question": 228,
+        "answerVisible": true
+      },
+      {
+        "question": 229,
+        "answerVisible": true
+      },
+      {
+        "question": 230,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/11",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 11,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10832,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 51,
+          "question_type": "mc_single",
+          "question_text": "You need to create an autoscaling managed instance group for an HTTPS web application. You want to make sure that unhealthy VMs are recreated. What should you do?<br/>",
+          "solution_text": "To automatically recreate unhealthy VMs in a Managed Instance Group (MIG), you must configure autohealing using a health check.<br/>Since the application is HTTPS, the health check should probe port 443 to verify the instance's responsiveness.<br/>When an instance fails this health check for the configured period, the MIG controller marks it unhealthy and recreates it with the specified instance template.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41407,
+              "letter": "A",
+              "text": "Create a health check on port 443 and use that when creating the Managed Instance Group.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41408,
+              "letter": "B",
+              "text": "Select Multi-Zone instead of Single-Zone when creating the Managed Instance Group.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41409,
+              "letter": "C",
+              "text": "In the Instance Template, add the label 'health-check'.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41410,
+              "letter": "D",
+              "text": "In the Instance Template, add a startup script that sends a heartbeat to the metadata server.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10833,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 52,
+          "question_type": "mc_single",
+          "question_text": "Your company has a Google Cloud Platform project that uses BigQuery for data warehousing. Your data science team changes frequently and has few members.<br/>You need to allow members of this team to perform queries. You want to follow Google-recommended practices. What should you do?<br/>",
+          "solution_text": "Google recommends managing access via groups rather than individual IAM entries to simplify administration for teams with frequent turnover.<br/>The BigQuery Job User role is required to run jobs, including queries, whereas the Data Viewer role only permits reading data and listing resources but does not grant the permissions necessary to execute query jobs.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41411,
+              "letter": "A",
+              "text": "1. Create an IAM entry for each data scientist's user account. 2. Assign the BigQuery jobUser role to the group.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41412,
+              "letter": "B",
+              "text": "1. Create an IAM entry for each data scientist's user account. 2. Assign the BigQuery dataViewer user role to the group.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41413,
+              "letter": "C",
+              "text": "1. Create a dedicated Google group in Cloud Identity. 2. Add each data scientist's user account to the group. 3. Assign the BigQuery jobUser role to the group.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 41414,
+              "letter": "D",
+              "text": "1. Create a dedicated Google group in Cloud Identity. 2. Add each data scientist's user account to the group. 3. Assign the BigQuery dataViewer user role to the group.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10834,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 53,
+          "question_type": "mc_single",
+          "question_text": "Your company has a 3-tier solution running on Compute Engine. The configuration of the current infrastructure is shown below.<br/><img class=\"in-exam-image\" src=\"/media/question_images/imported/ASSOCIATE-CLOUD-ENGINEER/0002700001.png\"/><br/>Each tier has a service account that is associated with all instances within it. You need to enable communication on TCP port 8080 between tiers as follows:<br/>* Instances in tier #1 must communicate with tier #2.<br/>* Instances in tier #2 must communicate with tier #3.<br/>What should you do?<br/>\n",
+          "solution_text": "GCP firewall rules are evaluated for inbound traffic using ingress rules, and the principle of least privilege dictates restricting access to only the necessary port (TCP 8080) rather than allowing all protocols. Furthermore, using service accounts as targets and sources provides precise, identity-based control compared to broader IP range filters, ensuring that only instances in specific tiers can communicate with each other.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41415,
+              "letter": "A",
+              "text": "1. Create an ingress firewall rule with the following settings: \"¢ Targets: all instances \"¢ Source filter: IP ranges (with the range set to 10.0.2.0/24) \"¢ Protocols: allow all 2. Create an ingress firewall rule with the following settings: \"¢ Targets: all instances \"¢ Source filter: IP ranges (with the range set to 10.0.1.0/24) \"¢ Protocols: allow all",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41416,
+              "letter": "B",
+              "text": "1. Create an ingress firewall rule with the following settings: \"¢ Targets: all instances with tier #2 service account \"¢ Source filter: all instances with tier #1 service account \"¢ Protocols: allow TCP:8080 2. Create an ingress firewall rule with the following settings: \"¢ Targets: all instances with tier #3 service account \"¢ Source filter: all instances with tier #2 service account \"¢ Protocols: allow TCP: 8080",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41417,
+              "letter": "C",
+              "text": "1. Create an ingress firewall rule with the following settings: \"¢ Targets: all instances with tier #2 service account \"¢ Source filter: all instances with tier #1 service account \"¢ Protocols: allow all 2. Create an ingress firewall rule with the following settings: \"¢ Targets: all instances with tier #3 service account \"¢ Source filter: all instances with tier #2 service account \"¢ Protocols: allow all",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41418,
+              "letter": "D",
+              "text": "1. Create an egress firewall rule with the following settings: \"¢ Targets: all instances \"¢ Source filter: IP ranges (with the range set to 10.0.2.0/24) \"¢ Protocols: allow TCP: 8080 2. Create an egress firewall rule with the following settings: \"¢ Targets: all instances \"¢ Source filter: IP ranges (with the range set to 10.0.1.0/24) \"¢ Protocols: allow TCP: 8080",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10835,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 54,
+          "question_type": "mc_single",
+          "question_text": "You are given a project with a single Virtual Private Cloud (VPC) and a single subnetwork in the us-central1 region. There is a Compute Engine instance hosting an application in this subnetwork. You need to deploy a new instance in the same project in the europe-west1 region. This new instance needs access to the application. You want to follow Google-recommended practices. What should you do?<br/>",
+          "solution_text": "Google Cloud VPC networks are global resources that span all regions within a single project. To connect instances across different regions (us-central1 and europe-west1) in the same VPC, you simply need to create a subnetwork in the target region.<br/><br/>Once the new instance is deployed in the europe-west1 subnetwork, it can communicate directly with the existing instance using its private IP address without requiring Cloud VPN, VPC peering, or load balancers, as these are unnecessary for intra-VPC communication.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41419,
+              "letter": "A",
+              "text": "1. Create a subnetwork in the same VPC, in europe-west1. 2. Create the new instance in the new subnetwork and use the first instance's private address as the endpoint.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41420,
+              "letter": "B",
+              "text": "1. Create a VPC and a subnetwork in europe-west1. 2. Expose the application with an internal load balancer. 3. Create the new instance in the new subnetwork and use the load balancer's address as the endpoint.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41421,
+              "letter": "C",
+              "text": "1. Create a subnetwork in the same VPC, in europe-west1. 2. Use Cloud VPN to connect the two subnetworks. 3. Create the new instance in the new subnetwork and use the first instance's private address as the endpoint.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41422,
+              "letter": "D",
+              "text": "1. Create a VPC and a subnetwork in europe-west1. 2. Peer the 2 VPCs. 3. Create the new instance in the new subnetwork and use the first instance's private address as the endpoint.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10836,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 55,
+          "question_type": "mc_single",
+          "question_text": "Your projects incurred more costs than you expected last month. Your research reveals that a development GKE container emitted a huge number of logs, which resulted in higher costs. You want to disable the logs quickly using the minimum number of steps. What should you do?<br/>",
+          "solution_text": "The issue is specifically caused by a GKE container emitting excessive logs, so the solution must target that resource type directly.<br/>Disabling the log ingestion for the 'GKE Container' resource in the Logging console immediately stops the costly log entries without requiring destructive actions like deleting and recreating clusters.<br/>Options C and D involve unnecessary cluster recreation, while Option B targets cluster operations rather than the container logs themselves.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41423,
+              "letter": "A",
+              "text": "1. Go to the Logs ingestion window in Stackdriver Logging, and disable the log source for the GKE container resource.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41424,
+              "letter": "B",
+              "text": "1. Go to the Logs ingestion window in Stackdriver Logging, and disable the log source for the GKE Cluster Operations resource.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41425,
+              "letter": "C",
+              "text": "1. Go to the GKE console, and delete existing clusters. 2. Recreate a new cluster. 3. Clear the option to enable legacy Stackdriver Logging.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41426,
+              "letter": "D",
+              "text": "1. Go to the GKE console, and delete existing clusters. 2. Recreate a new cluster. 3. Clear the option to enable legacy Stackdriver Monitoring.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 11,
+    "discussions": {
+      "10832": {
+        "target_type": "question",
+        "target_id": 10832,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10833": {
+        "target_type": "question",
+        "target_id": 10833,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10834": {
+        "target_type": "question",
+        "target_id": 10834,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10835": {
+        "target_type": "question",
+        "target_id": 10835,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10836": {
+        "target_type": "question",
+        "target_id": 10836,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      51,
+      52,
+      53,
+      54,
+      55
+    ],
+    "attempts": [
+      {
+        "question": 51,
+        "answerVisible": true
+      },
+      {
+        "question": 52,
+        "answerVisible": true
+      },
+      {
+        "question": 53,
+        "answerVisible": true
+      },
+      {
+        "question": 54,
+        "answerVisible": true
+      },
+      {
+        "question": 55,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

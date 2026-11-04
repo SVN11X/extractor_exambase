@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/17",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 17,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10862,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 81,
+          "question_type": "mc_single",
+          "question_text": "You are operating a Google Kubernetes Engine (GKE) cluster for your company where different teams can run non-production workloads. Your Machine Learning<br/>(ML) team needs access to Nvidia Tesla P100 GPUs to train their models. You want to minimize effort and cost. What should you do?<br/>",
+          "solution_text": "Creating a separate GPU-enabled node pool minimizes cost by isolating expensive GPU resources to only the ML workloads that need them, rather than provisioning GPUs for the entire cluster.<br/>It minimizes effort compared to rebuilding existing nodes or managing a standalone cluster, while adhering to GKE best practices for running GPUs.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41527,
+              "letter": "A",
+              "text": "Ask your ML team to add the \"accelerator: gpu\" annotation to their pod specification.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41528,
+              "letter": "B",
+              "text": "Recreate all the nodes of the GKE cluster to enable GPUs on all of them.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41529,
+              "letter": "C",
+              "text": "Create your own Kubernetes cluster on top of Compute Engine with nodes that have GPUs. Dedicate this cluster to your ML team.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41530,
+              "letter": "D",
+              "text": "Add a new, GPU-enabled, node pool to the GKE cluster. Ask your ML team to add the cloud.google.com/gke -accelerator: nvidia-tesla-p100 nodeSelector to their pod specification.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10863,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 82,
+          "question_type": "mc_single",
+          "question_text": "Your VMs are running in a subnet that has a subnet mask of 255.255.255.240. The current subnet has no more free IP addresses and you require an additional<br/>10 IP addresses for new VMs. The existing and new VMs should all be able to reach each other without additional routes. What should you do?<br/>",
+          "solution_text": "In Google Cloud VPC networks, you can expand the primary IPv4 range of an existing subnet to add more IP addresses without disrupting connectivity.<br/>This is achieved using the `gcloud compute networks subnets expand-ip-range` command or through the Console.<br/>Other options are incorrect because you cannot simply overwrite a subnet with a wider range (D), and deleting/recreating the subnet (B) would require updating all existing VM network interfaces, causing downtime.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41531,
+              "letter": "A",
+              "text": "Use gcloud to expand the IP range of the current subnet.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41532,
+              "letter": "B",
+              "text": "Delete the subnet, and recreate it using a wider range of IP addresses.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41533,
+              "letter": "C",
+              "text": "Create a new project. Use Shared VPC to share the current network with the new project.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41534,
+              "letter": "D",
+              "text": "Create a new subnet with the same starting IP but a wider range to overwrite the current subnet.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10864,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 83,
+          "question_type": "mc_single",
+          "question_text": "Your organization uses G Suite for communication and collaboration. All users in your organization have a G Suite account. You want to grant some G Suite users access to your Cloud Platform project. What should you do?<br/>",
+          "solution_text": "Google Cloud Platform supports G Suite users directly as principals in Identity and Access Management (IAM). <br/>You grant access by assigning the required IAM roles to these users using their existing G Suite email addresses. <br/>No special conversion, group membership, or Cloud Identity activation is needed to utilize this native integration.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41535,
+              "letter": "A",
+              "text": "Enable Cloud Identity in the GCP Console for your domain.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41536,
+              "letter": "B",
+              "text": "Grant them the required IAM roles using their G Suite email address.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41537,
+              "letter": "C",
+              "text": "Create a CSV sheet with all users' email addresses. Use the gcloud command line tool to convert them into Google Cloud Platform accounts.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41538,
+              "letter": "D",
+              "text": "In the G Suite console, add the users to a special group called cloud-console-users@yourdomain.com. Rely on the default behavior of the Cloud Platform to grant users access if they are members of this group.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10865,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 84,
+          "question_type": "mc_single",
+          "question_text": "You have a Google Cloud Platform account with access to both production and development projects. You need to create an automated process to list all compute instances in development and production projects on a daily basis. What should you do?<br/>",
+          "solution_text": "The gcloud CLI tool supports multiple named configurations via `gcloud config`, allowing a script to switch contexts between projects programmatically.<br/>The `gcloud compute instances list` command is the standard method for retrieving Compute Engine instance metadata, making Option A the correct technical approach.<br/>Option B is incorrect because `gsutil` is designed for Cloud Storage operations, not Compute Engine. Options C and D describe manual export workflows that do not constitute an automated listing process via script.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41539,
+              "letter": "A",
+              "text": "Create two configurations using gcloud config. Write a script that sets configurations as active, individually. For each configuration, use gcloud compute instances list to get a list of compute resources.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41540,
+              "letter": "B",
+              "text": "Create two configurations using gsutil config. Write a script that sets configurations as active, individually. For each configuration, use gsutil compute instances list to get a list of compute resources.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41541,
+              "letter": "C",
+              "text": "Go to Cloud Shell and export this information to Cloud Storage on a daily basis.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41542,
+              "letter": "D",
+              "text": "Go to GCP Console and export this information to Cloud SQL on a daily basis.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10866,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 85,
+          "question_type": "mc_single",
+          "question_text": "You have a large 5-TB AVRO file stored in a Cloud Storage bucket. Your analysts are proficient only in SQL and need access to the data stored in this file. You want to find a cost-effective way to complete their request as soon as possible. What should you do?<br/>",
+          "solution_text": "Option C is correct because BigQuery external tables allow you to query data directly from Cloud Storage without the cost and time overhead of loading 5 TB into BigQuery storage.<br/>This satisfies the requirement for SQL access while remaining the most cost-effective and fastest solution, as it avoids data transfer charges and ingestion latency.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41543,
+              "letter": "A",
+              "text": "Load data in Cloud Datastore and run a SQL query against it.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41544,
+              "letter": "B",
+              "text": "Create a BigQuery table and load data in BigQuery. Run a SQL query on this table and drop this table after you complete your request.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41545,
+              "letter": "C",
+              "text": "Create external tables in BigQuery that point to Cloud Storage buckets and run a SQL query on these external tables to complete your request.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 41546,
+              "letter": "D",
+              "text": "Create a Hadoop cluster and copy the AVRO file to NDFS by compressing it. Load the file in a hive table and provide access to your analysts so that they can run SQL queries.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 17,
+    "discussions": {
+      "10862": {
+        "target_type": "question",
+        "target_id": 10862,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10863": {
+        "target_type": "question",
+        "target_id": 10863,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10864": {
+        "target_type": "question",
+        "target_id": 10864,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10865": {
+        "target_type": "question",
+        "target_id": 10865,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10866": {
+        "target_type": "question",
+        "target_id": 10866,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      81,
+      82,
+      83,
+      84,
+      85
+    ],
+    "attempts": [
+      {
+        "question": 81,
+        "answerVisible": true
+      },
+      {
+        "question": 82,
+        "answerVisible": true
+      },
+      {
+        "question": 83,
+        "answerVisible": true
+      },
+      {
+        "question": 84,
+        "answerVisible": true
+      },
+      {
+        "question": 85,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

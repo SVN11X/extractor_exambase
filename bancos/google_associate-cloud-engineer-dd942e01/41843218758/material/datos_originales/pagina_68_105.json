@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 68,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 11117,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 336,
+        "question_type": "mc_single",
+        "question_text": "Your company plans to migrate its on-premises PostgreSQL database to Google Cloud. The workloads are demanding, requiring fast transactional and analytical performance. You need to select a fully managed database service on Google Cloud. Your solution must also be able to synchronously replicate and optimize the storage layer. What should you do?",
+        "solution_text": "AlloyDB for PostgreSQL is the correct choice because it is a fully managed service specifically designed to meet demanding transactional and analytical workloads.<br/>It synchronously replicates data across storage nodes to optimize performance, unlike standard Cloud SQL which lacks this specific high-performance storage optimization.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42553,
+            "letter": "A",
+            "text": "Migrate the database to Cloud SQL for PostgreSQL by using Database Migration Service.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42554,
+            "letter": "B",
+            "text": "Use the psql client installed on a Compute Engine instance. Connect to the Cloud SQL instance to perform the database migration.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42555,
+            "letter": "C",
+            "text": "Migrate the database to AlloyDB for PostgreSQL by using Database Migration Service.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 42556,
+            "letter": "D",
+            "text": "Create a Compute Engine instance. Install and configure PostgreSQL on the instance, and migrate the database.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11118,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 337,
+        "question_type": "mc_single",
+        "question_text": "Your company’s management has chosen Google Cloud as its strategic cloud provider. You need to provision Google Cloud identities for all employees in the IT and Data departments but not to other departments. This access should automatically update when employees change departments, join, or leave the company. All employees are managed centrally in an LDAP directory, with one organizational unit (OU) for each department. What should you do?",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42557,
+            "letter": "A",
+            "text": "Develop a containerized application that reads user information from the relevant OUs in the LDAP directory. Use the Directory API to create accounts in Cloud Identity for new users. Deploy the application as a scheduled Cloud Run job.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42558,
+            "letter": "B",
+            "text": "Develop a containerized application that reads user information from the relevant OUs in the LDAP directory. Use the Admin SDK to synchronize user accounts in Identity Platform with the LDAP directory. Deploy the application as a scheduled Cloud Run job.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42559,
+            "letter": "C",
+            "text": "Create a CSV file with the users from the relevant OUs. Upload the CSV file to Cloud Identity. Instruct your Human Resources department to repeat this process for any employee changes.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42560,
+            "letter": "D",
+            "text": "Configure Google Cloud Directory Sync to synchronize the relevant OUs between the LDAP directory and Cloud Identity. Set up a scheduled task that triggers a provisioning run.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11119,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 338,
+        "question_type": "mc_single",
+        "question_text": "You are deploying a new frontend service for an online game. The service was built using a micro-frontend architecture and consists of multiple containers that interact using a service mesh. You need to control the number of compute instances that are running at a given time. What should you do?",
+        "solution_text": "The requirement to 'control the number of compute instances' implies managing the underlying infrastructure capacity directly. GKE Standard allows you to define node pools with a specific, fixed number of nodes, whereas GKE Autopilot abstracts away node management and automatically scales resources based on workload needs. Cloud Service Mesh is the supported solution for service mesh integration in this context.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42561,
+            "letter": "A",
+            "text": "Create a Compute Engine instance template using a container-optimized virtual machine (VM) instance, and create a startup script that installs Istio service mesh. Deploy the service, and create a managed instance group with a fixed number of instances to run the service.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42562,
+            "letter": "B",
+            "text": "Create a Cloud Run service specifying the minimum and maximum number of instances, and configure the service to use Cloud Service Mesh. Deploy all the containers to the service.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42563,
+            "letter": "C",
+            "text": "Create a Google Kubernetes Engine (GKE) Autopilot cluster, and enable Cloud Service Mesh. Deploy the service, and use vertical and horizontal Pod autoscaling to control the cluster size.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42564,
+            "letter": "D",
+            "text": "Create a Google Kubernetes Engine (GKE) Standard cluster with a node pool that has a fixed number of nodes. Enable the Cloud Service Mesh add-on, and deploy the service.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11120,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 339,
+        "question_type": "mc_single",
+        "question_text": "You are deploying a new internal web application behind an internal Application Load Balancer. The application must be accessible from both the VPC network and on-premises network using the domain name internal.altostrat.com. This name must not be resolvable from the public internet. Your on-premises network is connected to the VPC network by using Cloud VPN, and you have configured an inbound server policy. You need to resolve the domain name with the least administrative overhead. What should you do?",
+        "solution_text": "A Cloud DNS managed private zone ensures the domain name is not resolvable from the public internet, satisfying the security requirement. <br/>By configuring an inbound server policy for on-premises DNS servers to forward queries to Cloud DNS, both VPC and on-premises networks can resolve the internal hostname centrally with minimal administrative overhead.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42565,
+            "letter": "A",
+            "text": "Create an A record on the on-premises DNS server that points to the load balancer’s IP address.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42566,
+            "letter": "B",
+            "text": "Create a Cloud DNS managed private zone, authorize the VPC network to use it, and add an A record that points to the load balancer’s IP address.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 42567,
+            "letter": "C",
+            "text": "Create a Cloud DNS managed public zone, and add an A record that points to the load balancer’s IP address.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42568,
+            "letter": "D",
+            "text": "On each employee’s workstation, edit the local HOSTS file to map the domain name to the load balancer’s IP address.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11121,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 340,
+        "question_type": "mc_single",
+        "question_text": "Your organization has created hundreds of service accounts for different applications hosted on-premises and in other clouds that use Google Cloud APIs. You need to audit the service account keys that have been created and identify the keys that are older than 90 days.<br/><br/>What should you do?",
+        "solution_text": "The correct command uses `gcloud asset search-all-resources` because it allows searching for specific resource types across the entire organization scope. The asset type `iam.googleapis.com/ServiceAccountKey` correctly identifies service account keys, whereas `apikeys.googleapis.com/Key` refers to API keys and standard IAM service-account lists do not expose key metadata for filtering by age.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42569,
+            "letter": "A",
+            "text": "Execute the gcloud asset search-all-resources<br/>--scope=\"organizations/[ORG_ID]\"<br/>--query=\"createTime &lt; [DATE_90_DAYS_AGO]\"<br/>--asset-types=\"apikeys.googleapis.com/Key\"<br/>--order-by=\"createTime\" command.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42570,
+            "letter": "B",
+            "text": "Execute the gcloud iam service-accounts list<br/>--filter=\"createTime &lt; [DATE_90_DAYS_AGO]\" command.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42571,
+            "letter": "C",
+            "text": "Execute the gcloud tans keys list<br/>--filter=\"createTime &lt; [DATE_90_DAYS_AGO]\" command.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42572,
+            "letter": "D",
+            "text": "Execute the gcloud asset search-all-resources<br/>--scope=\"organizations/[ORG_ID]\"<br/>--query=\"createTime &lt; [DATE_90_DAYS_AGO]\"<br/>--asset-types=\"iam.googleapis.com/ServiceAccountKey\"<br/>--order-by=\"createTime\" command.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 68,
+  "discussions": {
+    "11117": {
+      "target_type": "question",
+      "target_id": 11117,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11118": {
+      "target_type": "question",
+      "target_id": 11118,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11119": {
+      "target_type": "question",
+      "target_id": 11119,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11120": {
+      "target_type": "question",
+      "target_id": 11120,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11121": {
+      "target_type": "question",
+      "target_id": 11121,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/8",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 8,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10817,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 36,
+          "question_type": "mc_single",
+          "question_text": "You have one project called proj-sa where you manage all your service accounts. You want to be able to use a service account from this project to take snapshots of VMs running in another project called proj-vm. What should you do?<br/>",
+          "solution_text": "To allow a service account from one project (proj-sa) to perform actions in another project (proj-vm), you must grant that service account the necessary IAM permissions directly on the target project. <br/>Granting the 'Compute Storage Admin' role in proj-vm provides the specific privileges required to create, modify, and delete snapshots for VMs running within that project. <br/>Options A and B are insecure and unnecessary workarounds, while Option D refers to legacy scopes that do not enable cross-project access.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41347,
+              "letter": "A",
+              "text": "Download the private key from the service account, and add it to each VMs custom metadata.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41348,
+              "letter": "B",
+              "text": "Download the private key from the service account, and add the private key to each VM's SSH keys.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41349,
+              "letter": "C",
+              "text": "Grant the service account the IAM Role of Compute Storage Admin in the project called proj-vm.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 41350,
+              "letter": "D",
+              "text": "When creating the VMs, set the service account's API scope for Compute Engine to read/write.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10818,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 37,
+          "question_type": "mc_single",
+          "question_text": "You created a Google Cloud Platform project with an App Engine application inside the project. You initially configured the application to be served from the us- central region. Now you want the application to be served from the asia-northeast1 region. What should you do?<br/>",
+          "solution_text": "Google Cloud Platform enforces a one-to-one relationship between a project and an App Engine application, meaning each project can only host a single App Engine app. Additionally, the region location for an App Engine application is immutable once it is created; it cannot be changed after initial setup. Therefore, to serve the application from asia-northeast1, you must create a new GCP project and initialize a new App Engine application within that project with the desired region.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41351,
+              "letter": "A",
+              "text": "Change the default region property setting in the existing GCP project to asia-northeast1.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41352,
+              "letter": "B",
+              "text": "Change the region property setting in the existing App Engine application from us-central to asia-northeast1.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41353,
+              "letter": "C",
+              "text": "Create a second App Engine application in the existing GCP project and specify asia-northeast1 as the region to serve your application.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41354,
+              "letter": "D",
+              "text": "Create a new GCP project and create an App Engine application inside this new project. Specify asia-northeast1 as the region to serve your application.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10819,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 38,
+          "question_type": "mc_single",
+          "question_text": "You need to grant access for three users so that they can view and edit table data on a Cloud Spanner instance. What should you do?<br/>",
+          "solution_text": "The `roles/spanner.databaseUser` role is required to view and edit table data, whereas `roles/spanner.viewer` only provides read-only access. <br/>According to GCP IAM best practices, you should assign roles to groups rather than individual users to simplify permission management and reduce administrative overhead.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41355,
+              "letter": "A",
+              "text": "Run gcloud iam roles describe roles/spanner.databaseUser. Add the users to the role.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41356,
+              "letter": "B",
+              "text": "Run gcloud iam roles describe roles/spanner.databaseUser. Add the users to a new group. Add the group to the role.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41357,
+              "letter": "C",
+              "text": "Run gcloud iam roles describe roles/spanner.viewer - -project my-project. Add the users to the role.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41358,
+              "letter": "D",
+              "text": "Run gcloud iam roles describe roles/spanner.viewer - -project my-project. Add the users to a new group. Add the group to the role.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10820,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 39,
+          "question_type": "mc_single",
+          "question_text": "You create a new Google Kubernetes Engine (GKE) cluster and want to make sure that it always runs a supported and stable version of Kubernetes. What should you do?<br/>",
+          "solution_text": "To ensure a GKE cluster *always* runs a supported and stable version, you must enable automatic updates, as manual selection only sets the initial state. Node Auto-Upgrades automatically manages the Kubernetes version lifecycle by upgrading nodes to the latest available stable version when it becomes ready.<br/><br/>Node Auto-Repair (A) fixes broken nodes but does not upgrade software versions. Selecting the latest version at creation (C) is a one-time action that does not guarantee future compliance. Container-Optimized OS (D) affects the node's underlying OS, not the Kubernetes control plane or kubelet version management.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41359,
+              "letter": "A",
+              "text": "Enable the Node Auto-Repair feature for your GKE cluster.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41360,
+              "letter": "B",
+              "text": "Enable the Node Auto-Upgrades feature for your GKE cluster.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41361,
+              "letter": "C",
+              "text": "Select the latest available cluster version for your GKE cluster.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41362,
+              "letter": "D",
+              "text": "Select \"Container-Optimized OS (cos)\" as a node image for your GKE cluster.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10821,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 40,
+          "question_type": "mc_single",
+          "question_text": "You have an instance group that you want to load balance. You want the load balancer to terminate the client SSL session. The instance group is used to serve a public web application over HTTPS. You want to follow Google-recommended practices. What should you do?<br/>",
+          "solution_text": "Option A is the correct choice because HTTP(S) Load Balancing is Google's recommended solution for public-facing web applications and provides built-in SSL termination capabilities. <br/><br/>In contrast, SSL Proxy and TCP Proxy load balancers are designed for non-HTTP traffic or scenarios requiring end-to-end encryption where the proxy does not decrypt the payload, while Internal Load Balancers are restricted to private network communication.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41363,
+              "letter": "A",
+              "text": "Configure an HTTP(S) load balancer.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41364,
+              "letter": "B",
+              "text": "Configure an internal TCP load balancer.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41365,
+              "letter": "C",
+              "text": "Configure an external SSL proxy load balancer.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41366,
+              "letter": "D",
+              "text": "Configure an external TCP proxy load balancer.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 8,
+    "discussions": {
+      "10817": {
+        "target_type": "question",
+        "target_id": 10817,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10818": {
+        "target_type": "question",
+        "target_id": 10818,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10819": {
+        "target_type": "question",
+        "target_id": 10819,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10820": {
+        "target_type": "question",
+        "target_id": 10820,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10821": {
+        "target_type": "question",
+        "target_id": 10821,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
+    "attempts": [
+      {
+        "question": 36,
+        "answerVisible": true
+      },
+      {
+        "question": 37,
+        "answerVisible": true
+      },
+      {
+        "question": 38,
+        "answerVisible": true
+      },
+      {
+        "question": 39,
+        "answerVisible": true
+      },
+      {
+        "question": 40,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 52,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 11037,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 256,
+        "question_type": "mc_single",
+        "question_text": "You have deployed an application on a Compute Engine instance. An external consultant needs to access the Linux-based instance. The consultant is connected to your corporate network through a VPN connection, but the consultant has no Google account. What should you do?",
+        "solution_text": "Option C is correct because it follows standard SSH security practices by having the user generate a key pair and only share the public key for authentication on the instance. This method allows access without requiring a Google account, unlike Identity-Aware Proxy (IAP) which typically relies on identity providers or external identities that add unnecessary complexity here. Option D is incorrect because sharing private keys is a severe security risk.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42229,
+            "letter": "A",
+            "text": "Instruct the external consultant to use the gcloud compute ssh command line tool by using Identity-Aware Proxy to access the instance.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42230,
+            "letter": "B",
+            "text": "Instruct the external consultant to use the gcloud compute ssh command line tool by using the public IP address of the instance to access it.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42231,
+            "letter": "C",
+            "text": "Instruct the external consultant to generate an SSH key pair, and request the public key from the consultant. Add the public key to the instance yourself, and have the consultant access the instance through SSH with their private key.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 42232,
+            "letter": "D",
+            "text": "Instruct the external consultant to generate an SSH key pair, and request the private key from the consultant. Add the private key to the instance yourself, and have the consultant access the instance through SSH with their public key.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11038,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 257,
+        "question_type": "mc_single",
+        "question_text": "After a recent security incident, your startup company wants better insight into what is happening in the Google Cloud environment. You need to monitor unexpected firewall changes and instance creation. Your company prefers simple solutions. What should you do?",
+        "solution_text": "The requirement for a 'simple solution' to monitor specific audit log events points directly to native Cloud Logging features. Option B uses log-based metrics and alerting policies, which provide immediate notification of unexpected changes without the infrastructure complexity of external tools like Kibana or storage overhead from BigQuery.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42233,
+            "letter": "A",
+            "text": "Create a log sink to forward Cloud Audit Logs filtered for firewalls and compute instances to Cloud Storage. Use BigQuery to periodically analyze log events in the storage bucket.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42234,
+            "letter": "B",
+            "text": "Use Cloud Logging filters to create log-based metrics for firewall and instance actions. Monitor the changes and set up reasonable alerts.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 42235,
+            "letter": "C",
+            "text": "Install Kibana on a compute instance. Create a log sink to forward Cloud Audit Logs filtered for firewalls and compute instances to Pub/Sub. Target the Pub/Sub topic to push messages to the Kibana instance. Analyze the logs on Kibana in real time.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42236,
+            "letter": "D",
+            "text": "Turn on Google Cloud firewall rules logging, and set up alerts for any insert, update, or delete events.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11039,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 258,
+        "question_type": "mc_single",
+        "question_text": "You are configuring service accounts for an application that spans multiple projects. Virtual machines (VMs) running in the web-applications project need access to BigQuery datasets in the crm-databases project. You want to follow Google-recommended practices to grant access to the service account in the web-applications project. What should you do?",
+        "solution_text": "The principle of least privilege requires granting only the specific permissions necessary for the task, making broad roles like Project Owner inappropriate. To access BigQuery datasets in the crm-databases project, the service account must be granted a specific BigQuery role (e.g., BigQuery Data Viewer) on that target resource/project.<br/>Options involving Project Owner violate least privilege by granting excessive administrative rights.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42237,
+            "letter": "A",
+            "text": "Grant \"project owner\" for web-applications appropriate roles to crm-databases.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42238,
+            "letter": "B",
+            "text": "Grant \"project owner\" role to crm-databases and the web-applications project.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42239,
+            "letter": "C",
+            "text": "Grant \"project owner\" role to crm-databases and roles/bigquery.dataViewer role to web-applications.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42240,
+            "letter": "D",
+            "text": "Grant roles/bigquery.dataViewer role to crm-databases and appropriate roles to web-applications.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11040,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 259,
+        "question_type": "mc_single",
+        "question_text": "Your Dataproc cluster runs in a single Virtual Private Cloud (VPC) network in a single subnetwork with range 172.16.20.128/25. There are no private IP addresses available in the subnetwork. You want to add new VMs to communicate with your cluster using the minimum number of steps. What should you do?",
+        "solution_text": "Option A is correct because GCP allows you to expand the primary IP range of an existing subnetwork using the `expand-ip-range` command.<br/>This directly resolves the shortage of available private IPs within the same network, enabling new VMs to join and communicate with the Dataproc cluster without complex peering or secondary range configurations.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42241,
+            "letter": "A",
+            "text": "Modify the existing subnet range to 172.16.20.0/24.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 42242,
+            "letter": "B",
+            "text": "Create a new Secondary IP Range in the VPC and configure the VMs to use that range.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42243,
+            "letter": "C",
+            "text": "Create a new VPC network for the VMs. Enable VPC Peering between the VMs'VPC network and the Dataproc cluster VPC network.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42244,
+            "letter": "D",
+            "text": "Create a new VPC network for the VMs with a subnet of 172.32.0.0/16. Enable VPC network Peering between the Dataproc VPC network and the VMs VPC network. Configure a custom Route exchange.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11041,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 260,
+        "question_type": "mc_single",
+        "question_text": "You are building a backend service for an ecommerce platform that will persist transaction data from mobile and web clients. After the platform is launched, you expect a large volume of global transactions. Your business team wants to run SQL queries to analyze the data. You need to build a highly available and scalable data store for the platform. What should you do?",
+        "solution_text": "Cloud Spanner is the correct choice because it provides global high availability and horizontal scalability required for a large volume of global transactions.<br/>Unlike Cloud SQL (Option C), which has replication latency limits in multi-region setups, or Firestore/BigQuery (Options B and D) which are NoSQL and OLAP-focused respectively, Spanner supports full SQL semantics with strong consistency across regions.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42245,
+            "letter": "A",
+            "text": "Create a multi-region Cloud Spanner instance with an optimized schema.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 42246,
+            "letter": "B",
+            "text": "Create a multi-region Firestore database with aggregation query enabled.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42247,
+            "letter": "C",
+            "text": "Create a multi-region Cloud SQL for PostgreSQL database with optimized indexes.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42248,
+            "letter": "D",
+            "text": "Create a multi-region BigQuery dataset with optimized tables.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 52,
+  "discussions": {
+    "11037": {
+      "target_type": "question",
+      "target_id": 11037,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11038": {
+      "target_type": "question",
+      "target_id": 11038,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11039": {
+      "target_type": "question",
+      "target_id": 11039,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11040": {
+      "target_type": "question",
+      "target_id": 11040,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11041": {
+      "target_type": "question",
+      "target_id": 11041,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

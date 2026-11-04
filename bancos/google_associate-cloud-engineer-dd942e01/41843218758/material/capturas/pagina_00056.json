@@ -1,0 +1,334 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/56",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 56,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 11057,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 276,
+          "question_type": "mc_multi",
+          "question_text": "Your company uses BigQuery to store and analyze data. Upon submitting your query in BigQuery, the query fails with a quotaExceeded error. You need to diagnose the issue causing the error. What should you do? (Choose two.)",
+          "solution_text": "Google's official documentation for troubleshooting BigQuery quota errors specifically recommends two diagnostic steps.<br/>First, query INFORMATION_SCHEMA views (such as JOBS_BY_PROJECT) to identify specific queries consuming excessive resources or triggering limits.<br/>Second, search Cloud Audit Logs for 'quotaExceeded' error messages to determine the exact resource and context causing the failure.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42310,
+              "letter": "A",
+              "text": "Use BigQuery BI Engine to analyze the issue.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42311,
+              "letter": "B",
+              "text": "Use the INFORMATION_SCHEMA views to analyze the underlying issue.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42312,
+              "letter": "C",
+              "text": "Configure Cloud Trace to analyze the issue.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42313,
+              "letter": "D",
+              "text": "Search errors in Cloud Audit Logs to analyze the issue.",
+              "is_correct": true,
+              "order": 3
+            },
+            {
+              "id": 42314,
+              "letter": "E",
+              "text": "View errors in Cloud Monitoring to analyze the issue.",
+              "is_correct": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": 11058,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 277,
+          "question_type": "mc_single",
+          "question_text": "Your team has developed a stateless application which requires it to be run directly on virtual machines. The application is expected to receive a fluctuating amount of traffic and needs to scale automatically. You need to deploy the application. What should you do?",
+          "solution_text": "The question explicitly requires the application to run directly on virtual machines, which eliminates serverless options like Cloud Functions and Cloud Run. <br/>Managed Instance Groups (MIGs) are designed specifically for managing identical VMs, providing native support for stateless applications through built-in autoscaling capabilities that adjust instance count based on traffic metrics.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42315,
+              "letter": "A",
+              "text": "Deploy the application on a managed instance group and configure autoscaling.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 42316,
+              "letter": "B",
+              "text": "Deploy the application on a Kubernetes Engine cluster and configure node pool autoscaling.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42317,
+              "letter": "C",
+              "text": "Deploy the application on Cloud Functions and configure the maximum number instances.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42318,
+              "letter": "D",
+              "text": "Deploy the application on Cloud Run and configure autoscaling.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11059,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 278,
+          "question_type": "mc_single",
+          "question_text": "Your web application is hosted on Cloud Run and needs to query a Cloud SQL database. Every morning during a traffic spike, you notice API quota errors in Cloud SQL logs. The project has already reached the maximum API quota. You want to make a configuration change to mitigate the issue. What should you do?",
+          "solution_text": "Cloud Run services can scale to zero, causing cold starts during traffic spikes that generate a burst of API calls for initialization and database connection pooling. Setting a minimum number of instances ensures these connections are established proactively, preventing the sudden surge in Cloud SQL API requests that triggers quota errors.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42319,
+              "letter": "A",
+              "text": "Modify the minimum number of Cloud Run instances.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 42320,
+              "letter": "B",
+              "text": "Use traffic splitting.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42321,
+              "letter": "C",
+              "text": "Modify the maximum number of Cloud Run instances.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42322,
+              "letter": "D",
+              "text": "Set a minimum concurrent requests environment variable for the application.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11060,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 279,
+          "question_type": "mc_single",
+          "question_text": "You need to deploy a single stateless web application with a web interface and multiple endpoints. For security reasons, the web application must be reachable from an internal IP address from your company's private VPC and on-premises network. You also need to update the web application multiple times per day with minimal effort and want to manage a minimal amount of cloud infrastructure. What should you do?",
+          "solution_text": "Cloud Run is the ideal choice for minimizing infrastructure management and handling frequent updates with minimal effort. <br/>Private Service Connect (PSC) is required because it allows the service to be accessed via an internal IP address from both the VPC and connected on-premises networks, whereas Private Google Access only permits resources within a private subnet to reach Google APIs/services without assigning them public IPs.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42323,
+              "letter": "A",
+              "text": "Deploy the web application on Google Kubernetes Engine standard edition with an internal ingress.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42324,
+              "letter": "B",
+              "text": "Deploy the web application on Cloud Run with Private Google Access configured.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42325,
+              "letter": "C",
+              "text": "Deploy the web application on Cloud Run with Private Service Connect configured.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 42326,
+              "letter": "D",
+              "text": "Deploy the web application to GKE Autopilot with Private Google Access configured.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11061,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 280,
+          "question_type": "mc_single",
+          "question_text": "You use Cloud Logging to capture application logs. You now need to use SQL to analyze the application logs in Cloud Logging, and you want to follow Google-recommended practices. What should you do?",
+          "solution_text": "Google-recommended practices for analyzing Cloud Logging data with SQL involve using Log Analytics to create a linked dataset in BigQuery. This approach provides native, real-time integration and avoids the latency and complexity associated with exporting logs to Cloud Storage or setting up external views.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42327,
+              "letter": "A",
+              "text": "Develop SQL queries by using Gemini for Google Cloud.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42328,
+              "letter": "B",
+              "text": "Enable Log Analytics for the log bucket and create a linked dataset in BigQuery.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42329,
+              "letter": "C",
+              "text": "Create a schema for the storage bucket and run SQL queries for the data in the bucket.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42330,
+              "letter": "D",
+              "text": "Export logs to a storage bucket and create an external view in BigQuery.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 56,
+    "discussions": {
+      "11057": {
+        "target_type": "question",
+        "target_id": 11057,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11058": {
+        "target_type": "question",
+        "target_id": 11058,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11059": {
+        "target_type": "question",
+        "target_id": 11059,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11060": {
+        "target_type": "question",
+        "target_id": 11060,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11061": {
+        "target_type": "question",
+        "target_id": 11061,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      276,
+      277,
+      278,
+      279,
+      280
+    ],
+    "attempts": [
+      {
+        "question": 276,
+        "answerVisible": true
+      },
+      {
+        "question": 277,
+        "answerVisible": true
+      },
+      {
+        "question": 278,
+        "answerVisible": true
+      },
+      {
+        "question": 279,
+        "answerVisible": true
+      },
+      {
+        "question": 280,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

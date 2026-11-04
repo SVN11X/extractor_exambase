@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/43",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 43,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10992,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 211,
+          "question_type": "mc_single",
+          "question_text": "An external member of your team needs list access to compute images and disks in one of your projects. You want to follow Google-recommended practices when you grant the required permissions to this user. What should you do?",
+          "solution_text": "Google recommends following the principle of least privilege by creating a custom role that includes only the specific permissions required for the task. Since the user needs only list access (compute.disks.list and compute.images.list), adding these specific permissions to a new custom role ensures they cannot perform other actions like modifying or using the images/disks. Options B and D grant broader permissions than necessary, violating this security best practice.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42049,
+              "letter": "A",
+              "text": "Create a custom role, and add all the required compute.disks.list and compute.images.list permissions as includedPermissions. Grant the custom role to the user at the project level.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 42050,
+              "letter": "B",
+              "text": "Create a custom role based on the Compute Image User role. Add the compute.disks.list to the includedPermissions field. Grant the custom role to the user at the project level.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42051,
+              "letter": "C",
+              "text": "Create a custom role based on the Compute Storage Admin role. Exclude unnecessary permissions from the custom role. Grant the custom role to the user at the project level.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42052,
+              "letter": "D",
+              "text": "Grant the Compute Storage Admin role at the project level.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10993,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 212,
+          "question_type": "mc_single",
+          "question_text": "You are running a web application on Cloud Run for a few hundred users. Some of your users complain that the initial web page of the application takes much longer to load than the following pages. You want to follow Google’s recommendations to mitigate the issue. What should you do?",
+          "solution_text": "The scenario describes a 'cold start' issue, where the first request takes longer because Cloud Run scales down to zero instances when idle. Setting a minimum number of instances (Option A) keeps containers running and warm, ensuring immediate response times for initial requests. This aligns with Google's official recommendations for optimizing performance by reducing cold start latency.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42053,
+              "letter": "A",
+              "text": "Set the minimum number of instances for your Cloud Run service to 3.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 42054,
+              "letter": "B",
+              "text": "Set the concurrency number to 1 for your Cloud Run service.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42055,
+              "letter": "C",
+              "text": "Set the maximum number of instances for your Cloud Run service to 100.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42056,
+              "letter": "D",
+              "text": "Update your web application to use the protocol HTTP/2 instead of HTTP/1.1.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10994,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 213,
+          "question_type": "mc_single",
+          "question_text": "You are building a data lake on Google Cloud for your Internet of Things (IoT) application. The IoT application has millions of sensors that are constantly streaming structured and unstructured data to your backend in the cloud. You want to build a highly available and resilient architecture based on Google-recommended practices. What should you do?",
+          "solution_text": "Pub/Sub is the recommended service for ingesting high-volume IoT streams due to its scalability and decoupling of ingestion from processing.<br/>Dataflow processes this stream efficiently, while Cloud Storage serves as the durable, scalable object storage layer suitable for a data lake containing both structured and unstructured data.<br/>Options involving BigQuery or Bigtable are less appropriate as primary data lake storage because they require structured schemas or are not general-purpose object stores.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42057,
+              "letter": "A",
+              "text": "Stream data to Pub/Sub, and use Dataflow to send data to Cloud Storage.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 42058,
+              "letter": "B",
+              "text": "Stream data to Pub/Sub, and use Storage Transfer Service to send data to BigQuery.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42059,
+              "letter": "C",
+              "text": "Stream data to Dataflow, and use Dataprep by Trifacta to send data to Bigtable.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42060,
+              "letter": "D",
+              "text": "Stream data to Dataflow, and use Storage Transfer Service to send data to BigQuery.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10995,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 214,
+          "question_type": "mc_single",
+          "question_text": "You are running out of primary internal IP addresses in a subnet for a custom mode VPC. The subnet has the IP range 10.0.0.0/20, and the IP addresses are primarily used by virtual machines in the project. You need to provide more IP addresses for the virtual machines. What should you do?",
+          "solution_text": "Expanding the primary IPv4 range of a subnet in Custom Mode VPC is the most direct method to increase available internal IP addresses for VMs.<br/>Option B correctly expands the address space from /20 to /18, providing more IPs without requiring changes to existing VM configurations or disrupting connectivity.<br/>Option A adds complexity by introducing secondary ranges, which are typically used for specific workload segregation rather than general IP exhaustion, and Option C reduces the available address space.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42061,
+              "letter": "A",
+              "text": "Add a secondary IP range 10.1.0.0/20 to the subnet.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42062,
+              "letter": "B",
+              "text": "Change the subnet IP range from 10.0.0.0/20 to 10.0.0.0/18.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42063,
+              "letter": "C",
+              "text": "Change the subnet IP range from 10.0.0.0/20 to 10.0.0.0/22.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42064,
+              "letter": "D",
+              "text": "Convert the subnet IP range from IPv4 to IPv6.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10996,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 215,
+          "question_type": "mc_single",
+          "question_text": "Your company requires all developers to have the same permissions, regardless of the Google Cloud project they are working on. Your company’s security policy also restricts developer permissions to Compute Engine, Cloud Functions, and Cloud SQL. You want to implement the security policy with minimal effort. What should you do?",
+          "solution_text": "Option D is correct because it creates a custom role at the organization level, ensuring developers receive consistent permissions across all projects without manual per-project assignment. By assigning this role to a Cloud Identity group at the organization level, you satisfy the requirement for minimal effort and restricted access to only Compute Engine, Cloud Functions, and Cloud SQL.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42065,
+              "letter": "A",
+              "text": "•\tCreate a custom role with Compute Engine, Cloud Functions, and Cloud SQL permissions in one project within the Google Cloud organization.<br/>•\tCopy the role across all projects created within the organization with the gcloud iam roles copy command.<br/>•\tAssign the role to developers in those projects.<br/>",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42066,
+              "letter": "B",
+              "text": "•\tAdd all developers to a Google group in Google Groups for Workspace.<br/>•\tAssign the predefined role of Compute Admin to the Google group at the Google Cloud organization level.<br/>",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42067,
+              "letter": "C",
+              "text": "•\tAdd all developers to a Google group in Cloud Identity.<br/>•\tAssign predefined roles for Compute Engine, Cloud Functions, and Cloud SQL permissions to the Google group for each project in the Google Cloud organization.<br/>",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42068,
+              "letter": "D",
+              "text": "•\tAdd all developers to a Google group in Cloud Identity.<br/>•\tCreate a custom role with Compute Engine, Cloud Functions, and Cloud SQL permissions at the Google Cloud organization level.<br/>•\tAssign the custom role to the Google group.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 43,
+    "discussions": {
+      "10992": {
+        "target_type": "question",
+        "target_id": 10992,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10993": {
+        "target_type": "question",
+        "target_id": 10993,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10994": {
+        "target_type": "question",
+        "target_id": 10994,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10995": {
+        "target_type": "question",
+        "target_id": 10995,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10996": {
+        "target_type": "question",
+        "target_id": 10996,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      211,
+      212,
+      213,
+      214,
+      215
+    ],
+    "attempts": [
+      {
+        "question": 211,
+        "answerVisible": true
+      },
+      {
+        "question": 212,
+        "answerVisible": true
+      },
+      {
+        "question": 213,
+        "answerVisible": true
+      },
+      {
+        "question": 214,
+        "answerVisible": true
+      },
+      {
+        "question": 215,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/40",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 40,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10977,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 196,
+          "question_type": "mc_single",
+          "question_text": "You are running multiple microservices in a Kubernetes Engine cluster. One microservice is rendering images. The microservice responsible for the image rendering requires a large amount of CPU time compared to the memory it requires. The other microservices are workloads that are optimized for n1-standard machine types. You need to optimize your cluster so that all workloads are using resources as efficiently as possible. What should you do?<br/>",
+          "solution_text": "To optimize resource efficiency and cost, workloads should match their specific resource profiles to appropriate machine types. The image rendering service is CPU-intensive with low memory usage, making it a perfect candidate for compute-optimized instances (e.g., C2), which offer a higher CPU-to-memory ratio at a lower price point than general-purpose nodes. Meanwhile, the other microservices are already optimized for n1-standard (general-purpose) types, so keeping them on their current node pool avoids unnecessary migration or performance loss.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41989,
+              "letter": "A",
+              "text": "Assign the pods of the image rendering microservice a higher pod priority than the other microservices.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41990,
+              "letter": "B",
+              "text": "Create a node pool with compute-optimized machine type nodes for the image rendering microservice. Use the node pool with general-purpose machine type nodes for the other microservices.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41991,
+              "letter": "C",
+              "text": "Use the node pool with general-purpose machine type nodes for the image rendering microservice. Create a node pool with compute-optimized machine type nodes for the other microservices.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41992,
+              "letter": "D",
+              "text": "Configure the required amount of CPU and memory in the resource requests specification of the image rendering microservice deployment. Keep the resource requests for the other microservices at the default.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10978,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 197,
+          "question_type": "mc_single",
+          "question_text": "Your organization has three existing Google Cloud projects. You need to bill the Marketing department for only their Google Cloud services for a new initiative within their group. What should you do?<br/>",
+          "solution_text": "To isolate billing for a specific department, you must link their dedicated Google Cloud project to a specific billing account. The Billing Administrator role is required to manage billing account access and link projects, whereas the Organization Administrator role does not have permissions to modify billing configurations. Therefore, verifying Billing Administrator rights and linking the new Marketing project to a Marketing Billing Account correctly satisfies the requirement.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41993,
+              "letter": "A",
+              "text": "1. Verify that you are assigned the Billing Administrator IAM role for your organization's Google Cloud Project for the Marketing department. 2. Link the new project to a Marketing Billing Account.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41994,
+              "letter": "B",
+              "text": "1. Verify that you are assigned the Billing Administrator IAM role for your organization's Google Cloud account. 2. Create a new Google Cloud Project for the Marketing department. 3. Set the default key-value project labels to department:marketing for all services in this project.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41995,
+              "letter": "C",
+              "text": "1. Verify that you are assigned the Organization Administrator IAM role for your organization's Google Cloud account. 2. Create a new Google Cloud Project for the Marketing department. 3. Link the new project to a Marketing Billing Account.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41996,
+              "letter": "D",
+              "text": "1. Verify that you are assigned the Organization Administrator IAM role for your organization's Google Cloud account. 2. Create a new Google Cloud Project for the Marketing department. 3. Set the default key-value project labels to department:marketing for all services in this project.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10979,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 198,
+          "question_type": "mc_single",
+          "question_text": "You deployed an application on a managed instance group in Compute Engine. The application accepts Transmission Control Protocol (TCP) traffic on port 389 and requires you to preserve the IP address of the client who is making a request. You want to expose the application to the internet by using a load balancer. What should you do?",
+          "solution_text": "An external TCP Network Load Balancer operates at Layer 4 and preserves the original client source IP address by default without requiring additional configuration like PROXY protocol. In contrast, Proxy-based load balancers (TCP or SSL) terminate the connection, which masks the client IP unless specific headers or protocols are explicitly configured.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41997,
+              "letter": "A",
+              "text": "Expose the application by using an external TCP Network Load Balancer.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41998,
+              "letter": "B",
+              "text": "Expose the application by using a TCP Proxy Load Balancer.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41999,
+              "letter": "C",
+              "text": "Expose the application by using an SSL Proxy Load Balancer.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42000,
+              "letter": "D",
+              "text": "Expose the application by using an internal TCP Network Load Balancer.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10980,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 199,
+          "question_type": "mc_single",
+          "question_text": "You are building a multi-player gaming application that will store game information in a database. As the popularity of the application increases, you are concerned about delivering consistent performance. You need to ensure an optimal gaming performance for global users, without increasing the management complexity. What should you do?",
+          "solution_text": "Cloud Spanner is designed for globally distributed applications requiring strong consistency and high availability across regions without the management overhead of manual replication. It provides the optimal performance for global users through its multi-region architecture while maintaining relational database simplicity, directly addressing the requirement to avoid increased management complexity.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42001,
+              "letter": "A",
+              "text": "Use Cloud SQL database with cross-region replication to store game statistics in the EU, US, and APAC regions.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42002,
+              "letter": "B",
+              "text": "Use Cloud Spanner to store user data mapped to the game statistics.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42003,
+              "letter": "C",
+              "text": "Use BigQuery to store game statistics with a Redis on Memorystore instance in the front to provide global consistency.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42004,
+              "letter": "D",
+              "text": "Store game statistics in a Bigtable database partitioned by username.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10981,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 200,
+          "question_type": "mc_single",
+          "question_text": "You are building an application that stores relational data from users. Users across the globe will use this application. Your CTO is concerned about the scaling requirements because the size of the user base is unknown. You need to implement a database solution that can scale with your user growth with minimum configuration changes. Which storage solution should you use?",
+          "solution_text": "Cloud Spanner is the only solution that provides relational data consistency and horizontal scalability across global regions with minimal administrative configuration. Cloud SQL requires manual sharding or replication setup for global scale, while Firestore and Bigtable are non-relational NoSQL databases.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42005,
+              "letter": "A",
+              "text": "Cloud SQL",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42006,
+              "letter": "B",
+              "text": "Firestore",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42007,
+              "letter": "C",
+              "text": "Cloud Spanner",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 42008,
+              "letter": "D",
+              "text": "Bigtable",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 40,
+    "discussions": {
+      "10977": {
+        "target_type": "question",
+        "target_id": 10977,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10978": {
+        "target_type": "question",
+        "target_id": 10978,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10979": {
+        "target_type": "question",
+        "target_id": 10979,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10980": {
+        "target_type": "question",
+        "target_id": 10980,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10981": {
+        "target_type": "question",
+        "target_id": 10981,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      196,
+      197,
+      198,
+      199,
+      200
+    ],
+    "attempts": [
+      {
+        "question": 196,
+        "answerVisible": true
+      },
+      {
+        "question": 197,
+        "answerVisible": true
+      },
+      {
+        "question": 198,
+        "answerVisible": true
+      },
+      {
+        "question": 199,
+        "answerVisible": true
+      },
+      {
+        "question": 200,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

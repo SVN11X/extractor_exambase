@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/18",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 18,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 10867,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 86,
+          "question_type": "mc_single",
+          "question_text": "You need to verify that a Google Cloud Platform service account was created at a particular time. What should you do?<br/>",
+          "solution_text": "Verifying the creation of a service account requires checking logs related to infrastructure changes, which fall under the Configuration audit log category rather than Data Access.<br/>Filtering by the Service Account resource type specifically isolates events pertaining to that identity, allowing you to locate the exact timestamp of its creation.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41547,
+              "letter": "A",
+              "text": "Filter the Activity log to view the Configuration category. Filter the Resource type to Service Account.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41548,
+              "letter": "B",
+              "text": "Filter the Activity log to view the Configuration category. Filter the Resource type to Google Project.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41549,
+              "letter": "C",
+              "text": "Filter the Activity log to view the Data Access category. Filter the Resource type to Service Account.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41550,
+              "letter": "D",
+              "text": "Filter the Activity log to view the Data Access category. Filter the Resource type to Google Project.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10868,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 87,
+          "question_type": "mc_single",
+          "question_text": "You deployed an LDAP server on Compute Engine that is reachable via TLS through port 636 using UDP. You want to make sure it is reachable by clients over that port. What should you do?<br/>",
+          "solution_text": "To allow external clients to reach the LDAP server, you must configure an inbound (ingress) firewall rule permitting traffic on UDP port 636. In Google Cloud, firewall rules are scoped using network tags applied to target VM instances, making option C the correct procedural approach.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41551,
+              "letter": "A",
+              "text": "Add the network tag allow-udp-636 to the VM instance running the LDAP server.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41552,
+              "letter": "B",
+              "text": "Create a route called allow-udp-636 and set the next hop to be the VM instance running the LDAP server.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41553,
+              "letter": "C",
+              "text": "Add a network tag of your choice to the instance. Create a firewall rule to allow ingress on UDP port 636 for that network tag.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 41554,
+              "letter": "D",
+              "text": "Add a network tag of your choice to the instance running the LDAP server. Create a firewall rule to allow egress on UDP port 636 for that network tag.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10869,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 88,
+          "question_type": "mc_single",
+          "question_text": "You need to set a budget alert for use of Compute Engineer services on one of the three Google Cloud Platform projects that you manage. All three projects are linked to a single billing account. What should you do?<br/>",
+          "solution_text": "Creating budgets requires Billing Account Administrator permissions, which eliminates options relying on Project Administrator roles (C and D).<br/>Option A is correct because standard Google Cloud budgets allow you to scope alerts to specific projects within a shared billing account without needing custom alert configurations.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41555,
+              "letter": "A",
+              "text": "Verify that you are the project billing administrator. Select the associated billing account and create a budget and alert for the appropriate project.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41556,
+              "letter": "B",
+              "text": "Verify that you are the project billing administrator. Select the associated billing account and create a budget and a custom alert.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41557,
+              "letter": "C",
+              "text": "Verify that you are the project administrator. Select the associated billing account and create a budget for the appropriate project.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41558,
+              "letter": "D",
+              "text": "Verify that you are project administrator. Select the associated billing account and create a budget and a custom alert.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10870,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 89,
+          "question_type": "mc_single",
+          "question_text": "You are migrating a production-critical on-premises application that requires 96 vCPUs to perform its task. You want to make sure the application runs in a similar environment on GCP. What should you do?<br/>",
+          "solution_text": "The n1-standard machine type series supports configurations with up to 96 vCPUs and 360 GB of memory, making n1-standard-96 the correct choice to meet the specific hardware requirement.<br/>Option B is incorrect because selecting a CPU platform does not define the instance's core count or memory size.<br/>Option C is invalid because you cannot modify the number of vCPUs on a running Compute Engine instance; this change requires stopping and deleting the disk or creating a new instance.<br/>Option D is insufficient because rightsizing recommendations are advisory and do not automatically provision the specific high-core count required by the application.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41559,
+              "letter": "A",
+              "text": "When creating the VM, use machine type n1-standard-96.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 41560,
+              "letter": "B",
+              "text": "When creating the VM, use Intel Skylake as the CPU platform.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 41561,
+              "letter": "C",
+              "text": "Create the VM using Compute Engine default settings. Use gcloud to modify the running instance to have 96 vCPUs.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41562,
+              "letter": "D",
+              "text": "Start the VM using Compute Engine default settings, and adjust as you go based on Rightsizing Recommendations.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 10871,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 90,
+          "question_type": "mc_single",
+          "question_text": "You want to configure a solution for archiving data in a Cloud Storage bucket. The solution must be cost-effective. Data with multiple versions should be archived after 30 days. Previous versions are accessed once a month for reporting. This archive data is also occasionally updated at month-end. What should you do?<br/>",
+          "solution_text": "Option B is correct because it uses the `NumberOfNewerVersions` condition to target previous object versions for archiving after 30 days, aligning with the requirement to archive data with multiple versions.<br/><br/>Nearline Storage is the most cost-effective choice given the access pattern of once per month, as Coldline has a 90-day minimum retention period and associated early deletion fees that would make it more expensive for monthly reporting access.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 41563,
+              "letter": "A",
+              "text": "Add a bucket lifecycle rule that archives data with newer versions after 30 days to Coldline Storage.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 41564,
+              "letter": "B",
+              "text": "Add a bucket lifecycle rule that archives data with newer versions after 30 days to Nearline Storage.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 41565,
+              "letter": "C",
+              "text": "Add a bucket lifecycle rule that archives data from regional storage after 30 days to Coldline Storage.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 41566,
+              "letter": "D",
+              "text": "Add a bucket lifecycle rule that archives data from regional storage after 30 days to Nearline Storage.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 18,
+    "discussions": {
+      "10867": {
+        "target_type": "question",
+        "target_id": 10867,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10868": {
+        "target_type": "question",
+        "target_id": 10868,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10869": {
+        "target_type": "question",
+        "target_id": 10869,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10870": {
+        "target_type": "question",
+        "target_id": 10870,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "10871": {
+        "target_type": "question",
+        "target_id": 10871,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      86,
+      87,
+      88,
+      89,
+      90
+    ],
+    "attempts": [
+      {
+        "question": 86,
+        "answerVisible": true
+      },
+      {
+        "question": 87,
+        "answerVisible": true
+      },
+      {
+        "question": 88,
+        "answerVisible": true
+      },
+      {
+        "question": 89,
+        "answerVisible": true
+      },
+      {
+        "question": 90,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

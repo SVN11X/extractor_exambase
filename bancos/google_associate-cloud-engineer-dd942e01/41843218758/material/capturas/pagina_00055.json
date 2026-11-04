@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/55",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 55,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 11052,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 271,
+          "question_type": "mc_single",
+          "question_text": "Your company is running a critical workload on a single Compute Engine VM instance. Your company's disaster recovery policies require you to back up the entire instance’s disk data every day. The backups must be retained for 7 days. You must configure a backup solution that complies with your company’s security policies and requires minimal setup and configuration. What should you do?",
+          "solution_text": "Option B is correct because Persistent Disk snapshots are the native, fully managed solution for backing up entire disk data in Google Cloud. They support automated scheduling and retention policies directly within the Compute Engine interface, satisfying the 'minimal setup and configuration' requirement without needing custom scripts or serverless functions.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42290,
+              "letter": "A",
+              "text": "Configure the instance to use persistent disk asynchronous replication.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42291,
+              "letter": "B",
+              "text": "Configure daily scheduled persistent disk snapshots with a retention period of 7 days.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42292,
+              "letter": "C",
+              "text": "Configure Cloud Scheduler to trigger a Cloud Function each day that creates a new machine image and deletes machine images that are older than 7 days.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42293,
+              "letter": "D",
+              "text": "Configure a bash script using gsutil to run daily through a cron job. Copy the disk’s files to a Cloud Storage bucket with archive storage class and an object lifecycle rule to delete the objects after 7 days.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11053,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 272,
+          "question_type": "mc_single",
+          "question_text": "Your company requires that Google Cloud products are created with a specific configuration to comply with your company’s security policies. You need to implement a mechanism that will allow software engineers at your company to deploy and update Google Cloud products in a preconfigured and approved manner. What should you do?",
+          "solution_text": "Terraform is an Infrastructure as Code (IaC) tool that enables declarative configuration of Google Cloud resources, ensuring consistent and compliant deployments. <br/>Using Terraform modules allows engineers to reuse pre-approved configurations, enforcing security policies while simplifying deployment and updates across the organization.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42294,
+              "letter": "A",
+              "text": "Create Java packages that utilize the Google Cloud Client Libraries for Java to configure Google Cloud products. Store and share the packages in a source code repository.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42295,
+              "letter": "B",
+              "text": "Create bash scripts that utilize the Google Cloud CLI to configure Google Cloud products. Store and share the bash scripts in a source code repository.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42296,
+              "letter": "C",
+              "text": "Use the Google Cloud APIs by using curl to configure Google Cloud products. Store and share the curl commands in a source code repository.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42297,
+              "letter": "D",
+              "text": "Create Terraform modules that utilize the Google Cloud Terraform Provider to configure Google Cloud products. Store and share the modules in a source code repository.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11054,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 273,
+          "question_type": "mc_single",
+          "question_text": "You are a Google Cloud organization administrator. You need to configure organization policies and log sinks on Google Cloud projects that cannot be removed by project users to comply with your company's security policies. The security policies are different for each company department. Each company department has a user with the Project Owner role assigned to their projects. What should you do?",
+          "solution_text": "Organizing projects into folders allows you to apply department-specific constraints while ensuring they cannot be overridden by project-level users. Configuring both Organization Policies and Log Sinks at the folder level enforces inheritance down to the projects, preventing Project Owners from removing these security controls.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42298,
+              "letter": "A",
+              "text": "Use a standard naming convention for projects that includes the department name. Configure organization policies on the organization and log sinks on the projects.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42299,
+              "letter": "B",
+              "text": "Use a standard naming convention for projects that includes the department name. Configure both organization policies and log sinks on the projects.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42300,
+              "letter": "C",
+              "text": "Organize projects under folders for each department. Configure both organization policies and log sinks on the folders.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 42301,
+              "letter": "D",
+              "text": "Organize projects under folders for each department. Configure organization policies on the organization and log sinks on the folders.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11055,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 274,
+          "question_type": "mc_single",
+          "question_text": "You are deploying a web application using Compute Engine. You created a managed instance group (MIG) to host the application. You want to follow Google-recommended practices to implement a secure and highly available solution. What should you do?",
+          "solution_text": "HTTP(S) load balancing is the Google-recommended solution for web applications because it handles SSL termination, provides global distribution, and supports health checking natively.<br/>Since the goal is a publicly accessible web application, you must use a public DNS zone so external users can resolve the domain name.<br/>An A record is required to map the hostname to the load balancer's fixed static IP address; CNAME records cannot directly point to an IP address in standard DNS.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42302,
+              "letter": "A",
+              "text": "Use SSL proxy load balancing for the MIG and an A record in your DNS private zone with the load balancer's IP address.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42303,
+              "letter": "B",
+              "text": "Use SSL proxy load balancing for the MIG and a CNAME record in your DNS public zone with the load balancer’s IP address.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42304,
+              "letter": "C",
+              "text": "Use HTTP(S) load balancing for the MIG and a CNAME record in your DNS private zone with the load balancer’s IP address.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42305,
+              "letter": "D",
+              "text": "Use HTTP(S) load balancing for the MIG and an A record in your DNS public zone with the load balancer’s IP address.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11056,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 275,
+          "question_type": "mc_single",
+          "question_text": "You have several hundred microservice applications running in a Google Kubernetes Engine (GKE) cluster. Each microservice is a deployment with resource limits configured for each container in the deployment. You've observed that the resource limits for memory and CPU are not appropriately set for many of the microservices. You want to ensure that each microservice has right sized limits for memory and CPU. What should you do?",
+          "solution_text": "The Vertical Pod Autoscaler (VPA) is specifically designed to automatically adjust the resource requests and limits (CPU and memory) for pods based on their historical usage data. This ensures each microservice has right-sized resources without manual intervention, addressing the core issue of misconfigured limits. In contrast, HPA scales the number of pod replicas, while Cluster Autoscaler manages node capacity, neither of which directly optimizes individual container resource definitions.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42306,
+              "letter": "A",
+              "text": "Configure a Vertical Pod Autoscaler for each microservice.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 42307,
+              "letter": "B",
+              "text": "Modify the cluster's node pool machine type and choose a machine type with more memory and CPU.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42308,
+              "letter": "C",
+              "text": "Configure a Horizontal Pod Autoscaler for each microservice.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42309,
+              "letter": "D",
+              "text": "Configure GKE cluster autoscaling.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 55,
+    "discussions": {
+      "11052": {
+        "target_type": "question",
+        "target_id": 11052,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11053": {
+        "target_type": "question",
+        "target_id": 11053,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11054": {
+        "target_type": "question",
+        "target_id": 11054,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11055": {
+        "target_type": "question",
+        "target_id": 11055,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11056": {
+        "target_type": "question",
+        "target_id": 11056,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      271,
+      272,
+      273,
+      274,
+      275
+    ],
+    "attempts": [
+      {
+        "question": 271,
+        "answerVisible": true
+      },
+      {
+        "question": 272,
+        "answerVisible": true
+      },
+      {
+        "question": 273,
+        "answerVisible": true
+      },
+      {
+        "question": 274,
+        "answerVisible": true
+      },
+      {
+        "question": 275,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

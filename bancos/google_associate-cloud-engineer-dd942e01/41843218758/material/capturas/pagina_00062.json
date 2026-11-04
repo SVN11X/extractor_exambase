@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-cloud-engineer/practice-questions/62",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 62,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 11087,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 306,
+          "question_type": "mc_single",
+          "question_text": "Your company is migrating its workloads to Google Cloud due to an expiring data center contract. The on-premises environment and Google Cloud are not connected. You have decided to follow a lift-and-shift approach, and you plan to modernize the workloads in a future project. Several old applications connect to each other through hard-coded internal IP addresses. You want to migrate these workloads quickly without modifying the application code. You also want to maintain all functionality. What should you do?",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42431,
+              "letter": "A",
+              "text": "Migrate your DNS server first. Configure Cloud DNS with a forwarding zone to your migrated DNS server. Then migrate all other workloads with ephemeral internal IP addresses.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42432,
+              "letter": "B",
+              "text": "Create a VPC with non-overlapping CIDR ranges compared to your on-premises network. When migrating individual workloads, assign each workload a new static internal IP address.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42433,
+              "letter": "C",
+              "text": "Create a VPC with the same CIDR ranges as your on-premises network. When migrating individual workloads, assign each workload the same static internal IP address.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 42434,
+              "letter": "D",
+              "text": "Migrate all workloads to a single VPC subnet. Configure Cloud NAT for the subnet and manually assign a static IP address to the Cloud NAT gateway.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11088,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 307,
+          "question_type": "mc_single",
+          "question_text": "You are migrating your company’s on-premises compute resources to Google Cloud. You need to deploy batch processing jobs that run every night. The jobs require significant CPU and memory for several hours but can tolerate interruptions. You must ensure that the deployment is cost-effective. What should you do?",
+          "solution_text": "Spot VMs provide significant cost savings (up to 91% cheaper than on-demand) by utilizing Google Cloud's excess capacity, which is ideal for fault-tolerant workloads.<br/>Since the batch jobs can tolerate interruptions and require high CPU/memory resources, Spot VMs are the most cost-effective option compared to standard or custom machine types.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42435,
+              "letter": "A",
+              "text": "Use the M1 machine series on Compute Engine.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42436,
+              "letter": "B",
+              "text": "Containerize the batch processing jobs and deploy them on Compute Engine.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42437,
+              "letter": "C",
+              "text": "Use Spot VMs on Compute Engine.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 42438,
+              "letter": "D",
+              "text": "Use custom machine types on Compute Engine.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11089,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 308,
+          "question_type": "mc_single",
+          "question_text": "Your company has a rapidly growing social media platform and a user base primarily located in North America. Due to increasing demand, your current on-premises PostgreSQL database, hosted in your United States headquarters data center, no longer meets your needs. You need to identify a cloud-based database solution that offers automatic scaling, multi-region support for future expansion, and maintains low latency. What should you do?",
+          "solution_text": "Google Cloud Spanner is the only option that provides strong global consistency with automatic multi-region scaling without requiring manual sharding. While Cloud SQL offers PostgreSQL compatibility, it relies on read replicas for regional distribution and does not support true multi-region write availability, making it unsuitable for low-latency global expansion.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42439,
+              "letter": "A",
+              "text": "Use BigQuery.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42440,
+              "letter": "B",
+              "text": "Use Spanner.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 42441,
+              "letter": "C",
+              "text": "Use Cloud SQL for PostgreSQL.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42442,
+              "letter": "D",
+              "text": "Use Bigtable.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11090,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 309,
+          "question_type": "mc_single",
+          "question_text": "You are migrating your on-premises workload to Google Cloud. Your company is implementing its Cloud Billing configuration and requires access to a granular breakdown of its Google Cloud costs. You need to ensure that the Cloud Billing datasets are available in BigQuery so you can conduct a detailed analysis of costs. What should you do?",
+          "solution_text": "To export Cloud Billing data to BigQuery, you must explicitly enable the export feature within the Cloud Billing account settings. This action creates the necessary BigQuery dataset and begins transferring cost and usage information for granular analysis. Options B, C, and D describe incorrect workflows or missing steps for this specific integration.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42443,
+              "letter": "A",
+              "text": "Enable Cloud Billing data export to BigQuery when you create a Cloud Billing account.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 42444,
+              "letter": "B",
+              "text": "Enable Cloud Billing on the project, and link a Cloud Billing account. Then view the billing data table in the BigQuery dataset.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42445,
+              "letter": "C",
+              "text": "Create a Cloud Billing account. Enable the BigQuery Data Transfer Service API to export pricing data.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 42446,
+              "letter": "D",
+              "text": "Enable the BigQuery API, and ensure that the BigQuery User IAM role is selected. Change the BigQuery dataset to select a data location.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 11091,
+          "topic_id": 86,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 310,
+          "question_type": "mc_single",
+          "question_text": "Your company’s accounting department needs to run an overnight batch workload every day. You must implement a solution that minimizes the cost to run this workload and automatically retries the batch if an execution fails. What should you do?",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 42447,
+              "letter": "A",
+              "text": "Develop an application that runs the batch workload, and deploy the application as a Google Kubernetes Engine (GKE) CronJob.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 42448,
+              "letter": "B",
+              "text": "Develop a web application that listens for incoming requests, and deploy the application as a Cloud Run service. Use Cloud Scheduler to call the HTTP endpoint.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 42449,
+              "letter": "C",
+              "text": "Develop an application that runs the batch workload, and deploy the application as a Cloud Run job. Use Cloud Scheduler to trigger the job.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 42450,
+              "letter": "D",
+              "text": "Develop a web application that listens for incoming requests, and deploy the application as a Google Kubernetes Engine (GKE) Deployment. Use Cloud Scheduler to call the HTTP endpoint.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 86,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 62,
+    "discussions": {
+      "11087": {
+        "target_type": "question",
+        "target_id": 11087,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11088": {
+        "target_type": "question",
+        "target_id": 11088,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11089": {
+        "target_type": "question",
+        "target_id": 11089,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11090": {
+        "target_type": "question",
+        "target_id": 11090,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "11091": {
+        "target_type": "question",
+        "target_id": 11091,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      306,
+      307,
+      308,
+      309,
+      310
+    ],
+    "attempts": [
+      {
+        "question": 306,
+        "answerVisible": true
+      },
+      {
+        "question": 307,
+        "answerVisible": true
+      },
+      {
+        "question": 308,
+        "answerVisible": true
+      },
+      {
+        "question": 309,
+        "answerVisible": true
+      },
+      {
+        "question": 310,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

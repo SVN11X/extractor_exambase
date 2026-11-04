@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 60,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 11077,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 296,
+        "question_type": "mc_single",
+        "question_text": "Your company is modernizing its applications and refactoring them to containerized microservices. You need to deploy the infrastructure on Google Cloud so that teams can deploy their applications. The applications cannot be exposed publicly. You want to minimize management and operational overhead. What should you do?",
+        "solution_text": "Google Kubernetes Engine (GKE) Autopilot is the correct choice because it is specifically designed to minimize management and operational overhead by fully managing node infrastructure, scaling, and security patching.<br/>This allows teams to focus solely on deploying containerized microservices without maintaining cluster nodes, directly satisfying the requirement for reduced operational burden.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42391,
+            "letter": "A",
+            "text": "Provision a Google Kubernetes Engine (GKE) Autopilot cluster.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 42392,
+            "letter": "B",
+            "text": "Provision a fleet of Compute Engine instances and install Kubernetes.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42393,
+            "letter": "C",
+            "text": "Provision a Standard regional Google Kubernetes Engine (GKE) cluster.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42394,
+            "letter": "D",
+            "text": "Provision a Standard zonal Google Kubernetes Engine (GKE) cluster.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11078,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 297,
+        "question_type": "mc_single",
+        "question_text": "You have an application running inside a Compute Engine instance. You want to provide the application with secure access to a BigQuery dataset. You must ensure that credentials are only valid for a short period of time, and your application will only have access to the intended BigQuery dataset. You want to follow Google-recommended practices and minimize your operational costs. What should you do?",
+        "solution_text": "Attaching a custom service account provides long-term, stable identity management without the operational overhead of rotating accounts hourly.<br/>Granting the BigQuery Data Viewer role at the dataset level ensures least privilege by restricting access strictly to the intended dataset, rather than the entire project.<br/>This approach minimizes costs and aligns with Google Cloud best practices for secure, efficient resource access.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42395,
+            "letter": "A",
+            "text": "Attach a new service account to the instance every hour, and grant the service account the BigQuery Data Viewer IAM role on the project.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42396,
+            "letter": "B",
+            "text": "Attach a custom service account to the instance, and grant the service account the BigQuery Data Viewer IAM role on the dataset.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 42397,
+            "letter": "C",
+            "text": "Attach a new service account to the instance every hour, and grant the service account the BigQuery Data Viewer IAM role on the dataset.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42398,
+            "letter": "D",
+            "text": "Attach a custom service account to the instance, and grant the service account the BigQuery Data Viewer IAM role on the project.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11079,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 298,
+        "question_type": "mc_single",
+        "question_text": "You have an application that is currently processing transactions by using a group of managed VM instances. You need to migrate the application so that it is serverless and scalable. You want to implement an asynchronous transaction processing system, while minimizing management overhead. What should you do?",
+        "solution_text": "The requirement for a serverless environment rules out using managed VM instances (Options B and D). <br/>Between the remaining options, Pub/Sub is the native Google Cloud service for asynchronous event streaming and acknowledges transactions without management overhead, whereas installing Kafka on VMs introduces significant infrastructure maintenance. <br/>Therefore, combining Pub/Sub for ingestion with Cloud Run for serverless processing minimizes management overhead while meeting scalability requirements.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42399,
+            "letter": "A",
+            "text": "Install Kafka on VM instances to acknowledge incoming transactions. Use Cloud Run to process transactions.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42400,
+            "letter": "B",
+            "text": "Use Pub/Sub to acknowledge incoming transactions. Use VM instances to process transactions.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42401,
+            "letter": "C",
+            "text": "Use Pub/Sub to acknowledge incoming transactions. Use Cloud Run to process transactions.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 42402,
+            "letter": "D",
+            "text": "Install Kafka on VM instances to acknowledge incoming transactions. Use VM instances to process transactions.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11080,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 299,
+        "question_type": "mc_single",
+        "question_text": "Your company has many legacy third-party applications that rely on a shared NFS server for file sharing between these workloads. You want to modernize the NFS server by using a Google Cloud managed service. You need to select the solution that requires the least amount of change to the application. What should you do?",
+        "solution_text": "Google Cloud Filestore is a fully managed NFS service that presents standard NFS endpoints, allowing legacy applications to mount storage without code changes.<br/>This satisfies the requirement for minimal application modification compared to using Compute Engine (manual management), Firestore (NoSQL database requiring API changes), or Cloud Storage (requiring client libraries).",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42403,
+            "letter": "A",
+            "text": "Create a Compute Engine instance and configure an NFS server on the instance. Point all NFS mounts to the Compute Engine instance.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42404,
+            "letter": "B",
+            "text": "Deploy a Filestore instance. Replace all NFS mounts with a Filestore mount.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 42405,
+            "letter": "C",
+            "text": "Configure Firestore. Configure all applications to use Firestore instead of the NFS server.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 42406,
+            "letter": "D",
+            "text": "Create a Cloud Storage bucket. Configure all applications to use Cloud Storage client libraries instead of the NFS server.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 11081,
+        "topic_id": 86,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 300,
+        "question_type": "mc_single",
+        "question_text": "Your company is seeking a scalable solution to retain and explore application logs hosted on Compute Engine. You must be able to analyze your logs with SQL queries, and you want to be able to create charts to identify patterns and trends in your logs over time. You want to follow Google-recommended practices and minimize your operational costs. What should you do?",
+        "solution_text": "Option C is correct because it uses the Ops Agent for efficient log ingestion and enables Log Analytics, which specifically supports advanced SQL queries (via Standard SQL) to analyze logs. In contrast, standard Logs Explorer (Option B) uses a different query language that does not support the full SQL dialect requested, while custom scripts (Options A and D) do not follow Google-recommended best practices for scalability or operational efficiency.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 42407,
+            "letter": "A",
+            "text": "Use a custom script to push your application logs to BigQuery for exploration.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 42408,
+            "letter": "B",
+            "text": "Ingest your application logs to Cloud Logging by using Ops Agent, and explore your logs in Logs Explorer.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 42409,
+            "letter": "C",
+            "text": "Ingest your application logs to Cloud Logging by using Ops Agent, and explore your logs with Log Analytics.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 42410,
+            "letter": "D",
+            "text": "Use a custom script to push your application logs to Cloud SQL for exploration.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 86,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 60,
+  "discussions": {
+    "11077": {
+      "target_type": "question",
+      "target_id": 11077,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11078": {
+      "target_type": "question",
+      "target_id": 11078,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11079": {
+      "target_type": "question",
+      "target_id": 11079,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11080": {
+      "target_type": "question",
+      "target_id": 11080,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "11081": {
+      "target_type": "question",
+      "target_id": 11081,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}
