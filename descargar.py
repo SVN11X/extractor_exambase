@@ -331,6 +331,10 @@ def run(args, source_factory=None):
                     archive.add_page(page, f"capturas/{cache.name}")
                 print(f"Página {number}/{exam['pages']}: {len(archive.questions)}/{exam['total']} preguntas", flush=True)
                 print(f"  Respuestas pendientes en esta página: {page_quality(page)['missing_answers']}",flush=True)
+                transport = page.get('transport', {})
+                if needs_refresh and page['parser'] == 'dom' and transport.get('engine') == 'scrapling':
+                    print(f"  Metadatos pendientes. Respuestas de datos registradas por tipo: {transport.get('network_response_types', {})}. "
+                          f"Registros sin decodificar: {len(transport.get('network_incomplete', []))}.",flush=True)
                 if page.get('access_failure'):
                     detail=page['access_failure']
                     stopped_access=core.AccessStopped(f'La página {number} conserva preguntas pero no entregó sus respuestas: {detail["kind"]}.',kind=detail['kind'],code=detail.get('code'),page=number,url=page['url'])
@@ -385,7 +389,13 @@ def run(args, source_factory=None):
     success = report["coverage_complete"] and report['answers_complete'] and report['references_complete'] and not report['empty_questions'] and not report['empty_choices'] and not archive.errors and not report["images_failed"] and not report.get('conflicts')
     if not success and not stopped and missing_answers:stopped=f'Hay {len(missing_answers)} preguntas sin respuesta explícita. Reanuda para reparar las páginas pendientes.'
     if not success and not stopped and invalid_content:stopped=f'Hay {len(invalid_content)} preguntas con enunciados o alternativas vacíos; se requiere recuperar su contenido.'
-    if not success and not stopped and not report['references_complete']:stopped='Los objetos referenciados o sus metadatos no están completos; consulta para_ia/referencias.json.'
+    unverified_metadata = report.get('dom_questions_requiring_context_review', [])
+    if not success and not stopped and not report['references_complete']:
+        missing_links = len(report['unresolved_references'])
+        pending_files = len(report['referenced_files_pending'])
+        stopped = (f'Quedan {len(unverified_metadata)} preguntas con metadatos por verificar, '
+                   f'{missing_links} referencias sin resolver y {pending_files} archivos referenciados pendientes. '
+                   'Consulta para_ia/referencias.json.')
     status = 'complete' if success else 'blocked' if failure else 'partial' if saved_pages else 'failed'
     diagnostic = {'status': status, 'failure': failure, 'pages_saved': saved_pages, 'next_page': next_page,'pages_pending_answers':answer_pages,'pages_pending_images':image_pages,'pages_pending_references':reference_pages,'answers_present':report['answers_present'],'answers_missing':report['answers_missing'],'cache_diagnostics':cache_diagnostics}
     core.write_json(output / 'diagnostico_acceso.json', diagnostic)
@@ -396,7 +406,7 @@ def run(args, source_factory=None):
     result_zip = core.create_zip(output)
     state = {"exam": exam, "mode": args.mode, "questions": len(archive.questions), "coverage_complete": report["coverage_complete"], "execution_complete": success, "stopped_reason": stopped, "zip": result_zip.name, "review_pending": not report["collection_complete"], 'status': status, 'failure': failure, 'pages_saved': saved_pages, 'next_page': next_page, 'resume_supported': bool(saved_pages and exam.get('total')), 'runner_environment': os.environ.get('RUNNER_ENVIRONMENT', 'local')}
     state.update(answers_present=report['answers_present'],answers_missing=report['answers_missing'],answers_complete=report['answers_complete'],pages_pending_answers=answer_pages,pages_pending_images=image_pages)
-    state.update(references_complete=report['references_complete'],objects_preserved=report['objects_preserved'],unresolved_references=report['unresolved_references'],metadata_unverified_questions=report.get('dom_questions_requiring_context_review',[]),pages_pending_references=reference_pages)
+    state.update(references_complete=report['references_complete'],objects_preserved=report['objects_preserved'],unresolved_references=report['unresolved_references'],metadata_unverified_questions=unverified_metadata,pages_pending_references=reference_pages,referenced_files_pending=report['referenced_files_pending'])
     core.write_json(args.output / "estado_ejecucion.json", state)
     print(json.dumps(state, ensure_ascii=False, indent=2), flush=True)
     if failure:

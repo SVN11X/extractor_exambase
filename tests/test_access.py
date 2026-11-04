@@ -47,6 +47,12 @@ class AccessTests(unittest.TestCase):
         self.assertEqual(value['payload']['result']['page'], 2)
         self.assertEqual(value['payload']['result']['items'][0]['order'], 6)
 
+    def test_old_script_does_not_hide_current_structured_data(self):
+        scripts = ''.join('<script>const initial={data:'+json.dumps(page(self.exam,n,103)['payload'])+'};</script>' for n in (1,2))
+        value = current_question_page(scripts+dom(self.exam,2),self.exam['base']+'2',2,self.exam)
+        self.assertEqual(value['parser'],'structured')
+        self.assertEqual(value['payload']['result']['items'][0]['id'],6)
+
     def test_page_one_is_never_accepted_as_page_two(self):
         with self.assertRaises(core.ExtractionError):
             current_question_page(dom(self.exam, 1), self.exam['base']+'2', 2, self.exam)

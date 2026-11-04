@@ -1,9 +1,15 @@
-# Captura y diagnóstico · versión 5.2.1
+# Captura y diagnóstico · versión 5.2.2
 
-El parche 5.2.1 se aplica sobre `9c6642e2bb6309d0b2415d88ef78252690346e23`
+El parche 5.2.2 se aplica sobre `f520e8d31a71d88d4bbf0db9180a680e7be33738`
 de `SVN11X/extractor_exambase`.
 
 ## Qué se pudo comprobar de tu ejecución
+
+La ejecución `41749148063` recuperó las 35 respuestas pendientes de **Google
+Associate Data Practitioner**. Guardó 103/103 preguntas, 103/103 respuestas y
+un objeto. El log identifica 15 preguntas con metadatos por verificar en las
+páginas 2, 11 y 20 y registra cero referencias sin resolver. El ZIP de esa
+ejecución permite reparar esas páginas conservando sus respuestas.
 
 El log de `41743648444` registra 103 preguntas, 68 respuestas y un objeto
 conservado de **Google Associate Data Practitioner**. Quedan 35 respuestas y
@@ -38,6 +44,12 @@ La versión 5.2.1 desactiva el clic de verificación de la biblioteca. Si detect
 una comprobación pendiente, espera hasta 20 segundos en la misma pestaña. Si el
 sitio abre la página durante ese tiempo, captura sus preguntas y respuestas. Si
 la comprobación sigue pendiente, registra el estado y conserva el ZIP parcial.
+
+La versión 5.2.2 lee el HTML recibido para la página actual, las respuestas JSON
+de navegación y acciones, y los fragmentos diferidos de SvelteKit. Usa sólo las
+respuestas que la pestaña ya recibió. La validación comprueba página, numeración
+y totales antes de usar un resultado estructurado. La compatibilidad con el
+protocolo se comprobó con el [código oficial de SvelteKit](https://github.com/sveltejs/kit/blob/fe4deb1b76d876bdca56db489388c98ed74973f5/packages/kit/src/runtime/server/data/index.js).
 
 La captura compartida por Next, Playwright/Rebrowser y Selenium espera tarjetas,
 pulsa un control **Reveal Answer** a la vez y comprueba que aparezca una marca
@@ -111,14 +123,14 @@ En Pages o Actions selecciona **el mismo examen** de la ejecución anterior y:
 | Examen | Google Associate Data Practitioner |
 | Motor | `scrapling` |
 | Runner | `github` |
-| ID para reanudar | `41743648444` |
+| ID para reanudar | `41749148063` |
 | Límite de páginas | `0` |
 | Guardar también en el repositorio | Activado si quieres conservar el banco |
 
 El avance se carga completo antes de reparar páginas. Se conservan las capturas
 anteriores en `paginas_originales/previas/` cuando se reemplaza su HTML. Si una
 página vuelve a bloquearse, las páginas posteriores del respaldo siguen en el
-nuevo ZIP. Las páginas con preguntas y respuestas válidas no se solicitan de nuevo.
+nuevo ZIP. Las páginas con contenido y referencias completos se reutilizan.
 El artefacto anterior está disponible hasta su fecha de caducidad en GitHub.
 
 Para usar Scrapling por terminal:

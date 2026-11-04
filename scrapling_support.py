@@ -6,7 +6,7 @@ from importlib.metadata import version
 from pathlib import Path
 import extractor as core
 from access_diagnostics import annotate_access,classify_access
-from browser_support import current_question_page,choose_page,network_payloads
+from browser_support import choose_page, current_question_page, decode_network_response, network_payloads
 from capture_support import capture_script
 from reference_support import attach_contexts,context_collections,key as context_key
 from solver_support import SolverAssets
@@ -78,19 +78,50 @@ class ScraplingSource:
         self.last_url=actual
         original=self.output/'paginas_originales'/f'pagina_{number:05}.html'
         original.parent.mkdir(parents=True,exist_ok=True);original.write_text(text,encoding='utf-8')
-        incomplete=[]
+        incomplete = []
+        response_types = {}
+        expected = urllib.parse.urlsplit(url)
         for item in self.session.network.search(limit=None):
-            if urllib.parse.urlsplit(item.url).hostname!=urllib.parse.urlsplit(self.exam['base']).hostname:continue
-            if item.meta.get('body_note') and item.meta.get('resource_type') in {'xhr','fetch'}:incomplete.append({'url':item.url,'issue':'El registro no conserva el cuerpo completo.'})
-            headers={k.lower():v for k,v in item.headers.items()}
-            if 'json' not in (headers.get('content-type','') or '').lower():continue
-            try:value=item.json()
-            except (ValueError,TypeError):continue
+            address = urllib.parse.urlsplit(item.url)
+            if address.scheme != expected.scheme or address.netloc != expected.netloc:
+                continue
+            if not 200 <= item.status < 300:
+                continue
+            data_route = address.path.endswith('/__data.json')
+            if data_route and address.path != expected.path.rstrip('/') + '/__data.json':
+                continue
+            resource_type = item.meta.get('resource_type')
+            headers = {k.lower(): v for k, v in item.headers.items()}
+            media_type = (headers.get('content-type') or '').partition(';')[0].strip().lower()
+            if resource_type == 'document' and media_type == 'text/html' and address.path.rstrip('/') == expected.path.rstrip('/'):
+                if item.meta.get('body_note'):
+                    continue
+                try:
+                    original_page = core.parse_page(item.body.decode('utf-8'), item.url, expected_page=number)
+                except (core.ExtractionError, ValueError):
+                    continue
+                if original_page['parser'] == 'structured':
+                    self.received.append(original_page['payload'])
+                continue
+            if resource_type not in {'xhr', 'fetch'}:
+                continue
+            if media_type != 'text/sveltekit-data' and 'json' not in media_type:
+                continue
+            response_types[media_type] = response_types.get(media_type, 0) + 1
+            if item.meta.get('body_note'):
+                incomplete.append({'path': address.path, 'issue': 'El registro no conserva el cuerpo completo.'})
+                continue
+            try:
+                value = decode_network_response(item.body, media_type)
+            except (ValueError, TypeError, RecursionError):
+                incomplete.append({'path': address.path, 'issue': 'No se pudieron decodificar los datos recibidos.'})
+                continue
             self.received.extend(network_payloads(value))
             collections=context_collections(value)
             for kind,items in collections.items():
                 for obj in items:self.objects[kind][obj.get('_object_key') or context_key(kind,obj.get('id'))]=obj
-        try:page=current_question_page(text,actual,number,self.exam,choose_page(self.received,number,actual))
+        preferred = choose_page(self.received, number, actual, exam=self.exam)
+        try:page=current_question_page(text,actual,number,self.exam,preferred)
         except core.ExtractionError:
             detail=classify_access(text,response.status)
             if detail:
@@ -100,5 +131,6 @@ class ScraplingSource:
         page=attach_contexts(page,[{k:list(v.values()) for k,v in self.objects.items()},*self.received])
         self.assets.update({},captured.get('images',[]))
         page['capture']=captured.get('capture',{})
-        page['transport']={'engine':'scrapling','version':version('scrapling'),'network_incomplete':incomplete}
+        page['transport']={'engine':'scrapling','version':version('scrapling'),'network_incomplete':incomplete,
+                           'network_response_types':response_types,'validated_network_page':preferred is not None}
         return annotate_access(page,text)

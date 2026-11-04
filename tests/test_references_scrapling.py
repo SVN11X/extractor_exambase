@@ -9,7 +9,7 @@ from unittest.mock import MagicMock,patch
 from patchright.sync_api import Error as BrowserError
 import descargar
 import extractor as core
-from browser_support import network_payloads
+from browser_support import decode_network_response, network_payloads
 from reference_support import attach_contexts,question_refs,reference_graph
 from scrapling_support import ScraplingSource
 from test_actions import page
@@ -109,8 +109,8 @@ class ReferenceTests(unittest.TestCase):
 
     def test_scrapling_waits_through_same_tab_navigation_and_collects_api_objects(self):
         value=page(self.exam,1);value['payload']['result']['items'][0]['case_study_id']=8
-        record=MagicMock();record.url=self.exam['base']+'__data.json';record.headers={'Content-Type':'application/json'}
-        record.meta={'resource_type':'fetch'};record.json.return_value={**value['payload'],'case_studies':[{'id':8,'text':'Caso API'}]}
+        record=MagicMock(status=200);record.url=self.exam['base']+'1/__data.json';record.headers={'Content-Type':'application/json'}
+        record.meta={'resource_type':'fetch'};record.body=json.dumps({**value['payload'],'case_studies':[{'id':8,'text':'Caso API'}]}).encode()
         response=MagicMock();response.url=self.exam['base']+'1';response.status=200;response.html_content=html_page(value)
         browser_page=MagicMock()
         browser_page.content.side_effect=[
@@ -137,6 +137,73 @@ class ReferenceTests(unittest.TestCase):
             session.fetch.assert_called_once()
             session.network.clear.assert_called_once();factory.return_value.__exit__.assert_called_once()
         self.assertNotIn('request_headers',json.dumps(captured))
+
+    def test_success_action_data_can_contain_flattened_payload(self):
+        body=json.dumps({'type':'success','status':200,'data':'[{"case_studies":1},[2],{"id":3},900]'}).encode()
+        decoded=decode_network_response(body,'application/json')
+        self.assertEqual(decoded['data']['case_studies'],[{'id':900}])
+
+    def test_resume_repairs_metadata_from_stream_without_losing_saved_answers(self):
+        def initial(value, number):
+            if number == 1:
+                return value
+            return core.parse_page(html_page(value),value['url'])
+
+        result,old,_,_=self.collect(initial,'pending')
+        self.assertEqual((result,old['answers_present'],old['pages_pending_references']),(2,7,[2]))
+        current=page(self.exam,2)
+        current['payload']['result']['items'][0].update(case_study_id=807)
+        for question in current['payload']['result']['items']:
+            question['choices'][0]['is_correct']=None
+
+        def flatten(value):
+            nodes=[]
+            def visit(item):
+                index=len(nodes)
+                nodes.append(None)
+                if isinstance(item,dict): item={k:visit(v) for k,v in item.items()}
+                elif isinstance(item,list): item=[visit(v) for v in item]
+                nodes[index]=item
+                return index
+            visit(value)
+            return nodes
+
+        data=flatten({**current['payload'],'case_studies':None})
+        cases=[{'id':807,'text':'Caso diferido','question_ids':[6]}]
+        data[data[0]['case_studies']]=['Promise',len(data)]
+        data.append(1)
+        stream=[{'type':'data','nodes':[{'type':'data','data':data}]},
+                {'type':'chunk','id':1,'data':flatten(cases)}]
+        stream_record=MagicMock(status=200,url=current['url']+'/__data.json?x-sveltekit-invalidated=01',
+                                headers={'content-type':'text/sveltekit-data; charset=utf-8'},
+                                meta={'resource_type':'fetch'},body='\n'.join(map(json.dumps,stream)).encode())
+        invalid=MagicMock(status=200,url=current['url']+'/__data.json',headers={'content-type':'application/json'},
+                          meta={'resource_type':'fetch'},body=b'{"result":{"kind":"questions","page":2,"items":[]}}')
+        other=MagicMock(status=200,url=self.exam['base']+'1/__data.json',headers={'content-type':'application/json'},
+                        meta={'resource_type':'fetch'},body=b'{"case_studies":[{"id":999}]}')
+        html=html_page(current)
+        browser_page=MagicMock(url=current['url'])
+        browser_page.content.return_value=html
+        browser_page.evaluate.return_value=json.dumps({'url':current['url'],'html':html})
+        response=MagicMock(status=200,url=current['url'],html_content=html)
+        args=argparse.Namespace(exam_url=self.exam['base']+'1',output=self.root/'repaired',
+                                resume_from=self.root/'pending'/old['zip'],mode='scrapling',delay=0,max_minutes=300,page_limit=0)
+        with patch('scrapling.fetchers.StealthySession') as factory, contextlib.redirect_stdout(io.StringIO()):
+            session=factory.return_value.__enter__.return_value
+            session.network.search.return_value=[stream_record,invalid,other]
+            def fetch(url,**options):
+                options['page_action'](browser_page)
+                return response
+            session.fetch.side_effect=fetch
+            self.assertEqual(descargar.run(args),0)
+            self.assertEqual([call.args[0] for call in session.fetch.call_args_list],[current['url']])
+
+        state=json.loads((args.output/'estado_ejecucion.json').read_text())
+        self.assertEqual((state['status'],state['answers_present'],state['objects_preserved']),('complete',7,1))
+        self.assertEqual(state['metadata_unverified_questions'],[])
+        captured=json.loads(next(args.output.glob('resultado_*/capturas/pagina_00002.json')).read_text())
+        self.assertEqual(captured['payload']['result']['items'][0]['id'],6)
+        self.assertEqual(captured['payload']['result']['case_studies'],cases)
 
     def test_scrapling_reports_persistent_challenge_with_no_extra_navigation(self):
         browser_page=MagicMock()

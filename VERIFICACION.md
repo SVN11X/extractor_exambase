@@ -1,4 +1,16 @@
-# Verificación de la entrega 5.2.1
+# Verificación de la entrega 5.2.2
+
+## Comprobaciones de 5.2.2
+
+Pasaron 105 pruebas Python y 52 JavaScript. La prueba de reanudación carga un
+ZIP con respuestas completas y metadatos pendientes en una página. Una respuesta
+de navegación simulada entrega un caso de estudio en un fragmento diferido.
+El extractor solicita sólo la página pendiente, descarta respuestas ajenas y
+conserva las claves del respaldo junto a los identificadores y al objeto recuperado.
+
+El log de `41749148063` confirma las 103 preguntas y sus 103 respuestas. El
+artefacto requiere autenticación. La recuperación de los metadatos de las páginas
+2, 11 y 20 queda por confirmar con 5.2.2 en GitHub Actions.
 
 ## Comprobaciones de 5.2.1
 

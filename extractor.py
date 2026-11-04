@@ -276,7 +276,7 @@ def dom_choice_is_correct(value):
     return False
 
 
-def parse_page(source, fallback_url=DEFAULT_URL.format(page=1)):
+def parse_page(source, fallback_url=DEFAULT_URL.format(page=1), *, expected_page=None):
     tree = TreeReader(source).root
     url = canonical_url(tree, fallback_url)
     errors = []
@@ -298,6 +298,8 @@ def parse_page(source, fallback_url=DEFAULT_URL.format(page=1)):
                     if result.get("kind") == "captcha_required" and not has_cards:
                         raise ChallengeRequired("La página requiere verificación humana de Cloudflare Turnstile. Usa DESCARGAR_70_PAGINAS.cmd (modo navegador), completa la verificación y continúa.")
                     if result.get("kind") == "questions" and isinstance(result.get("items"), list):
+                        if expected_page is not None and result.get("page") != expected_page:
+                            continue
                         return {"url": url, "parser": "structured", "payload": payload, "warnings": []}
                 except ChallengeRequired:
                     raise

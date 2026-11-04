@@ -8,7 +8,7 @@ import urllib.parse
 from pathlib import Path
 
 
-def expand_flat_data(values):
+def expand_flat_data(values, resolve_deferred=None):
     """Decodifica las referencias de datos JSON de Svelte; no ejecuta código.
 
     Se conserva por separado el JSON original. Tipos especiales quedan como
@@ -40,7 +40,9 @@ def expand_flat_data(values):
         if isinstance(raw, dict):
             obj = {key: resolve(value) for key, value in raw.items()}
         elif isinstance(raw, list):
-            if raw and isinstance(raw[0], str):
+            if len(raw) == 2 and raw[0] == 'Promise' and resolve_deferred:
+                obj = resolve_deferred(resolve(raw[1]))
+            elif raw and isinstance(raw[0], str):
                 obj = {"_type": raw[0], "values": raw[1:]}
             else:
                 obj = [resolve(value) for value in raw]
@@ -51,6 +53,49 @@ def expand_flat_data(values):
         return obj
 
     return resolve(0)
+
+
+def decode_network_response(body, media_type):
+    """Lee JSON y los datos de navegación o acciones de SvelteKit."""
+    chunks = {}
+    if media_type == 'text/sveltekit-data':
+        records = [json.loads(line) for line in body.splitlines() if line.strip()]
+        if not records or not isinstance(records[0], dict) or records[0].get('type') != 'data':
+            raise ValueError('Falta la cabecera de datos de navegación.')
+        value = records[0]
+        chunks = {record['id']: record['data'] for record in records[1:]
+                  if isinstance(record, dict) and record.get('type') == 'chunk'
+                  and type(record.get('id')) is int and 'data' in record}
+    else:
+        value = json.loads(body)
+
+    if not isinstance(value, dict):
+        return value
+    if value.get('type') == 'success' and isinstance(value.get('data'), str):
+        return {**value, 'data': expand_flat_data(json.loads(value['data']))}
+    if value.get('type') != 'data':
+        return value
+    if not isinstance(value.get('nodes'), list):
+        if isinstance(value.get('data'), list):
+            return {**value, 'data': expand_flat_data(value['data'])}
+        return value
+
+    active = set()
+    decoded = {}
+
+    def resolve_deferred(identifier):
+        if type(identifier) is not int or identifier not in chunks or identifier in active:
+            return {'_type': 'Promise', 'id': identifier}
+        if identifier not in decoded:
+            active.add(identifier)
+            try:
+                decoded[identifier] = expand_flat_data(chunks[identifier], resolve_deferred)
+            finally:
+                active.remove(identifier)
+        return decoded[identifier]
+
+    return [expand_flat_data(node['data'], resolve_deferred) for node in value['nodes']
+            if isinstance(node, dict) and node.get('type') == 'data' and 'data' in node]
 
 
 def network_payloads(value):
@@ -85,11 +130,19 @@ def network_payloads(value):
     return found
 
 
-def choose_page(candidates, number, source):
+def choose_page(candidates, number, source, *, exam=None):
     # Más reciente primero: no mezclar los datos de otra página de la sesión.
     for payload in reversed(candidates):
         if payload.get("result", {}).get("page") == number:
-            return {"url": source, "parser": "browser-network", "payload": payload, "warnings": []}
+            page = {"url": source, "parser": "browser-network", "payload": payload, "warnings": []}
+            if exam is not None:
+                from descargar import detect_counts, validate_page
+                from extractor import ExtractionError
+                try:
+                    validate_page(exam if exam.get('total') else detect_counts(exam, page), page, number)
+                except (ExtractionError, ValueError, KeyError, TypeError, AttributeError):
+                    continue
+            return page
     return None
 
 
@@ -116,7 +169,10 @@ def current_question_page(source, url, number, exam, preferred=None):
     from capture_quality import merge_page
     attempts = []
     valid = []
-    readers = ([lambda: preferred] if preferred else []) + [lambda: core.parse_page(source, url), lambda: soup_page(source, url)]
+    readers = ([lambda: preferred] if preferred else []) + [
+        lambda: core.parse_page(source, url, expected_page=number),
+        lambda: soup_page(source, url),
+    ]
     for read in readers:
         try:
             candidate = read()
