@@ -1,0 +1,329 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-data-practitioner/practice-questions/17",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 17,
+      "per_page": 5,
+      "total": 103,
+      "total_pages": 21,
+      "items": [
+        {
+          "id": 49276,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 81,
+          "question_type": "mc_single",
+          "question_text": "Your team uses Google Sheets to track budget data that is updated daily. The team wants to compare budget data against actual cost data, which is stored in a BigQuery table. You need to create a solution that calculates the difference between each day's budget and actual costs. You want to ensure that your team has access to daily-updated results in Google Sheets. What should you do?",
+          "solution_text": "Option B is correct because creating a BigQuery external table from the Google Sheet allows direct querying of live budget data without manual ingestion steps. Using Connected Sheets to open the joined results ensures the data in Google Sheets updates automatically, satisfying the requirement for daily-updated access.<br/><br/>Option D is incorrect because saving the result as a static CSV file breaks the live connection, requiring manual re-downloads to see new data.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178466,
+              "letter": "A",
+              "text": "Download the budget data as a CSV file and upload the CSV file to a Cloud Storage bucket. Create a new BigQuery table from Cloud Storage, and join the actual cost table with it. Open the joined BigOuery table by using Connected Sheets.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178467,
+              "letter": "B",
+              "text": "Create a BigQuery external table by using the Drive URI of the Google sheet, and join the actual cost table with it. Save the joined table, and open it by using Connected Sheets.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 178468,
+              "letter": "C",
+              "text": "Download the budget data as a CSV file, and upload the CSV file to create a new BigQuery table. Join the actual cost table with the new BigQuery table, and save the results as a CSV file. Open the CSV file in Google Sheets.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178469,
+              "letter": "D",
+              "text": "Create a BigQuery external table by using the Drive URI of the Google sheet, and join the actual cost table with it. Save the joined table as a CSV file and open the file in Google Sheets.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49277,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 82,
+          "question_type": "mc_single",
+          "question_text": "Your organization's website uses an on-premises MySQL as a backend database. You need to migrate the on-premises MySQL database to Google Cloud while maintaining MySQL features. You want to minimize administrative overhead and downtime. What should you do?",
+          "solution_text": "Option C is correct because Cloud SQL for MySQL is a fully managed service that preserves MySQL features while significantly reducing administrative overhead compared to self-managed VMs. Database Migration Service (DMS) facilitates continuous replication, allowing for minimal downtime by syncing data in real-time before cutover.<br/><br/>Option B is incorrect because managing MySQL on a Compute Engine instance requires manual patching and maintenance, which increases administrative overhead rather than minimizing it.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178470,
+              "letter": "A",
+              "text": "Use a Google-provided Dataflow template to replicate the MySQL database in BigOuery.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178471,
+              "letter": "B",
+              "text": "Install MySQL on a Compute Engine virtual machine. Export the database files using the mysqldump command. Upload the files to Cloud Storage, and import them into the MySQL instance on Compute Engine.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178472,
+              "letter": "C",
+              "text": "Use Database Migration Service to transfer the data to Cloud SQL for MySQL, and configure the on-premises MySQL database as the source.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 178473,
+              "letter": "D",
+              "text": "Export the database tables to CSV files, and upload the files to Cloud Storage. Convert the MySQL schema to a Spanner schema, create a JSON manifest file, and run a Google-provided Dataflow template to load the data into Spanner.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49278,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 83,
+          "question_type": "mc_single",
+          "question_text": "Your retail company wants to analyze customer reviews to understand sentiment and identify areas for improvement. Your company has a large dataset of customer feedback text stored in BigQuery that includes diverse language patterns, emojis, and slang. You want to build a solution to classify customer sentiment from the feedback text. What should you do?",
+          "solution_text": "AutoML Natural Language is designed to handle diverse language patterns, including slang and emojis, directly from raw text without extensive manual preprocessing that might strip contextual meaning. Preprocessing in BigQuery (Option A) risks removing these nuanced signals, while building custom models with TensorFlow or Dataproc (Options B and C) requires significantly more engineering effort than using a managed AutoML service.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178474,
+              "letter": "A",
+              "text": "Preprocess the text data in BigQuery using SQL functions. Export the processed data to AutoML Natural Language for model training and deployment.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178475,
+              "letter": "B",
+              "text": "Develop a custom sentiment analysis model using TensorFlow. Deploy it on a Compute Engine instance.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178476,
+              "letter": "C",
+              "text": "Use Dataproc to create a Spark cluster, perform text preprocessing using Spark NLP, and build a sentiment analysis model with Spark MLlib.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178477,
+              "letter": "D",
+              "text": "Export the raw data from BigQuery. Use AutoML Natural Language to train a custom sentiment analysis model.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49279,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 84,
+          "question_type": "mc_single",
+          "question_text": "You need to transfer approximately 300 TB of data from your company's on-premises data center to Cloud Storage. You have 100 Mbps internet bandwidth, and the transfer needs to be completed as quickly as possible. What should you do?",
+          "solution_text": "Transferring 300 TB over a 100 Mbps connection would take approximately 278 days, making online transfer methods (A, B, and D) impractical despite compression efforts. The Transfer Appliance is explicitly designed for moving massive datasets (typically >10 TB) when network bandwidth or time constraints make online transfer infeasible, allowing for much faster physical shipment.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178478,
+              "letter": "A",
+              "text": "Use Cloud Client Libraries to transfer the data over the internet.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178479,
+              "letter": "B",
+              "text": "Compress the data, upload it to multiple cloud storage providers, and then transfer the data to Cloud Storage.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178480,
+              "letter": "C",
+              "text": "Request a Transfer Appliance, copy the data to the appliance, and ship it back to Google.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 178481,
+              "letter": "D",
+              "text": "Use the gcloud storage command to transfer the data over the internet.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49280,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 85,
+          "question_type": "mc_single",
+          "question_text": "You manage data at an ecommerce company. You have a Dataflow pipeline that processes order data from Pub/Sub, enriches the data with product information from Bigtable, and writes the processed data to BigQuery for analysis. The pipeline runs continuously and processes thousands of orders every minute. You need to monitor the pipeline's performance and be alerted if errors occur. What should you do?",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178482,
+              "letter": "A",
+              "text": "Use Cloud Logging to view the pipeline logs and check for errors. Set up alerts based on specific keywords in the logs.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178483,
+              "letter": "B",
+              "text": "Use the Dataflow job monitoring interface to visually inspect the pipeline graph, check for errors, and configure notifications when critical errors occur.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178484,
+              "letter": "C",
+              "text": "Use Cloud Monitoring to track key metrics. Create alerting policies in Cloud Monitoring to trigger notifications when metrics exceed thresholds or when errors occur.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 178485,
+              "letter": "D",
+              "text": "Use BigQuery to analyze the processed data in Cloud Storage and identify anomalies or inconsistencies. Set up scheduled alerts based when anomalies or inconsistencies occur.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 653,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 653,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 103
+        }
+      ]
+    },
+    "page": 17,
+    "discussions": {
+      "49276": {
+        "target_type": "question",
+        "target_id": 49276,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49277": {
+        "target_type": "question",
+        "target_id": 49277,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49278": {
+        "target_type": "question",
+        "target_id": 49278,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49279": {
+        "target_type": "question",
+        "target_id": 49279,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49280": {
+        "target_type": "question",
+        "target_id": 49280,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      81,
+      82,
+      83,
+      84,
+      85
+    ],
+    "attempts": [
+      {
+        "question": 81,
+        "answerVisible": true
+      },
+      {
+        "question": 82,
+        "answerVisible": true
+      },
+      {
+        "question": 83,
+        "answerVisible": true
+      },
+      {
+        "question": 84,
+        "answerVisible": true
+      },
+      {
+        "question": 85,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {
+      "application/json": 2
+    },
+    "validated_network_page": true
+  }
+}

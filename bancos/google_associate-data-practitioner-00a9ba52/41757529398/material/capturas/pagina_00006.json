@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-data-practitioner/practice-questions/6",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 6,
+      "per_page": 5,
+      "total": 103,
+      "total_pages": 21,
+      "items": [
+        {
+          "id": 49221,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 26,
+          "question_type": "mc_single",
+          "question_text": "You are responsible for managing Cloud Storage buckets for a research company. Your company has well-defined data tiering and retention rules. You need to optimize storage costs while achieving your data retention needs. What should you do?",
+          "solution_text": "Lifecycle management policies are the correct mechanism to automate data tiering (downgrading storage classes) and retention (deleting objects based on age), directly satisfying the requirement for well-defined rules.<br/>Option D (Autoclass) optimizes costs based on access patterns but does not support explicit retention rules for removing old objects, making it insufficient for this specific scenario.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178246,
+              "letter": "A",
+              "text": "Configure the buckets to use the Archive storage class.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178247,
+              "letter": "B",
+              "text": "Configure a lifecycle management policy on each bucket to downgrade the storage class and remove objects based on age.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 178248,
+              "letter": "C",
+              "text": "Configure the buckets to use the Standard storage class and enable Object Versioning.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178249,
+              "letter": "D",
+              "text": "Configure the buckets to use the Autoclass feature.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49222,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 27,
+          "question_type": "mc_single",
+          "question_text": "You are using your own data to demonstrate the capabilities of BigQuery to your organization’s leadership team. You need to perform a one- time load of the files stored on your local machine into BigQuery using as little effort as possible. What should you do?",
+          "solution_text": "The `bq load` command-line utility is specifically designed for simple, one-time loads of data files directly into BigQuery tables with minimal configuration. <br/>In contrast, options involving Python scripts, Dataproc Spark jobs, or Dataflow pipelines introduce significant overhead in setup, code writing, and resource management that contradicts the requirement to use 'as little effort as possible'.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178250,
+              "letter": "A",
+              "text": "Write and execute a Python script using the BigQuery Storage Write API library.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178251,
+              "letter": "B",
+              "text": "Create a Dataproc cluster, copy the files to Cloud Storage, and write an Apache Spark job using the spark-bigquery-connector.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178252,
+              "letter": "C",
+              "text": "Execute the bq load command on your local machine.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 178253,
+              "letter": "D",
+              "text": "Create a Dataflow job using the Apache Beam FileIO and BigQueryIO connectors with a local runner.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49223,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 28,
+          "question_type": "mc_single",
+          "question_text": "Your organization uses Dataflow pipelines to process real-time financial transactions. You discover that one of your Dataflow jobs has failed. You need to troubleshoot the issue as quickly as possible. What should you do?",
+          "solution_text": "To troubleshoot a failed Dataflow job as quickly as possible, you must directly access the error details provided in the console. Option C is correct because the Google Cloud Console's Dataflow Jobs page offers immediate visibility into job status and integrated worker logs, allowing for rapid root-cause identification.<br/><br/>Option A is incorrect because setting up monitoring dashboards is a proactive measure for future visibility, not an immediate troubleshooting step for a current failure. Option D, while valid, involves command-line steps that are generally slower than clicking through the UI for initial diagnosis.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178254,
+              "letter": "A",
+              "text": "Set up a Cloud Monitoring dashboard to track key Dataflow metrics, such as data throughput, error rates, and resource utilization.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178255,
+              "letter": "B",
+              "text": "Create a custom script to periodically poll the Dataflow API for job status updates, and send email alerts if any errors are identified.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178256,
+              "letter": "C",
+              "text": "Navigate to the Dataflow Jobs page in the Google Cloud console. Use the job logs and worker logs to identify the error.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 178257,
+              "letter": "D",
+              "text": "Use the gcloud CLI tool to retrieve job metrics and logs, and analyze them for errors and performance bottlenecks.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49224,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 29,
+          "question_type": "mc_single",
+          "question_text": "Your company uses Looker to generate and share reports with various stakeholders. You have a complex dashboard with several visualizations that needs to be delivered to specific stakeholders on a recurring basis, with customized filters applied for each recipient. You need an efficient and scalable solution to automate the delivery of this customized dashboard. You want to follow the Google-recommended approach. What should you do?",
+          "solution_text": "Option D is the correct answer because it leverages Looker's native User Attributes feature within the Scheduler to automatically apply personalized filters for each recipient, ensuring scalability and maintenance efficiency. <br/>Options A, B, and C introduce unnecessary complexity or poor scalability through model duplication, external scripting, or custom application development, respectively, whereas Option D utilizes the platform's built-in automation designed specifically for this use case.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178258,
+              "letter": "A",
+              "text": "Create a separate LookML model for each stakeholder with predefined filters, and schedule the dashboards using the Looker Scheduler.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178259,
+              "letter": "B",
+              "text": "Create a script using the Looker Python SDK, and configure user attribute filter values. Generate a new scheduled plan for each stakeholder.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178260,
+              "letter": "C",
+              "text": "Embed the Looker dashboard in a custom web application, and use the application's scheduling features to send the report with personalized filters.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178261,
+              "letter": "D",
+              "text": "Use the Looker Scheduler with a user attribute filter on the dashboard, and send the dashboard with personalized filters to each stakeholder based on their attributes.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49225,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 30,
+          "question_type": "mc_single",
+          "question_text": "You are predicting customer churn for a subscription-based service. You have a 50 PB historical customer dataset in BigQuery that includes demographics, subscription information, and engagement metrics. You want to build a churn prediction model with minimal overhead. You want to follow the Google-recommended approach. What should you do?",
+          "solution_text": "Option D is correct because BigQuery ML allows you to train machine learning models directly within BigQuery using SQL, eliminating the need to export 50 PB of data and avoiding the infrastructure overhead of managing external clusters. This approach adheres to Google's best practice of keeping data stationary and computation close to the data for scalability and efficiency. Option B is a tempting alternative but introduces unnecessary complexity by requiring Dataproc cluster management and data movement, which contradicts the goal of minimal overhead.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178262,
+              "letter": "A",
+              "text": "Export the data from BigQuery to a local machine. Use scikit-learn in a Jupyter notebook to build the churn prediction model.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178263,
+              "letter": "B",
+              "text": "Use Dataproc to create a Spark cluster. Use the Spark MLlib within the cluster to build the churn prediction model.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178264,
+              "letter": "C",
+              "text": "Create a Looker dashboard that is connected to BigQuery. Use LookML to predict churn.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178265,
+              "letter": "D",
+              "text": "Use the BigQuery Python client library in a Jupyter notebook to query and preprocess the data in BigQuery. Use the CREATE MODEL statement in BigQueryML to train the churn prediction model.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 653,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 653,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 103
+        }
+      ]
+    },
+    "page": 6,
+    "discussions": {
+      "49221": {
+        "target_type": "question",
+        "target_id": 49221,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49222": {
+        "target_type": "question",
+        "target_id": 49222,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49223": {
+        "target_type": "question",
+        "target_id": 49223,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49224": {
+        "target_type": "question",
+        "target_id": 49224,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49225": {
+        "target_type": "question",
+        "target_id": 49225,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "attempts": [
+      {
+        "question": 26,
+        "answerVisible": true
+      },
+      {
+        "question": 27,
+        "answerVisible": true
+      },
+      {
+        "question": 28,
+        "answerVisible": true
+      },
+      {
+        "question": 29,
+        "answerVisible": true
+      },
+      {
+        "question": 30,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

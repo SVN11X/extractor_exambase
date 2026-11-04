@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 18,
+    "per_page": 5,
+    "total": 103,
+    "total_pages": 21,
+    "items": [
+      {
+        "id": 49281,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 86,
+        "question_type": "mc_single",
+        "question_text": "Your organization is conducting analysis on regional sales metrics. Data from each regional sales team is stored as separate tables in BigQuery and updated monthly. You need to create a solution that identifies the top three regions with the highest monthly sales for the next three months. You want the solution to automatically provide up-to-date results. What should you do?",
+        "solution_text": "Option C is correct because a Materialized View automatically refreshes the pre-computed results when underlying data changes, satisfying the requirement for automatic up-to-date analysis without manual table maintenance.<br/>UNION is the appropriate operation to vertically combine rows from multiple regional tables with identical schemas, whereas CROSS JOIN would incorrectly create a Cartesian product of massive, meaningless data.<br/>RANK() is preferred over ROW_NUMBER() for identifying top performers as it handles ties correctly by assigning the same rank to equal values, ensuring accurate reporting if regions have identical sales figures.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178486,
+            "letter": "A",
+            "text": "Create a BigQuery table that performs a UNION across all of the regional sales tables. Use the ROW_NUMBER() window function to query the new table.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 178487,
+            "letter": "B",
+            "text": "Create a BigQuery table that performs a CROSS JOIN across all of the regional sales tables. Use the RANK( ) window function to query the new table.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 178488,
+            "letter": "C",
+            "text": "Create a BigQuery materialized view that performs a UNION across all of the regional sales tables. Use the RANK() window function to query the new materialized view.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 178489,
+            "letter": "D",
+            "text": "Create a BigQuery materialized view that performs a CROSS JOIN across all of the regional sales tables. Use the ROW_NUMBER() window function to query the new materialized view.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 49282,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 87,
+        "question_type": "mc_single",
+        "question_text": "You work for a gaming company that collects real-time player activity data. This data is streamed into Pub/Sub and needs to be processed and loaded into BigQuery for analysis. The processing involves filtering, enriching, and aggregating the data before loading it into partitioned BigQuery tables. You need to design a pipeline that ensures low latency and high throughput while following a Google-recommended approach. What should you do?",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178490,
+            "letter": "A",
+            "text": "Use Cloud Composer to orchestrate a workflow that reads the data from Pub/Sub, processes the data using a Python script, and writes it to BigQuery.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 178491,
+            "letter": "B",
+            "text": "Use Dataflow to create a streaming pipeline that reads the data from Pub/Sub, processes the data, and writes it to BigQuery using the streaming API.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 178492,
+            "letter": "C",
+            "text": "Use Dataproc to create an Apache Spark streaming job that reads the data from Pub/Sub, processes the data, and writes it to BigQuery.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 178493,
+            "letter": "D",
+            "text": "Use Cloud Run functions to subscribe to the Pub/Sub topic, process the data, and write it to BigQuery using the streaming API.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 49283,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 88,
+        "question_type": "mc_single",
+        "question_text": "You have an existing weekly Storage Transfer Service transfer job from Amazon S3 to a Nearline Cloud Storage bucket in Google Cloud. Each week, the job moves a large number of relatively small files. As the number of files to be transferred each week has grown over time, you are at risk of no longer completing the transfer in the allocated time frame. You need to decrease the total transfer time by replacing the process. Your solution should minimize costs where possible. What should you do?",
+        "solution_text": "Option A is correct because Storage Transfer Service performance bottlenecks with many small files are due to per-file overhead rather than bandwidth; splitting the source bucket into parallel jobs using include/exclude prefixes allows concurrent processing to reduce total transfer time. Option B is incorrect because changing the storage class affects cost and durability, not transfer speed. Option C introduces unnecessary complexity and cost by using Dataflow for a task STS is designed to handle. Option D involves higher infrastructure costs for Compute Engine agents when parallelizing native STS jobs achieves the goal more economically.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178494,
+            "letter": "A",
+            "text": "Create parallel transfer jobs using include and exclude prefixes.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 178495,
+            "letter": "B",
+            "text": "Create a transfer job using the Google Cloud CLI, and specify the Standard storage class with the --custom-storage-class flag.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 178496,
+            "letter": "C",
+            "text": "Create a batch Dataflow job that is scheduled weekly to migrate the data from Amazon S3 to Cloud Storage.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 178497,
+            "letter": "D",
+            "text": "Create an agent-based transfer job that utilizes multiple transfer agents on Compute Engine instances.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 49284,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 89,
+        "question_type": "mc_single",
+        "question_text": "Your organization consists of two hundred employees on five different teams. The leadership team is concerned that any employee can move or delete all Looker dashboards saved in the Shared folder. You need to create an easy-to-manage solution that allows the five different teams in your organization to view content in the Shared folder, but only be able to move or delete their team-specific dashboard. What should you do?",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178498,
+            "letter": "A",
+            "text": "1. Create Looker groups representing each of the five different teams, and add users to their corresponding group.<br/>2. Create five subfolders inside the Shared folder. Grant each group the View access level to their corresponding subfolder.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 178499,
+            "letter": "B",
+            "text": "1. Change the access level of the Shared folder to View for the All Users group.<br/>2. Create five subfolders inside the Shared folder. Grant each team member the Manage Access, Edit access level to their corresponding subfolder.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 178500,
+            "letter": "C",
+            "text": "1. Change the access level of the Shared folder to View for the All Users group.<br/>2. Create Looker groups representing each of the five different teams, and add users to their corresponding group.<br/>3. Create five subfolders inside the Shared folder. Grant each group the Manage Access, Edit access level to their corresponding subfolder.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 178501,
+            "letter": "D",
+            "text": "1. Move all team-specific content into the dashboard owner's personal folder.<br/>2. Change the access level of the Shared folder to View for the All Users group.<br/>3. Instruct each user to create content for their team in the user's personal folder.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 49285,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 90,
+        "question_type": "mc_single",
+        "question_text": "You are building a batch data pipeline to process 100 GB of structured data from multiple sources for daily reporting. You need to transform and standardize the data prior to loading the data to ensure that it is stored in a single dataset. You want to use a low-code solution that can be easily built and managed. What should you do?",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178502,
+            "letter": "A",
+            "text": "Use Cloud Storage to store the data. Use Cloud Run functions to perform data cleaning and transformation, and load the data into BigQuery.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 178503,
+            "letter": "B",
+            "text": "Use Cloud Data Fusion to ingest the data, perform data cleaning and transformation, and load the data into Cloud SQL for PostgreSQL.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 178504,
+            "letter": "C",
+            "text": "Use Cloud Data Fusion to ingest the data, perform data cleaning and transformation, and load the data into BigQuery.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 178505,
+            "letter": "D",
+            "text": "Use Cloud Data Fusion to ingest data and load the data into BigQuery. Use Looker Studio to perform data cleaning and transformation.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 653,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 653,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 103
+      }
+    ]
+  },
+  "page": 18,
+  "discussions": {
+    "49281": {
+      "target_type": "question",
+      "target_id": 49281,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "49282": {
+      "target_type": "question",
+      "target_id": 49282,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "49283": {
+      "target_type": "question",
+      "target_id": 49283,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "49284": {
+      "target_type": "question",
+      "target_id": 49284,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "49285": {
+      "target_type": "question",
+      "target_id": 49285,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

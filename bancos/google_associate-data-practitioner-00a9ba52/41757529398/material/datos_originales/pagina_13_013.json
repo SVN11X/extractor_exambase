@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 13,
+    "per_page": 5,
+    "total": 103,
+    "total_pages": 21,
+    "items": [
+      {
+        "id": 49256,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 61,
+        "question_type": "mc_single",
+        "question_text": "You are a database administrator managing sales transaction data by region stored in a BigQuery table. You need to ensure that each sales representative can only see the transactions in their region. What should you do?",
+        "solution_text": "Option B is correct because row-level access policies allow you to filter table data based on conditions, such as matching a user's identity to a specific region column.<br/>Option A is incorrect because policy tags control access at the column level, not the row level. Option C is incorrect because data masking obfuscates values but does not restrict visibility of entire rows. Option D is incorrect because standard IAM permissions grant access to datasets or tables as a whole, lacking the granularity to filter specific rows.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178386,
+            "letter": "A",
+            "text": "Add a policy tag in BigQuery.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 178387,
+            "letter": "B",
+            "text": "Create a row-level access policy.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 178388,
+            "letter": "C",
+            "text": "Create a data masking rule.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 178389,
+            "letter": "D",
+            "text": "Grant the appropriate IAM permissions on the dataset.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 49257,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 62,
+        "question_type": "mc_single",
+        "question_text": "Your company’s customer support audio files are stored in a Cloud Storage bucket. You plan to analyze the audio files’ metadata and file content within BigQuery to create inference by using BigQuery ML. You need to create a corresponding table in BigQuery that represents the bucket containing the audio files. What should you do?",
+        "solution_text": "To query Cloud Storage objects (including audio files) directly within BigQuery for metadata analysis and ML inference without loading the data into managed tables, you must use an Object Table.<br/><br/>Object Tables are specifically designed to represent GCS buckets, allowing direct SQL access to file properties and content via URIs.<br/><br/>External tables (A) are typically used for structured data formats like CSV or JSON rather than binary blobs or general object metadata.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178390,
+            "letter": "A",
+            "text": "Create an external table.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 178391,
+            "letter": "B",
+            "text": "Create a temporary table.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 178392,
+            "letter": "C",
+            "text": "Create a native table.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 178393,
+            "letter": "D",
+            "text": "Create an object table.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 49258,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 63,
+        "question_type": "mc_single",
+        "question_text": "You work for a financial services company that handles highly sensitive data. Due to regulatory requirements, your company is required to have complete and manual control of data encryption. Which type of keys should you recommend to use for data storage?",
+        "solution_text": "Customer-Supplied Encryption Keys (CSEK) give the customer complete manual control because the keys are generated, stored, and supplied entirely outside the cloud provider's infrastructure.<br/>In contrast, Customer-Managed Encryption Keys (CMEK) rely on a managed KMS within the provider, which abstracts away direct key material handling and thus does not offer the same level of 'manual' control required by strict regulatory frameworks.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178394,
+            "letter": "A",
+            "text": "Use customer-supplied encryption keys (CSEK).",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 178395,
+            "letter": "B",
+            "text": "Use a dedicated third-party key management system (KMS) chosen by the company.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 178396,
+            "letter": "C",
+            "text": "Use Google-managed encryption keys (GMEK).",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 178397,
+            "letter": "D",
+            "text": "Use customer-managed encryption keys (CMEK).",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 49259,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 64,
+        "question_type": "mc_single",
+        "question_text": "Your team needs to analyze large datasets stored in BigQuery to identify trends in user behavior. The analysis will involve complex statistical calculations, Python packages, and visualizations. You need to recommend a managed collaborative environment to develop and share the analysis. What should you recommend?",
+        "solution_text": "Colab Enterprise is the correct choice because it provides a managed, collaborative Jupyter notebook environment with native integration to BigQuery, allowing users to leverage complex Python packages for statistical analysis and visualization. <br/>Options B and C are incorrect because Looker Studio and BigQuery ML focus on SQL-based modeling and dashboarding rather than code-driven, package-dependent statistical workflows. <br/>Option D is unsuitable as Google Sheets cannot handle large-scale datasets or support the required Python library ecosystem.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178398,
+            "letter": "A",
+            "text": "Create a Colab Enterprise notebook and connect the notebook to BigQuery. Share the notebook with your team. Analyze the data and generate visualizations in Colab Enterprise.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 178399,
+            "letter": "B",
+            "text": "Create a statistical model by using BigQuery ML. Share the query with your team. Analyze the data and generate visualizations in Looker Studio.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 178400,
+            "letter": "C",
+            "text": "Create a Looker Studio dashboard and connect the dashboard to BigQuery. Share the dashboard with your team. Analyze the data and generate visualizations in Looker Studio.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 178401,
+            "letter": "D",
+            "text": "Connect Google Sheets to BigQuery by using Connected Sheets. Share the Google Sheet with your team. Analyze the data and generate visualizations in Gooqle Sheets.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 49260,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 65,
+        "question_type": "mc_single",
+        "question_text": "Your organization has several datasets in BigQuery. The datasets need to be shared with your external partners so that they can run SQL queries without needing to copy the data to their own projects. You have organized each partner’s data in its own BigQuery dataset. Each partner should be able to access only their data. You want to share the data while following Google-recommended practices. What should you do?",
+        "solution_text": "BigQuery Analytics Hub is the Google-recommended solution for sharing datasets securely without copying data, allowing consumers to run SQL queries on source tables directly.<br/>Option D is incorrect because granting bigquery.user at the project level provides excessive access beyond the specific partner's dataset, violating the requirement for isolated data access.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178402,
+            "letter": "A",
+            "text": "Use Analytics Hub to create a listing on a private data exchange for each partner dataset. Allow each partner to subscribe to their respective listings.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 178403,
+            "letter": "B",
+            "text": "Create a Dataflow job that reads from each BigQuery dataset and pushes the data into a dedicated Pub/Sub topic for each partner. Grant each partner the pubsub. subscriber IAM role.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 178404,
+            "letter": "C",
+            "text": "Export the BigQuery data to a Cloud Storage bucket. Grant the partners the storage.objectUser IAM role on the bucket.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 178405,
+            "letter": "D",
+            "text": "Grant the partners the bigquery.user IAM role on the BigQuery project.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 653,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 653,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 103
+      }
+    ]
+  },
+  "page": 13,
+  "discussions": {
+    "49256": {
+      "target_type": "question",
+      "target_id": 49256,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "49257": {
+      "target_type": "question",
+      "target_id": 49257,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "49258": {
+      "target_type": "question",
+      "target_id": 49258,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "49259": {
+      "target_type": "question",
+      "target_id": 49259,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "49260": {
+      "target_type": "question",
+      "target_id": 49260,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

@@ -1,0 +1,1098 @@
+{
+  "schema_version": "1.0",
+  "nodes": [
+    {
+      "id": "google/associate-data-practitioner:q:00001",
+      "type": "question",
+      "number": 1,
+      "source_id": 49196
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00002",
+      "type": "question",
+      "number": 2,
+      "source_id": 49197
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00003",
+      "type": "question",
+      "number": 3,
+      "source_id": 49198
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00004",
+      "type": "question",
+      "number": 4,
+      "source_id": 49199
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00005",
+      "type": "question",
+      "number": 5,
+      "source_id": 49200
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00006",
+      "type": "question",
+      "number": 6,
+      "source_id": 49201
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00007",
+      "type": "question",
+      "number": 7,
+      "source_id": 49202
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00008",
+      "type": "question",
+      "number": 8,
+      "source_id": 49203
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00009",
+      "type": "question",
+      "number": 9,
+      "source_id": 49204
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00010",
+      "type": "question",
+      "number": 10,
+      "source_id": 49205
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00011",
+      "type": "question",
+      "number": 11,
+      "source_id": 49206
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00012",
+      "type": "question",
+      "number": 12,
+      "source_id": 49207
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00013",
+      "type": "question",
+      "number": 13,
+      "source_id": 49208
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00014",
+      "type": "question",
+      "number": 14,
+      "source_id": 49209
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00015",
+      "type": "question",
+      "number": 15,
+      "source_id": 49210
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00016",
+      "type": "question",
+      "number": 16,
+      "source_id": 49211
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00017",
+      "type": "question",
+      "number": 17,
+      "source_id": 49212
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00018",
+      "type": "question",
+      "number": 18,
+      "source_id": 49213
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00019",
+      "type": "question",
+      "number": 19,
+      "source_id": 49214
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00020",
+      "type": "question",
+      "number": 20,
+      "source_id": 49215
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00021",
+      "type": "question",
+      "number": 21,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00022",
+      "type": "question",
+      "number": 22,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00023",
+      "type": "question",
+      "number": 23,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00024",
+      "type": "question",
+      "number": 24,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00025",
+      "type": "question",
+      "number": 25,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00026",
+      "type": "question",
+      "number": 26,
+      "source_id": 49221
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00027",
+      "type": "question",
+      "number": 27,
+      "source_id": 49222
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00028",
+      "type": "question",
+      "number": 28,
+      "source_id": 49223
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00029",
+      "type": "question",
+      "number": 29,
+      "source_id": 49224
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00030",
+      "type": "question",
+      "number": 30,
+      "source_id": 49225
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00031",
+      "type": "question",
+      "number": 31,
+      "source_id": 49226
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00032",
+      "type": "question",
+      "number": 32,
+      "source_id": 49227
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00033",
+      "type": "question",
+      "number": 33,
+      "source_id": 49228
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00034",
+      "type": "question",
+      "number": 34,
+      "source_id": 49229
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00035",
+      "type": "question",
+      "number": 35,
+      "source_id": 49230
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00036",
+      "type": "question",
+      "number": 36,
+      "source_id": 49231
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00037",
+      "type": "question",
+      "number": 37,
+      "source_id": 49232
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00038",
+      "type": "question",
+      "number": 38,
+      "source_id": 49233
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00039",
+      "type": "question",
+      "number": 39,
+      "source_id": 49234
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00040",
+      "type": "question",
+      "number": 40,
+      "source_id": 49235
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00041",
+      "type": "question",
+      "number": 41,
+      "source_id": 49236
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00042",
+      "type": "question",
+      "number": 42,
+      "source_id": 49237
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00043",
+      "type": "question",
+      "number": 43,
+      "source_id": 49238
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00044",
+      "type": "question",
+      "number": 44,
+      "source_id": 49239
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00045",
+      "type": "question",
+      "number": 45,
+      "source_id": 49240
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00046",
+      "type": "question",
+      "number": 46,
+      "source_id": 49241
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00047",
+      "type": "question",
+      "number": 47,
+      "source_id": 49242
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00048",
+      "type": "question",
+      "number": 48,
+      "source_id": 49243
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00049",
+      "type": "question",
+      "number": 49,
+      "source_id": 49244
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00050",
+      "type": "question",
+      "number": 50,
+      "source_id": 49245
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00051",
+      "type": "question",
+      "number": 51,
+      "source_id": 49246
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00052",
+      "type": "question",
+      "number": 52,
+      "source_id": 49247
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00053",
+      "type": "question",
+      "number": 53,
+      "source_id": 49248
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00054",
+      "type": "question",
+      "number": 54,
+      "source_id": 49249
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00055",
+      "type": "question",
+      "number": 55,
+      "source_id": 49250
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00056",
+      "type": "question",
+      "number": 56,
+      "source_id": 49251
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00057",
+      "type": "question",
+      "number": 57,
+      "source_id": 49252
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00058",
+      "type": "question",
+      "number": 58,
+      "source_id": 49253
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00059",
+      "type": "question",
+      "number": 59,
+      "source_id": 49254
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00060",
+      "type": "question",
+      "number": 60,
+      "source_id": 49255
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00061",
+      "type": "question",
+      "number": 61,
+      "source_id": 49256
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00062",
+      "type": "question",
+      "number": 62,
+      "source_id": 49257
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00063",
+      "type": "question",
+      "number": 63,
+      "source_id": 49258
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00064",
+      "type": "question",
+      "number": 64,
+      "source_id": 49259
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00065",
+      "type": "question",
+      "number": 65,
+      "source_id": 49260
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00066",
+      "type": "question",
+      "number": 66,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00067",
+      "type": "question",
+      "number": 67,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00068",
+      "type": "question",
+      "number": 68,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00069",
+      "type": "question",
+      "number": 69,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00070",
+      "type": "question",
+      "number": 70,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00071",
+      "type": "question",
+      "number": 71,
+      "source_id": 49266
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00072",
+      "type": "question",
+      "number": 72,
+      "source_id": 49267
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00073",
+      "type": "question",
+      "number": 73,
+      "source_id": 49268
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00074",
+      "type": "question",
+      "number": 74,
+      "source_id": 49269
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00075",
+      "type": "question",
+      "number": 75,
+      "source_id": 49270
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00076",
+      "type": "question",
+      "number": 76,
+      "source_id": 49271
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00077",
+      "type": "question",
+      "number": 77,
+      "source_id": 49272
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00078",
+      "type": "question",
+      "number": 78,
+      "source_id": 49273
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00079",
+      "type": "question",
+      "number": 79,
+      "source_id": 49274
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00080",
+      "type": "question",
+      "number": 80,
+      "source_id": 49275
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00081",
+      "type": "question",
+      "number": 81,
+      "source_id": 49276
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00082",
+      "type": "question",
+      "number": 82,
+      "source_id": 49277
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00083",
+      "type": "question",
+      "number": 83,
+      "source_id": 49278
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00084",
+      "type": "question",
+      "number": 84,
+      "source_id": 49279
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00085",
+      "type": "question",
+      "number": 85,
+      "source_id": 49280
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00086",
+      "type": "question",
+      "number": 86,
+      "source_id": 49281
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00087",
+      "type": "question",
+      "number": 87,
+      "source_id": 49282
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00088",
+      "type": "question",
+      "number": 88,
+      "source_id": 49283
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00089",
+      "type": "question",
+      "number": 89,
+      "source_id": 49284
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00090",
+      "type": "question",
+      "number": 90,
+      "source_id": 49285
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00091",
+      "type": "question",
+      "number": 91,
+      "source_id": 49286
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00092",
+      "type": "question",
+      "number": 92,
+      "source_id": 49287
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00093",
+      "type": "question",
+      "number": 93,
+      "source_id": 49288
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00094",
+      "type": "question",
+      "number": 94,
+      "source_id": 49289
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00095",
+      "type": "question",
+      "number": 95,
+      "source_id": 49290
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00096",
+      "type": "question",
+      "number": 96,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00097",
+      "type": "question",
+      "number": 97,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00098",
+      "type": "question",
+      "number": 98,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00099",
+      "type": "question",
+      "number": 99,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00100",
+      "type": "question",
+      "number": 100,
+      "source_id": null
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00101",
+      "type": "question",
+      "number": 101,
+      "source_id": 49296
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00102",
+      "type": "question",
+      "number": 102,
+      "source_id": 49297
+    },
+    {
+      "id": "google/associate-data-practitioner:q:00103",
+      "type": "question",
+      "number": 103,
+      "source_id": 49298
+    },
+    {
+      "id": "topics:653",
+      "type": "object",
+      "source_id": 653,
+      "raw": {
+        "id": 653,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "google/associate-data-practitioner:q:00001",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00002",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00003",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00004",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00005",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00006",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00007",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00008",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00009",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00010",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00011",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00012",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00013",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00014",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00015",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00016",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00017",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00018",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00019",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00020",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00026",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00027",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00028",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00029",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00030",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00031",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00032",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00033",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00034",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00035",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00036",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00037",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00038",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00039",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00040",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00041",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00042",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00043",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00044",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00045",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00046",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00047",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00048",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00049",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00050",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00051",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00052",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00053",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00054",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00055",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00056",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00057",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00058",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00059",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00060",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00061",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00062",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00063",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00064",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00065",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00071",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00072",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00073",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00074",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00075",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00076",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00077",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00078",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00079",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00080",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00081",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00082",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00083",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00084",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00085",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00086",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00087",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00088",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00089",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00090",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00091",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00092",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00093",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00094",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00095",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00101",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00102",
+      "to": "topics:653",
+      "relation": "context"
+    },
+    {
+      "from": "google/associate-data-practitioner:q:00103",
+      "to": "topics:653",
+      "relation": "context"
+    }
+  ],
+  "unresolved": [],
+  "files_pending": [],
+  "metadata_unverified_questions": [
+    21,
+    22,
+    23,
+    24,
+    25,
+    66,
+    67,
+    68,
+    69,
+    70,
+    96,
+    97,
+    98,
+    99,
+    100
+  ],
+  "complete": false
+}

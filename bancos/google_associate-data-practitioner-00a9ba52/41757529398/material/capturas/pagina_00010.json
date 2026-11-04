@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-data-practitioner/practice-questions/10",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 10,
+      "per_page": 5,
+      "total": 103,
+      "total_pages": 21,
+      "items": [
+        {
+          "id": 49241,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 46,
+          "question_type": "mc_single",
+          "question_text": "You work for an online retail company. Your company collects customer purchase data in CSV files and pushes them to Cloud Storage every 10 minutes. The data needs to be transformed and loaded into BigQuery for analysis. The transformation involves cleaning the data, removing duplicates, and enriching it with product information from a separate table in BigQuery. You need to implement a low-overhead solution that initiates data processing as soon as the files are loaded into Cloud Storage. What should you do?",
+          "solution_text": "Option C is correct because Dataflow with Pub/Sub OBJECT_FINALIZE notifications provides an event-driven, low-latency architecture that processes data immediately upon arrival, satisfying the 'as soon as' and 'low-overhead' requirements.<br/><br/>Option A is incorrect because orchestrating a Dataproc cluster via Cloud Composer for every 10-minute interval introduces significant management overhead and startup latency.<br/><br/>Option B is wrong because hourly batching contradicts the requirement for immediate processing upon file upload.<br/><br/>Option D is less optimal than C because triggering a separate job through Cloud Run adds unnecessary architectural complexity compared to a native Dataflow streaming pipeline.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178326,
+              "letter": "A",
+              "text": "Use Cloud Composer sensors to detect files loading in Cloud Storage. Create a Dataproc cluster, and use a Composer task to execute a job on the cluster to process and load the data into BigQuery.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178327,
+              "letter": "B",
+              "text": "Schedule a direct acyclic graph (DAG) in Cloud Composer to run hourly to batch load the data from Cloud Storage to BigQuery, and process the data in BigQuery using SQL.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178328,
+              "letter": "C",
+              "text": "Use Dataflow to implement a streaming pipeline using an OBJECT_FINALIZE notification from Pub/Sub to read the data from Cloud Storage, perform the transformations, and write the data to BigQuery.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 178329,
+              "letter": "D",
+              "text": "Create a Cloud Data Fusion job to process and load the data from Cloud Storage into BigQuery. Create an OBJECT_FINALI ZE notification in Pub/Sub, and trigger a Cloud Run function to start the Cloud Data Fusion job as soon as new files are loaded.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49242,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 47,
+          "question_type": "mc_single",
+          "question_text": "You work for a home insurance company. You are frequently asked to create and save risk reports with charts for specific areas using a publicly available storm event dataset. You want to be able to quickly create and re-run risk reports when new data becomes available. What should you do?",
+          "solution_text": "Option B is the correct choice because it leverages the integration between BigQuery and Looker Studio to automate report updates. By connecting Looker Studio directly to a BigQuery dataset, reports can be configured to refresh automatically when new data arrives, fulfilling the requirement for quick re-running without manual intervention. In contrast, Options A and C involve manual export steps that hinder automation, while Option D requires code execution which is less efficient for standard business reporting workflows.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178330,
+              "letter": "A",
+              "text": "Export the storm event dataset as a CSV file. Import the file to Google Sheets, and use cell data in the worksheets to create charts.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178331,
+              "letter": "B",
+              "text": "Copy the storm event dataset into your BigQuery project. Use BigQuery Studio to query and visualize the data in Looker Studio.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 178332,
+              "letter": "C",
+              "text": "Reference and query the storm event dataset using SQL in BigQuery Studio. Export the results to Google Sheets, and use cell data in the worksheets to create charts.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178333,
+              "letter": "D",
+              "text": "Reference and query the storm event dataset using SQL in a Colab Enterprise notebook. Display the table results and document with Markdown, and use Matplotlib to create charts.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49243,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 48,
+          "question_type": "mc_single",
+          "question_text": "Your company currently uses an on-premises network file system (NFS) and is migrating data to Google Cloud. You want to be able to control how much bandwidth is used by the data migration while capturing detailed reporting on the migration status. What should you do?",
+          "solution_text": "Storage Transfer Service (STS) is the correct choice because it natively supports bandwidth throttling to control network usage and provides comprehensive transfer reports for monitoring migration status. <br/><br/>Transfer Appliance (A) is hardware-based and lacks granular real-time bandwidth control during the upload process, while Cloud Storage FUSE (B) and gcloud commands (D) do not offer built-in, centralized reporting or easy bandwidth throttling mechanisms suitable for large-scale migrations.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178334,
+              "letter": "A",
+              "text": "Use a Transfer Appliance.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178335,
+              "letter": "B",
+              "text": "Use Cloud Storage FUSE.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178336,
+              "letter": "C",
+              "text": "Use Storage Transfer Service.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 178337,
+              "letter": "D",
+              "text": "Use gcloud storage commands.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49244,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 49,
+          "question_type": "mc_single",
+          "question_text": "You are a Looker analyst. You need to add a new field to your Looker report that generates SQL that will run against your company's database. You do not have the Develop permission. What should you do?",
+          "solution_text": "Custom fields (Option D) are the correct choice because they allow users without Develop permissions to write SQL snippets that execute directly against the database. In contrast, Table Calculations (Option C) operate on the result set after data has been fetched, not at the database level, and LookML changes (Option A) require explicit Develop permissions.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178338,
+              "letter": "A",
+              "text": "Create a new field in the LookML layer, refresh your report, and select your new field from the field picker.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178339,
+              "letter": "B",
+              "text": "Create a calculated field using the Add a field option in Looker Studio, and add it to your report.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178340,
+              "letter": "C",
+              "text": "Create a table calculation from the field picker in Looker, and add it to your report.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178341,
+              "letter": "D",
+              "text": "Create a custom field from the field picker in Looker, and add it to your report.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49245,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 50,
+          "question_type": "mc_single",
+          "question_text": "Your organization’s ecommerce website collects user activity logs using a Pub/Sub topic. Your organization’s leadership team wants a dashboard that contains aggregated user engagement metrics. You need to create a solution that transforms the user activity logs into aggregated metrics, while ensuring that the raw data can be easily queried. What should you do?",
+          "solution_text": "Option D is correct because BigQuery subscriptions ingest Pub/Sub messages directly into tables, satisfying the requirement for raw data to be easily queried using SQL. Materialized views then handle the aggregation efficiently without the overhead of a separate streaming engine.<br/><br/>Option A is incorrect because while Dataflow can transform data, it introduces unnecessary complexity and cost compared to native BigQuery features for this specific workload.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178342,
+              "letter": "A",
+              "text": "Create a Dataflow subscription to the Pub/Sub topic, and transform the activity logs. Load the transformed data into a BigQuery table for reporting.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178343,
+              "letter": "B",
+              "text": "Create an event-driven Cloud Run function to trigger a data transformation pipeline to run. Load the transformed activity logs into a BigQuery table for reporting.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178344,
+              "letter": "C",
+              "text": "Create a Cloud Storage subscription to the Pub/Sub topic. Load the activity logs into a bucket using the Avro file format. Use Dataflow to transform the data, and load it into a BigQuery table for reporting.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178345,
+              "letter": "D",
+              "text": "Create a BigQuery subscription to the Pub/Sub topic, and load the activity logs into the table. Create a materialized view in BigQuery using SQL to transform the data for reporting",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 653,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 653,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 103
+        }
+      ]
+    },
+    "page": 10,
+    "discussions": {
+      "49241": {
+        "target_type": "question",
+        "target_id": 49241,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49242": {
+        "target_type": "question",
+        "target_id": 49242,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49243": {
+        "target_type": "question",
+        "target_id": 49243,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49244": {
+        "target_type": "question",
+        "target_id": 49244,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49245": {
+        "target_type": "question",
+        "target_id": 49245,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "attempts": [
+      {
+        "question": 46,
+        "answerVisible": true
+      },
+      {
+        "question": 47,
+        "answerVisible": true
+      },
+      {
+        "question": 48,
+        "answerVisible": true
+      },
+      {
+        "question": 49,
+        "answerVisible": true
+      },
+      {
+        "question": 50,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 21,
+    "per_page": 5,
+    "total": 103,
+    "total_pages": 21,
+    "items": [
+      {
+        "id": 49296,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 101,
+        "question_type": "mc_single",
+        "question_text": "You need to design a data pipeline to process large volumes of raw server log data stored in Cloud Storage. The data needs to be cleaned, transformed, and aggregated before being loaded into BigQuery for analysis. The transformation involves complex data manipulation using Spark scripts that your team developed. You need to implement a solution that leverages your team's existing skillset, processes data at scale, and minimizes cost. What should you do?",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178546,
+            "letter": "A",
+            "text": "Use Dataform to define the transformations in SQLX.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 178547,
+            "letter": "B",
+            "text": "Use Dataflow with a custom template for the transformation logic.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 178548,
+            "letter": "C",
+            "text": "Use Dataproc to run the transformations on a cluster.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 178549,
+            "letter": "D",
+            "text": "Use Cloud Data Fusion to visually design and manage the pipeline.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 49297,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 102,
+        "question_type": "mc_single",
+        "question_text": "You are storing data in Cloud Storage for a machine learning project. The data is frequently accessed during the model training phase, minimally accessed after 30 days, and unlikely to be accessed after 90 days. You need to choose the appropriate storage class for the different stages of the project to minimize cost. What should you do?",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178550,
+            "letter": "A",
+            "text": "Store the data in Nearline storage during the model training phase. Transition the data to Coldline storage 30 days after model deployment, and to Archive storage 90 days after model deployment.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 178551,
+            "letter": "B",
+            "text": "Store the data in Standard storage during the model training phase. Transition the data to Neartine storage 30 days after model deployment, and to Coldline storage 90 days after model deployment.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 178552,
+            "letter": "C",
+            "text": "Store the data in Standard storage during the model training phase. Transition the data to Durable Reduced Availability (DRA) storage 30 days after model deployment, and to Coldline storage 90 days after model deployment.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 178553,
+            "letter": "D",
+            "text": "Store the data in Nearline storage during the model training phase. Transition the data to Archive storage 30 days after model deployment, and to Coldline storage 90 days after model deployment.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 49298,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 103,
+        "question_type": "mc_single",
+        "question_text": "You work for a retail company that collects customer data from various sources:<br/><br/>• Online transactions: Stored in a MySQL database<br/>• Customer feedback: Stored as text files on a company server<br/>• Social media activity: Streamed in real-time from social media platforms<br/><br/>You need to design a data pipeline to extract and load the data into the appropriate Google Cloud storage system(s) for further analysis and ML model training. What should you do?",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178554,
+            "letter": "A",
+            "text": "Extract and load the online transactions data into Bigtable. Import the customer feedback data into Cloud Storage. Store the social media activity in Cloud SQL for MySQL.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 178555,
+            "letter": "B",
+            "text": "Extract and load the online transactions data into BigQuery. Load the customer feedback data into Cloud Storage. Stream the social media activity by using Pub/Sub and Dataflow, and store the data in BigQuery.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 178556,
+            "letter": "C",
+            "text": "Extract and load the online transactions data, customer feedback data, and social media activity into Cloud Storage.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 178557,
+            "letter": "D",
+            "text": "Copy the online transactions data into Cloud SQL for MySQL. Import the customer feedback into BigQuery. Stream the social media activity into Cloud Storage.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 653,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 653,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 103
+      }
+    ]
+  },
+  "page": 21,
+  "discussions": {
+    "49296": {
+      "target_type": "question",
+      "target_id": 49296,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "49297": {
+      "target_type": "question",
+      "target_id": 49297,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "49298": {
+      "target_type": "question",
+      "target_id": 49298,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

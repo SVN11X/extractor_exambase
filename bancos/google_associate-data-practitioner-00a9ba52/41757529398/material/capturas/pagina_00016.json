@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-data-practitioner/practice-questions/16",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 16,
+      "per_page": 5,
+      "total": 103,
+      "total_pages": 21,
+      "items": [
+        {
+          "id": 49271,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 76,
+          "question_type": "mc_single",
+          "question_text": "Your company has an on-premises file server with 5 TB of data that needs to be migrated to Google Cloud. The network operations team has mandated that you can only use up to 250 Mbps of the total available bandwidth for the migration. You need to perform an online migration to Cloud Storage. What should you do?",
+          "solution_text": "Storage Transfer Service (STS) is the recommended managed service for large-scale online migrations and uniquely provides a built-in mechanism to set bandwidth limits via an agent-based transfer configuration.<br/>Option C is incorrect because the Transfer Appliance is an offline, physical shipment solution, whereas the scenario explicitly requires an online migration.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178446,
+              "letter": "A",
+              "text": "Use the gcloud storage cp command to copy all files from on-premises to Cloud Storage using the --daisy-chain option.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178447,
+              "letter": "B",
+              "text": "Use Storage Transfer Service to configure an agent-based transfer. Set the appropriate bandwidth limit for the agent pool.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 178448,
+              "letter": "C",
+              "text": "Request a Transfer Appliance, copy the data to the appliance, and ship it back to Google Cloud.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178449,
+              "letter": "D",
+              "text": "Use the gcloud storage cp command to copy all files from on-premises to Cloud Storage using the --no-clobber option.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49272,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 77,
+          "question_type": "mc_single",
+          "question_text": "Following a recent company acquisition, you inherited an on-premises data infrastructure that needs to move to Google Cloud. The acquired system has 250 Apache Airflow directed acyclic graphs (DAGs) orchestrating data pipelines. You need to migrate the pipelines to a Google Cloud managed service with minimal effort. What should you do?",
+          "solution_text": "Cloud Composer is Google Cloud's fully managed Apache Airflow service, designed to run existing DAGs with minimal modification by simply copying them to the environment's storage bucket.<br/>This directly addresses the requirement for minimal effort compared to rebuilding pipelines in Data Fusion or converting logic to Cloud Workflows.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178450,
+              "letter": "A",
+              "text": "Create a Google Kubernetes Engine (GKE) standard cluster and deploy Airflow as a workload. Migrate all DAGs to the new Airflow environment.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178451,
+              "letter": "B",
+              "text": "Create a Cloud Data Fusion instance. For each DAG, create a Cloud Data Fusion pipeline.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178452,
+              "letter": "C",
+              "text": "Create a new Cloud Composer environment and copy DAGs to the Cloud Composer dags/ folder.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 178453,
+              "letter": "D",
+              "text": "Convert each DAG to a Cloud Workflow and automate the execution with Cloud Scheduler.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49273,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 78,
+          "question_type": "mc_single",
+          "question_text": "You created a curated dataset of market trends in BigQuery that you want to share with multiple external partners. You want to control the rows and columns that each partner has access to. You want to follow Google-recommended practices. What should you do?",
+          "solution_text": "Analytics Hub is the Google-recommended solution for sharing curated data assets with external partners while maintaining governance and avoiding data duplication. It allows publishers to control access at the dataset, table, or column level using subscriptions, enabling row-level security via policies.<br/><br/>Option B provides only broad IAM access without granular column/row control mechanisms native to publishing workflows, and Option C introduces unnecessary data egress costs and management overhead by exporting to Cloud Storage.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178454,
+              "letter": "A",
+              "text": "Publish the dataset in Analytics Hub. Grant dataset-level access to each partner by using subscriptions.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 178455,
+              "letter": "B",
+              "text": "Grant each partner read access to the BigQuery dataset by using IAM roles.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178456,
+              "letter": "C",
+              "text": "Create a separate Cloud Storage bucket for each partner. Export the dataset to each bucket and assign each partner to their respective bucket. Grant bucketlevel access by using IAM roles.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178457,
+              "letter": "D",
+              "text": "Create a separate project for each partner and copy the dataset into each project. Publish each dataset in Analytics Hub. Grant dataset-level access to each partner by using subscriptions.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49274,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 79,
+          "question_type": "mc_single",
+          "question_text": "Your company stores historical data in Cloud Storage. You need to ensure that all data is saved in a bucket for at least three years. What should you do?",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178458,
+              "letter": "A",
+              "text": "Set temporary object holds.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178459,
+              "letter": "B",
+              "text": "Set a bucket retention policy.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 178460,
+              "letter": "C",
+              "text": "Change the bucket storage class to Archive.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178461,
+              "letter": "D",
+              "text": "Enable Object Versioning.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49275,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 80,
+          "question_type": "mc_single",
+          "question_text": "Your company wants to implement a data transformation (ETL) pipeline for their BigQuery data warehouse. You need to identify a managed transformation solution that allows users to develop with SQL and JavaScript, has version control, allows for modular code, and has data quality checks. What should you do?",
+          "solution_text": "Dataform is the only managed service listed that natively supports SQLX (a superset of SQL that includes JavaScript for logic), built-in version control via Git, modular code organization, and automated data quality assertions. While BigQuery scheduled queries handle basic transformations, they lack the required modular architecture, advanced versioning capabilities, and integrated testing frameworks.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178462,
+              "letter": "A",
+              "text": "Use Dataform to define the transformations in SQLX.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 178463,
+              "letter": "B",
+              "text": "Use Dataproc to create an Apache Spark cluster and implement the transformations by using PySpark SQL.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178464,
+              "letter": "C",
+              "text": "Create a Cloud Composer environment, and orchestrate the transformations by using the BigQueryInsertJob operator.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178465,
+              "letter": "D",
+              "text": "Create BigQuery scheduled queries to define the transformations in SQL.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 653,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 653,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 103
+        }
+      ]
+    },
+    "page": 16,
+    "discussions": {
+      "49271": {
+        "target_type": "question",
+        "target_id": 49271,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49272": {
+        "target_type": "question",
+        "target_id": 49272,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49273": {
+        "target_type": "question",
+        "target_id": 49273,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49274": {
+        "target_type": "question",
+        "target_id": 49274,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49275": {
+        "target_type": "question",
+        "target_id": 49275,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      76,
+      77,
+      78,
+      79,
+      80
+    ],
+    "attempts": [
+      {
+        "question": 76,
+        "answerVisible": true
+      },
+      {
+        "question": 77,
+        "answerVisible": true
+      },
+      {
+        "question": 78,
+        "answerVisible": true
+      },
+      {
+        "question": 79,
+        "answerVisible": true
+      },
+      {
+        "question": 80,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

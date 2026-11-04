@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/associate-data-practitioner/practice-questions/19",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 19,
+      "per_page": 5,
+      "total": 103,
+      "total_pages": 21,
+      "items": [
+        {
+          "id": 49286,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 91,
+          "question_type": "mc_single",
+          "question_text": "You are designing an application that will interact with several BigQuery datasets. You need to grant the application's service account permissions that allow it to query and update tables within the datasets, and list all datasets in a project within your application. You want to follow the principle of least privilege. Which pre-defined IAM role(s) should you apply to the service account?",
+          "solution_text": "Option A is correct because roles/bigquery.dataOwner provides the necessary permissions to list datasets and update/delete tables, while roles/bigquery.jobUser allows the service account to execute queries.<br/><br/>This combination strictly adheres to the principle of least privilege by granting only the specific capabilities required for querying and updating data, unlike the over-permissive roles/bigquery.admin (Option C) or the read-only roles/bigquery.dataViewer (Option B).",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178506,
+              "letter": "A",
+              "text": "roles/bigquery.jobUser and roles/bigquery.dataOwner",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 178507,
+              "letter": "B",
+              "text": "roles/bigquery.connectionUser and roles/bigquery.dataViewer",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178508,
+              "letter": "C",
+              "text": "roles/bigquery.admin",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178509,
+              "letter": "D",
+              "text": "roles/bigquery.studioUser and roles/bigquery.filtereddataViewer",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49287,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 92,
+          "question_type": "mc_single",
+          "question_text": "Your company is setting up an enterprise business intelligence platform. You need to limit data access between many different teams while following the Google-recommended approach. What should you do first?",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178510,
+              "letter": "A",
+              "text": "Create a separate Looker Studio report for each team, and share each report with the individual within each team.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178511,
+              "letter": "B",
+              "text": "Create one Looker Studio report with multiple pages, and add each team's data as a separate data source to the report.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178512,
+              "letter": "C",
+              "text": "Create a Looker (Google Cloud core) instance, and create a separate dashboard for each team.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178513,
+              "letter": "D",
+              "text": "Create a Looker (Google Cloud core) instance, and configure different Looker groups for each team.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49288,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 93,
+          "question_type": "mc_single",
+          "question_text": "Your company is adopting BigQuery as their data warehouse platform. Your team has experienced Python developers. You need to recommend a fully-managed tool to build batch ETL processes that extract data from various source systems, transform the data using a variety of Google services, and load the transformed data into BigQuery. You want this tool to leverage your team's Python skills. What should you do?",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178514,
+              "letter": "A",
+              "text": "Use Dataform with assertions.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178515,
+              "letter": "B",
+              "text": "Deploy Cloud Data Fusion and included plugins.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178516,
+              "letter": "C",
+              "text": "Use Cloud Composer with pre-built operators.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 178517,
+              "letter": "D",
+              "text": "Use Dataflow and pre-built templates.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49289,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 94,
+          "question_type": "mc_single",
+          "question_text": "You need to create a data pipeline for a new application. Your application will stream data that needs to be enriched and cleaned. Eventually, the data will be used to train machine learning models. You need to determine the appropriate data manipulation methodology and which Google Cloud services to use in this pipeline. What should you choose?",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178518,
+              "letter": "A",
+              "text": "ETL; Dataflow -&gt; BigQuery",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 178519,
+              "letter": "B",
+              "text": "ETL; Cloud Data Fusion -&gt; Cloud Storage",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 178520,
+              "letter": "C",
+              "text": "ELT; Cloud Storage -&gt; Bigtable",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178521,
+              "letter": "D",
+              "text": "ELT; Cloud SQL-&gt; Analytics Hub",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 49290,
+          "topic_id": 653,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 95,
+          "question_type": "mc_single",
+          "question_text": "You are working with a small dataset in Cloud Storage that needs to be transformed and loaded into BigQuery for analysis. The transformation involves simple filtering and aggregation operations. You want to use the most efficient and cost-effective data manipulation approach. What should you do?",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 178522,
+              "letter": "A",
+              "text": "Use Dataproc to create an Apache Hadoop cluster, perform the ETL process using Apache Spark, and load the results into BigQuery.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 178523,
+              "letter": "B",
+              "text": "Use BigQuery's SQL capabilities to load the data from Cloud Storage, transform if, and store the results in a new BigQuery table.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 178524,
+              "letter": "C",
+              "text": "Create a Cloud Data Fusion instance and visually design an ETL pipeline that reads data from Cloud Storage, transforms it using built-transformations, and load the result into BigQuery.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 178525,
+              "letter": "D",
+              "text": "Use Dataflow to perform the ETL process that reads the data from Cloud Storage, transforms it using Apache Beam, and writes the results to BigQuery.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 653,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 653,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 103
+        }
+      ]
+    },
+    "page": 19,
+    "discussions": {
+      "49286": {
+        "target_type": "question",
+        "target_id": 49286,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49287": {
+        "target_type": "question",
+        "target_id": 49287,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49288": {
+        "target_type": "question",
+        "target_id": 49288,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49289": {
+        "target_type": "question",
+        "target_id": 49289,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "49290": {
+        "target_type": "question",
+        "target_id": 49290,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      91,
+      92,
+      93,
+      94,
+      95
+    ],
+    "attempts": [
+      {
+        "question": 91,
+        "answerVisible": true
+      },
+      {
+        "question": 92,
+        "answerVisible": true
+      },
+      {
+        "question": 93,
+        "answerVisible": true
+      },
+      {
+        "question": 94,
+        "answerVisible": true
+      },
+      {
+        "question": 95,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

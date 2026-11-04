@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 3,
+    "per_page": 5,
+    "total": 103,
+    "total_pages": 21,
+    "items": [
+      {
+        "id": 49206,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 11,
+        "question_type": "mc_single",
+        "question_text": "Your company has developed a website that allows users to upload and share video files. These files are most frequently accessed and shared when they are initially uploaded. Over time, the files are accessed and shared less frequently, although some old video files may remain very popular.<br/>You need to design a storage system that is simple and cost-effective. What should you do?",
+        "solution_text": "Option A is correct because Autoclass automatically transitions objects between Standard and Nearline storage classes based on actual access patterns over a 90-day period, satisfying the requirement for simplicity and cost-effectiveness without manual intervention. This dynamic adjustment handles both frequently accessed new files and infrequently accessed older files efficiently. Option C is incorrect because Lifecycle Management policies rely on static time-based rules (e.g., age of object), which cannot adapt to the specific behavior where some old files remain popular while others become inactive.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178186,
+            "letter": "A",
+            "text": "Create a single-region bucket with Autoclass enabled.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 178187,
+            "letter": "B",
+            "text": "Create a single-region bucket. Configure a Cloud Scheduler job that runs every 24 hours and changes the storage class based on upload date.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 178188,
+            "letter": "C",
+            "text": "Create a single-region bucket with custom Object Lifecycle Management policies based on upload date.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 178189,
+            "letter": "D",
+            "text": "Create a single-region bucket with Archive as the default storage class.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 49207,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 12,
+        "question_type": "mc_single",
+        "question_text": "You recently inherited a task for managing Dataflow streaming pipelines in your organization and noticed that proper access had not been provisioned to you. You need to request a Google-provided IAM role so you can restart the pipelines. You need to follow the principle of least privilege. What should you do?",
+        "solution_text": "The Dataflow Developer role (A) grants the necessary permissions to create, update, and restart pipelines while adhering to the principle of least privilege. <br/>Option B is incorrect because the Viewer role only allows read-only access, preventing any pipeline modifications. <br/>Option D is overly permissive as it includes administrative privileges not required for simply restarting a pipeline, thus violating least privilege guidelines.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178190,
+            "letter": "A",
+            "text": "Request the Dataflow Developer role.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 178191,
+            "letter": "B",
+            "text": "Request the Dataflow Viewer role.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 178192,
+            "letter": "C",
+            "text": "Request the Dataflow Worker role.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 178193,
+            "letter": "D",
+            "text": "Request the Dataflow Admin role.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 49208,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 13,
+        "question_type": "mc_single",
+        "question_text": "You need to create a new data pipeline. You want a serverless solution that meets the following requirements:<br/>• Data is streamed from Pub/Sub and is processed in real-time.<br/>• Data is transformed before being stored.<br/>• Data is stored in a location that will allow it to be analyzed with SQL using Looker.<br/><img src=\"/media/question_images/imported/ASSOCIATE-DATA-PRACTITIONER/img_image9.png\" title=\"image9\"/><br/>Which Google Cloud services should you recommend for the pipeline?",
+        "solution_text": "Dataflow is the correct serverless service for real-time stream processing from Pub/Sub, while BigQuery serves as the storage destination optimized for SQL analysis via Looker. <br/>Option A is incorrect because Dataproc Serverless is designed for batch workloads rather than continuous streaming, and Bigtable is a NoSQL database not directly suited for standard SQL analysis with Looker.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178194,
+            "letter": "A",
+            "text": "1. Dataproc Serverless<br/>2. Bigtable",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 178195,
+            "letter": "B",
+            "text": "1. Cloud Composer<br/>2. Cloud SQL for MySQL",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 178196,
+            "letter": "C",
+            "text": "1. BigQuery<br/>2. Analytics Hub",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 178197,
+            "letter": "D",
+            "text": "1. Dataflow<br/>2. BigQuery",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 49209,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 14,
+        "question_type": "mc_single",
+        "question_text": "Your team wants to create a monthly report to analyze inventory data that is updated daily. You need to aggregate the inventory counts by using only the most recent month of data, and save the results to be used in a Looker Studio dashboard. What should you do?",
+        "solution_text": "Materialized views in BigQuery automatically refresh and store pre-computed results, making them the most efficient way to serve aggregated data to Looker Studio without manual intervention. The DATE_SUB() function correctly filters for the most recent month's data within the view definition, ensuring the dashboard reflects up-to-date inventory counts.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178198,
+            "letter": "A",
+            "text": "Create a materialized view in BigQuery that uses the SUM( ) function and the DATE_SUB( ) function.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 178199,
+            "letter": "B",
+            "text": "Create a saved query in the BigQuery console that uses the SUM( ) function and the DATE_SUB( ) function. Re-run the saved query every month, and save the results to a BigQuery table.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 178200,
+            "letter": "C",
+            "text": "Create a BigQuery table that uses the SUM( ) function and the _PARTITIONDATE filter.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 178201,
+            "letter": "D",
+            "text": "Create a BigQuery table that uses the SUM( ) function and the DATE_DIFF( ) function.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 49210,
+        "topic_id": 653,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 15,
+        "question_type": "mc_single",
+        "question_text": "You have a BigQuery dataset containing sales data. This data is actively queried for the first 6 months. After that, the data is not queried but needs to be retained for 3 years for compliance reasons. You need to implement a data management strategy that meets access and compliance requirements, while keeping cost and administrative overhead to a minimum. What should you do?",
+        "solution_text": "Option B is correct because it optimizes costs by moving infrequently accessed data to the cheaper Coldline storage class after 6 months, while using a lifecycle policy for automated, low-overhead deletion at the 3-year mark. It minimizes BigQuery query costs during the active period through partitioning. Option C is incorrect because manually writing stored procedures and scheduled queries creates higher administrative overhead compared to native lifecycle policies.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 178202,
+            "letter": "A",
+            "text": "Use BigQuery long-term storage for the entire dataset. Set up a Cloud Run function to delete the data from BigQuery after 3 years.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 178203,
+            "letter": "B",
+            "text": "Partition a BigQuery table by month. After 6 months, export the data to Coldline storage. Implement a lifecycle policy to delete the data from Cloud Storage after 3 years.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 178204,
+            "letter": "C",
+            "text": "Set up a scheduled query to export the data to Cloud Storage after 6 months. Write a stored procedure to delete the data from BigQuery after 3 years.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 178205,
+            "letter": "D",
+            "text": "Store all data in a single BigQuery table without partitioning or lifecycle policies.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 653,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 653,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 103
+      }
+    ]
+  },
+  "page": 3,
+  "discussions": {
+    "49206": {
+      "target_type": "question",
+      "target_id": 49206,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "49207": {
+      "target_type": "question",
+      "target_id": 49207,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "49208": {
+      "target_type": "question",
+      "target_id": 49208,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "49209": {
+      "target_type": "question",
+      "target_id": 49209,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "49210": {
+      "target_type": "question",
+      "target_id": 49210,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}
