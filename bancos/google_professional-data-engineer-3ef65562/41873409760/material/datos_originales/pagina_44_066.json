@@ -1,0 +1,288 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 44,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12309,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 216,
+        "question_type": "mc_single",
+        "question_text": "You are developing an Apache Beam pipeline to extract data from a Cloud SQL instance by using JdbcIO. You have two projects running in Google Cloud. The pipeline will be deployed and executed on Dataflow in Project A. The Cloud SQL. instance is running in Project B and does not have a public IP address. After deploying the pipeline, you noticed that the pipeline failed to extract data from the Cloud SQL instance due to connection failure. You verified that VPC Service Controls and shared VPC are not in use in these projects. You want to resolve this error while ensuring that the data does not go through the public internet. What should you do?",
+        "solution_text": "VPC Network Peering does not provide transitive routing to Google-managed services like Cloud SQL, so direct connectivity from a peered VPC is impossible without an intermediary. <br/>Option D establishes the necessary network path via peering and uses a Compute Engine proxy in Project B to bridge the Dataflow workers (Project A) to the private Cloud SQL instance. <br/>This ensures traffic remains within Google's internal network, satisfying the requirement that data does not traverse the public internet.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47406,
+            "letter": "A",
+            "text": "Set up VPC Network Peering between Project A and Project B. Add a firewall rule to allow the peered subnet range to access all instances on the network.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47407,
+            "letter": "B",
+            "text": "Turn off the external IP addresses on the Dataflow worker. Enable Cloud NAT in Project A.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47408,
+            "letter": "C",
+            "text": "Add the external IP addresses of the Dataflow worker as authorized networks in the Cloud SQL instance.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47409,
+            "letter": "D",
+            "text": "Set up VPC Network Peering between Project A and Project B. Create a Compute Engine instance without external IP address in Project B on the peered subnet to serve as a proxy server to the Cloud SQL database.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12310,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 217,
+        "question_type": "mc_single",
+        "question_text": "You have a BigQuery table that contains customer data, including sensitive information such as names and addresses. You need to share the customer data with your data analytics and consumer support teams securely. The data analytics team needs to access the data of all the customers, but must not be able to access the sensitive data. The consumer support team needs access to all data columns, but must not be able to access customers that no longer have active contracts. You enforced these requirements by using an authorized dataset and policy tags. After implementing these steps, the data analytics team reports that they still have access to the sensitive columns. You need to ensure that the data analytics team does not have access to restricted data. What should you do? (Choose two.)",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47410,
+            "letter": "A",
+            "text": "Create two separate authorized datasets; one for the data analytics team and another for the consumer support team.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47411,
+            "letter": "B",
+            "text": "Ensure that the data analytics team members do not have the Data Catalog Fine-Grained Reader role for the policy tags.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47412,
+            "letter": "C",
+            "text": "Replace the authorized dataset with an authorized view. Use row-level security and apply filter_expression to limit data access.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47413,
+            "letter": "D",
+            "text": "Remove the bigquery.dataViewer role from the data analytics team on the authorized datasets.",
+            "is_correct": false,
+            "order": 3
+          },
+          {
+            "id": 47414,
+            "letter": "E",
+            "text": "Enforce access control in the policy tag taxonomy.",
+            "is_correct": false,
+            "order": 4
+          }
+        ]
+      },
+      {
+        "id": 12311,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 218,
+        "question_type": "mc_single",
+        "question_text": "You have a Cloud SQL for PostgreSQL instance in Region’ with one read replica in Region2 and another read replica in Region3. An unexpected event in Region’ requires that you perform disaster recovery by promoting a read replica in Region2. You need to ensure that your application has the same database capacity available before you switch over the connections. What should you do?",
+        "solution_text": "Promoting the Region2 replica establishes a new primary, but the original Region3 replica cannot automatically re-sync with this new source without intervention. To restore the required database capacity and redundancy, you must provision new read replicas from the promoted primary instance. Option C achieves this by creating replicas in Region3 and another region, ensuring load distribution and fault tolerance.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47415,
+            "letter": "A",
+            "text": "Enable zonal high availability on the primary instance. Create a new read replica in a new region.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47416,
+            "letter": "B",
+            "text": "Create a cascading read replica from the existing read replica in Region3.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47417,
+            "letter": "C",
+            "text": "Create two new read replicas from the new primary instance, one in Region3 and one in a new region.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47418,
+            "letter": "D",
+            "text": "Create a new read replica in Region1, promote the new read replica to be the primary instance, and enable zonal high availability.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12312,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 219,
+        "question_type": "mc_single",
+        "question_text": "You orchestrate ETL pipelines by using Cloud Composer. One of the tasks in the Apache Airflow directed acyclic graph (DAG) relies on a third-party service. You want to be notified when the task does not succeed. What should you do?",
+        "solution_text": "In Apache Airflow (Cloud Composer), the `on_failure_callback` parameter is specifically designed to execute a custom function when a task fails. This ensures immediate notification of task failure, whereas `on_retry_callback` triggers during retries and SLA-related callbacks trigger only if service level agreements are missed.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47419,
+            "letter": "A",
+            "text": "Assign a function with notification logic to the on_retry_callback parameter for the operator responsible for the task at risk.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47420,
+            "letter": "B",
+            "text": "Configure a Cloud Monitoring alert on the sla_missed metric associated with the task at risk to trigger a notification.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47421,
+            "letter": "C",
+            "text": "Assign a function with notification logic to the on_failure_callback parameter tor the operator responsible for the task at risk.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47422,
+            "letter": "D",
+            "text": "Assign a function with notification logic to the sla_miss_callback parameter for the operator responsible for the task at risk.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12313,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 220,
+        "question_type": "mc_single",
+        "question_text": "You are migrating your on-premises data warehouse to BigQuery. One of the upstream data sources resides on a MySQL. database that runs in your on-premises data center with no public IP addresses. You want to ensure that the data ingestion into BigQuery is done securely and does not go through the public internet. What should you do?",
+        "solution_text": "Cloud Interconnect establishes a private network connection between on-premises infrastructure and Google Cloud, ensuring traffic does not traverse the public internet. Configuring Datastream with Private connectivity over this interconnect allows secure replication from the on-premises MySQL database to BigQuery using private IP addresses.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47423,
+            "letter": "A",
+            "text": "Update your existing on-premises ETL tool to write to BigQuery by using the BigQuery Open Database Connectivity (ODBC) driver. Set up the proxy parameter in the simba.googlebigqueryodbc.ini file to point to your data center’s NAT gateway.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47424,
+            "letter": "B",
+            "text": "Use Datastream to replicate data from your on-premises MySQL database to BigQuery. Set up Cloud Interconnect between your on-premises data center and Google Cloud. Use Private connectivity as the connectivity method and allocate an IP address range within your VPC network to the Datastream connectivity configuration. Use Server-only as the encryption type when setting up the connection profile in Datastream.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47425,
+            "letter": "C",
+            "text": "Use Datastream to replicate data from your on-premises MySQL database to BigQuery. Use Forward-SSH tunnel as the connectivity method to establish a secure tunnel between Datastream and your on-premises MySQL database through a tunnel server in your on-premises data center. Use None as the encryption type when setting up the connection profile in Datastream.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47426,
+            "letter": "D",
+            "text": "Use Datastream to replicate data from your on-premises MySQL database to BigQuery. Gather Datastream public IP addresses of the Google Cloud region that will be used to set up the stream. Add those IP addresses to the firewall allowlist of your on-premises data center. Use IP Allowlisting as the connectivity method and Server-only as the encryption type when setting up the connection profile in Datastream.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 44,
+  "discussions": {
+    "12309": {
+      "target_type": "question",
+      "target_id": 12309,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12310": {
+      "target_type": "question",
+      "target_id": 12310,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12311": {
+      "target_type": "question",
+      "target_id": 12311,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12312": {
+      "target_type": "question",
+      "target_id": 12312,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12313": {
+      "target_type": "question",
+      "target_id": 12313,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

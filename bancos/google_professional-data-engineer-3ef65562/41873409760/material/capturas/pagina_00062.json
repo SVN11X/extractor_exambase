@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/62",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 62,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 12399,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 306,
+          "question_type": "mc_single",
+          "question_text": "You are preparing an organization-wide dataset. You need to preprocess customer data stored in a restricted bucket in Cloud Storage. The data will be used to create consumer analyses. You need to comply with data privacy requirements.<br/><br/>What should you do?",
+          "solution_text": "Option A is correct because it uses the Cloud DLP API to mask sensitive data rather than deleting it, which preserves the utility of the dataset for consumer analysis while ensuring privacy compliance.<br/>Removing fields entirely (Option C) would likely destroy the ability to perform meaningful analyses by making records unidentifiable or incomplete.<br/>Options B and D rely on encryption, which protects data at rest but does not prevent unauthorized access by users with decryption privileges, whereas masking renders PII unusable even if accessed.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47769,
+              "letter": "A",
+              "text": "Use Dataflow and the Cloud Data Loss Prevention API to mask sensitive data. Write the processed data in BigQuery.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 47770,
+              "letter": "B",
+              "text": "Use customer-managed encryption keys (CMEK) to directly encrypt the data in Cloud Storage. Use federated queries from BigQuery. Share the encryption key by following the principle of least privilege.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47771,
+              "letter": "C",
+              "text": "Use the Cloud Data Loss Prevention API and Dataflow to detect and remove sensitive fields from the data in Cloud Storage. Write the filtered data in BigQuery.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47772,
+              "letter": "D",
+              "text": "Use Dataflow and Cloud KMS to encrypt sensitive fields and write the encrypted data in BigQuery. Share the encryption key by following the principle of least privilege.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12400,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 307,
+          "question_type": "mc_single",
+          "question_text": "You need to connect multiple applications with dynamic public IP addresses to a Cloud SQL instance. You configured users with strong passwords and enforced the SSL connection to your Cloud SQL instance. You want to use Cloud SQL public IP and ensure that you have secured connections. What should you do?",
+          "solution_text": "The Cloud SQL Auth Proxy is the recommended method for secure access because it authenticates connections using Google IAM credentials rather than IP addresses or SSL certificates. This eliminates the need to manage dynamic public IPs in Authorized Networks, which would otherwise require frequent updates or insecure open-access rules like 0.0.0.0/0.<br/>By keeping the Authorized Network empty and relying on the Proxy, you ensure that only authenticated users can connect, regardless of their source IP address.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47773,
+              "letter": "A",
+              "text": "Add CIDR 0.0.0.0/0 network to Authorized Network. Use Identity and Access Management (IAM) to add users.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47774,
+              "letter": "B",
+              "text": "Add all application networks to Authorized Network and regularly update them.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47775,
+              "letter": "C",
+              "text": "Leave the Authorized Network empty. Use Cloud SQL Auth proxy on all applications.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 47776,
+              "letter": "D",
+              "text": "Add CIDR 0.0.0.0/0 network to Authorized Network. Use Cloud SQL Auth proxy on all applications.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12401,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 308,
+          "question_type": "mc_single",
+          "question_text": "You are migrating a large number of files from a public HTTPS endpoint to Cloud Storage. The files are protected from unauthorized access using signed URLs. You created a TSV file that contains the list of object URLs and started a transfer job by using Storage Transfer Service. You notice that the job has run for a long time and eventually failed. Checking the logs of the transfer job reveals that the job was running fine until one point, and then it failed due to HTTP 403 errors on the remaining files. You verified that there were no changes to the source system. You need to fix the problem to resume the migration process. What should you do?",
+          "solution_text": "The HTTP 403 errors indicate that the signed URLs used to access the source files have expired, as no changes were made to the source system's permissions. Generating new signed URLs with a longer validity period ensures that the Storage Transfer Service can successfully authenticate and retrieve the remaining files without encountering authorization failures. Splitting the workload into smaller jobs helps manage potential timeouts or rate limits more effectively during the resume process.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47777,
+              "letter": "A",
+              "text": "Set up Cloud Storage FUSE, and mount the Cloud Storage bucket on a Compute Engine instance. Remove the completed files from the TSV file. Use a shell script to iterate through the TSV file and download the remaining URLs to the FUSE mount point.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47778,
+              "letter": "B",
+              "text": "Renew the TLS certificate of the HTTPS endpoint. Remove the completed files from the TSV file and rerun the Storage Transfer Service job.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47779,
+              "letter": "C",
+              "text": "Create a new TSV file for the remaining files by generating signed URLs with a longer validity period. Split the TSV file into multiple smaller files and submit them as separate Storage Transfer Service jobs in parallel.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 47780,
+              "letter": "D",
+              "text": "Update the file checksums in the TSV file from using MD5 to SHA256. Remove the completed files from the TSV file and rerun the Storage Transfer Service job.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12402,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 309,
+          "question_type": "mc_single",
+          "question_text": "You work for an airline and you need to store weather data in a BigQuery table. Weather data will be used as input to a machine learning model. The model only uses the last 30 days of weather data. You want to avoid storing unnecessary data and minimize costs. What should you do?",
+          "solution_text": "Partitioning by the weather date column ensures data is organized by its semantic time, which is critical for ML models requiring specific historical windows. <br/>Partition expiration (TTL) automatically deletes these old partitions after 30 days, avoiding unnecessary storage and eliminating the need for manual deletion queries.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47781,
+              "letter": "A",
+              "text": "Create a BigQuery table where each record has an ingestion timestamp. Run a scheduled query to delete all the rows with an ingestion timestamp older than 30 days.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47782,
+              "letter": "B",
+              "text": "Create a BigQuery table partitioned by datetime value of the weather date. Set up partition expiration to 30 days.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 47783,
+              "letter": "C",
+              "text": "Create a BigQuery table partitioned by ingestion time. Set up partition expiration to 30 days.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47784,
+              "letter": "D",
+              "text": "Create a BigQuery table with a datetime column for the day the weather data refers to. Run a scheduled query to delete rows with a datetime value older than 30 days.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12403,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 310,
+          "question_type": "mc_single",
+          "question_text": "You need to look at BigQuery data from a specific table multiple times a day. The underlying table you are querying is several petabytes in size, but you want to filter your data and provide simple aggregations to downstream users. You want to run queries faster and get up-to-date insights quicker. What should you do?",
+          "solution_text": "Materialized views in BigQuery are precomputed tables that store the results of a query and automatically refresh when underlying data changes. This directly addresses the need for faster query performance on petabyte-scale data and ensures up-to-date insights without re-scanning the massive source table repeatedly.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47785,
+              "letter": "A",
+              "text": "Run a scheduled query to pull the necessary data at specific intervals dally.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47786,
+              "letter": "B",
+              "text": "Use a cached query to accelerate time to results.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47787,
+              "letter": "C",
+              "text": "Limit the query columns being pulled in the final result.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47788,
+              "letter": "D",
+              "text": "Create a materialized view based off of the query being run.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 62,
+    "discussions": {
+      "12399": {
+        "target_type": "question",
+        "target_id": 12399,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12400": {
+        "target_type": "question",
+        "target_id": 12400,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12401": {
+        "target_type": "question",
+        "target_id": 12401,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12402": {
+        "target_type": "question",
+        "target_id": 12402,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12403": {
+        "target_type": "question",
+        "target_id": 12403,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      306,
+      307,
+      308,
+      309,
+      310
+    ],
+    "attempts": [
+      {
+        "question": 306,
+        "answerVisible": true
+      },
+      {
+        "question": 307,
+        "answerVisible": true
+      },
+      {
+        "question": 308,
+        "answerVisible": true
+      },
+      {
+        "question": 309,
+        "answerVisible": true
+      },
+      {
+        "question": 310,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 54,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12359,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 266,
+        "question_type": "mc_single",
+        "question_text": "You are building a streaming Dataflow pipeline that ingests noise level data from hundreds of sensors placed near construction sites across a city. The sensors measure noise level every ten seconds, and send that data to the pipeline when levels reach above 70 dBA. You need to detect the average noise level from a sensor when data is received for a duration of more than 30 minutes, but the window ends when no data has been received for 15 minutes. What should you do?",
+        "solution_text": "Session windows are dynamic and ideal for grouping events based on bursts of activity followed by inactivity. By setting the gap duration to 15 minutes, the window automatically closes when no data is received for that period, satisfying the specific termination condition.<br/>This approach also supports variable-length processing; if data continues to arrive without a 15-minute gap for over 30 minutes, the session window remains open and accumulates all elements correctly.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47609,
+            "letter": "A",
+            "text": "Use session windows with a 15-minute gap duration.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47610,
+            "letter": "B",
+            "text": "Use session windows with a 30-minute gap duration.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47611,
+            "letter": "C",
+            "text": "Use hopping windows with a 15-minute window, and a thirty-minute period.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47612,
+            "letter": "D",
+            "text": "Use tumbling windows with a 15-minute window and a fifteen-minute .withAllowedLateness operator.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12360,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 267,
+        "question_type": "mc_single",
+        "question_text": "You are creating a data model in BigQuery that will hold retail transaction data. Your two largest tables, sales_transaction_header and sales_transaction_line, have a tightly coupled immutable relationship. These tables are rarely modified after load and are frequently joined when queried. You need to model the sales_transaction_header and sales_transaction_line tables to improve the performance of data analytics queries. What should you do?",
+        "solution_text": "BigQuery is optimized for columnar storage and semi-structured data, making nested and repeated fields the most efficient way to model one-to-many relationships like header-line transactions.<br/>By denormalizing the data into a single table with nested structures, you eliminate the need for costly JOIN operations between separate tables, significantly improving query performance for analytics.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47613,
+            "letter": "A",
+            "text": "Create a sales_transaction table that holds the sales_transaction_header information as rows and the sales_transaction_line rows as nested and repeated fields.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47614,
+            "letter": "B",
+            "text": "Create a sales_transaction table that holds the sales_transaction_header and sales_transaction_line information as rows, duplicating the sales_transaction_header data for each line.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47615,
+            "letter": "C",
+            "text": "Create a sales_transaction table that stores the sales_transaction_header and sales_transaction_line data as a JSON data type.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47616,
+            "letter": "D",
+            "text": "Create separate sales_transaction_header and sales_transaction_line tables and, when querying, specify the sales_transaction_line first in the WHERE clause.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12361,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 268,
+        "question_type": "mc_single",
+        "question_text": "You created a new version of a Dataflow streaming data ingestion pipeline that reads from Pub/Sub and writes to BigQuery. The previous version of the pipeline that runs in production uses a 5-minute window for processing. You need to deploy the new version of the pipeline without losing any data, creating inconsistencies, or increasing the processing latency by more than 10 minutes. What should you do?",
+        "solution_text": "Draining the pipeline stops processing new data while allowing in-flight records to be processed, preventing data loss and ensuring consistency. <br/>Canceling causes immediate termination leading to potential data loss, and updating code directly requires a snapshot/restart cycle that may introduce longer delays or state issues depending on implementation. <br/>Option C is the standard procedure for safe transitions without losing in-transit data.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47617,
+            "letter": "A",
+            "text": "Update the old pipeline with the new pipeline code.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47618,
+            "letter": "B",
+            "text": "Snapshot the old pipeline, stop the old pipeline, and then start the new pipeline from the snapshot.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47619,
+            "letter": "C",
+            "text": "Drain the old pipeline, then start the new pipeline.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47620,
+            "letter": "D",
+            "text": "Cancel the old pipeline, then start the new pipeline.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12362,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 269,
+        "question_type": "mc_single",
+        "question_text": "Your organization's data assets are stored in BigQuery, Pub/Sub, and a PostgreSQL instance running on Compute Engine. Because there are multiple domains and diverse teams using the data, teams in your organization are unable to discover existing data assets. You need to design a solution to improve data discoverability while keeping development and configuration efforts to a minimum. What should you do?",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47621,
+            "letter": "A",
+            "text": "Use Data Catalog to automatically catalog BigQuery datasets. Use Data Catalog APIs to manually catalog Pub/Sub topics and PostgreSQL tables.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47622,
+            "letter": "B",
+            "text": "Use Data Catalog to automatically catalog BigQuery datasets and Pub/Sub topics. Use Data Catalog APIs to manually catalog PostgreSQL tables.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47623,
+            "letter": "C",
+            "text": "Use Data Catalog to automatically catalog BigQuery datasets and Pub/Sub topics. Use custom connectors to manually catalog PostgreSQL tables.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47624,
+            "letter": "D",
+            "text": "Use customer connectors to manually catalog BigQuery datasets, Pub/Sub topics, and PostgreSQL tables.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12363,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 270,
+        "question_type": "mc_single",
+        "question_text": "You need to create a SQL pipeline. The pipeline runs an aggregate SQL transformation on a BigQuery table every two hours and appends the result to another existing BigQuery table. You need to configure the pipeline to retry if errors occur. You want the pipeline to send an email notification after three consecutive failures. What should you do?",
+        "solution_text": "BigQuery scheduled queries natively support scheduling and retry logic but do not have a built-in feature to send emails only after N consecutive failures. Option D correctly uses Pub/Sub notifications for query failure events and leverages Cloud Functions to implement the specific business logic of counting consecutive failures before triggering an email.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47625,
+            "letter": "A",
+            "text": "Use the BigQueryUpsertTableOperator in Cloud Composer, set the retry parameter to three, and set the email_on_failure parameter to true.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47626,
+            "letter": "B",
+            "text": "Use the BigQueryInsertJobOperator in Cloud Composer, set the retry parameter to three, and set the email_on_failure parameter to true.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47627,
+            "letter": "C",
+            "text": "Create a BigQuery scheduled query to run the SQL transformation with schedule options that repeats every two hours, and enable email notifications.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47628,
+            "letter": "D",
+            "text": "Create a BigQuery scheduled query to run the SQL transformation with schedule options that repeats every two hours, and enable notification to Pub/Sub topic. Use Pub/Sub and Cloud Functions to send an email after three failed executions.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 54,
+  "discussions": {
+    "12359": {
+      "target_type": "question",
+      "target_id": 12359,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12360": {
+      "target_type": "question",
+      "target_id": 12360,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12361": {
+      "target_type": "question",
+      "target_id": 12361,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12362": {
+      "target_type": "question",
+      "target_id": 12362,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12363": {
+      "target_type": "question",
+      "target_id": 12363,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

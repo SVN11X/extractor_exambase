@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 6,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12119,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 26,
+        "question_type": "mc_single",
+        "question_text": "You are working on a sensitive project involving private user data. You have set up a project on Google Cloud Platform to house your work internally. An external consultant is going to assist with coding a complex transformation in a Google Cloud Dataflow pipeline for your project. How should you maintain users' privacy?<br/>",
+        "solution_text": "The primary goal is to maintain user privacy while allowing an external consultant to develop complex transformation logic. <br/>Granting access to the production project, even with limited roles, risks exposure of sensitive data through logs or debugging.<br/>Creating an anonymized sample in a separate isolated project ensures the consultant can validate their code without ever seeing private user data.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46628,
+            "letter": "A",
+            "text": "Grant the consultant the Viewer role on the project.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46629,
+            "letter": "B",
+            "text": "Grant the consultant the Cloud Dataflow Developer role on the project.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 46630,
+            "letter": "C",
+            "text": "Create a service account and allow the consultant to log on with it.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 46631,
+            "letter": "D",
+            "text": "Create an anonymized sample of the data for the consultant to work with in a different project.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12120,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 27,
+        "question_type": "mc_single",
+        "question_text": "You are building a model to predict whether or not it will rain on a given day. You have thousands of input features and want to see if you can improve training speed by removing some features while having a minimum effect on model accuracy. What can you do?<br/>",
+        "solution_text": "Combining highly co-dependent (correlated) features reduces multicollinearity and dataset dimensionality, which accelerates training without significant loss of predictive information.<br/>Removing features correlated with the output (A) would degrade accuracy, as these are valuable predictors.<br/>Averaging arbitrary batches (C) destroys feature specificity, and dropping features with >50% nulls (D) discards potentially useful signals that could be imputed.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46632,
+            "letter": "A",
+            "text": "Eliminate features that are highly correlated to the output labels.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46633,
+            "letter": "B",
+            "text": "Combine highly co-dependent features into one representative feature.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 46634,
+            "letter": "C",
+            "text": "Instead of feeding in each feature individually, average their values in batches of 3.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 46635,
+            "letter": "D",
+            "text": "Remove the features that have null values for more than 50% of the training records.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12121,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 28,
+        "question_type": "mc_single",
+        "question_text": "Your company is performing data preprocessing for a learning algorithm in Google Cloud Dataflow. Numerous data logs are being are being generated during this step, and the team wants to analyze them. Due to the dynamic nature of the campaign, the data is growing exponentially every hour.<br/>The data scientists have written the following code to read the data for a new key features in the logs.<br/><img class=\"in-exam-image\" src=\"/media/question_images/imported/PROFESSIONAL-DATA-ENGINEER/0001600001.png\"/><br/>You want to improve the performance of this data read. What should you do?<br/>\n",
+        "solution_text": "The question requires improving performance by reading only specific key features from exponentially growing logs. Using `BigQueryIO.read().fromQuery()` allows you to define a SQL SELECT statement that retrieves only the necessary columns, reducing I/O volume and processing time compared to reading entire tables or rows.<br/>Reference: BigQuery best practices recommend avoiding `SELECT *` to minimize data scanned.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46636,
+            "letter": "A",
+            "text": "Specify the TableReference object in the code.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46637,
+            "letter": "B",
+            "text": "Use .fromQuery operation to read specific fields from the table.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 46638,
+            "letter": "C",
+            "text": "Use of both the Google BigQuery TableSchema and TableFieldSchema classes.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 46639,
+            "letter": "D",
+            "text": "Call a transform that returns TableRow objects, where each element in the PCollection represents a single row in the table.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12122,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 29,
+        "question_type": "mc_single",
+        "question_text": "Your company is streaming real-time sensor data from their factory floor into Bigtable and they have noticed extremely poor performance. How should the row key be redesigned to improve Bigtable performance on queries that populate real-time dashboards?<br/>",
+        "solution_text": "Option D is correct because placing the sensor ID before the timestamp ensures that writes for different sensors are distributed across multiple tablets, preventing hotspotting. Starting a row key with a monotonically increasing timestamp (Options A and C) concentrates write traffic on a single node, degrading performance. Option B fails because it lacks a timestamp component, causing new readings to overwrite previous ones instead of appending them.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46640,
+            "letter": "A",
+            "text": "Use a row key of the form <timestamp>.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46641,
+            "letter": "B",
+            "text": "Use a row key of the form <sensorid>.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 46642,
+            "letter": "C",
+            "text": "Use a row key of the form <timestamp>#<sensorid>.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 46643,
+            "letter": "D",
+            "text": "Use a row key of the form >#<sensorid>#<timestamp>.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12123,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 30,
+        "question_type": "mc_single",
+        "question_text": "Your company's customer and order databases are often under heavy load. This makes performing analytics against them difficult without harming operations.<br/>The databases are in a MySQL cluster, with nightly backups taken using mysqldump. You want to perform analytics with minimal impact on operations. What should you do?<br/>",
+        "solution_text": "The goal is to perform analytics with minimal impact on the production OLTP database. Using an ETL tool to load data into Google BigQuery separates the analytical workload from the transactional system, preventing heavy analytic queries from degrading operational performance.<br/><br/>BigQuery is Google's managed serverless data warehouse, designed specifically for large-scale analytics, making it the optimal choice over on-premises solutions or processing tools like Dataproc that require additional compute infrastructure.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46644,
+            "letter": "A",
+            "text": "Add a node to the MySQL cluster and build an OLAP cube there.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46645,
+            "letter": "B",
+            "text": "Use an ETL tool to load the data from MySQL into Google BigQuery.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 46646,
+            "letter": "C",
+            "text": "Connect an on-premises Apache Hadoop cluster to MySQL and perform ETL.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 46647,
+            "letter": "D",
+            "text": "Mount the backups to Google Cloud SQL, and then process the data using Google Cloud Dataproc.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 6,
+  "discussions": {
+    "12119": {
+      "target_type": "question",
+      "target_id": 12119,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12120": {
+      "target_type": "question",
+      "target_id": 12120,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12121": {
+      "target_type": "question",
+      "target_id": 12121,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12122": {
+      "target_type": "question",
+      "target_id": 12122,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12123": {
+      "target_type": "question",
+      "target_id": 12123,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

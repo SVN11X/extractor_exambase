@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 43,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12304,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 211,
+        "question_type": "mc_single",
+        "question_text": "You are using BigQuery with a multi-region dataset that includes a table with the daily sales volumes. This table is updated multiple times per day. You need to protect your sales table in case of regional failures with a recovery point objective (RPO) of less than 24 hours, while keeping costs to a minimum. What should you do?",
+        "solution_text": "BigQuery table snapshots must reside in the same region as the source table, so they do not protect against a hard regional failure. To meet an RPO of less than 24 hours while minimizing costs, scheduling a daily export to a dual- or multi-region Cloud Storage bucket provides geographic redundancy outside BigQuery without the higher expense of active cross-region replication.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47386,
+            "letter": "A",
+            "text": "Schedule a daily export of the table to a Cloud Storage dual or multi-region bucket.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47387,
+            "letter": "B",
+            "text": "Schedule a daily copy of the dataset to a backup region.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47388,
+            "letter": "C",
+            "text": "Schedule a daily BigQuery snapshot of the table.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47389,
+            "letter": "D",
+            "text": "Modify ETL job to load the data into both the current and another backup region.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12305,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 212,
+        "question_type": "mc_single",
+        "question_text": "You are troubleshooting your Dataflow pipeline that processes data from Cloud Storage to BigQuery. You have discovered that the Dataflow worker nodes cannot communicate with one another. Your networking team relies on Google Cloud network tags to define firewall rules. You need to identify the issue while following Google-recommended networking security practices. What should you do?",
+        "solution_text": "Dataflow worker nodes require specific TCP ports (12345 and 12346) for internal communication. Google recommends using network tags to define firewall rules rather than relying solely on subnets, as this provides more granular and secure access control.<br/>Therefore, you must verify that a firewall rule exists allowing traffic on these ports specifically targeting the Dataflow network tag.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47390,
+            "letter": "A",
+            "text": "Determine whether your Dataflow pipeline has a custom network tag set.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47391,
+            "letter": "B",
+            "text": "Determine whether there is a firewall rule set to allow traffic on TCP ports 12345 and 12346 for the Dataflow network tag.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47392,
+            "letter": "C",
+            "text": "Determine whether there is a firewall rule set to allow traffic on TCP ports 12345 and 12346 on the subnet used by Dataflow workers.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47393,
+            "letter": "D",
+            "text": "Determine whether your Dataflow pipeline is deployed with the external IP address option enabled.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12306,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 213,
+        "question_type": "mc_single",
+        "question_text": "Your company's customer_order table in BigQuery stores the order history for 10 million customers, with a table size of 10 PB. You need to create a dashboard for the support team to view the order history. The dashboard has two filters, country_name and username. Both are string data types in the BigQuery table. When a filter is applied, the dashboard fetches the order history from the table and displays the query results. However, the dashboard is slow to show the results when applying the filters to the following query:<br/><br/><img src=\"/media/question_images/imported/PROFESSIONAL-DATA-ENGINEER/img_image3.png\"/><br/><br/>How should you redesign the BigQuery table to support faster access?",
+        "solution_text": "BigQuery partitioning requires columns of type DATE, DATETIME, TIMESTAMP, or INTEGER RANGE; it does not support string data types for partition keys. Since country_name and username are strings, they cannot be used for partitioning, eliminating options B, C, and D. Clustering is the correct optimization technique here, as it organizes data within files to allow BigQuery to quickly skip irrelevant data blocks when filtering on these specific string columns.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47394,
+            "letter": "A",
+            "text": "Cluster the table by country and username fields.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47395,
+            "letter": "B",
+            "text": "Cluster the table by country field, and partition by username field.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47396,
+            "letter": "C",
+            "text": "Partition the table by country and username fields.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47397,
+            "letter": "D",
+            "text": "Partition the table by _PARTITIONTIME.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12307,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 214,
+        "question_type": "mc_single",
+        "question_text": "You have a Standard Tier Memorystore for Redis instance deployed in a production environment. You need to simulate a Redis instance failover in the most accurate disaster recovery situation, and ensure that the failover has no impact on production data. What should you do?",
+        "solution_text": "To ensure no impact on production data, the failover simulation must occur in an isolated development environment rather than production. The 'force-data-loss' mode is selected because it simulates a hard crash and complete instance restart, providing the most accurate representation of a disaster recovery scenario compared to the limited-data-loss mode.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47398,
+            "letter": "A",
+            "text": "Create a Standard Tier Memorystore for Redis instance in the development environment. Initiate a manual failover by using the limited-data-loss data protection mode.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47399,
+            "letter": "B",
+            "text": "Create a Standard Tier Memorystore for Redis instance in a development environment. Initiate a manual failover by using the force-data-loss data protection mode.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47400,
+            "letter": "C",
+            "text": "Increase one replica to Redis instance in production environment. Initiate a manual failover by using the force-data-loss data protection mode.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47401,
+            "letter": "D",
+            "text": "Initiate a manual failover by using the limited-data-loss data protection mode to the Memorystore for Redis instance in the production environment.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12308,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 215,
+        "question_type": "mc_single",
+        "question_text": "You are administering a BigQuery dataset that uses a customer-managed encryption key (CMEK). You need to share the dataset with a partner organization that does not have access to your CMEK. What should you do?",
+        "solution_text": "You cannot share data encrypted with a Customer-Managed Encryption Key (CMEK) without granting the recipient access to that key, which poses a security risk. By copying the tables to a dataset using Google-managed encryption keys and publishing via Analytics Hub, you provide secure, governed data sharing without exposing your CMEK.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47402,
+            "letter": "A",
+            "text": "Provide the partner organization a copy of your CMEKs to decrypt the data.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47403,
+            "letter": "B",
+            "text": "Export the tables to parquet files to a Cloud Storage bucket and grant the storageinsights.viewer role on the bucket to the partner organization.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47404,
+            "letter": "C",
+            "text": "Copy the tables you need to share to a dataset without CMEKs. Create an Analytics Hub listing for this dataset.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47405,
+            "letter": "D",
+            "text": "Create an authorized view that contains the CMEK to decrypt the data when accessed.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 43,
+  "discussions": {
+    "12304": {
+      "target_type": "question",
+      "target_id": 12304,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12305": {
+      "target_type": "question",
+      "target_id": 12305,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12306": {
+      "target_type": "question",
+      "target_id": 12306,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12307": {
+      "target_type": "question",
+      "target_id": 12307,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12308": {
+      "target_type": "question",
+      "target_id": 12308,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

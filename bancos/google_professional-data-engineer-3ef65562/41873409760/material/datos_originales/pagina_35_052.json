@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 35,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12264,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 171,
+        "question_type": "mc_single",
+        "question_text": "You work for a large real estate firm and are preparing 6 TB of home sales data to be used for machine learning. You will use SQL to transform the data and use<br/>BigQuery ML to create a machine learning model. You plan to use the model for predictions against a raw dataset that has not been transformed. How should you set up your workflow in order to prevent skew at prediction time?<br/>",
+        "solution_text": "The TRANSFORM clause in BigQuery ML automatically stores preprocessing statistics (such as scaling factors) within the model object.<br/>At prediction or evaluation time, these stored transformations are applied implicitly to input data, ensuring consistency with training data and preventing feature skew.<br/>Option A correctly leverages this built-in mechanism, whereas manually transforming data risks applying different logic or parameters than those used during training.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47226,
+            "letter": "A",
+            "text": "When creating your model, use BigQuery's TRANSFORM clause to define preprocessing steps. At prediction time, use BigQuery's ML.EVALUATE clause without specifying any transformations on the raw input data.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47227,
+            "letter": "B",
+            "text": "When creating your model, use BigQuery's TRANSFORM clause to define preprocessing steps. Before requesting predictions, use a saved query to transform your raw input data, and then use ML.EVALUATE.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47228,
+            "letter": "C",
+            "text": "Use a BigQuery view to define your preprocessing logic. When creating your model, use the view as your model training data. At prediction time, use BigQuery's ML.EVALUATE clause without specifying any transformations on the raw input data.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47229,
+            "letter": "D",
+            "text": "Preprocess all data using Dataflow. At prediction time, use BigQuery's ML.EVALUATE clause without specifying any further transformations on the input data.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12265,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 172,
+        "question_type": "mc_single",
+        "question_text": "You are analyzing the price of a company's stock. Every 5 seconds, you need to compute a moving average of the past 30 seconds' worth of data. You are reading data from Pub/Sub and using DataFlow to conduct the analysis. How should you set up your windowed pipeline?<br/>",
+        "solution_text": "A sliding window is required to compute a moving average that overlaps across time intervals.<br/>With a duration of 30 seconds and an offset (period) of 5 seconds, the window captures the correct data range and emits results every 5 seconds.<br/>The trigger AfterWatermark.pastEndOfWindow() ensures results are emitted once the system is confident it has received all data for that specific 5-second pane within the window.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47230,
+            "letter": "A",
+            "text": "Use a fixed window with a duration of 5 seconds. Emit results by setting the following trigger: AfterProcessingTime.pastFirstElementInPane().plusDelayOf (Duration.standardSeconds(30))",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47231,
+            "letter": "B",
+            "text": "Use a fixed window with a duration of 30 seconds. Emit results by setting the following trigger: AfterWatermark.pastEndOfWindow().plusDelayOf (Duration.standardSeconds(5))",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47232,
+            "letter": "C",
+            "text": "Use a sliding window with a duration of 5 seconds. Emit results by setting the following trigger: AfterProcessingTime.pastFirstElementInPane().plusDelayOf (Duration.standardSeconds(30))",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47233,
+            "letter": "D",
+            "text": "Use a sliding window with a duration of 30 seconds and a period of 5 seconds. Emit results by setting the following trigger: AfterWatermark.pastEndOfWindow ()",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12266,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 173,
+        "question_type": "mc_single",
+        "question_text": "You are designing a pipeline that publishes application events to a Pub/Sub topic. Although message ordering is not important, you need to be able to aggregate events across disjoint hourly intervals before loading the results to BigQuery for analysis. What technology should you use to process and load this data to<br/>BigQuery while ensuring that it will scale with large volumes of events?<br/>",
+        "solution_text": "The requirement to 'scale with large volumes' necessitates a streaming architecture capable of handling continuous, high-throughput data ingestion without the latency and retrieval limitations inherent in hourly batch polling. Cloud Pub/Sub is designed for real-time data streams, making Dataflow Streaming the appropriate choice for processing these events as they arrive. Tumbling windows are specifically defined as disjoint, fixed-duration time intervals (e.g., hourly), which perfectly matches the aggregation logic required.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47234,
+            "letter": "A",
+            "text": "Create a Cloud Function to perform the necessary data processing that executes using the Pub/Sub trigger every time a new message is published to the topic.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47235,
+            "letter": "B",
+            "text": "Schedule a Cloud Function to run hourly, pulling all available messages from the Pub/Sub topic and performing the necessary aggregations.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47236,
+            "letter": "C",
+            "text": "Schedule a batch Dataflow job to run hourly, pulling all available messages from the Pub/Sub topic and performing the necessary aggregations.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47237,
+            "letter": "D",
+            "text": "Create a streaming Dataflow job that reads continually from the Pub/Sub topic and performs the necessary aggregations using tumbling windows.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12267,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 174,
+        "question_type": "mc_single",
+        "question_text": "You work for a large financial institution that is planning to use Dialogflow to create a chatbot for the company's mobile app. You have reviewed old chat logs and tagged each conversation for intent based on each customer's stated intention for contacting customer service. About 70% of customer requests are simple requests that are solved within 10 intents. The remaining 30% of inquiries require much longer, more complicated requests. Which intents should you automate first?<br/>",
+        "solution_text": "Automating the high-volume, simple intents first follows an iterative design approach and the Pareto principle, delivering immediate value by resolving 70% of user queries with minimal development effort. This strategy significantly reduces the workload on live agents, allowing them to focus their time and expertise on the remaining 30% of complex cases that require human judgment.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47238,
+            "letter": "A",
+            "text": "Automate the 10 intents that cover 70% of the requests so that live agents can handle more complicated requests.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47239,
+            "letter": "B",
+            "text": "Automate the more complicated requests first because those require more of the agents' time.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47240,
+            "letter": "C",
+            "text": "Automate a blend of the shortest and longest intents to be representative of all intents.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47241,
+            "letter": "D",
+            "text": "Automate intents in places where common words such as 'payment' appear only once so the software isn't confused.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12268,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 175,
+        "question_type": "mc_single",
+        "question_text": "Your company is implementing a data warehouse using BigQuery, and you have been tasked with designing the data model. You move your on-premises sales data warehouse with a star data schema to BigQuery but notice performance issues when querying the data of the past 30 days. Based on Google's recommended practices, what should you do to speed up the query without increasing storage costs?<br/>",
+        "solution_text": "Partitioning the table by transaction date restricts query scans to only the relevant 30-day partitions, significantly reducing data processing costs and improving latency.<br/>This optimization achieves speed gains without increasing storage overhead, unlike denormalization which can lead to data redundancy and higher storage bills.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47242,
+            "letter": "A",
+            "text": "Denormalize the data.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47243,
+            "letter": "B",
+            "text": "Shard the data by customer ID.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47244,
+            "letter": "C",
+            "text": "Materialize the dimensional data in views.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47245,
+            "letter": "D",
+            "text": "Partition the data by transaction date.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 35,
+  "discussions": {
+    "12264": {
+      "target_type": "question",
+      "target_id": 12264,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12265": {
+      "target_type": "question",
+      "target_id": 12265,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12266": {
+      "target_type": "question",
+      "target_id": 12266,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12267": {
+      "target_type": "question",
+      "target_id": 12267,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12268": {
+      "target_type": "question",
+      "target_id": 12268,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

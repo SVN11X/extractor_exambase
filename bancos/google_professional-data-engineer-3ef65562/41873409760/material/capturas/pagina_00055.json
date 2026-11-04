@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/55",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 55,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 12364,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 271,
+          "question_type": "mc_single",
+          "question_text": "You are monitoring your organization’s data lake hosted on BigQuery. The ingestion pipelines read data from Pub/Sub and write the data into tables on BigQuery. After a new version of the ingestion pipelines is deployed, the daily stored data increased by 50%. The volumes of data in Pub/Sub remained the same and only some tables had their daily partition data size doubled. You need to investigate and fix the cause of the data increase. What should you do?",
+          "solution_text": "Option C is correct because it provides a comprehensive investigation workflow: checking for duplicates addresses the symptom, while audit logs and Cloud Monitoring trace the root cause (likely concurrent pipeline versions). <br/>Stopping inactive pipelines fixes the underlying configuration error preventing future data inflation. <br/>Unlike other options, it focuses on identifying why the volume increased rather than just reverting state without understanding the cause.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47629,
+              "letter": "A",
+              "text": "1. Check for duplicate rows in the BigQuery tables that have the daily partition data size doubled.<br/>2. Schedule daily SQL jobs to deduplicate the affected tables.<br/>3. Share the deduplication script with the other operational teams to reuse if this occurs to other tables.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47630,
+              "letter": "B",
+              "text": "1. Check for code errors in the deployed pipelines.<br/>2. Check for multiple writing to pipeline BigQuery sink.<br/>3. Check for errors in Cloud Logging during the day of the release of the new pipelines.<br/>4. If no errors, restore the BigQuery tables to their content before the last release by using time travel.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47631,
+              "letter": "C",
+              "text": "1. Check for duplicate rows in the BigQuery tables that have the daily partition data size doubled.<br/>2. Check the BigQuery Audit logs to find job IDs.<br/>3. Use Cloud Monitoring to determine when the identified Dataflow jobs started and the pipeline code version.<br/>4. When more than one pipeline ingests data into a table, stop all versions except the latest one.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 47632,
+              "letter": "D",
+              "text": "1. Roll back the last deployment.<br/>2. Restore the BigQuery tables to their content before the last release by using time travel.<br/>3. Restart the Dataflow jobs and replay the messages by seeking the subscription to the timestamp of the release.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12365,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 272,
+          "question_type": "mc_single",
+          "question_text": "You have a BigQuery dataset named “customers”. All tables will be tagged by using a Data Catalog tag template named “gdpr”. The template contains one mandatory field, “has_sensitive_data”, with a boolean value. All employees must be able to do a simple search and find tables in the dataset that have either true or false in the “has_sensitive_data’ field. However, only the Human Resources (HR) group should be able to see the data inside the tables for which “has_sensitive data” is true. You give the all employees group the bigquery.metadataViewer and bigquery.connectionUser roles on the dataset. You want to minimize configuration overhead. What should you do next?",
+          "solution_text": "Option C is correct because setting the tag template to public visibility allows users with standard metadata view permissions (already granted via bigquery.metadataViewer) to search and discover tags without needing extra Data Catalog IAM roles. <br/>Assigning bigquery.dataViewer only to the HR group on specific tables enforces row-level access control for sensitive data while maintaining minimal configuration overhead by avoiding unnecessary role assignments.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47633,
+              "letter": "A",
+              "text": "Create the “gdpr” tag template with private visibility. Assign the bigquery.dataViewer role to the HR group on the tables that contain sensitive data.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47634,
+              "letter": "B",
+              "text": "Create the “gdpr” tag template with private visibility. Assign the datacatalog.tagTemplateViewer role on this tag to the all employees group, and assign the bigquery.dataViewer role to the HR group on the tables that contain sensitive data.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47635,
+              "letter": "C",
+              "text": "Create the “gdpr” tag template with public visibility. Assign the bigquery.dataViewer role to the HR group on the tables that contain sensitive data.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 47636,
+              "letter": "D",
+              "text": "Create the “gdpr” tag template with public visibility. Assign the datacatalog.tagTemplateViewer role on this tag to the all employees group, and assign the bigquery.dataViewer role to the HR group on the tables that contain sensitive data.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12366,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 273,
+          "question_type": "mc_single",
+          "question_text": "You are creating the CI/CD cycle for the code of the directed acyclic graphs (DAGs) running in Cloud Composer. Your team has two Cloud Composer instances: one instance for development and another instance for production. Your team is using a Git repository to maintain and develop the code of the DAGs. You want to deploy the DAGs automatically to Cloud Composer when a certain tag is pushed to the Git repository. What should you do?",
+          "solution_text": "Cloud Composer instances automatically sync DAGs from their associated Cloud Storage buckets, so deployment involves copying files to these buckets rather than managing container images.<br/>Using Cloud Build triggered by a Git tag allows you to automate copying the DAG code to the development bucket for testing and then to the production bucket upon success.<br/>Options involving GKE and KubernetesPodOperator are incorrect because they deploy workloads to a Kubernetes cluster, which does not automatically provision or update DAGs in a Cloud Composer environment.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47637,
+              "letter": "A",
+              "text": "1. Use Cloud Build to copy the code of the DAG to the Cloud Storage bucket of the development instance for DAG testing.<br/>2. If the tests pass, use Cloud Build to copy the code to the bucket of the production instance.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 47638,
+              "letter": "B",
+              "text": "1. Use Cloud Build to build a container with the code of the DAG and the KubernetesPodOperator to deploy the code to the Google Kubernetes Engine (GKE) cluster of the development instance for testing.<br/>2. If the tests pass, use the KubernetesPodOperator to deploy the container to the GKE cluster of the production instance.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47639,
+              "letter": "C",
+              "text": "1. Use Cloud Build to build a container and the KubernetesPodOperator to deploy the code of the DAG to the Google Kubernetes Engine (GKE) cluster of the development instance for testing.<br/>2. If the tests pass, copy the code to the Cloud Storage bucket of the production instance.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47640,
+              "letter": "D",
+              "text": "1. Use Cloud Build to copy the code of the DAG to the Cloud Storage bucket of the development instance for DAG testing.<br/>2. If the tests pass, use Cloud Build to build a container with the code of the DAG and the KubernetesPodOperator to deploy the container to the Google Kubernetes Engine (GKE) cluster of the production instance.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12367,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 274,
+          "question_type": "mc_single",
+          "question_text": "You have a BigQuery table that ingests data directly from a Pub/Sub subscription. The ingested data is encrypted with a Google-managed encryption key. You need to meet a new organization policy that requires you to use keys from a centralized Cloud Key Management Service (Cloud KMS) project to encrypt data at rest. What should you do?",
+          "solution_text": "The requirement specifies encrypting data at rest using CMEK. Since BigQuery tables store ingested data at rest, creating a new table with CMEK and migrating the existing data ensures historical compliance.<br/>While Pub/Sub stores messages temporarily (retention), the primary target for 'ingested data' encryption at rest in this context is the BigQuery table.<br/>Option B correctly addresses the BigQuery encryption requirement without unnecessary complexity or over-engineering of the source topic, which is not explicitly required by the specific phrasing regarding the ingested table.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47641,
+              "letter": "A",
+              "text": "Use Cloud KMS encryption key with Dataflow to ingest the existing Pub/Sub subscription to the existing BigQuery table.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47642,
+              "letter": "B",
+              "text": "Create a new BigQuery table by using customer-managed encryption keys (CMEK), and migrate the data from the old BigQuery table.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 47643,
+              "letter": "C",
+              "text": "Create a new Pub/Sub topic with CMEK and use the existing BigQuery table by using Google-managed encryption key.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47644,
+              "letter": "D",
+              "text": "Create a new BigQuery table and Pub/Sub topic by using customer-managed encryption keys (CMEK), and migrate the data from the old BigQuery table.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12368,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 275,
+          "question_type": "mc_single",
+          "question_text": "You created an analytics environment on Google Cloud so that your data scientist team can explore data without impacting the on-premises Apache Hadoop solution. The data in the on-premises Hadoop Distributed File System (HDFS) cluster is in Optimized Row Columnar (ORC) formatted files with multiple columns of Hive partitioning. The data scientist team needs to be able to explore the data in a similar way as they used the on-premises HDFS cluster with SQL on the Hive query engine. You need to choose the most cost-effective storage and processing solution. What should you do?",
+          "solution_text": "Option D is the most cost-effective solution because it leverages BigQuery's external table feature to query ORC files directly from Cloud Storage without incurring data load or long-term storage costs within BigQuery.<br/><br/>This approach allows the data science team to perform SQL-based exploration using familiar syntax, satisfying the requirement for a Hive-like experience while avoiding the operational overhead and compute costs associated with managing a Dataproc cluster.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47645,
+              "letter": "A",
+              "text": "Import the ORC files to Bigtable tables for the data scientist team.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47646,
+              "letter": "B",
+              "text": "Import the ORC files to BigQuery tables for the data scientist team.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47647,
+              "letter": "C",
+              "text": "Copy the ORC files on Cloud Storage, then deploy a Dataproc cluster for the data scientist team.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47648,
+              "letter": "D",
+              "text": "Copy the ORC files on Cloud Storage, then create external BigQuery tables for the data scientist team.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 55,
+    "discussions": {
+      "12364": {
+        "target_type": "question",
+        "target_id": 12364,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12365": {
+        "target_type": "question",
+        "target_id": 12365,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12366": {
+        "target_type": "question",
+        "target_id": 12366,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12367": {
+        "target_type": "question",
+        "target_id": 12367,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12368": {
+        "target_type": "question",
+        "target_id": 12368,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      271,
+      272,
+      273,
+      274,
+      275
+    ],
+    "attempts": [
+      {
+        "question": 271,
+        "answerVisible": true
+      },
+      {
+        "question": 272,
+        "answerVisible": true
+      },
+      {
+        "question": 273,
+        "answerVisible": true
+      },
+      {
+        "question": 274,
+        "answerVisible": true
+      },
+      {
+        "question": 275,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 40,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12289,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 196,
+        "question_type": "mc_single",
+        "question_text": "You have 15 TB of data in your on-premises data center that you want to transfer to Google Cloud. Your data changes weekly and is stored in a POSIX-compliant source. The network operations team has granted you 500 Mbps bandwidth to the public internet. You want to follow Google-recommended practices to reliably transfer your data to Google Cloud on a weekly basis. What should you do?<br/>",
+        "solution_text": "The Storage Transfer Service requires an on-premises agent installed in the local data center to access POSIX-compliant file systems securely.<br/>Option C correctly identifies installing this agent in the on-premises environment, whereas Option D incorrectly places it on a GCP VM which cannot directly access local storage.<br/>Transfer Appliance (Option B) is designed for one-time migrations of large datasets via physical hardware, not for recurring weekly transfers over an existing network connection.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47326,
+            "letter": "A",
+            "text": "Use Cloud Scheduler to trigger the gsutil command. Use the -m parameter for optimal parallelism.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47327,
+            "letter": "B",
+            "text": "Use Transfer Appliance to migrate your data into a Google Kubernetes Engine cluster, and then configure a weekly transfer job.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47328,
+            "letter": "C",
+            "text": "Install Storage Transfer Service for on-premises data in your data center, and then configure a weekly transfer job.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47329,
+            "letter": "D",
+            "text": "Install Storage Transfer Service for on-premises data on a Google Cloud virtual machine, and then configure a weekly transfer job.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12290,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 197,
+        "question_type": "mc_single",
+        "question_text": "You are designing a system that requires an ACID-compliant database. You must ensure that the system requires minimal human intervention in case of a failure.<br/>What should you do?<br/>",
+        "solution_text": "Bigtable is NoSQL and not fully ACID-compliant, while BigQuery is an analytics warehouse unsuitable for general transactional workloads. Between the Cloud SQL options, High Availability (HA) enables automatic failover to a standby replica without human intervention, whereas Point-in-Time Recovery (PITR) typically requires manual restoration steps to recover data. Therefore, enabling HA on a Cloud SQL instance best satisfies both ACID compliance and minimal intervention requirements.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47330,
+            "letter": "A",
+            "text": "Configure a Cloud SQL for MySQL instance with point-in-time recovery enabled.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47331,
+            "letter": "B",
+            "text": "Configure a Cloud SQL for PostgreSQL instance with high availability enabled.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47332,
+            "letter": "C",
+            "text": "Configure a Bigtable instance with more than one cluster.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47333,
+            "letter": "D",
+            "text": "Configure a BigQuery table with a multi-region configuration.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12291,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 198,
+        "question_type": "mc_single",
+        "question_text": "You are implementing workflow pipeline scheduling using open source-based tools and Google Kubernetes Engine (GKE). You want to use a Google managed service to simplify and automate the task. You also want to accommodate Shared VPC networking considerations. What should you do?<br/>",
+        "solution_text": "Cloud Composer is a managed Apache Airflow service designed to orchestrate complex data workflows and DAGs. When integrating with Shared VPC, Google Cloud documentation specifies that the Cloud Composer environment must be created in the service project, which then attaches to the host project's network resources.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47334,
+            "letter": "A",
+            "text": "Use Dataflow for your workflow pipelines. Use Cloud Run triggers for scheduling.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47335,
+            "letter": "B",
+            "text": "Use Dataflow for your workflow pipelines. Use shell scripts to schedule workflows.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47336,
+            "letter": "C",
+            "text": "Use Cloud Composer in a Shared VPC configuration. Place the Cloud Composer resources in the host project.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47337,
+            "letter": "D",
+            "text": "Use Cloud Composer in a Shared VPC configuration. Place the Cloud Composer resources in the service project.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12292,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 199,
+        "question_type": "mc_single",
+        "question_text": "You are using BigQuery and Data Studio to design a customer-facing dashboard that displays large quantities of aggregated data. You expect a high volume of concurrent users. You need to optimize the dashboard to provide quick visualizations with minimal latency. What should you do?<br/>",
+        "solution_text": "BigQuery BI Engine caches query results in memory to provide low-latency responses for concurrent users. Materialized views further optimize this by precomputing and storing aggregated data, ensuring that dashboard queries against large datasets execute instantly against the cached result rather than scanning raw tables.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47338,
+            "letter": "A",
+            "text": "Use BigQuery BI Engine with materialized views.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47339,
+            "letter": "B",
+            "text": "Use BigQuery BI Engine with logical views.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47340,
+            "letter": "C",
+            "text": "Use BigQuery BI Engine with streaming data.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47341,
+            "letter": "D",
+            "text": "Use BigQuery BI Engine with authorized views.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12293,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 200,
+        "question_type": "mc_single",
+        "question_text": "Government regulations in the banking industry mandate the protection of clients' personally identifiable information (PII). Your company requires PII to be access controlled, encrypted, and compliant with major data protection standards. In addition to using Cloud Data Loss Prevention (Cloud DLP), you want to follow<br/>Google-recommended practices and use service accounts to control access to PII. What should you do?<br/>",
+        "solution_text": "The correct answer is D because it adheres to the principle of least privilege by using multiple service accounts tailored to specific needs, rather than a single shared account (A) which creates a security risk and audit ambiguity. Although Google generally advises against adding service accounts directly to groups, in the context of managing human access to PII via IAM groups, this option is superior to B (which unnecessarily isolates every user into separate service accounts, creating management overhead) and C (which shares one account among all users). Option D provides a scalable structure where IAM groups control access for humans or application roles, ensuring appropriate segmentation without the administrative nightmare of managing individual permissions for every employee.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47342,
+            "letter": "A",
+            "text": "Assign the required Identity and Access Management (IAM) roles to every employee, and create a single service account to access project resources.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47343,
+            "letter": "B",
+            "text": "Use one service account to access a Cloud SQL database, and use separate service accounts for each human user.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47344,
+            "letter": "C",
+            "text": "Use Cloud Storage to comply with major data protection standards. Use one service account shared by all users.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47345,
+            "letter": "D",
+            "text": "Use Cloud Storage to comply with major data protection standards. Use multiple service accounts attached to IAM groups to grant the appropriate access to each group.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 40,
+  "discussions": {
+    "12289": {
+      "target_type": "question",
+      "target_id": 12289,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12290": {
+      "target_type": "question",
+      "target_id": 12290,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12291": {
+      "target_type": "question",
+      "target_id": 12291,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12292": {
+      "target_type": "question",
+      "target_id": 12292,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12293": {
+      "target_type": "question",
+      "target_id": 12293,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

@@ -1,0 +1,334 @@
+{
+  "url": "https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/5",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 5,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 12114,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 21,
+          "question_type": "mc_single",
+          "question_text": "Your company uses a proprietary system to send inventory data every 6 hours to a data ingestion service in the cloud. Transmitted data includes a payload of several fields and the timestamp of the transmission. If there are any concerns about a transmission, the system re-transmits the data. How should you deduplicate the data most efficiency?<br/>",
+          "solution_text": "Assigning a global unique identifier (GUID) to each data entry is the most efficient method because it allows for constant-time duplicate detection using indexed lookups or database constraints.<br/>Hash-based approaches (Options B and D) are inefficient or unreliable here because including the transmission timestamp in the hash creates unique values for retries, while excluding it risks collision between distinct inventory states at different times.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46607,
+              "letter": "A",
+              "text": "Assign global unique identifiers (GUID) to each data entry.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 46608,
+              "letter": "B",
+              "text": "Compute the hash value of each data entry, and compare it with all historical data.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 46609,
+              "letter": "C",
+              "text": "Store each data entry as the primary key in a separate database and apply an index.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 46610,
+              "letter": "D",
+              "text": "Maintain a database table to store the hash value and other metadata for each data entry.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12115,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 22,
+          "question_type": "mc_single",
+          "question_text": "Your company has hired a new data scientist who wants to perform complicated analyses across very large datasets stored in Google Cloud Storage and in a<br/>Cassandra cluster on Google Compute Engine. The scientist primarily wants to create labelled data sets for machine learning projects, along with some visualization tasks. She reports that her laptop is not powerful enough to perform her tasks and it is slowing her down. You want to help her perform her tasks.<br/>What should you do?<br/>",
+          "solution_text": "Google Cloud Datalab (the predecessor to Vertex AI Workbench) is specifically designed as an interactive data analysis environment that runs within a Compute Engine VM, providing high-performance resources for large datasets. This addresses the laptop's performance limitations and provides the necessary interface for creating labeled datasets and visualizations using tools like Jupyter notebooks. Other options are insufficient: local execution cannot handle the volume, Cloud Shell lacks persistent high-power compute capabilities for complex ML tasks, and a generic visualization tool does not support the full data labeling workflow.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46611,
+              "letter": "A",
+              "text": "Run a local version of Jupiter on the laptop.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 46612,
+              "letter": "B",
+              "text": "Grant the user access to Google Cloud Shell.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 46613,
+              "letter": "C",
+              "text": "Host a visualization tool on a VM on Google Compute Engine.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 46614,
+              "letter": "D",
+              "text": "Deploy Google Cloud Datalab to a virtual machine (VM) on Google Compute Engine.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12116,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 23,
+          "question_type": "mc_single",
+          "question_text": "You are deploying 10,000 new Internet of Things devices to collect temperature data in your warehouses globally. You need to process, store and analyze these very large datasets in real time. What should you do?<br/>",
+          "solution_text": "Option B is the correct answer because it utilizes a streaming architecture designed for real-time processing of large datasets. Cloud Pub/Sub ingests high-volume IoT data, Cloud Dataflow processes the stream in real time, and BigQuery stores and analyzes the results efficiently.<br/><br/>Options A, C, and D rely on batch processing or less suitable storage mechanisms (Datastore, Hadoop/Dataproc on-demand, Cloud SQL) that do not meet the requirement for real-time analysis of very large datasets.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46615,
+              "letter": "A",
+              "text": "Send the data to Google Cloud Datastore and then export to BigQuery.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 46616,
+              "letter": "B",
+              "text": "Send the data to Google Cloud Pub/Sub, stream Cloud Pub/Sub to Google Cloud Dataflow, and store the data in Google BigQuery.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 46617,
+              "letter": "C",
+              "text": "Send the data to Cloud Storage and then spin up an Apache Hadoop cluster as needed in Google Cloud Dataproc whenever analysis is required.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 46618,
+              "letter": "D",
+              "text": "Export logs in batch to Google Cloud Storage and then spin up a Google Cloud SQL instance, import the data from Cloud Storage, and run an analysis as needed.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12117,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 24,
+          "question_type": "mc_single",
+          "question_text": "You have spent a few days loading data from comma-separated values (CSV) files into the Google BigQuery table CLICK_STREAM. The column DT stores the epoch time of click events. For convenience, you chose a simple schema where every field is treated as the STRING type. Now, you want to compute web session durations of users who visit your site, and you want to change its data type to the TIMESTAMP. You want to minimize the migration effort without making future queries computationally expensive. What should you do?<br/>",
+          "solution_text": "Option E is the correct choice because it creates a new table with the proper TIMESTAMP data type by casting the string values during the load process, ensuring future queries do not incur computational overhead from runtime casting. Using a view (Option C) would require casting the strings to timestamps every time the view is queried, making future computations expensive as specified in the prompt requirements.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46619,
+              "letter": "A",
+              "text": "Delete the table CLICK_STREAM, and then re-create it such that the column DT is of the TIMESTAMP type. Reload the data.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 46620,
+              "letter": "B",
+              "text": "Add a column TS of the TIMESTAMP type to the table CLICK_STREAM, and populate the numeric values from the column TS for each row. Reference the column TS instead of the column DT from now on.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 46621,
+              "letter": "C",
+              "text": "Create a view CLICK_STREAM_V, where strings from the column DT are cast into TIMESTAMP values. Reference the view CLICK_STREAM_V instead of the table CLICK_STREAM from now on.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 46622,
+              "letter": "D",
+              "text": "Add two columns to the table CLICK STREAM: TS of the TIMESTAMP type and IS_NEW of the BOOLEAN type. Reload all data in append mode. For each appended row, set the value of IS_NEW to true. For future queries, reference the column TS instead of the column DT, with the WHERE clause ensuring that the value of IS_NEW must be true.",
+              "is_correct": false,
+              "order": 3
+            },
+            {
+              "id": 46623,
+              "letter": "E",
+              "text": "Construct a query to return every row of the table CLICK_STREAM, while using the built-in function to cast strings from the column DT into TIMESTAMP values. Run the query into a destination table NEW_CLICK_STREAM, in which the column TS is the TIMESTAMP type. Reference the table NEW_CLICK_STREAM instead of the table CLICK_STREAM from now on. In the future, new data is loaded into the table NEW_CLICK_STREAM.",
+              "is_correct": true,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": 12118,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 25,
+          "question_type": "mc_single",
+          "question_text": "You want to use Google Stackdriver Logging to monitor Google BigQuery usage. You need an instant notification to be sent to your monitoring tool when new data is appended to a certain table using an insert job, but you do not want to receive notifications for other tables. What should you do?<br/>",
+          "solution_text": "Option D is correct because it creates a log sink with an advanced filter to target only the specific table's insert jobs and exports them to Cloud Pub/Sub for real-time notification.<br/><br/>Options A and B are incorrect as they do not provide instant notifications to an external monitoring tool; Option A relies on manual filtering, while Option B simply stores logs in BigQuery.<br/><br/>Option C is inferior because it lacks the necessary advanced filter, meaning it would export all logs rather than restricting notifications to the specific table.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46624,
+              "letter": "A",
+              "text": "Make a call to the Stackdriver API to list all logs, and apply an advanced filter.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 46625,
+              "letter": "B",
+              "text": "In the Stackdriver logging admin interface, and enable a log sink export to BigQuery.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 46626,
+              "letter": "C",
+              "text": "In the Stackdriver logging admin interface, enable a log sink export to Google Cloud Pub/Sub, and subscribe to the topic from your monitoring tool.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 46627,
+              "letter": "D",
+              "text": "Using the Stackdriver API, create a project sink with advanced log filter to export to Pub/Sub, and subscribe to the topic from your monitoring tool.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 5,
+    "discussions": {
+      "12114": {
+        "target_type": "question",
+        "target_id": 12114,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12115": {
+        "target_type": "question",
+        "target_id": 12115,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12116": {
+        "target_type": "question",
+        "target_id": 12116,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12117": {
+        "target_type": "question",
+        "target_id": 12117,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12118": {
+        "target_type": "question",
+        "target_id": 12118,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "attempts": [
+      {
+        "question": 21,
+        "answerVisible": true
+      },
+      {
+        "question": 22,
+        "answerVisible": true
+      },
+      {
+        "question": 23,
+        "answerVisible": true
+      },
+      {
+        "question": 24,
+        "answerVisible": true
+      },
+      {
+        "question": 25,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

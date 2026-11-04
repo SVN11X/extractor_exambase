@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 14,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12159,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 66,
+        "question_type": "mc_single",
+        "question_text": "You set up a streaming data insert into a Redis cluster via a Kafka cluster. Both clusters are running on Compute Engine instances. You need to encrypt data at rest with encryption keys that you can create, rotate, and destroy as needed. What should you do?<br/>",
+        "solution_text": "Cloud Key Management Service (KMS) enables you to create, rotate, and destroy cryptographic keys while maintaining full control over them. <br/>To encrypt data at rest on Compute Engine instances using these customer-managed encryption keys (CMEK), you must specify the KMS key resource ID when creating the persistent disks. <br/>Option B correctly identifies creating keys in Cloud KMS and using them to encrypt the instance data, whereas Option D incorrectly suggests referencing keys only during API calls rather than for storage-level encryption.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46796,
+            "letter": "A",
+            "text": "Create a dedicated service account, and use encryption at rest to reference your data stored in your Compute Engine cluster instances as part of your API service calls.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46797,
+            "letter": "B",
+            "text": "Create encryption keys in Cloud Key Management Service. Use those keys to encrypt your data in all of the Compute Engine cluster instances.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 46798,
+            "letter": "C",
+            "text": "Create encryption keys locally. Upload your encryption keys to Cloud Key Management Service. Use those keys to encrypt your data in all of the Compute Engine cluster instances.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 46799,
+            "letter": "D",
+            "text": "Create encryption keys in Cloud Key Management Service. Reference those keys in your API service calls when accessing the data in your Compute Engine cluster instances.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12160,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 67,
+        "question_type": "mc_single",
+        "question_text": "You are developing an application that uses a recommendation engine on Google Cloud. Your solution should display new videos to customers based on past views. Your solution needs to generate labels for the entities in videos that the customer has viewed. Your design must be able to provide very fast filtering suggestions based on data from other customer preferences on several TB of data. What should you do?<br/>",
+        "solution_text": "Option C is correct because it leverages the managed Cloud Video Intelligence API for label generation, avoiding the operational overhead of building and maintaining custom models on Dataproc. <br/>Additionally, Cloud Bigtable is chosen over Cloud SQL to handle the multi-terabyte dataset efficiently, offering the low-latency access and key-based filtering required for rapid preference matching at scale.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46800,
+            "letter": "A",
+            "text": "Build and train a complex classification model with Spark MLlib to generate labels and filter the results. Deploy the models using Cloud Dataproc. Call the model from your application.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46801,
+            "letter": "B",
+            "text": "Build and train a classification model with Spark MLlib to generate labels. Build and train a second classification model with Spark MLlib to filter results to match customer preferences. Deploy the models using Cloud Dataproc. Call the models from your application.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 46802,
+            "letter": "C",
+            "text": "Build an application that calls the Cloud Video Intelligence API to generate labels. Store data in Cloud Bigtable, and filter the predicted labels to match the user's viewing history to generate preferences.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 46803,
+            "letter": "D",
+            "text": "Build an application that calls the Cloud Video Intelligence API to generate labels. Store data in Cloud SQL, and join and filter the predicted labels to match the user's viewing history to generate preferences.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12161,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 68,
+        "question_type": "mc_single",
+        "question_text": "You are selecting services to write and transform JSON messages from Cloud Pub/Sub to BigQuery for a data pipeline on Google Cloud. You want to minimize service costs. You also want to monitor and accommodate input data volume that will vary in size with minimal manual intervention. What should you do?<br/>",
+        "solution_text": "Cloud Dataflow is the correct choice because it natively supports autoscaling to handle varying data volumes with minimal manual intervention, unlike Dataproc which requires manual cluster resizing. Monitoring system lag in Stackdriver allows you to track processing delays and ensure the autoscaler adjusts worker instances efficiently. This setup minimizes costs by scaling down when demand is low while maintaining performance during spikes.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46804,
+            "letter": "A",
+            "text": "Use Cloud Dataproc to run your transformations. Monitor CPU utilization for the cluster. Resize the number of worker nodes in your cluster via the command line.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46805,
+            "letter": "B",
+            "text": "Use Cloud Dataproc to run your transformations. Use the diagnose command to generate an operational output archive. Locate the bottleneck and adjust cluster resources.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 46806,
+            "letter": "C",
+            "text": "Use Cloud Dataflow to run your transformations. Monitor the job system lag with Stackdriver. Use the default autoscaling setting for worker instances.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 46807,
+            "letter": "D",
+            "text": "Use Cloud Dataflow to run your transformations. Monitor the total execution time for a sampling of jobs. Configure the job to use non-default Compute Engine machine types when needed.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12162,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 69,
+        "question_type": "mc_single",
+        "question_text": "Your infrastructure includes a set of YouTube channels. You have been tasked with creating a process for sending the YouTube channel data to Google Cloud for analysis. You want to design a solution that allows your world-wide marketing teams to perform ANSI SQL and other types of analysis on up-to-date YouTube channels log data. How should you set up the log data transfer into Google Cloud?<br/>",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46808,
+            "letter": "A",
+            "text": "Use Storage Transfer Service to transfer the offsite backup files to a Cloud Storage Multi-Regional storage bucket as a final destination.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46809,
+            "letter": "B",
+            "text": "Use Storage Transfer Service to transfer the offsite backup files to a Cloud Storage Regional bucket as a final destination.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 46810,
+            "letter": "C",
+            "text": "Use BigQuery Data Transfer Service to transfer the offsite backup files to a Cloud Storage Multi-Regional storage bucket as a final destination.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 46811,
+            "letter": "D",
+            "text": "Use BigQuery Data Transfer Service to transfer the offsite backup files to a Cloud Storage Regional storage bucket as a final destination.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12163,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 70,
+        "question_type": "mc_single",
+        "question_text": "You are designing storage for very large text files for a data pipeline on Google Cloud. You want to support ANSI SQL queries. You also want to support compression and parallel load from the input locations using Google recommended practices. What should you do?<br/>",
+        "solution_text": "BigQuery supports ANSI SQL queries and allows loading Avro files in parallel because the format splits data into blocks that can be compressed independently. <br/>Storing the data in Cloud Storage rather than importing it directly into BigQuery aligns with Google's recommended best practices for decoupling storage costs from query processing, especially when managing very large text files via permanent linked tables.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46812,
+            "letter": "A",
+            "text": "Transform text files to compressed Avro using Cloud Dataflow. Use BigQuery for storage and query.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46813,
+            "letter": "B",
+            "text": "Transform text files to compressed Avro using Cloud Dataflow. Use Cloud Storage and BigQuery permanent linked tables for query.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 46814,
+            "letter": "C",
+            "text": "Compress text files to gzip using the Grid Computing Tools. Use BigQuery for storage and query.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 46815,
+            "letter": "D",
+            "text": "Compress text files to gzip using the Grid Computing Tools. Use Cloud Storage, and then import into Cloud Bigtable for query.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 14,
+  "discussions": {
+    "12159": {
+      "target_type": "question",
+      "target_id": 12159,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12160": {
+      "target_type": "question",
+      "target_id": 12160,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12161": {
+      "target_type": "question",
+      "target_id": 12161,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12162": {
+      "target_type": "question",
+      "target_id": 12162,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12163": {
+      "target_type": "question",
+      "target_id": 12163,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 68,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12429,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 336,
+        "question_type": "mc_single",
+        "question_text": "You are designing a stateful data processing pipeline that reads data from a Cloud Storage bucket and writes transformed data to a BigQuery table. The pipeline must be highly available and resilient to zonal failures within the us-central1 region. You need to configure a Dataflow pipeline ensuring minimal disruption during a zonal outage. What should you do?",
+        "solution_text": "Specifying the --region parameter (Option A) deploys the Dataflow job as a regional service, distributing workers across multiple availability zones within us-central1. This architecture ensures that if one zone fails, the remaining zones continue processing, providing high availability and resilience against zonal failures.<br/>In contrast, deploying to a single zone (Options B, C, D) creates a single point of failure for the compute layer, meaning a zonal outage would disrupt the pipeline regardless of where state or storage is located.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47889,
+            "letter": "A",
+            "text": "Launch the Dataflow job with the --region=us-central1 parameter.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47890,
+            "letter": "B",
+            "text": "Deploy the Dataflow job to a single zone within us-central1 and configure it to use a regional persistent disk to store its state.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47891,
+            "letter": "C",
+            "text": "Deploy the Dataflow job to a single zone within us-central1 and use a multi-regional Cloud Storage bucket to store its state.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47892,
+            "letter": "D",
+            "text": "Launch the Dataflow job with the --zone=us-central1a parameter.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12430,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 337,
+        "question_type": "mc_single",
+        "question_text": "Your team has created several BigQuery curated datasets containing anonymized industry benchmark data. You want to make these datasets easily discoverable and accessible for querying by external partner companies within their own Google Cloud projects. You need a secure and scalable solution. What should you do?",
+        "solution_text": "Google Cloud Analytics Hub (BigQuery Sharing) is specifically designed to securely share curated data with external parties while maintaining control and auditability. It allows partners to access datasets via listings without requiring direct IAM grants or data duplication, satisfying the 'secure and scalable' requirement.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47893,
+            "letter": "A",
+            "text": "Publish the datasets as listings within BigQuery sharing (Analytics Hub).",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47894,
+            "letter": "B",
+            "text": "Export the datasets to partner-specific Cloud Storage buckets.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47895,
+            "letter": "C",
+            "text": "Create authorized views for each dataset and grant access to each partner.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47896,
+            "letter": "D",
+            "text": "Grant the roles/bigquery.dataViewer IAM role to the partner group email addresses on the datasets.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12431,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 338,
+        "question_type": "mc_single",
+        "question_text": "Your organization stores highly personal data in BigQuery and needs to comply with strict data privacy regulations. You need to ensure that sensitive data values are rendered unreadable whenever an employee leaves the organization. What should you do?",
+        "solution_text": "Option D is correct because AEAD (Authenticated Encryption with Associated Data) functions in BigQuery allow for cell-level encryption tied to specific keys. When an employee leaves, deleting their associated key renders the encrypted data permanently unreadable, as decryption becomes mathematically impossible without the key. This differs from access controls or masking, which only hide data rather than making it cryptographically unrecoverable.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47897,
+            "letter": "A",
+            "text": "Use column-level access controls with policy tags and revoke viewer permissions when employees leave the organization.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47898,
+            "letter": "B",
+            "text": "Use dynamic data masking and revoke viewer permissions when employees leave the organization.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47899,
+            "letter": "C",
+            "text": "Use customer-managed encryption keys (CMEK) and delete keys when employees leave the organization.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47900,
+            "letter": "D",
+            "text": "Use AEAD functions and delete keys when employees leave the organization.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12432,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 339,
+        "question_type": "mc_single",
+        "question_text": "You monitor and optimize the BigQuery instance for your team. You notice that a particular daily report that uses a large JOIN operation is consistently slow. You want to examine the query's execution plan to identify potential performance bottlenecks within the JOIN as quickly as possible. What should you do?",
+        "solution_text": "The BigQuery Query History view provides direct access to the execution plan and execution graph for previously run jobs.<br/>Analyzing this visual graph allows you to identify specific bottlenecks, such as data skew or inefficient shuffle stages, within the JOIN operation.<br/>This is more effective than dry runs (which only show syntax/bytes) or audit logs (which lack detailed execution metrics).",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47901,
+            "letter": "A",
+            "text": "Use the bg query --dry_run command to review the estimated number of bytes read and review query syntax.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47902,
+            "letter": "B",
+            "text": "Run a query on the INFORMATION_SCHEMA.JOBS_BY_PROJECT view filtering by the job_ID and analyze total_bytes_processed.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47903,
+            "letter": "C",
+            "text": "Review the BigQuery audit logs in Cloud Logging.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47904,
+            "letter": "D",
+            "text": "Leverage BigQuery's Query History view and analyze the execution graph.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12433,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 340,
+        "question_type": "mc_single",
+        "question_text": "Your company stores vital operational sales data in a BigQuery dataset in us-central1. Your company requires a disaster recovery plan to restore this data to us-east1 with a recovery point objective (RPO) of 24 hours and a recovery time objective (RTO) of 4 hours if us-central1 experiences an outage. You need to implement the disaster recovery plan while keeping costs and complexity to a minimum. What should you do?",
+        "solution_text": "BigQuery supports automatic cross-region dataset replication, which simplifies disaster recovery by maintaining a standby dataset in the target region (us-east1).<br/>This feature meets the RPO and RTO requirements while minimizing operational complexity and cost compared to manual exports or custom streaming architectures.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47905,
+            "letter": "A",
+            "text": "Set up continuous queries and Pub/Sub to stream data changes from BigQuery tables in us-central1 to us-east1.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47906,
+            "letter": "B",
+            "text": "Manually export data to a CSV file in a multi-regional Cloud Storage bucket daily and use bq load to restore to us-east1.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47907,
+            "letter": "C",
+            "text": "Configure BigQuery cross-region dataset replication from ns-central1 to us-east1.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47908,
+            "letter": "D",
+            "text": "Take daily BigQuery table snapshots in us-central1.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 68,
+  "discussions": {
+    "12429": {
+      "target_type": "question",
+      "target_id": 12429,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12430": {
+      "target_type": "question",
+      "target_id": 12430,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12431": {
+      "target_type": "question",
+      "target_id": 12431,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12432": {
+      "target_type": "question",
+      "target_id": 12432,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12433": {
+      "target_type": "question",
+      "target_id": 12433,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

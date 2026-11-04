@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/32",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 32,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 12249,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 156,
+          "question_type": "mc_single",
+          "question_text": "You are planning to migrate your current on-premises Apache Hadoop deployment to the cloud. You need to ensure that the deployment is as fault-tolerant and cost-effective as possible for long-running batch jobs. You want to use a managed service. What should you do?<br/>",
+          "solution_text": "Option A is correct because Cloud Dataproc is the recommended managed service for migrating Hadoop deployments, ensuring fault tolerance and simplified operations. Using standard persistent disks (HDD) instead of SSDs optimizes cost-effectiveness for long-running batch jobs that do not require high IOPS or low latency. Storing data in Cloud Storage and using preemptible workers further reduces costs while maintaining durability.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47166,
+              "letter": "A",
+              "text": "Deploy a Dataproc cluster. Use a standard persistent disk and 50% preemptible workers. Store data in Cloud Storage, and change references in scripts from hdfs:// to gs://",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 47167,
+              "letter": "B",
+              "text": "Deploy a Dataproc cluster. Use an SSD persistent disk and 50% preemptible workers. Store data in Cloud Storage, and change references in scripts from hdfs:// to gs://",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47168,
+              "letter": "C",
+              "text": "Install Hadoop and Spark on a 10-node Compute Engine instance group with standard instances. Install the Cloud Storage connector, and store the data in Cloud Storage. Change references in scripts from hdfs:// to gs://",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47169,
+              "letter": "D",
+              "text": "Install Hadoop and Spark on a 10-node Compute Engine instance group with preemptible instances. Store data in HDFS. Change references in scripts from hdfs:// to gs://",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12250,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 157,
+          "question_type": "mc_single",
+          "question_text": "Your team is working on a binary classification problem. You have trained a support vector machine (SVM) classifier with default parameters, and received an area under the Curve (AUC) of 0.87 on the validation set. You want to increase the AUC of the model. What should you do?<br/>",
+          "solution_text": "Hyperparameter tuning optimizes the SVM's internal parameters (such as C and gamma) to better fit the data distribution, which is the standard method for improving model performance beyond default settings.<br/>Option D is incorrect because scaling predictions alters the confidence scores but does not change the rank order used to calculate AUC, making it mathematically ineffective.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47170,
+              "letter": "A",
+              "text": "Perform hyperparameter tuning",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 47171,
+              "letter": "B",
+              "text": "Train a classifier with deep neural networks, because neural networks would always beat SVMs",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47172,
+              "letter": "C",
+              "text": "Deploy the model and measure the real-world AUC; it's always higher because of generalization",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47173,
+              "letter": "D",
+              "text": "Scale predictions you get out of the model (tune a scaling factor as a hyperparameter) in order to get the highest AUC",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12251,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 158,
+          "question_type": "mc_single",
+          "question_text": "You need to deploy additional dependencies to all nodes of a Cloud Dataproc cluster at startup using an existing initialization action. Company security policies require that Cloud Dataproc nodes do not have access to the Internet so public initialization actions cannot fetch resources. What should you do?<br/>",
+          "solution_text": "Cloud Dataproc initialization actions can retrieve dependencies from Cloud Storage buckets without requiring public Internet access.<br/>By placing the dependencies in a bucket within your VPC security perimeter and enabling Private Google Access, cluster nodes with internal-only IP addresses can download the files privately.<br/>This approach adheres to the security policy prohibiting Internet connectivity while satisfying the requirement to deploy dependencies at startup.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47174,
+              "letter": "A",
+              "text": "Deploy the Cloud SQL Proxy on the Cloud Dataproc master",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47175,
+              "letter": "B",
+              "text": "Use an SSH tunnel to give the Cloud Dataproc cluster access to the Internet",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47176,
+              "letter": "C",
+              "text": "Copy all dependencies to a Cloud Storage bucket within your VPC security perimeter",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 47177,
+              "letter": "D",
+              "text": "Use Resource Manager to add the service account used by the Cloud Dataproc cluster to the Network User role",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12252,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 159,
+          "question_type": "mc_single",
+          "question_text": "You need to choose a database for a new project that has the following requirements:<br/>✑ Fully managed<br/>✑ Able to automatically scale up<br/>✑ Transactionally consistent<br/>✑ Able to scale up to 6 TB<br/>✑ Able to be queried using SQL<br/>Which database do you choose?<br/>",
+          "solution_text": "Cloud Spanner is the correct choice because it is the only fully managed relational database on GCP that supports automatic, seamless horizontal scaling of compute capacity (nodes) alongside storage.<br/>While Cloud SQL automatically scales storage, it requires manual intervention or custom automation to scale CPU and memory resources, failing the 'automatically scale up' requirement for compute.<br/>Spanner provides full ACID transactional consistency and standard SQL support while handling large datasets up to 6 TB without requiring schema changes or sharding logic.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47178,
+              "letter": "A",
+              "text": "Cloud SQL",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47179,
+              "letter": "B",
+              "text": "Cloud Bigtable",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47180,
+              "letter": "C",
+              "text": "Cloud Spanner",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 47181,
+              "letter": "D",
+              "text": "Cloud Datastore",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12253,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 160,
+          "question_type": "mc_single",
+          "question_text": "You work for a mid-sized enterprise that needs to move its operational system transaction data from an on-premises database to GCP. The database is about 20<br/>TB in size. Which database should you choose?<br/>",
+          "solution_text": "The correct answer is Cloud SQL because it is the managed relational database service designed for migrating standard on-premises operational databases (such as MySQL, PostgreSQL, or SQL Server).<br/>Although older exam materials suggested a lower storage limit, Cloud SQL supports up to 64 TB of storage, which accommodates the required 20 TB dataset.<br/>Cloud Spanner is typically reserved for scenarios requiring global horizontal scalability and strict consistency across regions, while Bigtable is a NoSQL solution unsuitable for direct relational database migration without significant refactoring.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47182,
+              "letter": "A",
+              "text": "Cloud SQL",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 47183,
+              "letter": "B",
+              "text": "Cloud Bigtable",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47184,
+              "letter": "C",
+              "text": "Cloud Spanner",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47185,
+              "letter": "D",
+              "text": "Cloud Datastore",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 32,
+    "discussions": {
+      "12249": {
+        "target_type": "question",
+        "target_id": 12249,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12250": {
+        "target_type": "question",
+        "target_id": 12250,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12251": {
+        "target_type": "question",
+        "target_id": 12251,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12252": {
+        "target_type": "question",
+        "target_id": 12252,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12253": {
+        "target_type": "question",
+        "target_id": 12253,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      156,
+      157,
+      158,
+      159,
+      160
+    ],
+    "attempts": [
+      {
+        "question": 156,
+        "answerVisible": true
+      },
+      {
+        "question": 157,
+        "answerVisible": true
+      },
+      {
+        "question": 158,
+        "answerVisible": true
+      },
+      {
+        "question": 159,
+        "answerVisible": true
+      },
+      {
+        "question": 160,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

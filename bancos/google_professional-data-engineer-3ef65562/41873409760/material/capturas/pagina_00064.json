@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/64",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 64,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 12409,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 316,
+          "question_type": "mc_single",
+          "question_text": "You are administering a BigQuery on-demand environment. Your business intelligence tool is submitting hundreds of queries each day that aggregate a large (50 TB) sales history fact table at the day and month levels. These queries have a slow response time and are exceeding cost expectations. You need to decrease response time, lower query costs, and minimize maintenance. What should you do?",
+          "solution_text": "Materialized views are the optimal solution because they automatically maintain precomputed aggregation results without requiring manual scheduling or additional infrastructure management. By redirecting queries to these smaller, aggregated datasets, BigQuery reduces the amount of data scanned, which simultaneously lowers compute costs and improves response times while minimizing maintenance overhead.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47809,
+              "letter": "A",
+              "text": "Build authorized views on top of the sales table to aggregate data at the day and month level.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47810,
+              "letter": "B",
+              "text": "Enable BI Engine and add your sales table as a preferred table.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47811,
+              "letter": "C",
+              "text": "Build materialized views on top of the sales table to aggregate data at the day and month level.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 47812,
+              "letter": "D",
+              "text": "Create a scheduled query to build sales day and sales month aggregate tables on an hourly basis.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12410,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 317,
+          "question_type": "mc_single",
+          "question_text": "You have several different unstructured data sources, within your on-premises data center as well as in the cloud. The data is in various formats, such as Apache Parquet and CSV. You want to centralize this data in Cloud Storage. You need to set up an object sink for your data that allows you to use your own encryption keys. You want to use a GUI-based solution. What should you do?",
+          "solution_text": "Cloud Data Fusion is the only GUI-based (no-code/low-code) data integration service among the choices that supports using customer-supplied encryption keys (CSEK) for object sinks in Cloud Storage. <br/>Storage Transfer Service, while capable of moving data, lacks a full visual workflow designer and has limitations regarding CSEK usage compared to Data Fusion.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47813,
+              "letter": "A",
+              "text": "Use BigQuery Data Transfer Service to move files into BigQuery.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47814,
+              "letter": "B",
+              "text": "Use Storage Transfer Service to move files into Cloud Storage",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47815,
+              "letter": "C",
+              "text": "Use Dataflow to move files into Cloud Storage",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47816,
+              "letter": "D",
+              "text": "Use Cloud Data Fusion to move files into Cloud Storage.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12411,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 318,
+          "question_type": "mc_single",
+          "question_text": "You are using BigQuery with a regional dataset that includes a table with the daily sales volumes. This table is updated multiple times per day. You need to protect your sales table in case of regional failures with a recovery point objective (RPO) of less than 24 hours, while keeping costs to a minimum. What should you do?",
+          "solution_text": "Option A is correct because exporting to a dual- or multi-region Cloud Storage bucket provides protection against regional failures by replicating data across multiple locations.<br/>In contrast, BigQuery snapshots (Option C) and copying to another single region (Option B) do not inherently guarantee the same level of multi-region redundancy or may incur higher costs for storage and management.<br/>Exporting only the specific table needed is more cost-effective than duplicating the entire dataset or modifying ETL pipelines for real-time replication.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47817,
+              "letter": "A",
+              "text": "Schedule a daily export of the table to a Cloud Storage dual or multi-region bucket.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 47818,
+              "letter": "B",
+              "text": "Schedule a daily copy of the dataset to a backup region.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47819,
+              "letter": "C",
+              "text": "Schedule a daily BigQuery snapshot of the table.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47820,
+              "letter": "D",
+              "text": "Modify ETL job to load the data into both the current and another backup region.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12412,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 319,
+          "question_type": "mc_single",
+          "question_text": "You are preparing an organization-wide dataset. You need to preprocess customer data stored in a restricted bucket in Cloud Storage. The data will be used to create consumer analyses. You need to follow data privacy requirements, including protecting certain sensitive data elements, while also retaining all of the data for potential future use cases. What should you do?",
+          "solution_text": "Option C is correct because it uses the Cloud Data Loss Prevention (DLP) API to mask sensitive data rather than delete it, satisfying the requirement to retain all data for future use.<br/>Masking protects privacy while preserving the dataset's structure and volume, whereas Option A removes fields entirely, violating the retention constraint.<br/>Options B and D focus on encryption at rest or field-level encryption, which does not inherently anonymize data for analytical processing in the same way DLP redaction/masking does.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47821,
+              "letter": "A",
+              "text": "Use the Cloud Data Loss Prevention API and Dataflow to detect and remove sensitive fields from the data in Cloud Storage. Write the filtered data in BigQuery.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47822,
+              "letter": "B",
+              "text": "Use customer-managed encryption keys (CMEK) to directly encrypt the data in Cloud Storage. Use federated queries from BigQuery. Share the encryption key by following the principle of least privilege.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47823,
+              "letter": "C",
+              "text": "Use Dataflow and the Cloud Data Loss Prevention API to mask sensitive data. Write the processed data in BigQuery.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 47824,
+              "letter": "D",
+              "text": "Use Dataflow and Cloud KMS to encrypt sensitive fields and write the encrypted data in BigQuery. Share the encryption key by following the principle of least privilege.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12413,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 320,
+          "question_type": "mc_multi",
+          "question_text": "Your company uses Looker Studio connected to BigQuery for reporting. Users are experiencing slow dashboard load times due to complex queries on a large table. The queries involve aggregations and filtering on several columns. You need to optimize query performance to decrease the dashboard load times. What should you do?",
+          "solution_text": "The question specifically identifies 'Looker Studio' and 'BigQuery', making BigQuery BI Engine the optimal solution. <br/>BI Engine is designed to accelerate query performance for Looker Studio by caching data in high-speed memory, directly addressing slow dashboard load times. <br/>Materialized views (B) help with complex aggregations but do not provide the low-latency caching required for interactive dashboards as effectively as BI Engine.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47825,
+              "letter": "A",
+              "text": "Configure Looker Studio to use a shorter data refresh interval to ensure fresh data is always displayed.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47826,
+              "letter": "B",
+              "text": "Create a materialized view in BigQuery that pre-calculates the aggregations and filters used in the Looker Studio dashboards.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47827,
+              "letter": "C",
+              "text": "Implement row-level security in BigQuery to restrict data access and reduce the amount of data processed by the queries.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47828,
+              "letter": "D",
+              "text": "Use BigQuery BI Engine to accelerate query performance by caching frequently accessed data.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 64,
+    "discussions": {
+      "12409": {
+        "target_type": "question",
+        "target_id": 12409,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12410": {
+        "target_type": "question",
+        "target_id": 12410,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12411": {
+        "target_type": "question",
+        "target_id": 12411,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12412": {
+        "target_type": "question",
+        "target_id": 12412,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12413": {
+        "target_type": "question",
+        "target_id": 12413,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      316,
+      317,
+      318,
+      319,
+      320
+    ],
+    "attempts": [
+      {
+        "question": 316,
+        "answerVisible": true
+      },
+      {
+        "question": 317,
+        "answerVisible": true
+      },
+      {
+        "question": 318,
+        "answerVisible": true
+      },
+      {
+        "question": 319,
+        "answerVisible": true
+      },
+      {
+        "question": 320,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

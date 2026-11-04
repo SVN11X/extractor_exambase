@@ -1,0 +1,288 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 24,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12209,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 116,
+        "question_type": "mc_multi",
+        "question_text": "Your company is in the process of migrating its on-premises data warehousing solutions to BigQuery. The existing data warehouse uses trigger-based change data capture (CDC) to apply updates from multiple transactional database sources on a daily basis. With BigQuery, your company hopes to improve its handling of<br/>CDC so that changes to the source systems are available to query in BigQuery in near-real time using log-based CDC streams, while also optimizing for the performance of applying changes to the data warehouse. Which two steps should they take to ensure that changes are available in the BigQuery reporting table with minimal latency while reducing compute overhead? (Choose two.)<br/>",
+        "solution_text": "Direct row-level DML (Option A) incurs high compute costs in BigQuery, whereas writing CDC events to a staging table (Option B) leverages efficient streaming inserts with minimal overhead. Subsequently, using periodic DML MERGE operations (Option D) to apply these batched changes optimizes performance by reducing the number of expensive write transactions compared to individual updates.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46999,
+            "letter": "A",
+            "text": "Perform a DML INSERT, UPDATE, or DELETE to replicate each individual CDC record in real time directly on the reporting table.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47000,
+            "letter": "B",
+            "text": "Insert each new CDC record and corresponding operation type to a staging table in real time.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47001,
+            "letter": "C",
+            "text": "Periodically DELETE outdated records from the reporting table.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47002,
+            "letter": "D",
+            "text": "Periodically use a DML MERGE to perform several DML INSERT, UPDATE, and DELETE operations at the same time on the reporting table.",
+            "is_correct": true,
+            "order": 3
+          },
+          {
+            "id": 47003,
+            "letter": "E",
+            "text": "Insert each new CDC record and corresponding operation type in real time to the reporting table, and use a materialized view to expose only the newest version of each unique record.",
+            "is_correct": false,
+            "order": 4
+          }
+        ]
+      },
+      {
+        "id": 12210,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 117,
+        "question_type": "mc_single",
+        "question_text": "You are designing a data processing pipeline. The pipeline must be able to scale automatically as load increases. Messages must be processed at least once and must be ordered within windows of 1 hour. How should you design the solution?<br/>",
+        "solution_text": "Cloud Pub/Sub is the recommended ingestion service for Google Cloud native solutions, offering automatic scalability and at-least-once delivery guarantees.<br/>Cloud Dataflow is designed specifically for streaming analysis with built-in support for windowing to maintain order within specified time intervals (e.g., 1 hour).<br/>Apache Kafka is a third-party option that adds management overhead compared to the fully managed Pub/Sub and Dataflow combination, while Dataproc is better suited for batch processing than real-time streaming.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47004,
+            "letter": "A",
+            "text": "Use Apache Kafka for message ingestion and use Cloud Dataproc for streaming analysis.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47005,
+            "letter": "B",
+            "text": "Use Apache Kafka for message ingestion and use Cloud Dataflow for streaming analysis.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47006,
+            "letter": "C",
+            "text": "Use Cloud Pub/Sub for message ingestion and Cloud Dataproc for streaming analysis.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47007,
+            "letter": "D",
+            "text": "Use Cloud Pub/Sub for message ingestion and Cloud Dataflow for streaming analysis.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12211,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 118,
+        "question_type": "mc_single",
+        "question_text": "You need to set access to BigQuery for different departments within your company. Your solution should comply with the following requirements:<br/>✑ Each department should have access only to their data.<br/>✑ Each department will have one or more leads who need to be able to create and update tables and provide them to their team.<br/>✑ Each department has data analysts who need to be able to query but not modify data.<br/>How should you set access to the data in BigQuery?<br/>",
+        "solution_text": "To enforce department-level data isolation, you must create a separate dataset for each department rather than sharing tables at the project level. <br/>Dataset-level IAM roles are the appropriate mechanism for this granularity: assign the WRITER role to leads so they can create and update tables, and assign the READER role to analysts so they can only query data. <br/>This ensures leads have necessary write access while analysts remain restricted to read-only access within their specific department's dataset.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47008,
+            "letter": "A",
+            "text": "Create a dataset for each department. Assign the department leads the role of OWNER, and assign the data analysts the role of WRITER on their dataset.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47009,
+            "letter": "B",
+            "text": "Create a dataset for each department. Assign the department leads the role of WRITER, and assign the data analysts the role of READER on their dataset.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47010,
+            "letter": "C",
+            "text": "Create a table for each department. Assign the department leads the role of Owner, and assign the data analysts the role of Editor on the project the table is in.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47011,
+            "letter": "D",
+            "text": "Create a table for each department. Assign the department leads the role of Editor, and assign the data analysts the role of Viewer on the project the table is in.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12212,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 119,
+        "question_type": "mc_single",
+        "question_text": "You operate a database that stores stock trades and an application that retrieves average stock price for a given company over an adjustable window of time. The data is stored in Cloud Bigtable where the datetime of the stock trade is the beginning of the row key. Your application has thousands of concurrent users, and you notice that performance is starting to degrade as more stocks are added. What should you do to improve the performance of your application?<br/>",
+        "solution_text": "Cloud Bigtable distributes data based on row keys, and using a sequential or monotonic timestamp as the beginning of the key causes write hotspots because all new data targets the same tablet.<br/>By prefixing the row key with the stock symbol (a high-cardinality attribute), writes are distributed across multiple tablets in parallel, eliminating the bottleneck.<br/>This design follows best practices for time-series data in Bigtable to ensure balanced load distribution.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47012,
+            "letter": "A",
+            "text": "Change the row key syntax in your Cloud Bigtable table to begin with the stock symbol.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47013,
+            "letter": "B",
+            "text": "Change the row key syntax in your Cloud Bigtable table to begin with a random number per second.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47014,
+            "letter": "C",
+            "text": "Change the data pipeline to use BigQuery for storing stock trades, and update your application.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47015,
+            "letter": "D",
+            "text": "Use Cloud Dataflow to write a summary of each day's stock trades to an Avro file on Cloud Storage. Update your application to read from Cloud Storage and Cloud Bigtable to compute the responses.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12213,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 120,
+        "question_type": "mc_single",
+        "question_text": "You are operating a Cloud Dataflow streaming pipeline. The pipeline aggregates events from a Cloud Pub/Sub subscription source, within a window, and sinks the resulting aggregation to a Cloud Storage bucket. The source has consistent throughput. You want to monitor an alert on behavior of the pipeline with Cloud<br/>Stackdriver to ensure that it is processing data. Which Stackdriver alerts should you create?<br/>",
+        "solution_text": "Alerts should trigger when the pipeline fails to process data, not when it is functioning correctly. <br/>If the pipeline stops processing, messages accumulate in Pub/Sub, causing subscription/num_undelivered_messages to increase. <br/>Simultaneously, data stops being written to Cloud Storage, causing the rate of change of instance/storage/used_bytes to decrease towards zero.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47016,
+            "letter": "A",
+            "text": "An alert based on a decrease of subscription/num_undelivered_messages for the source and a rate of change increase of instance/storage/ used_bytes for the destination",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47017,
+            "letter": "B",
+            "text": "An alert based on an increase of subscription/num_undelivered_messages for the source and a rate of change decrease of instance/storage/ used_bytes for the destination",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47018,
+            "letter": "C",
+            "text": "An alert based on a decrease of instance/storage/used_bytes for the source and a rate of change increase of subscription/ num_undelivered_messages for the destination",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47019,
+            "letter": "D",
+            "text": "An alert based on an increase of instance/storage/used_bytes for the source and a rate of change decrease of subscription/ num_undelivered_messages for the destination",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 24,
+  "discussions": {
+    "12209": {
+      "target_type": "question",
+      "target_id": 12209,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12210": {
+      "target_type": "question",
+      "target_id": 12210,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12211": {
+      "target_type": "question",
+      "target_id": 12211,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12212": {
+      "target_type": "question",
+      "target_id": 12212,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12213": {
+      "target_type": "question",
+      "target_id": 12213,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

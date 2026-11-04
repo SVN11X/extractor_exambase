@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 63,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12404,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 311,
+        "question_type": "mc_single",
+        "question_text": "Your chemical company needs to manually check documentation for customer order. You use a pull subscription in Pub/Sub so that sales agents get details from the order. You must ensure that you do not process orders twice with different sales agents and that you do not add more complexity to this workflow. What should you do?",
+        "solution_text": "Cloud Pub/Sub offers an exactly-once delivery feature specifically designed to guarantee that a message is delivered and processed exactly once by a subscriber, preventing duplicate processing without requiring complex external deduplication logic. This directly satisfies the requirement to avoid double-processing while minimizing added workflow complexity compared to implementing custom transactional checks or Dataflow pipelines.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47789,
+            "letter": "A",
+            "text": "Use a Deduplicate PTransform in Dataflow before sending the messages to the sales agents.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47790,
+            "letter": "B",
+            "text": "Create a transactional database that monitors the pending messages.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47791,
+            "letter": "C",
+            "text": "Use Pub/Sub exactly-once delivery in your pull subscription.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47792,
+            "letter": "D",
+            "text": "Create a new Pub/Sub push subscription to monitor the orders processed in the agent's system.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12405,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 312,
+        "question_type": "mc_single",
+        "question_text": "You are migrating your on-premises data warehouse to BigQuery. As part of the migration, you want to facilitate cross-team collaboration to get the most value out of the organization’s data. You need to design an architecture that would allow teams within the organization to securely publish, discover, and subscribe to read-only data in a self-service manner. You need to minimize costs while also maximizing data freshness. What should you do?",
+        "solution_text": "Analytics Hub is specifically designed to enable secure, self-service data sharing across teams without duplicating data, which minimizes storage costs.<br/>By subscribing to listed datasets, consumers access the publisher's live data, ensuring maximum freshness compared to copying mechanisms like Data Transfer Service.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47793,
+            "letter": "A",
+            "text": "Use Analytics Hub to facilitate data sharing.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47794,
+            "letter": "B",
+            "text": "Create authorized datasets to publish shared data in the subscribing team's project.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47795,
+            "letter": "C",
+            "text": "Create a new dataset for sharing in each individual team’s project. Grant the subscribing team the bigquery.dataViewer role on the dataset.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47796,
+            "letter": "D",
+            "text": "Use BigQuery Data Transfer Service to copy datasets to a centralized BigQuery project for sharing.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12406,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 313,
+        "question_type": "mc_single",
+        "question_text": "You want to migrate an Apache Spark 3 batch job from on-premises to Google Cloud. You need to minimally change the job so that the job reads from Cloud Storage and writes the result to BigQuery. Your job is optimized for Spark, where each executor has 8 vCPU and 16 GB memory, and you want to be able to choose similar settings. You want to minimize installation and management effort to run your job. What should you do?",
+        "solution_text": "Dataproc Serverless is the optimal choice because it minimizes installation and management effort by eliminating the need to manage cluster infrastructure.<br/>Unlike standard Dataproc clusters, Serverless allows you to specify precise resource configurations for executors, such as vCPU and memory counts, satisfying the requirement to maintain similar optimization settings.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47797,
+            "letter": "A",
+            "text": "Execute the job as part of a deployment in a new Google Kubernetes Engine cluster.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47798,
+            "letter": "B",
+            "text": "Execute the job from a new Compute Engine VM.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47799,
+            "letter": "C",
+            "text": "Execute the job in a new Dataproc cluster.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47800,
+            "letter": "D",
+            "text": "Execute as a Dataproc Serverless job.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12407,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 314,
+        "question_type": "mc_single",
+        "question_text": "You are configuring networking for a Dataflow job. The data pipeline uses custom container images with the libraries that are required for the transformation logic preinstalled. The data pipeline reads the data from Cloud Storage and writes the data to BigQuery. You need to ensure cost-effective and secure communication between the pipeline and Google APIs and services. What should you do?",
+        "solution_text": "Disabling external IP addresses prevents data from traversing the public internet, enhancing security. Enabling Private Google Access allows these internal-only VMs to communicate with Google services like Cloud Storage and BigQuery without requiring a Cloud NAT gateway, which reduces egress costs.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47801,
+            "letter": "A",
+            "text": "Disable external IP addresses from worker VMs and enable Private Google Access.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47802,
+            "letter": "B",
+            "text": "Leave external IP addresses assigned to worker VMs while enforcing firewall rules.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47803,
+            "letter": "C",
+            "text": "Disable external IP addresses and establish a Private Service Connect endpoint IP address.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47804,
+            "letter": "D",
+            "text": "Enable Cloud NAT to provide outbound internet connectivity while enforcing firewall rules.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12408,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 315,
+        "question_type": "mc_single",
+        "question_text": "You are using Workflows to call an API that returns a 1KB JSON response, apply some complex business logic on this response, wait for the logic to complete, and then perform a load from a Cloud Storage file to BigQuery. The Workflows standard library does not have sufficient capabilities to perform your complex logic, and you want to use Python's standard library instead. You want to optimize your workflow for simplicity and speed of execution. What should you do?",
+        "solution_text": "Cloud Functions provide a serverless environment to execute Python code with low latency and minimal overhead, fitting the requirement for simplicity and speed. <br/>This avoids the provisioning time of Dataproc or Cloud Composer while handling logic that exceeds Workflows' built-in capabilities.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47805,
+            "letter": "A",
+            "text": "Create a Cloud Composer environment and run the logic in Cloud Composer.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47806,
+            "letter": "B",
+            "text": "Create a Dataproc cluster, and use PySpark to apply the logic on your JSON file.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47807,
+            "letter": "C",
+            "text": "Invoke a Cloud Function instance that uses Python to apply the logic on your JSON file.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47808,
+            "letter": "D",
+            "text": "Invoke a subworkflow in Workflows to apply the logic on your JSON file.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 63,
+  "discussions": {
+    "12404": {
+      "target_type": "question",
+      "target_id": 12404,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12405": {
+      "target_type": "question",
+      "target_id": 12405,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12406": {
+      "target_type": "question",
+      "target_id": 12406,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12407": {
+      "target_type": "question",
+      "target_id": 12407,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12408": {
+      "target_type": "question",
+      "target_id": 12408,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

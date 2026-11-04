@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 60,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12389,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 296,
+        "question_type": "mc_single",
+        "question_text": "Your infrastructure team has set up an interconnect link between Google Cloud and the on-premises network. You are designing a high-throughput streaming pipeline to ingest data in streaming from an Apache Kafka cluster hosted on- premises. You want to store the data in BigQuery, with as minimal latency as possible. What should you do?",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47729,
+            "letter": "A",
+            "text": "Setup a Kafka Connect bridge between Kafka and Pub/Sub. Use a Google-provided Dataflow template to read the data from Pub/Sub, and write the data to BigQuery.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47730,
+            "letter": "B",
+            "text": "Use a proxy host in the VPC in Google Cloud connecting to Kafka. Write a Dataflow pipeline, read data from the proxy host, and write the data to BigQuery.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47731,
+            "letter": "C",
+            "text": "Use Dataflow, write a pipeline that reads the data from Kafka, and writes the data to BigQuery.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47732,
+            "letter": "D",
+            "text": "Setup a Kafka Connect bridge between Kafka and Pub/Sub. Write a Dataflow pipeline, read the data from Pub/Sub, and write the data to BigQuery.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12390,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 297,
+        "question_type": "mc_single",
+        "question_text": "You migrated your on-premises Apache Hadoop Distributed File System (HDFS) data lake to Cloud Storage. The data scientist team needs to process the data by using Apache Spark and SQL. Security policies need to be enforced at the column level. You need a cost-effective solution that can scale into a data mesh. What should you do?",
+        "solution_text": "Option B is correct because BigLake allows you to define managed tables over existing Cloud Storage data without costly ETL loads, ensuring cost-effectiveness and compatibility with a data mesh architecture.<br/>Data Catalog policy tags provide the necessary fine-grained, column-level security enforcement that IAM cannot achieve.<br/>The Spark-BigQuery connector enables data scientists to process these BigLake tables using Apache Spark or SQL directly.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47733,
+            "letter": "A",
+            "text": "1. Deploy a long-living Dataproc cluster with Apache Hive and Ranger enabled.<br/>2. Configure Ranger for column level security.<br/>3. Process with Dataproc Spark or Hive SQL.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47734,
+            "letter": "B",
+            "text": "1. Define a BigLake table.<br/>2. Create a taxonomy of policy tags in Data Catalog.<br/>3. Add policy tags to columns.<br/>4. Process with the Spark-BigQuery connector or BigQuery SQL.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47735,
+            "letter": "C",
+            "text": "1. Load the data to BigQuery tables.<br/>2. Create a taxonomy of policy tags in Data Catalog.<br/>3. Add policy tags to columns.<br/>4. Process with the Spark-BigQuery connector or BigQuery SQL.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47736,
+            "letter": "D",
+            "text": "1. Apply an Identity and Access Management (IAM) policy at the file level in Cloud Storage.<br/>2. Define a BigQuery external table for SQL processing.<br/>3. Use Dataproc Spark to process the Cloud Storage files.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12391,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 298,
+        "question_type": "mc_single",
+        "question_text": "One of your encryption keys stored in Cloud Key Management Service (Cloud KMS) was exposed. You need to re- encrypt all of your CMEK-protected Cloud Storage data that used that key, and then delete the compromised key. You also want to reduce the risk of objects getting written without customer-managed encryption key (CMEK) protection in the future. What should you do?",
+        "solution_text": "Rotating a key (Option A) does not automatically re-encrypt existing data, and changing the default CMEK on an existing bucket (Option B) only affects future writes, leaving old data encrypted with the compromised key. To re-encrypt all data, you must copy objects to a new location where they are protected by the new key. Option D is superior because creating a new bucket with the new key as the default ensures both the copied data and any future uploads are automatically protected by the new CMEK, whereas Option C requires explicit key specification for every copy operation but does not guarantee protection for subsequent manual uploads if the bucket's default encryption isn't explicitly set or managed consistently.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47737,
+            "letter": "A",
+            "text": "Rotate the Cloud KMS key version. Continue to use the same Cloud Storage bucket.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47738,
+            "letter": "B",
+            "text": "Create a new Cloud KMS key. Set the default CMEK key on the existing Cloud Storage bucket to the new one.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47739,
+            "letter": "C",
+            "text": "Create a new Cloud KMS key. Create a new Cloud Storage bucket. Copy all objects from the old bucket to the new one bucket while specifying the new Cloud KMS key in the copy command.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47740,
+            "letter": "D",
+            "text": "Create a new Cloud KMS key. Create a new Cloud Storage bucket configured to use the new key as the default CMEK key. Copy all objects from the old bucket to the new bucket without specifying a key.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12392,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 299,
+        "question_type": "mc_single",
+        "question_text": "You have an upstream process that writes data to Cloud Storage. This data is then read by an Apache Spark job that runs on Dataproc. These jobs are run in the us-central1 region, but the data could be stored anywhere in the United States. You need to have a recovery process in place in case of a catastrophic single region failure. You need an approach with a maximum of 15 minutes of data loss (RPO=15 mins). You want to ensure that there is minimal latency when reading the data. What should you do?",
+        "solution_text": "A dual-region bucket with Turbo Replication ensures data is synchronized in near real-time (typically within 30 seconds), meeting the strict RPO of 15 minutes.<br/>Running the Dataproc cluster and reading from the bucket in the same primary region minimizes network latency for optimal performance.<br/>In the event of a regional failure, redeploying the cluster to the secondary region allows it to continue reading from the same logically consistent bucket without data loss.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47741,
+            "letter": "A",
+            "text": "1. Create two regional Cloud Storage buckets, one in the us-central1 region and one in the us-south1 region.<br/>2. Have the upstream process write data to the us-central1 bucket. Use the Storage Transfer Service to copy data hourly from the us-central1 bucket to the us-south1 bucket.<br/>3. Run the Dataproc cluster in a zone in the us-central1 region, reading from the bucket in that region.<br/>4. In case of regional failure, redeploy your Dataproc clusters to the us-south1 region and read from the bucket in that region instead.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47742,
+            "letter": "B",
+            "text": "1. Create a Cloud Storage bucket in the US multi-region.<br/>2. Run the Dataproc cluster in a zone in the us-central1 region, reading data from the US multi-region bucket.<br/>3. In case of a regional failure, redeploy the Dataproc cluster to the us-central2 region and continue reading from the same bucket.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47743,
+            "letter": "C",
+            "text": "1. Create a dual-region Cloud Storage bucket in the us-central1 and us-south1 regions.<br/>2. Enable turbo replication.<br/>3. Run the Dataproc cluster in a zone in the us-central1 region, reading from the bucket in the us-south1 region.<br/>4. In case of a regional failure, redeploy your Dataproc cluster to the us-south1 region and continue reading from the same bucket.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47744,
+            "letter": "D",
+            "text": "1. Create a dual-region Cloud Storage bucket in the us-central1 and us-south1 regions.<br/>2. Enable turbo replication.<br/>3. Run the Dataproc cluster in a zone in the us-central1 region, reading from the bucket in the same region.<br/>4. In case of a regional failure, redeploy the Dataproc clusters to the us-south1 region and read from the same bucket.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12393,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 300,
+        "question_type": "mc_single",
+        "question_text": "You currently have transactional data stored on-premises in a PostgreSQL database. To modernize your data environment, you want to run transactional workloads and support analytics needs with a single database. You need to move to Google Cloud without changing database management systems, and minimize cost and complexity. What should you do?",
+        "solution_text": "The requirement to run both transactional and analytics workloads on a single database points directly to HTAP (Hybrid Transactional/Analytical Processing) capabilities. <br/>AlloyDB for PostgreSQL is explicitly designed for this use case, offering a columnar store that accelerates analytical queries while maintaining full PostgreSQL compatibility for transactional loads. <br/>Although Cloud SQL is cheaper, it lacks the integrated analytical performance of AlloyDB, making AlloyDB the correct choice to satisfy the functional requirement of supporting both workload types within one system without changing the DBMS.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47745,
+            "letter": "A",
+            "text": "Migrate and modernize your database with Cloud Spanner.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47746,
+            "letter": "B",
+            "text": "Migrate your workloads to AlloyDB for PostgreSQL.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47747,
+            "letter": "C",
+            "text": "Migrate to BigQuery to optimize analytics.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47748,
+            "letter": "D",
+            "text": "Migrate your PostgreSQL database to Cloud SQL for PostgreSQL.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 60,
+  "discussions": {
+    "12389": {
+      "target_type": "question",
+      "target_id": 12389,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12390": {
+      "target_type": "question",
+      "target_id": 12390,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12391": {
+      "target_type": "question",
+      "target_id": 12391,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12392": {
+      "target_type": "question",
+      "target_id": 12392,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12393": {
+      "target_type": "question",
+      "target_id": 12393,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

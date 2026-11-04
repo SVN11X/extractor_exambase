@@ -1,0 +1,288 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 19,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12184,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 91,
+        "question_type": "mc_single",
+        "question_text": "You work for a bank. You have a labelled dataset that contains information on already granted loan application and whether these applications have been defaulted. You have been asked to train a model to predict default rates for credit applicants.<br/>What should you do?<br/>",
+        "solution_text": "The goal is to predict default risk, which requires a model capable of handling binary outcomes (default vs. non-default). While logistic regression is technically more appropriate for classification, linear regression is the only option that proposes training a predictive statistical model on the provided labeled data.<br/><br/>Options A and C focus on data collection rather than modeling, and Option D raises significant ethical and privacy concerns regarding social profile matching.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46897,
+            "letter": "A",
+            "text": "Increase the size of the dataset by collecting additional data.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46898,
+            "letter": "B",
+            "text": "Train a linear regression to predict a credit default risk score.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 46899,
+            "letter": "C",
+            "text": "Remove the bias from the data and collect applications that have been declined loans.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 46900,
+            "letter": "D",
+            "text": "Match loan applicants with their social profiles to enable feature engineering.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12185,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 92,
+        "question_type": "mc_single",
+        "question_text": "You need to migrate a 2TB relational database to Google Cloud Platform. You do not have the resources to significantly refactor the application that uses this database and cost to operate is of primary concern.<br/>Which service do you select for storing and serving your data?<br/>",
+        "solution_text": "The requirement to migrate a relational database without significant application refactoring necessitates a managed relational service compatible with standard SQL engines like MySQL, PostgreSQL, or SQL Server.<br/>Cloud SQL supports these engines directly, allowing for a lift-and-shift migration that minimizes code changes and typically offers lower operational costs compared to globally distributed systems.<br/>Cloud Spanner is a fully managed relational database but requires significant refactoring due to its proprietary nature and lack of features like stored procedures, while Bigtable and Firestore are NoSQL databases unsuitable for direct relational migration.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46901,
+            "letter": "A",
+            "text": "Cloud Spanner",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46902,
+            "letter": "B",
+            "text": "Cloud Bigtable",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 46903,
+            "letter": "C",
+            "text": "Cloud Firestore",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 46904,
+            "letter": "D",
+            "text": "Cloud SQL",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12186,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 93,
+        "question_type": "mc_single",
+        "question_text": "You're using Bigtable for a real-time application, and you have a heavy load that is a mix of read and writes. You've recently identified an additional use case and need to perform hourly an analytical job to calculate certain statistics across the whole database. You need to ensure both the reliability of your production application as well as the analytical workload.<br/>What should you do?<br/>",
+        "solution_text": "To isolate heavy analytical workloads from production traffic without impacting reliability or performance, you should add a second cluster to the existing Bigtable instance.<br/>By configuring app profiles with single-cluster routing, you can direct the real-time application traffic to one cluster and the hourly batch analytics job to the other, ensuring resource contention does not degrade the production workload.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46905,
+            "letter": "A",
+            "text": "Export Bigtable dump to GCS and run your analytical job on top of the exported files.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46906,
+            "letter": "B",
+            "text": "Add a second cluster to an existing instance with a multi-cluster routing, use live-traffic app profile for your regular workload and batch-analytics profile for the analytics workload.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 46907,
+            "letter": "C",
+            "text": "Add a second cluster to an existing instance with a single-cluster routing, use live-traffic app profile for your regular workload and batch-analytics profile for the analytics workload.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 46908,
+            "letter": "D",
+            "text": "Increase the size of your existing cluster twice and execute your analytics workload on your new resized cluster.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12187,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 94,
+        "question_type": "mc_single",
+        "question_text": "You are designing an Apache Beam pipeline to enrich data from Cloud Pub/Sub with static reference data from BigQuery. The reference data is small enough to fit in memory on a single worker. The pipeline should write enriched results to BigQuery for analysis. Which job type and transforms should this pipeline use?<br/>",
+        "solution_text": "The pipeline processes continuous data from Cloud Pub/Sub, necessitating a streaming job with PubSubIO for ingestion.<br/>Side-inputs are the correct pattern for enriching main PCollection data with small, static reference data loaded into memory from BigQuery.<br/>Finally, BigQueryIO is required to write the enriched results back to BigQuery for analysis.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46909,
+            "letter": "A",
+            "text": "Batch job, PubSubIO, side-inputs",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46910,
+            "letter": "B",
+            "text": "Streaming job, PubSubIO, JdbcIO, side-outputs",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 46911,
+            "letter": "C",
+            "text": "Streaming job, PubSubIO, BigQueryIO, side-inputs",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 46912,
+            "letter": "D",
+            "text": "Streaming job, PubSubIO, BigQueryIO, side-outputs",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12188,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 95,
+        "question_type": "mc_multi",
+        "question_text": "You have a data pipeline that writes data to Cloud Bigtable using well-designed row keys. You want to monitor your pipeline to determine when to increase the size of your Cloud Bigtable cluster. Which two actions can you take to accomplish this? (Choose two.)<br/>",
+        "solution_text": "Option C is correct because sustained increases in write latency indicate that the cluster is underperforming and lacks sufficient capacity to handle the throughput, necessitating a scale-up. Option D is correct because Google Cloud recommends adding nodes when storage utilization exceeds 70% of the maximum capacity per node to ensure there is room for new data and background maintenance tasks.<br/>Option A and B are incorrect because well-designed row keys distribute load evenly, making Key Visualizer pressure indices less relevant for general scaling decisions in this specific context. Option E is irrelevant as the scenario describes a write-heavy pipeline, and read latency is not the primary bottleneck for write scaling.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 46913,
+            "letter": "A",
+            "text": "Review Key Visualizer metrics. Increase the size of the Cloud Bigtable cluster when the Read pressure index is above 100.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 46914,
+            "letter": "B",
+            "text": "Review Key Visualizer metrics. Increase the size of the Cloud Bigtable cluster when the Write pressure index is above 100.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 46915,
+            "letter": "C",
+            "text": "Monitor the latency of write operations. Increase the size of the Cloud Bigtable cluster when there is a sustained increase in write latency.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 46916,
+            "letter": "D",
+            "text": "Monitor storage utilization. Increase the size of the Cloud Bigtable cluster when utilization increases above 70% of max capacity.",
+            "is_correct": true,
+            "order": 3
+          },
+          {
+            "id": 46917,
+            "letter": "E",
+            "text": "Monitor latency of read operations. Increase the size of the Cloud Bigtable cluster of read operations take longer than 100 ms.",
+            "is_correct": false,
+            "order": 4
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 19,
+  "discussions": {
+    "12184": {
+      "target_type": "question",
+      "target_id": 12184,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12185": {
+      "target_type": "question",
+      "target_id": 12185,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12186": {
+      "target_type": "question",
+      "target_id": 12186,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12187": {
+      "target_type": "question",
+      "target_id": 12187,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12188": {
+      "target_type": "question",
+      "target_id": 12188,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

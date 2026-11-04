@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/51",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 51,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 12344,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 251,
+          "question_type": "mc_single",
+          "question_text": "You have important legal hold documents in a Cloud Storage bucket. You need to ensure that these documents are not deleted or modified. What should you do?",
+          "solution_text": "To prevent deletion or modification for legal hold requirements, you must configure a retention policy to enforce a minimum storage duration. Locking the retention policy makes it immutable, ensuring that no user (including owners) can remove or shorten the retention period, thereby guaranteeing data preservation.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47549,
+              "letter": "A",
+              "text": "Set a retention policy. Lock the retention policy.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 47550,
+              "letter": "B",
+              "text": "Set a retention policy. Set the default storage class to Archive for long-term digital preservation.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47551,
+              "letter": "C",
+              "text": "Enable the Object Versioning feature. Add a lifecycle rule.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47552,
+              "letter": "D",
+              "text": "Enable the Object Versioning feature. Create a copy in a bucket in a different region.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12345,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 252,
+          "question_type": "mc_single",
+          "question_text": "You are designing a data warehouse in BigQuery to analyze sales data for a telecommunication service provider. You need to create a data model for customers, products, and subscriptions. All customers, products, and subscriptions can be updated monthly, but you must maintain a historical record of all data. You plan to use the visualization layer for current and historical reporting. You need to ensure that the data model is simple, easy-to-use, and cost-effective. What should you do?",
+          "solution_text": "A denormalized, append-only model is cost-effective and simple in BigQuery because it eliminates expensive JOIN operations by storing related data together using nested and repeated fields.<br/>Appending new records with an ingestion timestamp efficiently maintains historical state without the overhead of managing separate snapshot tables or complex update logic.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47553,
+              "letter": "A",
+              "text": "Create a normalized model with tables for each entity. Use snapshots before updates to track historical data.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47554,
+              "letter": "B",
+              "text": "Create a normalized model with tables for each entity. Keep all input files in a Cloud Storage bucket to track historical data.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47555,
+              "letter": "C",
+              "text": "Create a denormalized model with nested and repeated fields. Update the table and use snapshots to track historical data.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47556,
+              "letter": "D",
+              "text": "Create a denormalized, append-only model with nested and repeated fields. Use the ingestion timestamp to track historical data.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12346,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 253,
+          "question_type": "mc_single",
+          "question_text": "You are deploying a batch pipeline in Dataflow. This pipeline reads data from Cloud Storage, transforms the data, and then writes the data into BigQuery. The security team has enabled an organizational constraint in Google Cloud, requiring all Compute Engine instances to use only internal IP addresses and no external IP addresses. What should you do?",
+          "solution_text": "The constraint requires Dataflow workers (Compute Engine instances) to have no external IP addresses while still accessing Google services like Cloud Storage and BigQuery.<br/>Private Google Access allows VMs with only internal IPs to reach Google APIs and services via the private interface of the VPC, fulfilling this requirement without violating the organizational policy.<br/>VPC Service Controls restrict access based on perimeter membership but do not enable connectivity for instances lacking external IPs; firewall rules and tags alone cannot provide the necessary route to Google APIs.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47557,
+              "letter": "A",
+              "text": "Ensure that your workers have network tags to access Cloud Storage and BigQuery. Use Dataflow with only internal IP addresses.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47558,
+              "letter": "B",
+              "text": "Ensure that the firewall rules allow access to Cloud Storage and BigQuery. Use Dataflow with only internal IPs.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47559,
+              "letter": "C",
+              "text": "Create a VPC Service Controls perimeter that contains the VPC network and add Dataflow, Cloud Storage, and BigQuery as allowed services in the perimeter. Use Dataflow with only internal IP addresses.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47560,
+              "letter": "D",
+              "text": "Ensure that Private Google Access is enabled in the subnetwork. Use Dataflow with only internal IP addresses.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12347,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 254,
+          "question_type": "mc_single",
+          "question_text": "You are running a Dataflow streaming pipeline, with Streaming Engine and Horizontal Autoscaling enabled. You have set the maximum number of workers to 1000. The input of your pipeline is Pub/Sub messages with notifications from Cloud Storage. One of the pipeline transforms reads CSV files and emits an element for every CSV line. The job performance is low, the pipeline is using only 10 workers, and you notice that the autoscaler is not spinning up additional workers. What should you do to improve performance?",
+          "solution_text": "Fusion optimization in Dataflow combines multiple transforms into a single execution stage, which can limit parallelism if the fused step is not data-parallel (e.g., bounded side inputs or file processing). Introducing a Reshuffle step breaks this fusion, allowing subsequent unbounded steps to be distributed across more workers and enabling Horizontal Autoscaling to scale up.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47561,
+              "letter": "A",
+              "text": "Enable Vertical Autoscaling to let the pipeline use larger workers.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47562,
+              "letter": "B",
+              "text": "Change the pipeline code, and introduce a Reshuffle step to prevent fusion.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 47563,
+              "letter": "C",
+              "text": "Update the job to increase the maximum number of workers.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47564,
+              "letter": "D",
+              "text": "Use Dataflow Prime, and enable Right Fitting to increase the worker resources.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12348,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 255,
+          "question_type": "mc_single",
+          "question_text": "You have an Oracle database deployed in a VM as part of a Virtual Private Cloud (VPC) network. You want to replicate and continuously synchronize 50 tables to BigQuery. You want to minimize the need to manage infrastructure. What should you do?",
+          "solution_text": "Cloud Datastream is a fully managed, serverless Change Data Capture (CDC) service designed specifically for replicating database changes to BigQuery with minimal infrastructure management. <br/>Options A, B, and C require deploying and maintaining open-source tools like Apache Kafka or Debezium, which contradicts the requirement to minimize infrastructure management overhead.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47565,
+              "letter": "A",
+              "text": "Deploy Apache Kafka in the same VPC network, use Kafka Connect Oracle Change Data Capture (CDC), and Dataflow to stream the Kafka topic to BigQuery.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47566,
+              "letter": "B",
+              "text": "Create a Pub/Sub subscription to write to BigQuery directly. Deploy the Debezium Oracle connector to capture changes in the Oracle database, and sink to the Pub/Sub topic.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47567,
+              "letter": "C",
+              "text": "Deploy Apache Kafka in the same VPC network, use Kafka Connect Oracle change data capture (CDC), and the Kafka Connect Google BigQuery Sink Connector.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47568,
+              "letter": "D",
+              "text": "Create a Datastream service from Oracle to BigQuery, use a private connectivity configuration to the same VPC network, and a connection profile to BigQuery.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 51,
+    "discussions": {
+      "12344": {
+        "target_type": "question",
+        "target_id": 12344,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12345": {
+        "target_type": "question",
+        "target_id": 12345,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12346": {
+        "target_type": "question",
+        "target_id": 12346,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12347": {
+        "target_type": "question",
+        "target_id": 12347,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12348": {
+        "target_type": "question",
+        "target_id": 12348,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      251,
+      252,
+      253,
+      254,
+      255
+    ],
+    "attempts": [
+      {
+        "question": 251,
+        "answerVisible": true
+      },
+      {
+        "question": 252,
+        "answerVisible": true
+      },
+      {
+        "question": 253,
+        "answerVisible": true
+      },
+      {
+        "question": 254,
+        "answerVisible": true
+      },
+      {
+        "question": 255,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

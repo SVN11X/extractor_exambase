@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 50,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12339,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 246,
+        "question_type": "mc_single",
+        "question_text": "You have one BigQuery dataset which includes customers’ street addresses. You want to retrieve all occurrences of street addresses from the dataset. What should you do?",
+        "solution_text": "Cloud Data Loss Prevention (Cloud DLP) is the specialized service for identifying and classifying sensitive data, offering predefined infoType detectors like STREET_ADDRESS that are far more accurate than simple regex matching. Creating an inspection job with this template allows you to scan your BigQuery tables and retrieve metadata about where these addresses occur without altering the data.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47529,
+            "letter": "A",
+            "text": "Write a SQL query in BigQuery by using REGEXP_CONTAINS on all tables in your dataset to find rows where the word “street” appears.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47530,
+            "letter": "B",
+            "text": "Create a deep inspection job on each table in your dataset with Cloud Data Loss Prevention and create an inspection template that includes the STREET_ADDRESS infoType.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47531,
+            "letter": "C",
+            "text": "Create a discovery scan configuration on your organization with Cloud Data Loss Prevention and create an inspection template that includes the STREET_ADDRESS infoType.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47532,
+            "letter": "D",
+            "text": "Create a de-identification job in Cloud Data Loss Prevention and use the masking transformation.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12340,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 247,
+        "question_type": "mc_single",
+        "question_text": "Your company operates in three domains: airlines, hotels, and ride-hailing services. Each domain has two teams: analytics and data science, which create data assets in BigQuery with the help of a central data platform team. However, as each domain is evolving rapidly, the central data platform team is becoming a bottleneck. This is causing delays in deriving insights from data, and resulting in stale data when pipelines are not kept up to date. You need to design a data mesh architecture by using Dataplex to eliminate the bottleneck. What should you do?",
+        "solution_text": "Data Mesh principles emphasize domain-oriented sovereignty, where each business domain (airlines, hotels, ride-hailing) acts as an owner of its data products. In Dataplex, this maps to creating one Lake per domain to encapsulate that domain's governance and metadata context. Domains should manage their own assets (zones representing teams) to eliminate the central team bottleneck and ensure timely updates.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47533,
+            "letter": "A",
+            "text": "1. Create one lake for each team. Inside each lake, create one zone for each domain.<br/>2. Attach each of the BigQuery datasets created by the individual teams as assets to the respective zone.<br/>3. Have the central data platform team manage all zones’ data assets.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47534,
+            "letter": "B",
+            "text": "1. Create one lake for each team. Inside each lake, create one zone for each domain.<br/>2. Attach each of the BigQuery datasets created by the individual teams as assets to the respective zone.<br/>3. Direct each domain to manage their own zone’s data assets.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47535,
+            "letter": "C",
+            "text": "1. Create one lake for each domain. Inside each lake, create one zone for each team.<br/>2. Attach each of the BigQuery datasets created by the individual teams as assets to the respective zone.<br/>3. Direct each domain to manage their own lake’s data assets.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47536,
+            "letter": "D",
+            "text": "1. Create one lake for each domain. Inside each lake, create one zone for each team.<br/>2. Attach each of the BigQuery datasets created by the individual teams as assets to the respective zone.<br/>3. Have the central data platform team manage all lakes’ data assets.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12341,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 248,
+        "question_type": "mc_single",
+        "question_text": "dataset.inventory_vm sample records:<br/><br/><img src=\"/media/question_images/imported/PROFESSIONAL-DATA-ENGINEER/img_image8.png\"/><br/><br/>You have an inventory of VM data stored in the BigQuery table. You want to prepare the data for regular reporting in the most cost-effective way. You need to exclude VM rows with fewer than 8 vCPU in your report. What should you do?",
+        "solution_text": "The vCPU data resides within a nested structure in the `components` column, necessitating the use of the UNNEST operator to flatten and access it for filtering. <br/>A standard view is more cost-effective than a materialized view because it avoids the storage costs associated with pre-computed results, which is optimal for regular reporting where query frequency does not justify the overhead.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47537,
+            "letter": "A",
+            "text": "Create a view with a filter to drop rows with fewer than 8 vCPU, and use the UNNEST operator.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47538,
+            "letter": "B",
+            "text": "Create a materialized view with a filter to drop rows with fewer than 8 vCPU, and use the WITH common table expression.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47539,
+            "letter": "C",
+            "text": "Create a view with a filter to drop rows with fewer than 8 vCPU, and use the WITH common table expression.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47540,
+            "letter": "D",
+            "text": "Use Dataflow to batch process and write the result to another BigQuery table.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12342,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 249,
+        "question_type": "mc_single",
+        "question_text": "Your team is building a data lake platform on Google Cloud. As a part of the data foundation design, you are planning to store all the raw data in Cloud Storage. You are expecting to ingest approximately 25 GB of data a day and your billing department is worried about the increasing cost of storing old data. The current business requirements are:<br/><br/>•\tThe old data can be deleted anytime.<br/>•\tThere is no predefined access pattern of the old data.<br/>•\tThe old data should be available instantly when accessed.<br/>•\tThere should not be any charges for data retrieval.<br/><br/>What should you do to optimize for cost?",
+        "solution_text": "Autoclass is the optimal choice because it automatically transitions objects to cheaper storage classes (Nearline, Coldline, or Archive) based on access patterns without incurring data retrieval fees during the transition.<br/>Manual Lifecycle Management policies (Options B, C, D) fail to meet the 'no charges for data retrieval' requirement because transitioning objects to Nearline, Coldline, or Archive via lifecycle rules incurs standard retrieval costs.<br/>Autoclass ensures cost optimization while maintaining instant availability and zero retrieval fees for data moving between classes.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47541,
+            "letter": "A",
+            "text": "Create the bucket with the Autoclass storage class feature.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47542,
+            "letter": "B",
+            "text": "Create an Object Lifecycle Management policy to modify the storage class for data older than 30 days to nearline, 90 days to coldline, and 365 days to archive storage class. Delete old data as needed.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47543,
+            "letter": "C",
+            "text": "Create an Object Lifecycle Management policy to modify the storage class for data older than 30 days to coldline, 90 days to nearline, and 365 days to archive storage class. Delete old data as needed.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47544,
+            "letter": "D",
+            "text": "Create an Object Lifecycle Management policy to modify the storage class for data older than 30 days to nearline, 45 days to coldline, and 60 days to archive storage class. Delete old data as needed.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12343,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 250,
+        "question_type": "mc_single",
+        "question_text": "Your company's data platform ingests CSV file dumps of booking and user profile data from upstream sources into Cloud Storage. The data analyst team wants to join these datasets on the email field available in both the datasets to perform analysis. However, personally identifiable information (PII) should not be accessible to the analysts. You need to de-identify the email field in both the datasets before loading them into BigQuery for analysts. What should you do?",
+        "solution_text": "The requirement specifies de-identifying data *before* loading into BigQuery, which eliminates options C and D that rely on dynamic data masking within BigQuery. Between the remaining Cloud DLP options, simple masking (Option A) replaces characters with static symbols, destroying the unique identifier needed for joining datasets. Option B uses Format-Preserving Encryption (FPE) with FFX, which encrypts the email addresses while maintaining their original format and consistency, allowing analysts to join the datasets without exposing PII.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47545,
+            "letter": "A",
+            "text": "1. Create a pipeline to de-identify the email field by using recordTransformations in Cloud Data Loss Prevention (Cloud DLP) with masking as the de-identification transformations type.<br/>2. Load the booking and user profile data into a BigQuery table.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47546,
+            "letter": "B",
+            "text": "1. Create a pipeline to de-identify the email field by using recordTransformations in Cloud DLP with format-preserving encryption with FFX as the de-identification transformation type.<br/>2. Load the booking and user profile data into a BigQuery table.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47547,
+            "letter": "C",
+            "text": "1. Load the CSV files from Cloud Storage into a BigQuery table, and enable dynamic data masking.<br/>2. Create a policy tag with the email mask as the data masking rule.<br/>3. Assign the policy to the email field in both tables. A<br/>4. Assign the Identity and Access Management bigquerydatapolicy.maskedReader role for the BigQuery tables to the analysts.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47548,
+            "letter": "D",
+            "text": "1. Load the CSV files from Cloud Storage into a BigQuery table, and enable dynamic data masking.<br/>2. Create a policy tag with the default masking value as the data masking rule.<br/>3. Assign the policy to the email field in both tables.<br/>4. Assign the Identity and Access Management bigquerydatapolicy.maskedReader role for the BigQuery tables to the analysts",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 50,
+  "discussions": {
+    "12339": {
+      "target_type": "question",
+      "target_id": 12339,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12340": {
+      "target_type": "question",
+      "target_id": 12340,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12341": {
+      "target_type": "question",
+      "target_id": 12341,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12342": {
+      "target_type": "question",
+      "target_id": 12342,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12343": {
+      "target_type": "question",
+      "target_id": 12343,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

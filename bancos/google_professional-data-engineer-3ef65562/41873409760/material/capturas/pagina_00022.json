@@ -1,0 +1,334 @@
+{
+  "url": "https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/22",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 22,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 12199,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 106,
+          "question_type": "mc_single",
+          "question_text": "You are managing a Cloud Dataproc cluster. You need to make a job run faster while minimizing costs, without losing work in progress on your clusters. What should you do?<br/>",
+          "solution_text": "Preemptible worker nodes are significantly cheaper than non-preemptible ones, satisfying the requirement to minimize costs while increasing cluster size for faster job execution.<br/>Configuring graceful decommissioning ensures that data blocks and in-progress tasks on these workers are safely replicated or completed before they are terminated, preventing loss of work.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46958,
+              "letter": "A",
+              "text": "Increase the cluster size with more non-preemptible workers.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 46959,
+              "letter": "B",
+              "text": "Increase the cluster size with preemptible worker nodes, and configure them to forcefully decommission.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 46960,
+              "letter": "C",
+              "text": "Increase the cluster size with preemptible worker nodes, and use Cloud Stackdriver to trigger a script to preserve work.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 46961,
+              "letter": "D",
+              "text": "Increase the cluster size with preemptible worker nodes, and configure them to use graceful decommissioning.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12200,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 107,
+          "question_type": "mc_single",
+          "question_text": "You work for a shipping company that uses handheld scanners to read shipping labels. Your company has strict data privacy standards that require scanners to only transmit tracking numbers when events are sent to Kafka topics. A recent software update caused the scanners to accidentally transmit recipients' personally identifiable information (PII) to analytics systems, which violates user privacy rules. You want to quickly build a scalable solution using cloud-native managed services to prevent exposure of PII to the analytics systems. What should you do?<br/>",
+          "solution_text": "Cloud Data Loss Prevention (Cloud DLP) is the specific Google Cloud service designed to automatically discover and protect sensitive information like PII. By integrating a Cloud Function to invoke the DLP API on data entering via Kafka, you can programmatically inspect messages for sensitive content tags and confidence levels in real-time.<br/>This serverless approach allows for immediate enforcement of privacy policies by quarantining non-compliant data before it reaches analytics systems, satisfying the requirement for a quick, scalable, cloud-native solution.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46962,
+              "letter": "A",
+              "text": "Create an authorized view in BigQuery to restrict access to tables with sensitive data.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 46963,
+              "letter": "B",
+              "text": "Install a third-party data validation tool on Compute Engine virtual machines to check the incoming data for sensitive information.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 46964,
+              "letter": "C",
+              "text": "Use Cloud Logging to analyze the data passed through the total pipeline to identify transactions that may contain sensitive information.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 46965,
+              "letter": "D",
+              "text": "Build a Cloud Function that reads the topics and makes a call to the Cloud Data Loss Prevention (Cloud DLP) API. Use the tagging and confidence levels to either pass or quarantine the data in a bucket for review.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12201,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 108,
+          "question_type": "mc_single",
+          "question_text": "You have developed three data processing jobs. One executes a Cloud Dataflow pipeline that transforms data uploaded to Cloud Storage and writes results to<br/>BigQuery. The second ingests data from on-premises servers and uploads it to Cloud Storage. The third is a Cloud Dataflow pipeline that gets information from third-party data providers and uploads the information to Cloud Storage. You need to be able to schedule and monitor the execution of these three workflows and manually execute them when needed. What should you do?<br/>",
+          "solution_text": "Cloud Composer is the fully managed workflow orchestration service designed to author, schedule, and monitor data pipelines on Google Cloud.<br/>It provides a visual interface for Directed Acyclic Graphs (DAGs) to manage dependencies between independent or related jobs, such as Cloud Dataflow and custom scripts.<br/>Unlike cron jobs or App Engine, it offers native support for monitoring, retries, and manual execution without requiring you to build and maintain custom scheduling infrastructure.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46966,
+              "letter": "A",
+              "text": "Create a Direct Acyclic Graph in Cloud Composer to schedule and monitor the jobs.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 46967,
+              "letter": "B",
+              "text": "Use Stackdriver Monitoring and set up an alert with a Webhook notification to trigger the jobs.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 46968,
+              "letter": "C",
+              "text": "Develop an App Engine application to schedule and request the status of the jobs using GCP API calls.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 46969,
+              "letter": "D",
+              "text": "Set up cron jobs in a Compute Engine instance to schedule and monitor the pipelines using GCP API calls.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12202,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 109,
+          "question_type": "mc_multi",
+          "question_text": "You have Cloud Functions written in Node.js that pull messages from Cloud Pub/Sub and send the data to BigQuery. You observe that the message processing rate on the Pub/Sub topic is orders of magnitude higher than anticipated, but there is no error logged in Cloud Logging. What are the two most likely causes of this problem? (Choose two.)<br/>",
+          "solution_text": "The high processing rate without logged errors indicates messages are being repeatedly pulled rather than successfully processed. If the subscriber code does not acknowledge messages (E), Pub/Sub redelivers them, artificially inflating the pull count while data accumulates in the topic. Additionally, if error handling is insufficient (C), the function may terminate silently or fail to process data without generating standard error logs, leading to a similar accumulation effect.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46970,
+              "letter": "A",
+              "text": "Publisher throughput quota is too small.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 46971,
+              "letter": "B",
+              "text": "Total outstanding messages exceed the 10-MB maximum.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 46972,
+              "letter": "C",
+              "text": "Error handling in the subscriber code is not handling run-time errors properly.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 46973,
+              "letter": "D",
+              "text": "The subscriber code cannot keep up with the messages.",
+              "is_correct": false,
+              "order": 3
+            },
+            {
+              "id": 46974,
+              "letter": "E",
+              "text": "The subscriber code does not acknowledge the messages that it pulls.",
+              "is_correct": true,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": 12203,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 110,
+          "question_type": "mc_single",
+          "question_text": "You are creating a new pipeline in Google Cloud to stream IoT data from Cloud Pub/Sub through Cloud Dataflow to BigQuery. While previewing the data, you notice that roughly 2% of the data appears to be corrupt. You need to modify the Cloud Dataflow pipeline to filter out this corrupt data. What should you do?<br/>",
+          "solution_text": "The ParDo transform is the standard mechanism in Apache Beam for applying per-element logic, including filtering.<br/>By implementing a DoFn that validates each record and only outputs valid elements via emit(), corrupt data is effectively discarded without requiring additional branching logic.<br/>Partition is used to split data into multiple output PCollections, which is unnecessary if the goal is simply to remove bad records, while GroupByKey is for aggregation.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46975,
+              "letter": "A",
+              "text": "Add a SideInput that returns a Boolean if the element is corrupt.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 46976,
+              "letter": "B",
+              "text": "Add a ParDo transform in Cloud Dataflow to discard corrupt elements.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 46977,
+              "letter": "C",
+              "text": "Add a Partition transform in Cloud Dataflow to separate valid data from corrupt data.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 46978,
+              "letter": "D",
+              "text": "Add a GroupByKey transform in Cloud Dataflow to group all of the valid data together and discard the rest.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 22,
+    "discussions": {
+      "12199": {
+        "target_type": "question",
+        "target_id": 12199,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12200": {
+        "target_type": "question",
+        "target_id": 12200,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12201": {
+        "target_type": "question",
+        "target_id": 12201,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12202": {
+        "target_type": "question",
+        "target_id": 12202,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12203": {
+        "target_type": "question",
+        "target_id": 12203,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      106,
+      107,
+      108,
+      109,
+      110
+    ],
+    "attempts": [
+      {
+        "question": 106,
+        "answerVisible": true
+      },
+      {
+        "question": 107,
+        "answerVisible": true
+      },
+      {
+        "question": 108,
+        "answerVisible": true
+      },
+      {
+        "question": 109,
+        "answerVisible": true
+      },
+      {
+        "question": 110,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

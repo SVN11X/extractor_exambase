@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 65,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12414,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 321,
+        "question_type": "mc_single",
+        "question_text": "Your company has data assets across multiple Cloud Storage buckets and BigQuery datasets containing raw and processed data. The requirement is to establish a unified data governance framework that allows for centralized metadata discovery, data quality monitoring, and consistent security policy application across these various data stores without physically moving or duplicating the data. You need to implement a solution to achieve this federated governance. What should you do?",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47829,
+            "letter": "A",
+            "text": "1. Export metadata out of Dataplex Universal Catalog by running a metadata export job.<br/>2. Implement Dataproc Metastore to manage table schemas and Apache Hive metastore for metadata discovery.<br/>3. Manage security using a combination of BigQuery row-level security and Cloud Storage policies.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47830,
+            "letter": "B",
+            "text": "1. Use Dataplex to organize the BigQuery datasets and Cloud Storage buckets into lakes and zones.<br/>2. Use Dataplex for automated metadata discovery, centralized security policy management, data profiling, and data quality tasks.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47831,
+            "letter": "C",
+            "text": "1. Deploy a centralized Cloud SQL database to store metadata extracted from BigQuery and Cloud Storage using custom scripts.<br/>2. Integrate the database with Looker Studio for data discovery and visualization.<br/>3. Implement a custom policy engine using Cloud Run functions triggered by changes in IAM policies to enforce consistent security across projects.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47832,
+            "letter": "D",
+            "text": "1. Create a Looker Studio dashboard on BigQuery INFORMATION_SCHEMA views to visualize and monitor data quality.<br/>2. Manage security using IAM policies at the project level, supplemented by BigQuery authorized views for granular access control.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12415,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 322,
+        "question_type": "mc_single",
+        "question_text": "Your company is planning to migrate a large on-premises data warehouse to BigQuery. The data is currently stored in a proprietary, vendor-specific format. You need to perform a batch migration of this data to BigQuery. What should you do?",
+        "solution_text": "The BigQuery Data Transfer Service (DTS) is the designated tool for performing scheduled batch transfers of data from supported sources, including many on-premises and cloud data warehouses.<br/>While CSV export to Cloud Storage is a valid generic migration path, DTS provides a managed, automated solution specifically designed for recurring batch migrations without manual file handling.<br/>Datastream (Option D) is used for real-time change data capture replication, which contradicts the requirement for a batch migration.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47833,
+            "letter": "A",
+            "text": "Use the bq command-line tool to load the data directly from the on-premises data warehouse.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47834,
+            "letter": "B",
+            "text": "Export the data to CSV files, upload the files to Cloud Storage, then load the files into BigQuery.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47835,
+            "letter": "C",
+            "text": "Use the BigQuery Data Transfer Service.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47836,
+            "letter": "D",
+            "text": "Use Datastream to replicate the data in real time.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12416,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 323,
+        "question_type": "mc_single",
+        "question_text": "Your company uses separate Google Cloud projects for development, staging, and production. Developers need edit access in the development project, read-only access in the staging project, and no access in the production project. You need an effective and manageable solution to assign and enforce these permissions according to Google-recommended practices. What should you do?",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47837,
+            "letter": "A",
+            "text": "Create separate VPC Service Controls perimeters for each project and use access levels.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47838,
+            "letter": "B",
+            "text": "Grant individual developers specific IAM roles directly on each project.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47839,
+            "letter": "C",
+            "text": "Configure firewall rules within each project’s VPC to block traffic from unauthorized developer machines.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47840,
+            "letter": "D",
+            "text": "Create Google Groups for access levels, assign developers to groups, and grant the groups the appropriate IAM roles on each project.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12417,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 324,
+        "question_type": "mc_single",
+        "question_text": "Your financial services company has a critical daily reconciliation process that involves several distinct steps: fetching data from an external SFTP server, decrypting the files, loading them into Cloud Storage, and finally running a series of BigQuery SQL transformations. Each step has strict dependencies, and the entire process should notify you if not completed by 7:00 AM. Manual intervention for failures is costly and delays compliance reporting. You need a highly observable and robust solution that supports easy re-runs of individual steps if errors occur. What should you do?",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47841,
+            "letter": "A",
+            "text": "Develop a Cloud Composer DAG that includes a single PythonOperator to execute a Python script that runs each step sequentially, incorporating error handling and retries. Upload the scripts to a Cloud Composer environments DAGs folder, and configure it to run daily.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47842,
+            "letter": "B",
+            "text": "Implement a Cloud Composer DAG, with each step defined as a separate task using appropriate Airflow operators, and schedule the DAG for daily execution.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47843,
+            "letter": "C",
+            "text": "Define a Cloud Composer DAG to orchestrate the SFTP fetch and decryption steps, and then use Cloud Scheduler to trigger a separate Dataflow job that handles the Cloud Storage load and BigQuery transformations and schedule to run daily.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47844,
+            "letter": "D",
+            "text": "Create a Cloud Composer DAG that includes a single BashOperator to execute a top-level shell script, which in turn calls individual scripts for each pipeline step. Upload the scripts to a Cloud Composer environment’s DAGs folder, and configure it to run daily.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12418,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 325,
+        "question_type": "mc_single",
+        "question_text": "Your large e-commerce company uses BigQuery for its data warehousing needs. They have two primary types of workloads:<br/>•\tAnalyst dashboards: Interactive queries run by business analysts throughout the day, requiring low latency for real-time insights.<br/>•\tETL jobs: Large, complex batch queries that load and transform data overnight. These jobs are cost-sensitive and can tolerate longer execution times, and they do not have the same performance requirements as the dashboards.<br/><br/>Analysts are reporting inconsistent performance of their dashboards, particularly during peak business hours. You need to ensure reliable performance for both workload types while optimizing costs. What should you do?",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47845,
+            "letter": "A",
+            "text": "Use BigQuery editions to create an autoscaling reservation with dedicated slots for analyst dashboards, while running ETL jobs with a separate reservation or using the on-demand billing model.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47846,
+            "letter": "B",
+            "text": "Implement a custom autoscaling solution using Cloud Run functions to dynamically adjust available BigQuery slots based on time of day.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47847,
+            "letter": "C",
+            "text": "Migrate all ETL jobs to Cloud SQL to reduce BigQuery’s workload.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47848,
+            "letter": "D",
+            "text": "Run all analyst dashboard queries as interactive queries and configure ETL jobs to run as batch queries.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 65,
+  "discussions": {
+    "12414": {
+      "target_type": "question",
+      "target_id": 12414,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12415": {
+      "target_type": "question",
+      "target_id": 12415,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12416": {
+      "target_type": "question",
+      "target_id": 12416,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12417": {
+      "target_type": "question",
+      "target_id": 12417,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12418": {
+      "target_type": "question",
+      "target_id": 12418,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

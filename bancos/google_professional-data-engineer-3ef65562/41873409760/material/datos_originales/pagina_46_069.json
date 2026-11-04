@@ -1,0 +1,288 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 46,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12319,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 226,
+        "question_type": "mc_single",
+        "question_text": "Your organization has two Google Cloud projects, project A and project B. In project A, you have a Pub/Sub topic that receives data from confidential sources. Only the resources in project A should be able to access the data in that topic. You want to ensure that project B and any future project cannot access data in the project A topic. What should you do?",
+        "solution_text": "VPC Service Controls create security perimeters that restrict data exfiltration and access to resources within a specified group of projects, regardless of IAM permissions.<br/>By placing Project A inside a VPC Service Control perimeter, you ensure that requests originating from outside the perimeter (such as Project B or future projects) are denied access to sensitive services like Pub/Sub, even if those external principals have IAM grants.<br/>This approach is superior to IAM conditions because it enforces boundary isolation at the organization level, preventing accidental or malicious cross-project access without managing individual identity conditions.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47447,
+            "letter": "A",
+            "text": "Add firewall rules in project A so only traffic from the VPC in project A is permitted.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47448,
+            "letter": "B",
+            "text": "Configure VPC Service Controls in the organization with a perimeter around project A.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47449,
+            "letter": "C",
+            "text": "Use Identity and Access Management conditions to ensure that only users and service accounts in project A. can access resources in project A.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47450,
+            "letter": "D",
+            "text": "Configure VPC Service Controls in the organization with a perimeter around the VPC of project A.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12320,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 227,
+        "question_type": "mc_single",
+        "question_text": "You stream order data by using a Dataflow pipeline, and write the aggregated result to Memorystore. You provisioned a Memorystore for Redis instance with Basic Tier, 4 GB capacity, which is used by 40 clients for read-only access. You are expecting the number of read-only clients to increase significantly to a few hundred and you need to be able to support the demand. You want to ensure that read and write access availability is not impacted, and any changes you make can be deployed quickly. What should you do?",
+        "solution_text": "The Standard Tier supports high availability and read replicas, which are required to distribute the increased read load among hundreds of clients without impacting write performance. Adding read replicas offloads read traffic from the primary node, ensuring scalability and availability.<br/><br/>Option B correctly implements this by provisioning a Standard Tier instance with multiple read replicas.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47451,
+            "letter": "A",
+            "text": "Create a new Memorystore for Redis instance with Standard Tier. Set capacity to 4 GB and read replica to No read replicas (high availability only). Delete the old instance.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47452,
+            "letter": "B",
+            "text": "Create a new Memorystore for Redis instance with Standard Tier. Set capacity to 5 GB and create multiple read replicas. Delete the old instance.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47453,
+            "letter": "C",
+            "text": "Create a new Memorystore for Memcached instance. Set a minimum of three nodes, and memory per node to 4 GB. Modify the Dataflow pipeline and all clients to use the Memcached instance. Delete the old instance.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47454,
+            "letter": "D",
+            "text": "Create multiple new Memorystore for Redis instances with Basic Tier (4 GB capacity). Modify the Dataflow pipeline and new clients to use all instances.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12321,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 228,
+        "question_type": "mc_single",
+        "question_text": "You have a streaming pipeline that ingests data from Pub/Sub in production. You need to update this streaming pipeline with improved business logic. You need to ensure that the updated pipeline reprocesses the previous two days of delivered Pub/Sub messages. What should you do? (Choose two.)",
+        "solution_text": "",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47455,
+            "letter": "A",
+            "text": "Use the Pub/Sub subscription clear-retry-policy flag",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47456,
+            "letter": "B",
+            "text": "Use Pub/Sub Snapshot capture two days before the deployment.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47457,
+            "letter": "C",
+            "text": "Create a new Pub/Sub subscription two days before the deployment.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47458,
+            "letter": "D",
+            "text": "Use the Pub/Sub subscription retain-acked-messages flag.",
+            "is_correct": true,
+            "order": 3
+          },
+          {
+            "id": 47459,
+            "letter": "E",
+            "text": "Use Pub/Sub Seek with a timestamp.",
+            "is_correct": false,
+            "order": 4
+          }
+        ]
+      },
+      {
+        "id": 12322,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 229,
+        "question_type": "mc_single",
+        "question_text": "You currently use a SQL-based tool to visualize your data stored in BigQuery. The data visualizations require the use of outer joins and analytic functions. Visualizations must be based on data that is no less than 4 hours old. Business users are complaining that the visualizations are too slow to generate. You want to improve the performance of the visualization queries while minimizing the maintenance overhead of the data preparation pipeline. What should you do?",
+        "solution_text": "Standard incremental materialized views in BigQuery do not support OUTER JOINs or analytic functions. To enable these complex queries while minimizing maintenance overhead, you must create non-incremental materialized views using the `allow_non_incremental_definition` option.<br/>By setting `max_staleness` to 4 hours and enabling auto-refresh, BigQuery periodically recomputes the view contents, ensuring performance improvements without requiring manual pipeline management.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47460,
+            "letter": "A",
+            "text": "Create materialized views with the allow_non_incremental_definition option set to true for the visualization queries. Specify the max_staleness parameter to 4 hours and the enable_refresh parameter to true. Reference the materialized views in the data visualization tool.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47461,
+            "letter": "B",
+            "text": "Create views for the visualization queries. Reference the views in the data visualization tool.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47462,
+            "letter": "C",
+            "text": "Create a Cloud Function instance to export the visualization query results as parquet files to a Cloud Storage bucket. Use Cloud Scheduler to trigger the Cloud Function every 4 hours. Reference the parquet files in the data visualization tool.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47463,
+            "letter": "D",
+            "text": "Create materialized views for the visualization queries. Use the incremental updates capability of BigQuery materialized views to handle changed data automatically. Reference the materialized views in the data visualization tool.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12323,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 230,
+        "question_type": "mc_single",
+        "question_text": "You need to modernize your existing on-premises data strategy. Your organization currently uses:<br/>•\tApache Hadoop clusters for processing multiple large data sets, including on-premises Hadoop Distributed File System (HDFS) for data replication.<br/>•\tApache Airflow to orchestrate hundreds of ETL pipelines with thousands of job steps.<br/><br/>You need to set up a new architecture in Google Cloud that can handle your Hadoop workloads and requires minimal changes to your existing orchestration processes. What should you do?",
+        "solution_text": "Google Dataproc is the managed service designed to run Apache Hadoop, Spark, and other data processing engines, allowing for a direct migration of existing Hadoop workloads with minimal code changes.<br/>Cloud Storage serves as the scalable, durable object storage backend that replaces on-premises HDFS for these workloads.<br/>Cloud Composer is Google Cloud's managed Apache Airflow service, which ensures orchestration processes require minimal modification since it is natively compatible with existing Airflow DAGs.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47464,
+            "letter": "A",
+            "text": "Use Bigtable for your large workloads, with connections to Cloud Storage to handle any HDFS use cases. Orchestrate your pipelines with Cloud Composer.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47465,
+            "letter": "B",
+            "text": "Use Dataproc to migrate Hadoop clusters to Google Cloud, and Cloud Storage to handle any HDFS use cases. Orchestrate your pipelines with Cloud Composer.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47466,
+            "letter": "C",
+            "text": "Use Dataproc to migrate Hadoop clusters to Google Cloud, and Cloud Storage to handle any HDFS use cases. Convert your ETL pipelines to Dataflow.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47467,
+            "letter": "D",
+            "text": "Use Dataproc to migrate your Hadoop clusters to Google Cloud, and Cloud Storage to handle any HDFS use cases. Use Cloud Data Fusion to visually design and deploy your ETL pipelines.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 46,
+  "discussions": {
+    "12319": {
+      "target_type": "question",
+      "target_id": 12319,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12320": {
+      "target_type": "question",
+      "target_id": 12320,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12321": {
+      "target_type": "question",
+      "target_id": 12321,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12322": {
+      "target_type": "question",
+      "target_id": 12322,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12323": {
+      "target_type": "question",
+      "target_id": 12323,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

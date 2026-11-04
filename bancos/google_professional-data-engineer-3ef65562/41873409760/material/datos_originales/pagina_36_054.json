@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 36,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12269,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 176,
+        "question_type": "mc_single",
+        "question_text": "You have uploaded 5 years of log data to Cloud Storage. A user reported that some data points in the log data are outside of their expected ranges, which indicates errors. You need to address this issue and be able to run the process again in the future while keeping the original data for compliance reasons. What should you do?<br/>",
+        "solution_text": "Dataflow is the appropriate service for processing and cleaning large-scale log data by detecting out-of-range values and replacing them with defaults.<br/>Writing to a new location preserves the original files in Cloud Storage, satisfying the compliance requirement to retain unaltered historical data.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47246,
+            "letter": "A",
+            "text": "Import the data from Cloud Storage into BigQuery. Create a new BigQuery table, and skip the rows with errors.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47247,
+            "letter": "B",
+            "text": "Create a Compute Engine instance and create a new copy of the data in Cloud Storage. Skip the rows with errors.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47248,
+            "letter": "C",
+            "text": "Create a Dataflow workflow that reads the data from Cloud Storage, checks for values outside the expected range, sets the value to an appropriate default, and writes the updated records to a new dataset in Cloud Storage.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47249,
+            "letter": "D",
+            "text": "Create a Dataflow workflow that reads the data from Cloud Storage, checks for values outside the expected range, sets the value to an appropriate default, and writes the updated records to the same dataset in Cloud Storage.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12270,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 177,
+        "question_type": "mc_single",
+        "question_text": "You want to rebuild your batch pipeline for structured data on Google Cloud. You are using PySpark to conduct data transformations at scale, but your pipelines are taking over twelve hours to run. To expedite development and pipeline run time, you want to use a serverless tool and SOL syntax. You have already moved your raw data into Cloud Storage. How should you build the pipeline on Google Cloud while meeting speed and processing requirements?<br/>",
+        "solution_text": "Option C is correct because BigQuery is a fully serverless data warehouse that supports SQL syntax, directly addressing the requirements for a serverless tool and SQL-based transformations.<br/>It eliminates the need to manage infrastructure (unlike Dataproc) and leverages BigQuery's high-performance engine to process structured data from Cloud Storage much faster than PySpark clusters.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47250,
+            "letter": "A",
+            "text": "Convert your PySpark commands into SparkSQL queries to transform the data, and then run your pipeline on Dataproc to write the data into BigQuery.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47251,
+            "letter": "B",
+            "text": "Ingest your data into Cloud SQL, convert your PySpark commands into SparkSQL queries to transform the data, and then use federated quenes from BigQuery for machine learning.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47252,
+            "letter": "C",
+            "text": "Ingest your data into BigQuery from Cloud Storage, convert your PySpark commands into BigQuery SQL queries to transform the data, and then write the transformations to a new table.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47253,
+            "letter": "D",
+            "text": "Use Apache Beam Python SDK to build the transformation pipelines, and write the data into BigQuery.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12271,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 178,
+        "question_type": "mc_single",
+        "question_text": "You are testing a Dataflow pipeline to ingest and transform text files. The files are compressed gzip, errors are written to a dead-letter queue, and you are using<br/>SideInputs to join data. You noticed that the pipeline is taking longer to complete than expected; what should you do to expedite the Dataflow job?<br/>",
+        "solution_text": "The question specifically highlights the use of SideInputs as a potential performance bottleneck. While SideInputs are efficient for small datasets, they require the entire PCollection to be loaded into memory on each worker, which can severely degrade performance and cause timeouts if the data is large or changes frequently.<br/><br/>CoGroupByKey is the recommended alternative for joining datasets when the side input data does not fit efficiently in memory, as it processes the join within the pipeline's shuffle stage rather than relying on global caching. This change allows Dataflow to scale the join operation horizontally across workers, thereby expediting job completion.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47254,
+            "letter": "A",
+            "text": "Switch to compressed Avro files.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47255,
+            "letter": "B",
+            "text": "Reduce the batch size.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47256,
+            "letter": "C",
+            "text": "Retry records that throw an error.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47257,
+            "letter": "D",
+            "text": "Use CoGroupByKey instead of the SideInput.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12272,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 179,
+        "question_type": "mc_single",
+        "question_text": "You are building a real-time prediction engine that streams files, which may contain PII (personal identifiable information) data, into Cloud Storage and eventually into BigQuery. You want to ensure that the sensitive data is masked but still maintains referential integrity, because names and emails are often used as join keys.<br/>How should you use the Cloud Data Loss Prevention API (DLP API) to ensure that the PII data is not accessible by unauthorized individuals?<br/>",
+        "solution_text": "The requirement to maintain referential integrity (allowing joins on names/emails) necessitates a deterministic transformation where identical inputs produce identical outputs. Format-Preserving Encryption (FPE) or Deterministic Encryption ensures this consistency while masking the data, whereas simple redaction destroys join keys and standard hashing may alter data format or be considered irreversible without lookup tables not specified in the option.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47258,
+            "letter": "A",
+            "text": "Create a pseudonym by replacing the PII data with cryptogenic tokens, and store the non-tokenized data in a locked-down button.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47259,
+            "letter": "B",
+            "text": "Redact all PII data, and store a version of the unredacted data in a locked-down bucket.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47260,
+            "letter": "C",
+            "text": "Scan every table in BigQuery, and mask the data it finds that has PII.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47261,
+            "letter": "D",
+            "text": "Create a pseudonym by replacing PII data with a cryptographic format-preserving token.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12273,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 180,
+        "question_type": "mc_single",
+        "question_text": "You are migrating an application that tracks library books and information about each book, such as author or year published, from an on-premises data warehouse to BigQuery. In your current relational database, the author information is kept in a separate table and joined to the book information on a common key. Based on Google's recommended practice for schema design, how would you structure the data to ensure optimal speed of queries about the author of each book that has been borrowed?<br/>",
+        "solution_text": "Google recommends denormalizing data in BigQuery to improve query performance by avoiding expensive JOIN operations.<br/>Nesting related fields (like author details) within the main table allows you to store hierarchical relationships efficiently without flattening every attribute into individual columns.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47262,
+            "letter": "A",
+            "text": "Keep the schema the same, maintain the different tables for the book and each of the attributes, and query as you are doing today.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47263,
+            "letter": "B",
+            "text": "Create a table that is wide and includes a column for each attribute, including the author's first name, last name, date of birth, etc.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47264,
+            "letter": "C",
+            "text": "Create a table that includes information about the books and authors, but nest the author fields inside the author column.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47265,
+            "letter": "D",
+            "text": "Keep the schema the same, create a view that joins all of the tables, and always query the view.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 36,
+  "discussions": {
+    "12269": {
+      "target_type": "question",
+      "target_id": 12269,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12270": {
+      "target_type": "question",
+      "target_id": 12270,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12271": {
+      "target_type": "question",
+      "target_id": 12271,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12272": {
+      "target_type": "question",
+      "target_id": 12272,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12273": {
+      "target_type": "question",
+      "target_id": 12273,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

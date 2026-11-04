@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 53,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12354,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 261,
+        "question_type": "mc_single",
+        "question_text": "You want to migrate your existing Teradata data warehouse to BigQuery. You want to move the historical data to BigQuery by using the most efficient method that requires the least amount of programming, but local storage space on your existing data warehouse is limited. What should you do?",
+        "solution_text": "The question specifies that local storage space on the existing Teradata system is limited. FastExport, when used with the JDBC driver, supports direct streaming of data to BigQuery via the BigQuery Data Transfer Service, thereby eliminating the need to write intermediate data files to local disk.<br/>In contrast, TPT (Teradata Parallel Transporter) typically requires generating local files (even if optimized with tbuild) or relies on local buffer space, making it less suitable when local storage is a strict constraint. Google's documentation for Teradata migration explicitly recommends the JDBC/FastExport method when local storage constraints prevent the use of TPT or file-based exports. This approach also satisfies the requirement for minimal programming by leveraging the managed Data Transfer Service.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47589,
+            "letter": "A",
+            "text": "Use BigQuery Data Transfer Service by using the Java Database Connectivity (JDBC) driver with FastExport connection.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47590,
+            "letter": "B",
+            "text": "Create a Teradata Parallel Transporter (TPT) export script to export the historical data, and import to BigQuery by using the bq command-line tool.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47591,
+            "letter": "C",
+            "text": "Use BigQuery Data Transfer Service with the Teradata Parallel Transporter (TPT) tbuild utility.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47592,
+            "letter": "D",
+            "text": "Create a script to export the historical data, and upload in batches to Cloud Storage. Set up a BigQuery Data Transfer Service instance from Cloud Storage to BigQuery.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12355,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 262,
+        "question_type": "mc_single",
+        "question_text": "You are on the data governance team and are implementing security requirements. You need to encrypt all your data in BigQuery by using an encryption key managed by your team. You must implement a mechanism to generate and store encryption material only on your on-premises hardware security module (HSM). You want to rely on Google managed solutions. What should you do?",
+        "solution_text": "Cloud External Key Manager (Cloud EKM) is the specific Google Cloud solution designed to integrate BigQuery with external key management systems, such as an on-premises HSM. <br/>This allows the encryption key material to remain exclusively within your on-premises hardware while BigQuery uses the associated Cloud KMS cryptographic key for encryption operations. <br/>Options involving Cloud KMS import or Cloud HSM would store or replicate key material within Google's infrastructure, violating the requirement that material be stored only on-premises.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47593,
+            "letter": "A",
+            "text": "Create the encryption key in the on-premises HSM, and import it into a Cloud Key Management Service (Cloud KMS) key. Associate the created Cloud KMS key while creating the BigQuery resources.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47594,
+            "letter": "B",
+            "text": "Create the encryption key in the on-premises HSM and link it to a Cloud External Key Manager (Cloud EKM) key. Associate the created Cloud KMS key while creating the BigQuery resources.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47595,
+            "letter": "C",
+            "text": "Create the encryption key in the on-premises HSM, and import it into Cloud Key Management Service (Cloud HSM) key. Associate the created Cloud HSM key while creating the BigQuery resources.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47596,
+            "letter": "D",
+            "text": "Create the encryption key in the on-premises HSM. Create BigQuery resources and encrypt data while ingesting them into BigQuery.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12356,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 263,
+        "question_type": "mc_single",
+        "question_text": "You maintain ETL pipelines. You notice that a streaming pipeline running on Dataflow is taking a long time to process incoming data, which causes output delays. You also noticed that the pipeline graph was automatically optimized by Dataflow and merged into one step. You want to identify where the potential bottleneck is occurring. What should you do?",
+        "solution_text": "The Dataflow service automatically fuses multiple transforms into single steps to optimize performance, which can obscure individual step latencies. Inserting a Reshuffle operation breaks this fusion boundary, forcing the pipeline to execute distinct stages that can be individually monitored in the Dataflow console. This allows you to isolate and identify the specific transform causing the processing bottleneck.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47597,
+            "letter": "A",
+            "text": "Insert a Reshuffle operation after each processing step, and monitor the execution details in the Dataflow console.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47598,
+            "letter": "B",
+            "text": "Insert output sinks after each key processing step, and observe the writing throughput of each block.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47599,
+            "letter": "C",
+            "text": "Log debug information in each ParDo function, and analyze the logs at execution time.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47600,
+            "letter": "D",
+            "text": "Verify that the Dataflow service accounts have appropriate permissions to write the processed data to the output sinks.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12357,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 264,
+        "question_type": "mc_single",
+        "question_text": "You are running your BigQuery project in the on-demand billing model and are executing a change data capture (CDC) process that ingests data. The CDC process loads 1 GB of data every 10 minutes into a temporary table, and then performs a merge into a 10 TB target table. This process is very scan intensive and you want to explore options to enable a predictable cost model. You need to create a BigQuery reservation based on utilization information gathered from BigQuery Monitoring and apply the reservation to the CDC process. What should you do?",
+        "solution_text": "BigQuery reservations are assigned to resources at the project, folder, or organization level in the resource hierarchy.<br/>Slots cannot be directly assigned to datasets, service accounts, or individual jobs.<br/>To apply capacity controls to the CDC process, you must create and assign a reservation to the specific project running those jobs.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47601,
+            "letter": "A",
+            "text": "Create a BigQuery reservation for the dataset.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47602,
+            "letter": "B",
+            "text": "Create a BigQuery reservation for the job.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47603,
+            "letter": "C",
+            "text": "Create a BigQuery reservation for the service account running the job.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47604,
+            "letter": "D",
+            "text": "Create a BigQuery reservation for the project.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12358,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 265,
+        "question_type": "mc_single",
+        "question_text": "You are designing a fault-tolerant architecture to store data in a regional BigQuery dataset. You need to ensure that your application is able to recover from a corruption event in your tables that occurred within the past seven days. You want to adopt managed services with the lowest RPO and most cost-effective solution. What should you do?",
+        "solution_text": "BigQuery Time Travel provides the lowest RPO (near-zero data loss) by allowing access to table states up to seven days in the past, satisfying the recovery window requirement.<br/><br/>It is the most cost-effective solution because it is a built-in feature with no additional storage costs for the historical data retained within the default window, unlike snapshots which incur incremental storage fees.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47605,
+            "letter": "A",
+            "text": "Access historical data by using time travel in BigQuery.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47606,
+            "letter": "B",
+            "text": "Export the data from BigQuery into a new table that excludes the corrupted data",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47607,
+            "letter": "C",
+            "text": "Create a BigQuery table snapshot on a daily basis.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47608,
+            "letter": "D",
+            "text": "Migrate your data to multi-region BigQuery buckets.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 53,
+  "discussions": {
+    "12354": {
+      "target_type": "question",
+      "target_id": 12354,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12355": {
+      "target_type": "question",
+      "target_id": 12355,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12356": {
+      "target_type": "question",
+      "target_id": 12356,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12357": {
+      "target_type": "question",
+      "target_id": 12357,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12358": {
+      "target_type": "question",
+      "target_id": 12358,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

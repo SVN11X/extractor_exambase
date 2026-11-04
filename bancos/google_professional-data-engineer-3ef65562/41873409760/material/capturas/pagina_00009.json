@@ -1,0 +1,334 @@
+{
+  "url": "https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/9",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 9,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 12134,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 41,
+          "question_type": "mc_single",
+          "question_text": "MJTelco Case Study -<br/><br/>Company Overview -<br/>MJTelco is a startup that plans to build networks in rapidly growing, underserved markets around the world. The company has patents for innovative optical communications hardware. Based on these patents, they can create many reliable, high-speed backbone links with inexpensive hardware.<br/><br/>Company Background -<br/>Founded by experienced telecom executives, MJTelco uses technologies originally developed to overcome communications challenges in space. Fundamental to their operation, they need to create a distributed data infrastructure that drives real-time analysis and incorporates machine learning to continuously optimize their topologies. Because their hardware is inexpensive, they plan to overdeploy the network allowing them to account for the impact of dynamic regional politics on location availability and cost.<br/>Their management and operations teams are situated all around the globe creating many-to-many relationship between data consumers and provides in their system. After careful consideration, they decided public cloud is the perfect environment to support their needs.<br/><br/>Solution Concept -<br/>MJTelco is running a successful proof-of-concept (PoC) project in its labs. They have two primary needs:<br/>✑ Scale and harden their PoC to support significantly more data flows generated when they ramp to more than 50,000 installations.<br/>✑ Refine their machine-learning cycles to verify and improve the dynamic models they use to control topology definition.<br/>MJTelco will also use three separate operating environments `\" development/test, staging, and production `\" to meet the needs of running experiments, deploying new features, and serving production customers.<br/><br/>Business Requirements -<br/>✑ Scale up their production environment with minimal cost, instantiating resources when and where needed in an unpredictable, distributed telecom user community.<br/>✑ Ensure security of their proprietary data to protect their leading-edge machine learning and analysis.<br/>✑ Provide reliable and timely access to data for analysis from distributed research workers<br/>✑ Maintain isolated environments that support rapid iteration of their machine-learning models without affecting their customers.<br/><br/>Technical Requirements -<br/>Ensure secure and efficient transport and storage of telemetry data<br/><img class=\"in-exam-image\" src=\"/media/question_images/imported/PROFESSIONAL-DATA-ENGINEER/0003400007.png\"/><br/>✑ Rapidly scale instances to support between 10,000 and 100,000 data providers with multiple flows each.<br/>✑ Allow analysis and presentation against data tables tracking up to 2 years of data storing approximately 100m records/day<br/>✑ Support rapid iteration of monitoring infrastructure focused on awareness of data pipeline problems both in telemetry flows and in production learning cycles.<br/><br/>CEO Statement -<br/>Our business model relies on our patents, analytics and dynamic machine learning. Our inexpensive hardware is organized to be highly reliable, which gives us cost advantages. We need to quickly stabilize our large distributed data pipelines to meet our reliability and capacity commitments.<br/><br/>CTO Statement -<br/>Our public cloud services must operate as advertised. We need resources that scale and keep our data secure. We also need environments in which our data scientists can carefully study and quickly adapt our models. Because we rely on automation to process our data, we also need our development and test environments to work as we iterate.<br/><br/>CFO Statement -<br/>The project is too large for us to maintain the hardware and software required for the data and analysis. Also, we cannot afford to staff an operations team to monitor so many data feeds, so we will rely on automation and infrastructure. Google Cloud's machine learning will allow our quantitative researchers to work on our high-value problems instead of problems with our data pipelines.<br/>MJTelco needs you to create a schema in Google Bigtable that will allow for the historical analysis of the last 2 years of records. Each record that comes in is sent every 15 minutes, and contains a unique identifier of the device and a data record. The most common query is for all the data for a given device for a given day.<br/>Which schema should you use?<br/>\n",
+          "solution_text": "Bigtable rowkeys must be designed to avoid hotspotting by ensuring writes are distributed across multiple nodes. Using 'date' or 'timestamp' as the leading component of a rowkey creates severe write hotspots because all devices update on the same time interval, overwhelming specific nodes.<br/><br/>Option A is the best available choice because placing 'date' first groups data chronologically, which supports the most common query pattern (retrieving all data for a given device on a given day) efficiently via range scans. While an ideal schema might reverse this or use salting to balance writes, Option A effectively satisfies the read-heavy analytical requirement without creating the extreme concentration of writes that pure timestamp keys cause.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46689,
+              "letter": "A",
+              "text": "Rowkey: date#device_id Column data: data_point",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 46690,
+              "letter": "B",
+              "text": "Rowkey: date Column data: device_id, data_point",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 46691,
+              "letter": "C",
+              "text": "Rowkey: device_id Column data: date, data_point",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 46692,
+              "letter": "D",
+              "text": "Rowkey: data_point Column data: device_id, date",
+              "is_correct": false,
+              "order": 3
+            },
+            {
+              "id": 46693,
+              "letter": "E",
+              "text": "Rowkey: date#data_point Column data: device_id",
+              "is_correct": false,
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": 12135,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 42,
+          "question_type": "mc_single",
+          "question_text": "Your company has recently grown rapidly and now ingesting data at a significantly higher rate than it was previously. You manage the daily batch MapReduce analytics jobs in Apache Hadoop. However, the recent increase in data has meant the batch jobs are falling behind. You were asked to recommend ways the development team could increase the responsiveness of the analytics without increasing costs. What should you recommend they do?<br/>",
+          "solution_text": "Apache Spark provides significantly better performance than MapReduce by processing data in-memory rather than writing intermediate results to disk. This allows for faster batch analytics without requiring additional hardware costs, directly addressing the responsiveness issue while adhering to the budget constraint.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46694,
+              "letter": "A",
+              "text": "Rewrite the job in Pig.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 46695,
+              "letter": "B",
+              "text": "Rewrite the job in Apache Spark.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 46696,
+              "letter": "C",
+              "text": "Increase the size of the Hadoop cluster.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 46697,
+              "letter": "D",
+              "text": "Decrease the size of the Hadoop cluster but also rewrite the job in Hive.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12136,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 43,
+          "question_type": "mc_single",
+          "question_text": "You work for a large fast food restaurant chain with over 400,000 employees. You store employee information in Google BigQuery in a Users table consisting of a FirstName field and a LastName field. A member of IT is building an application and asks you to modify the schema and data in BigQuery so the application can query a FullName field consisting of the value of the FirstName field concatenated with a space, followed by the value of the LastName field for each employee. How can you make that data available while minimizing cost?<br/>",
+          "solution_text": "Creating a view (Option A) is the most cost-effective solution because it avoids incurring additional storage costs for redundant data.<br/>Unlike physical tables, views do not store data but provide a logical representation that computes the FullName on demand using existing FirstName and LastName fields.<br/>Options B, C, and D involve creating new columns or tables, which increases storage usage and processing overhead, violating the requirement to minimize cost.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46698,
+              "letter": "A",
+              "text": "Create a view in BigQuery that concatenates the FirstName and LastName field values to produce the FullName.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 46699,
+              "letter": "B",
+              "text": "Add a new column called FullName to the Users table. Run an UPDATE statement that updates the FullName column for each user with the concatenation of the FirstName and LastName values.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 46700,
+              "letter": "C",
+              "text": "Create a Google Cloud Dataflow job that queries BigQuery for the entire Users table, concatenates the FirstName value and LastName value for each user, and loads the proper values for FirstName, LastName, and FullName into a new table in BigQuery.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 46701,
+              "letter": "D",
+              "text": "Use BigQuery to export the data for the table to a CSV file. Create a Google Cloud Dataproc job to process the CSV file and output a new CSV file containing the proper values for FirstName, LastName and FullName. Run a BigQuery load job to load the new CSV file into BigQuery.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12137,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 44,
+          "question_type": "mc_single",
+          "question_text": "You are deploying a new storage system for your mobile application, which is a media streaming service. You decide the best fit is Google Cloud Datastore. You have entities with multiple properties, some of which can take on multiple values. For example, in the entity 'Movie' the property 'actors' and the property<br/>'tags' have multiple values but the property 'date released' does not. A typical query would ask for all movies with actor=<actorname> ordered by date_released or all movies with tag=Comedy ordered by date_released. How should you avoid a combinatorial explosion in the number of indexes?<br/>",
+          "solution_text": "To prevent combinatorial index explosion caused by multi-valued properties (actors and tags) combined with an ordered property (date_released), you must manually configure composite indexes in the `index.yaml` file.<br/>Datastore automatically creates all combinations of indexes unless explicitly defined; manual configuration limits creation to only the specific query patterns needed (e.g., actors + date_released, tags + date_released), drastically reducing index entry counts.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46702,
+              "letter": "A",
+              "text": "Manually configure the index in your index config as follows: <img class=\"in-exam-image\" src=\"/media/question_images/imported/PROFESSIONAL-DATA-ENGINEER/0003700001.png\"/>",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 46703,
+              "letter": "B",
+              "text": "Manually configure the index in your index config as follows: <img class=\"in-exam-image\" src=\"/media/question_images/imported/PROFESSIONAL-DATA-ENGINEER/0003700002.png\"/>",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 46704,
+              "letter": "C",
+              "text": "Set the following in your entity options: exclude_from_indexes = 'actors, tags'",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 46705,
+              "letter": "D",
+              "text": "Set the following in your entity options: exclude_from_indexes = 'date_published'",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12138,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 45,
+          "question_type": "mc_single",
+          "question_text": "You work for a manufacturing plant that batches application log files together into a single log file once a day at 2:00 AM. You have written a Google Cloud<br/>Dataflow job to process that log file. You need to make sure the log file in processed once per day as inexpensively as possible. What should you do?<br/>",
+          "solution_text": "To process the log file inexpensively and reliably once per day, automation is required to avoid manual labor costs and human error.<br/>Using Google App Engine's Cron Service (or Cloud Scheduler in modern architectures) provides a managed, automated way to trigger the Dataflow job at the specified time without requiring infrastructure provisioning for the scheduler itself.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 46706,
+              "letter": "A",
+              "text": "Change the processing job to use Google Cloud Dataproc instead.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 46707,
+              "letter": "B",
+              "text": "Manually start the Cloud Dataflow job each morning when you get into the office.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 46708,
+              "letter": "C",
+              "text": "Create a cron job with Google App Engine Cron Service to run the Cloud Dataflow job.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 46709,
+              "letter": "D",
+              "text": "Configure the Cloud Dataflow job as a streaming job so that it processes the log data immediately.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 9,
+    "discussions": {
+      "12134": {
+        "target_type": "question",
+        "target_id": 12134,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12135": {
+        "target_type": "question",
+        "target_id": 12135,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12136": {
+        "target_type": "question",
+        "target_id": 12136,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12137": {
+        "target_type": "question",
+        "target_id": 12137,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12138": {
+        "target_type": "question",
+        "target_id": 12138,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "attempts": [
+      {
+        "question": 41,
+        "answerVisible": true
+      },
+      {
+        "question": 42,
+        "answerVisible": true
+      },
+      {
+        "question": 43,
+        "answerVisible": true
+      },
+      {
+        "question": 44,
+        "answerVisible": true
+      },
+      {
+        "question": 45,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/26",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 26,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 12219,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 126,
+          "question_type": "mc_single",
+          "question_text": "You work for a manufacturing company that sources up to 750 different components, each from a different supplier. You've collected a labeled dataset that has on average 1000 examples for each unique component. Your team wants to implement an app to help warehouse workers recognize incoming components based on a photo of the component. You want to implement the first working version of this app (as Proof-Of-Concept) within a few working days. What should you do?<br/>",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47042,
+              "letter": "A",
+              "text": "Use Cloud Vision AutoML with the existing dataset.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 47043,
+              "letter": "B",
+              "text": "Use Cloud Vision AutoML, but reduce your dataset twice.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47044,
+              "letter": "C",
+              "text": "Use Cloud Vision API by providing custom labels as recognition hints.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47045,
+              "letter": "D",
+              "text": "Train your own image recognition model leveraging transfer learning techniques.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12220,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 127,
+          "question_type": "mc_single",
+          "question_text": "You are working on a niche product in the image recognition domain. Your team has developed a model that is dominated by custom C++ TensorFlow ops your team has implemented. These ops are used inside your main training loop and are performing bulky matrix multiplications. It currently takes up to several days to train a model. You want to decrease this time significantly and keep the cost low by using an accelerator on Google Cloud. What should you do?<br/>",
+          "solution_text": "Cloud TPUs require that models contain no custom TensorFlow operations inside the main training loop, ruling out options A and B. Since the scenario specifies a need to significantly decrease training time using an accelerator, CPUs (Option D) are insufficient despite their compatibility with custom ops. Cloud GPUs support workloads dominated by custom C++ TensorFlow ops when GPU kernel support is implemented, making Option C the correct choice.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47046,
+              "letter": "A",
+              "text": "Use Cloud TPUs without any additional adjustment to your code.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47047,
+              "letter": "B",
+              "text": "Use Cloud TPUs after implementing GPU kernel support for your customs ops.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47048,
+              "letter": "C",
+              "text": "Use Cloud GPUs after implementing GPU kernel support for your customs ops.",
+              "is_correct": true,
+              "order": 2
+            },
+            {
+              "id": 47049,
+              "letter": "D",
+              "text": "Stay on CPUs, and increase the size of the cluster you're training your model on.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12221,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 128,
+          "question_type": "mc_single",
+          "question_text": "You work on a regression problem in a natural language processing domain, and you have 100M labeled examples in your dataset. You have randomly shuffled your data and split your dataset into train and test samples (in a 90/10 ratio). After you trained the neural network and evaluated your model on a test set, you discover that the root-mean-squared error (RMSE) of your model is twice as high on the train set as on the test set. How should you improve the performance of your model?<br/>",
+          "solution_text": "The scenario describes underfitting, as the model's error on the training set is significantly higher than on the test set, indicating it fails to capture underlying patterns in the data. To address this, you must increase the model's capacity to learn more complex relationships. Adding layers or increasing vocabulary size (Option D) enhances complexity, whereas regularization (Option C) would further restrict learning and worsen underfitting.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47050,
+              "letter": "A",
+              "text": "Increase the share of the test sample in the train-test split.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47051,
+              "letter": "B",
+              "text": "Try to collect more data and increase the size of your dataset.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47052,
+              "letter": "C",
+              "text": "Try out regularization techniques (e.g., dropout of batch normalization) to avoid overfitting.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47053,
+              "letter": "D",
+              "text": "Increase the complexity of your model by, e.g., introducing an additional layer or increase sizing the size of vocabularies or n-grams used.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12222,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 129,
+          "question_type": "mc_single",
+          "question_text": "You use BigQuery as your centralized analytics platform. New data is loaded every day, and an ETL pipeline modifies the original data and prepares it for the final users. This ETL pipeline is regularly modified and can generate errors, but sometimes the errors are detected only after 2 weeks. You need to provide a method to recover from these errors, and your backups should be optimized for storage costs. How should you organize your data in BigQuery and store your backups?<br/>",
+          "solution_text": "Snapshot decorators only support time travel for up to 7 days, making option D invalid since errors are detected after 2 weeks.<br/>Option B is correct because exporting data to Cloud Storage provides a durable backup method that persists beyond the 7-day window and offers cost-optimized storage compared to maintaining full duplicates within BigQuery.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47054,
+              "letter": "A",
+              "text": "Organize your data in a single table, export, and compress and store the BigQuery data in Cloud Storage.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47055,
+              "letter": "B",
+              "text": "Organize your data in separate tables for each month, and export, compress, and store the data in Cloud Storage.",
+              "is_correct": true,
+              "order": 1
+            },
+            {
+              "id": 47056,
+              "letter": "C",
+              "text": "Organize your data in separate tables for each month, and duplicate your data on a separate dataset in BigQuery.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47057,
+              "letter": "D",
+              "text": "Organize your data in separate tables for each month, and use snapshot decorators to restore the table to a time prior to the corruption.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12223,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 130,
+          "question_type": "mc_single",
+          "question_text": "The marketing team at your organization provides regular updates of a segment of your customer dataset. The marketing team has given you a CSV with 1 million records that must be updated in BigQuery. When you use the UPDATE statement in BigQuery, you receive a quotaExceeded error. What should you do?<br/>",
+          "solution_text": "Direct UPDATE statements on large datasets can exceed DML quotas related to bytes modified or concurrency limits. Option D avoids this by loading the new data into a separate table and using a MERGE operation, which is optimized for bulk updates in BigQuery and circumvents the specific constraints triggering the quotaExceeded error.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47058,
+              "letter": "A",
+              "text": "Reduce the number of records updated each day to stay within the BigQuery UPDATE DML statement limit.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47059,
+              "letter": "B",
+              "text": "Increase the BigQuery UPDATE DML statement limit in the Quota management section of the Google Cloud Platform Console.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47060,
+              "letter": "C",
+              "text": "Split the source CSV file into smaller CSV files in Cloud Storage to reduce the number of BigQuery UPDATE DML statements per BigQuery job.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47061,
+              "letter": "D",
+              "text": "Import the new records from the CSV file into a new BigQuery table. Create a BigQuery job that merges the new records with the existing records and writes the results to a new BigQuery table.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 26,
+    "discussions": {
+      "12219": {
+        "target_type": "question",
+        "target_id": 12219,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12220": {
+        "target_type": "question",
+        "target_id": 12220,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12221": {
+        "target_type": "question",
+        "target_id": 12221,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12222": {
+        "target_type": "question",
+        "target_id": 12222,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12223": {
+        "target_type": "question",
+        "target_id": 12223,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      126,
+      127,
+      128,
+      129,
+      130
+    ],
+    "attempts": [
+      {
+        "question": 126,
+        "answerVisible": true
+      },
+      {
+        "question": 127,
+        "answerVisible": true
+      },
+      {
+        "question": 128,
+        "answerVisible": true
+      },
+      {
+        "question": 129,
+        "answerVisible": true
+      },
+      {
+        "question": 130,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

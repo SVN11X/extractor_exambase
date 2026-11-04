@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 56,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12369,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 276,
+        "question_type": "mc_single",
+        "question_text": "You are designing a Dataflow pipeline for a batch processing job. You want to mitigate multiple zonal failures at job submission time. What should you do?",
+        "solution_text": "Using the --region flag allows Dataflow to automatically distribute worker resources across multiple zones within that region.<br/>This automatic distribution mitigates the risk of zonal failures by ensuring that if one zone goes down, workers in other zones can continue processing or resume execution.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47649,
+            "letter": "A",
+            "text": "Submit duplicate pipelines in two different zones by using the --zone flag.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47650,
+            "letter": "B",
+            "text": "Set the pipeline staging location as a regional Cloud Storage bucket.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47651,
+            "letter": "C",
+            "text": "Specify a worker region by using the --region flag.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47652,
+            "letter": "D",
+            "text": "Create an Eventarc trigger to resubmit the job in case of zonal failure when submitting the job.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12370,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 277,
+        "question_type": "mc_single",
+        "question_text": "You are designing a real-time system for a ride hailing app that identifies areas with high demand for rides to effectively reroute available drivers to meet the demand. The system ingests data from multiple sources to Pub/Sub, processes the data, and stores the results for visualization and analysis in real-time dashboards. The data sources include driver location updates every 5 seconds and app-based booking events from riders. The data processing involves real-time aggregation of supply and demand data for the last 30 seconds, every 2 seconds, and storing the results in a low-latency system for visualization. What should you do?",
+        "solution_text": "A hopping window is required because the requirement specifies aggregating data over the last 30 seconds every 2 seconds, which involves overlapping time intervals. Memorystore (Redis) is the appropriate storage destination due to its low-latency capabilities, ensuring real-time visualization and analysis.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47653,
+            "letter": "A",
+            "text": "Group the data by using a tumbling window in a Dataflow pipeline, and write the aggregated data to Memorystore.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47654,
+            "letter": "B",
+            "text": "Group the data by using a hopping window in a Dataflow pipeline, and write the aggregated data to Memorystore.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47655,
+            "letter": "C",
+            "text": "Group the data by using a session window in a Dataflow pipeline, and write the aggregated data to BigQuery.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47656,
+            "letter": "D",
+            "text": "Group the data by using a hopping window in a Dataflow pipeline, and write the aggregated data to BigQuery.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12371,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 278,
+        "question_type": "mc_single",
+        "question_text": "Your car factory is pushing machine measurements as messages into a Pub/Sub topic in your Google Cloud project. A Dataflow streaming job, that you wrote with the Apache Beam SDK, reads these messages, sends acknowledgment to Pub/Sub, applies some custom business logic in a DoFn instance, and writes the result to BigQuery. You want to ensure that if your business logic fails on a message, the message will be sent to a Pub/Sub topic that you want to monitor for alerting purposes. What should you do?",
+        "solution_text": "The scenario requires handling failures occurring *after* the message has been acknowledged by Dataflow. Pub/Sub dead lettering (Option C) only applies to messages that fail processing before acknowledgment or exceed retry limits, making it ineffective here.<br/><br/>To capture business logic errors post-acknowledgment, you must implement explicit exception handling within the DoFn. Using side outputs to route failed records to a separate error topic is the standard pattern for this use case, as Google explicitly advises against using dead letter topics with Dataflow pipelines.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47657,
+            "letter": "A",
+            "text": "Enable retaining of acknowledged messages in your Pub/Sub pull subscription. Use Cloud Monitoring to monitor the subscription/num_retained_acked_messages metric on this subscription.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47658,
+            "letter": "B",
+            "text": "Use an exception handling block in your Dataflow’s DoFn code to push the messages that failed to be transformed through a side output and to a new Pub/Sub topic. Use Cloud Monitoring to monitor the topic/num_unacked_messages_by_region metric on this new topic.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47659,
+            "letter": "C",
+            "text": "Enable dead lettering in your Pub/Sub pull subscription, and specify a new Pub/Sub topic as the dead letter topic. Use Cloud Monitoring to monitor the subscription/dead_letter_message_count metric on your pull subscription.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47660,
+            "letter": "D",
+            "text": "Create a snapshot of your Pub/Sub pull subscription. Use Cloud Monitoring to monitor the snapshot/num_messages metric on this snapshot.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12372,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 279,
+        "question_type": "mc_single",
+        "question_text": "You want to store your team’s shared tables in a single dataset to make data easily accessible to various analysts. You want to make this data readable but unmodifiable by analysts. At the same time, you want to provide the analysts with individual workspaces in the same project, where they can create and store tables for their own use, without the tables being accessible by other analysts. What should you do?",
+        "solution_text": "Assigning the BigQuery Data Viewer role on the shared dataset ensures analysts can read but not modify the team's common tables. Creating individual datasets for each analyst and granting the Data Editor role at the dataset level provides private workspaces where they can create and store personal tables without other analysts accessing them.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47661,
+            "letter": "A",
+            "text": "Give analysts the BigQuery Data Viewer role at the project level. Create one other dataset, and give the analysts the BigQuery Data Editor role on that dataset.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47662,
+            "letter": "B",
+            "text": "Give analysts the BigQuery Data Viewer role at the project level. Create a dataset for each analyst, and give each analyst the BigQuery Data Editor role at the project level.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47663,
+            "letter": "C",
+            "text": "Give analysts the BigQuery Data Viewer role on the shared dataset. Create a dataset for each analyst, and give each analyst the BigQuery Data Editor role at the dataset level for their assigned dataset.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47664,
+            "letter": "D",
+            "text": "Give analysts the BigQuery Data Viewer role on the shared dataset. Create one other dataset and give the analysts the BigQuery Data Editor role on that dataset.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12373,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 280,
+        "question_type": "mc_single",
+        "question_text": "You are running a streaming pipeline with Dataflow and are using hopping windows to group the data as the data arrives. You noticed that some data is arriving late but is not being marked as late data, which is resulting in inaccurate aggregations downstream. You need to find a solution that allows you to capture the late data in the appropriate window. What should you do?",
+        "solution_text": "In Apache Beam/Dataflow, watermarks track event-time progress to determine when windows are considered complete.<br/>By configuring the pipeline to allow late data (e.g., using AllowedLateness or accumulation modes like ACCUMULATING), elements arriving after the watermark advances can be processed and added to existing windowed aggregates.<br/>This ensures that late-arriving records are correctly attributed to their intended hopping windows rather than being discarded or ignored.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47665,
+            "letter": "A",
+            "text": "Use watermarks to define the expected data arrival window. Allow late data as it arrives.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47666,
+            "letter": "B",
+            "text": "Change your windowing function to tumbling windows to avoid overlapping window periods.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47667,
+            "letter": "C",
+            "text": "Change your windowing function to session windows to define your windows based on certain activity.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47668,
+            "letter": "D",
+            "text": "Expand your hopping window so that the late data has more time to arrive within the grouping.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 56,
+  "discussions": {
+    "12369": {
+      "target_type": "question",
+      "target_id": 12369,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12370": {
+      "target_type": "question",
+      "target_id": 12370,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12371": {
+      "target_type": "question",
+      "target_id": 12371,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12372": {
+      "target_type": "question",
+      "target_id": 12372,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12373": {
+      "target_type": "question",
+      "target_id": 12373,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

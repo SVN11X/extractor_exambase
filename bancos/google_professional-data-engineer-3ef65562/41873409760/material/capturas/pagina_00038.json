@@ -1,0 +1,327 @@
+{
+  "url": "https://www.exambase.com/exams/google/professional-data-engineer/practice-questions/38",
+  "parser": "browser-network",
+  "payload": {
+    "result": {
+      "kind": "questions",
+      "page": 38,
+      "per_page": 5,
+      "total": 349,
+      "total_pages": 70,
+      "items": [
+        {
+          "id": 12279,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 186,
+          "question_type": "mc_single",
+          "question_text": "Your new customer has requested daily reports that show their net consumption of Google Cloud compute resources and who used the resources. You need to quickly and efficiently generate these daily reports. What should you do?<br/>",
+          "solution_text": "Exporting Cloud Logging data to BigQuery via a sink (Answer A) is the recommended best practice for scalable, queryable log analysis.<br/>BigQuery allows for efficient aggregation and complex filtering using SQL views on structured logs, whereas CSV exports to Cloud Storage (Answers B and D) require external processing and lack native analytical capabilities.<br/>Answer C suggests importing after filtering, but exporting directly to BigQuery retains all raw log data for comprehensive reporting flexibility.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47286,
+              "letter": "A",
+              "text": "Do daily exports of Cloud Logging data to BigQuery. Create views filtering by project, log type, resource, and user.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 47287,
+              "letter": "B",
+              "text": "Filter data in Cloud Logging by project, resource, and user; then export the data in CSV format.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47288,
+              "letter": "C",
+              "text": "Filter data in Cloud Logging by project, log type, resource, and user, then import the data into BigQuery.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47289,
+              "letter": "D",
+              "text": "Export Cloud Logging data to Cloud Storage in CSV format. Cleanse the data using Dataprep, filtering by project, resource, and user.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12280,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 187,
+          "question_type": "mc_single",
+          "question_text": "The Development and External teams have the project viewer Identity and Access Management (IAM) role in a folder named Visualization. You want the<br/>Development Team to be able to read data from both Cloud Storage and BigQuery, but the External Team should only be able to read data from BigQuery. What should you do?<br/><img class=\"in-exam-image\" src=\"/media/question_images/imported/PROFESSIONAL-DATA-ENGINEER/0012100001.jpg\"/><br/>\n",
+          "solution_text": "VPC Service Controls define security perimeters that restrict access to specific services. To allow the Development Team access to both Cloud Storage and BigQuery while denying the External Team access to Cloud Storage, you must create a perimeter containing Cloud Storage as a restricted service.<br/>By adding only the Development Team users to the perimeter's Access Level, they are granted access inside the boundary, whereas the External Team remains outside and is denied access to the restricted Cloud Storage resources.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47290,
+              "letter": "A",
+              "text": "Remove Cloud Storage IAM permissions to the External Team on the acme-raw-data project.",
+              "is_correct": false,
+              "order": 0
+            },
+            {
+              "id": 47291,
+              "letter": "B",
+              "text": "Create Virtual Private Cloud (VPC) firewall rules on the acme-raw-data project that deny all ingress traffic from the External Team CIDR range.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47292,
+              "letter": "C",
+              "text": "Create a VPC Service Controls perimeter containing both projects and BigQuery as a restricted API. Add the External Team users to the perimeter's Access Level.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47293,
+              "letter": "D",
+              "text": "Create a VPC Service Controls perimeter containing both projects and Cloud Storage as a restricted API. Add the Development Team users to the perimeter's Access Level.",
+              "is_correct": true,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12281,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 188,
+          "question_type": "mc_single",
+          "question_text": "Your startup has a web application that currently serves customers out of a single region in Asia. You are targeting funding that will allow your startup to serve customers globally. Your current goal is to optimize for cost, and your post-funding goal is to optimize for global presence and performance. You must use a native<br/>JDBC driver. What should you do?<br/>",
+          "solution_text": "Cloud Spanner is the only GCP database service among the choices that provides a global scale with strong consistency and supports native JDBC drivers. Options B and C are incorrect because Bigtable does not support JDBC drivers. Option D is incorrect because Cloud SQL's High Availability configuration ensures uptime within a single region but does not optimize for global latency or presence across multiple continents.",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47294,
+              "letter": "A",
+              "text": "Use Cloud Spanner to configure a single region instance initially, and then configure multi-region Cloud Spanner instances after securing funding.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 47295,
+              "letter": "B",
+              "text": "Use a Cloud SQL for PostgreSQL highly available instance first, and Bigtable with US, Europe, and Asia replication after securing funding.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47296,
+              "letter": "C",
+              "text": "Use a Cloud SQL for PostgreSQL zonal instance first, and Bigtable with US, Europe, and Asia after securing funding.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47297,
+              "letter": "D",
+              "text": "Use a Cloud SQL for PostgreSQL zonal instance first, and Cloud SQL for PostgreSQL with highly available configuration after securing funding.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12282,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 189,
+          "question_type": "mc_single",
+          "question_text": "You need to migrate 1 PB of data from an on-premises data center to Google Cloud. Data transfer time during the migration should take only a few hours. You want to follow Google-recommended practices to facilitate the large data transfer over a secure connection. What should you do?<br/>",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47298,
+              "letter": "A",
+              "text": "Establish a Cloud Interconnect connection between the on-premises data center and Google Cloud, and then use the Storage Transfer Service.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 47299,
+              "letter": "B",
+              "text": "Use a Transfer Appliance and have engineers manually encrypt, decrypt, and verify the data.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47300,
+              "letter": "C",
+              "text": "Establish a Cloud VPN connection, start gcloud compute scp jobs in parallel, and run checksums to verify the data.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47301,
+              "letter": "D",
+              "text": "Reduce the data into 3 TB batches, transfer the data using gsutil, and run checksums to verify the data.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 12283,
+          "topic_id": 105,
+          "series_id": null,
+          "case_study_id": null,
+          "order": 190,
+          "question_type": "mc_single",
+          "question_text": "You are loading CSV files from Cloud Storage to BigQuery. The files have known data quality issues, including mismatched data types, such as STRINGs and<br/>INT64s in the same column, and inconsistent formatting of values such as phone numbers or addresses. You need to create the data pipeline to maintain data quality and perform the required cleansing and transformation. What should you do?<br/>",
+          "solution_text": "",
+          "answer_image_url": null,
+          "type_data": {},
+          "choices": [
+            {
+              "id": 47302,
+              "letter": "A",
+              "text": "Use Data Fusion to transform the data before loading it into BigQuery.",
+              "is_correct": true,
+              "order": 0
+            },
+            {
+              "id": 47303,
+              "letter": "B",
+              "text": "Use Data Fusion to convert the CSV files to a self-describing data format, such as AVRO, before loading the data to BigQuery.",
+              "is_correct": false,
+              "order": 1
+            },
+            {
+              "id": 47304,
+              "letter": "C",
+              "text": "Load the CSV files into a staging table with the desired schema, perform the transformations with SQL, and then write the results to the final destination table.",
+              "is_correct": false,
+              "order": 2
+            },
+            {
+              "id": 47305,
+              "letter": "D",
+              "text": "Create a table with the desired schema, load the CSV files into the table, and perform the transformations in place using SQL.",
+              "is_correct": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "description": "",
+          "is_case_study": false,
+          "case_study_text": ""
+        }
+      ],
+      "series": [],
+      "case_studies": [],
+      "exam_topics": [
+        {
+          "id": 105,
+          "order": 1,
+          "name": "Topic 1",
+          "is_case_study": false,
+          "question_count": 349
+        }
+      ]
+    },
+    "page": 38,
+    "discussions": {
+      "12279": {
+        "target_type": "question",
+        "target_id": 12279,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12280": {
+        "target_type": "question",
+        "target_id": 12280,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12281": {
+        "target_type": "question",
+        "target_id": 12281,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12282": {
+        "target_type": "question",
+        "target_id": 12282,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      },
+      "12283": {
+        "target_type": "question",
+        "target_id": 12283,
+        "comment_count": 0,
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    "topicId": null
+  },
+  "warnings": [],
+  "capture": {
+    "version": 2,
+    "expectedCount": 5,
+    "questions": [
+      186,
+      187,
+      188,
+      189,
+      190
+    ],
+    "attempts": [
+      {
+        "question": 186,
+        "answerVisible": true
+      },
+      {
+        "question": 187,
+        "answerVisible": true
+      },
+      {
+        "question": 188,
+        "answerVisible": true
+      },
+      {
+        "question": 189,
+        "answerVisible": true
+      },
+      {
+        "question": 190,
+        "answerVisible": true
+      }
+    ],
+    "unanswered": []
+  },
+  "transport": {
+    "engine": "scrapling",
+    "version": "0.5",
+    "network_incomplete": [],
+    "network_response_types": {},
+    "validated_network_page": true
+  }
+}

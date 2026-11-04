@@ -1,0 +1,281 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 33,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12254,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 161,
+        "question_type": "mc_single",
+        "question_text": "You need to choose a database to store time series CPU and memory usage for millions of computers. You need to store this data in one-second interval samples. Analysts will be performing real-time, ad hoc analytics against the database. You want to avoid being charged for every query executed and ensure that the schema design will allow for future growth of the dataset. Which database and data model should you choose?<br/>",
+        "solution_text": "Bigtable is the appropriate choice for high-volume time-series data because BigQuery charges per query, violating the cost requirement. <br/>A narrow table schema (one row per timestamp) avoids exceeding Bigtable's recommended maximum row size and simplifies querying compared to a wide table. <br/>Combining the computer identifier and timestamp in the row key ensures efficient access patterns for this specific workload.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47186,
+            "letter": "A",
+            "text": "Create a table in BigQuery, and append the new samples for CPU and memory to the table",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47187,
+            "letter": "B",
+            "text": "Create a wide table in BigQuery, create a column for the sample value at each second, and update the row with the interval for each second",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47188,
+            "letter": "C",
+            "text": "Create a narrow table in Bigtable with a row key that combines the Computer Engine computer identifier with the sample time at each second",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47189,
+            "letter": "D",
+            "text": "Create a wide table in Bigtable with a row key that combines the computer identifier with the sample time at each minute, and combine the values for each second as column data.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12255,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 162,
+        "question_type": "mc_single",
+        "question_text": "You want to archive data in Cloud Storage. Because some data is very sensitive, you want to use the `Trust No One` (TNO) approach to encrypt your data to prevent the cloud provider staff from decrypting your data. What should you do?<br/>",
+        "solution_text": "The 'Trust No One' (TNO) model ensures that the cloud provider cannot access your data, which requires using Customer-Supplied Encryption Keys (CSEK) where Google Cloud never stores the keys.<br/>Among the CSEK options, storing the key in a different project accessible only to the security team isolates it from general operational access and prevents accidental exposure or unauthorized decryption by non-security personnel.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47190,
+            "letter": "A",
+            "text": "Use gcloud kms keys create to create a symmetric key. Then use gcloud kms encrypt to encrypt each archival file with the key and unique additional authenticated data (AAD). Use gsutil cp to upload each encrypted file to the Cloud Storage bucket, and keep the AAD outside of Google Cloud.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47191,
+            "letter": "B",
+            "text": "Use gcloud kms keys create to create a symmetric key. Then use gcloud kms encrypt to encrypt each archival file with the key. Use gsutil cp to upload each encrypted file to the Cloud Storage bucket. Manually destroy the key previously used for encryption, and rotate the key once.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47192,
+            "letter": "C",
+            "text": "Specify customer-supplied encryption key (CSEK) in the .boto configuration file. Use gsutil cp to upload each archival file to the Cloud Storage bucket. Save the CSEK in Cloud Memorystore as permanent storage of the secret.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47193,
+            "letter": "D",
+            "text": "Specify customer-supplied encryption key (CSEK) in the .boto configuration file. Use gsutil cp to upload each archival file to the Cloud Storage bucket. Save the CSEK in a different project that only the security team can access.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12256,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 163,
+        "question_type": "mc_single",
+        "question_text": "You have data pipelines running on BigQuery, Dataflow, and Dataproc. You need to perform health checks and monitor their behavior, and then notify the team managing the pipelines if they fail. You also need to be able to work across multiple projects. Your preference is to use managed products or features of the platform. What should you do?<br/>",
+        "solution_text": "Cloud Monitoring is the native, fully managed service in GCP designed for collecting metrics and logs from various services like BigQuery, Dataflow, and Dataproc.<br/>It supports cross-project monitoring capabilities and allows you to define alerting policies that trigger notifications (such as emails or SMS) when specific failure conditions are met.<br/>This approach aligns with the preference for managed products, eliminating the operational overhead of building custom solutions on Compute Engine or App Engine.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47194,
+            "letter": "A",
+            "text": "Export the information to Cloud Monitoring, and set up an Alerting policy",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47195,
+            "letter": "B",
+            "text": "Run a Virtual Machine in Compute Engine with Airflow, and export the information to Cloud Monitoring",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47196,
+            "letter": "C",
+            "text": "Export the logs to BigQuery, and set up App Engine to read that information and send emails if you find a failure in the logs",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47197,
+            "letter": "D",
+            "text": "Develop an App Engine application to consume logs using GCP API calls, and send emails if you find a failure in the logs",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12257,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 164,
+        "question_type": "mc_single",
+        "question_text": "You are working on a linear regression model on BigQuery ML to predict a customer's likelihood of purchasing your company's products. Your model uses a city name variable as a key predictive component. In order to train and serve the model, your data must be organized in columns. You want to prepare your data using the least amount of coding while maintaining the predictable variables. What should you do?<br/>",
+        "solution_text": "Linear regression models require numerical inputs and cannot directly process categorical string data like city names.<br/>One-hot encoding transforms these categories into binary columns, preserving the predictive value of each distinct city without imposing arbitrary ordinal relationships.<br/>BigQuery ML supports this transformation via standard SQL operations or automatic preprocessing, fulfilling the requirement to use the least amount of coding while maintaining data integrity.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47198,
+            "letter": "A",
+            "text": "Create a new view with BigQuery that does not include a column with city information.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47199,
+            "letter": "B",
+            "text": "Use SQL in BigQuery to transform the state column using a one-hot encoding method, and make each city a column with binary values.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47200,
+            "letter": "C",
+            "text": "Use TensorFlow to create a categorical variable with a vocabulary list. Create the vocabulary file and upload that as part of your model to BigQuery ML.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47201,
+            "letter": "D",
+            "text": "Use Cloud Data Fusion to assign each city to a region that is labeled as 1, 2, 3, 4, or 5, and then use that number to represent the city in the model.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12258,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 165,
+        "question_type": "mc_single",
+        "question_text": "You work for a large bank that operates in locations throughout North America. You are setting up a data storage system that will handle bank account transactions. You require ACID compliance and the ability to access data with SQL. Which solution is appropriate?<br/>",
+        "solution_text": "Cloud Spanner is the appropriate solution because it provides strong global consistency and full ACID compliance across multiple regions, which is critical for bank transactions in North America.<br/>It supports standard SQL access, meeting the query requirement while handling high-scale distributed workloads better than single-region Cloud SQL.<br/>Using locking read-write transactions ensures strict serializability required for financial data integrity.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47202,
+            "letter": "A",
+            "text": "Store transaction data in Cloud Spanner. Enable stale reads to reduce latency.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47203,
+            "letter": "B",
+            "text": "Store transaction in Cloud Spanner. Use locking read-write transactions.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47204,
+            "letter": "C",
+            "text": "Store transaction data in BigQuery. Disabled the query cache to ensure consistency.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47205,
+            "letter": "D",
+            "text": "Store transaction data in Cloud SQL. Use a federated query BigQuery for analysis.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 33,
+  "discussions": {
+    "12254": {
+      "target_type": "question",
+      "target_id": 12254,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12255": {
+      "target_type": "question",
+      "target_id": 12255,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12256": {
+      "target_type": "question",
+      "target_id": 12256,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12257": {
+      "target_type": "question",
+      "target_id": 12257,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12258": {
+      "target_type": "question",
+      "target_id": 12258,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}

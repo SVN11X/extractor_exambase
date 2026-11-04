@@ -1,0 +1,295 @@
+{
+  "result": {
+    "kind": "questions",
+    "page": 25,
+    "per_page": 5,
+    "total": 349,
+    "total_pages": 70,
+    "items": [
+      {
+        "id": 12214,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 121,
+        "question_type": "mc_single",
+        "question_text": "You currently have a single on-premises Kafka cluster in a data center in the us-east region that is responsible for ingesting messages from IoT devices globally.<br/>Because large parts of globe have poor internet connectivity, messages sometimes batch at the edge, come in all at once, and cause a spike in load on your<br/>Kafka cluster. This is becoming difficult to manage and prohibitively expensive. What is the Google-recommended cloud native architecture for this scenario?<br/>",
+        "solution_text": "Option C is the correct Google-recommended cloud-native architecture because it replaces on-prem Kafka with Cloud Pub/Sub, which offers global ingestion points to mitigate connectivity issues and load spikes. <br/>Cloud Dataflow provides serverless, autoscaling stream processing capabilities that handle variable message volumes efficiently without manual cluster management.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47020,
+            "letter": "A",
+            "text": "Edge TPUs as sensor devices for storing and transmitting the messages.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47021,
+            "letter": "B",
+            "text": "Cloud Dataflow connected to the Kafka cluster to scale the processing of incoming messages.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47022,
+            "letter": "C",
+            "text": "An IoT gateway connected to Cloud Pub/Sub, with Cloud Dataflow to read and process the messages from Cloud Pub/Sub.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47023,
+            "letter": "D",
+            "text": "A Kafka cluster virtualized on Compute Engine in us-east with Cloud Load Balancing to connect to the devices around the world.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12215,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 122,
+        "question_type": "mc_multi",
+        "question_text": "You decided to use Cloud Datastore to ingest vehicle telemetry data in real time. You want to build a storage system that will account for the long-term data growth, while keeping the costs low. You also want to create snapshots of the data periodically, so that you can make a point-in-time (PIT) recovery, or clone a copy of the data for Cloud Datastore in a different environment. You want to archive these snapshots for a long time. Which two methods can accomplish this?<br/>(Choose two.)<br/>",
+        "solution_text": "Option A is correct because managed exports create immutable snapshots suitable for Point-in-Time (PIT) recovery, and storing these files in Nearline or Coldline Cloud Storage classes significantly reduces long-term archival costs.<br/>Option B is correct because importing the exported data into a separate Datastore namespace allows you to clone the dataset for use in a different environment, fulfilling the requirement to restore or replicate Datastore data.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47024,
+            "letter": "A",
+            "text": "Use managed export, and store the data in a Cloud Storage bucket using Nearline or Coldline class.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47025,
+            "letter": "B",
+            "text": "Use managed export, and then import to Cloud Datastore in a separate project under a unique namespace reserved for that export.",
+            "is_correct": true,
+            "order": 1
+          },
+          {
+            "id": 47026,
+            "letter": "C",
+            "text": "Use managed export, and then import the data into a BigQuery table created just for that export, and delete temporary export files.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47027,
+            "letter": "D",
+            "text": "Write an application that uses Cloud Datastore client libraries to read all the entities. Treat each entity as a BigQuery table row via BigQuery streaming insert. Assign an export timestamp for each export, and attach it as an extra column for each row. Make sure that the BigQuery table is partitioned using the export timestamp column.",
+            "is_correct": false,
+            "order": 3
+          },
+          {
+            "id": 47028,
+            "letter": "E",
+            "text": "Write an application that uses Cloud Datastore client libraries to read all the entities. Format the exported data into a JSON file. Apply compression before storing the data in Cloud Source Repositories.",
+            "is_correct": false,
+            "order": 4
+          }
+        ]
+      },
+      {
+        "id": 12216,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 123,
+        "question_type": "mc_multi",
+        "question_text": "You need to create a data pipeline that copies time-series transaction data so that it can be queried from within BigQuery by your data science team for analysis.<br/>Every hour, thousands of transactions are updated with a new status. The size of the initial dataset is 1.5 PB, and it will grow by 3 TB per day. The data is heavily structured, and your data science team will build machine learning models based on this data. You want to maximize performance and usability for your data science team. Which two strategies should you adopt? (Choose two.)<br/>",
+        "solution_text": "Denormalizing data reduces the need for complex joins during query execution, significantly improving performance in BigQuery's columnar storage engine. Appending status updates instead of performing row-level UPDATEs is a best practice in BigQuery because it avoids the high computational cost and slowness associated with mutable operations on large datasets, while preserving historical state for analysis.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47029,
+            "letter": "A",
+            "text": "Denormalize the data as must as possible.",
+            "is_correct": true,
+            "order": 0
+          },
+          {
+            "id": 47030,
+            "letter": "B",
+            "text": "Preserve the structure of the data as much as possible.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47031,
+            "letter": "C",
+            "text": "Use BigQuery UPDATE to further reduce the size of the dataset.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47032,
+            "letter": "D",
+            "text": "Develop a data pipeline where status updates are appended to BigQuery instead of updated.",
+            "is_correct": true,
+            "order": 3
+          },
+          {
+            "id": 47033,
+            "letter": "E",
+            "text": "Copy a daily snapshot of transaction data to Cloud Storage and store it as an Avro file. Use BigQuery's support for external data sources to query.",
+            "is_correct": false,
+            "order": 4
+          }
+        ]
+      },
+      {
+        "id": 12217,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 124,
+        "question_type": "mc_single",
+        "question_text": "You are designing a cloud-native historical data processing system to meet the following conditions:<br/>✑ The data being analyzed is in CSV, Avro, and PDF formats and will be accessed by multiple analysis tools including Dataproc, BigQuery, and Compute<br/>Engine.<br/>✑ A batch pipeline moves daily data.<br/>✑ Performance is not a factor in the solution.<br/>✑ The solution design should maximize availability.<br/>How should you design data storage for this solution?<br/>",
+        "solution_text": "Cloud Storage is the correct choice because it supports binary formats like PDF, which BigQuery cannot natively store as raw objects. <br/>Multi-regional buckets provide higher availability and durability than regional buckets by replicating data across multiple geographic regions, satisfying the requirement to maximize availability.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47034,
+            "letter": "A",
+            "text": "Create a Dataproc cluster with high availability. Store the data in HDFS, and perform analysis as needed.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47035,
+            "letter": "B",
+            "text": "Store the data in BigQuery. Access the data using the BigQuery Connector on Dataproc and Compute Engine.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47036,
+            "letter": "C",
+            "text": "Store the data in a regional Cloud Storage bucket. Access the bucket directly using Dataproc, BigQuery, and Compute Engine.",
+            "is_correct": false,
+            "order": 2
+          },
+          {
+            "id": 47037,
+            "letter": "D",
+            "text": "Store the data in a multi-regional Cloud Storage bucket. Access the data directly using Dataproc, BigQuery, and Compute Engine.",
+            "is_correct": true,
+            "order": 3
+          }
+        ]
+      },
+      {
+        "id": 12218,
+        "topic_id": 105,
+        "series_id": null,
+        "case_study_id": null,
+        "order": 125,
+        "question_type": "mc_single",
+        "question_text": "You have a petabyte of analytics data and need to design a storage and processing platform for it. You must be able to perform data warehouse-style analytics on the data in Google Cloud and expose the dataset as files for batch analysis tools in other cloud providers. What should you do?<br/>",
+        "solution_text": "The requirement for data warehouse-style analytics in Google Cloud is best served by BigQuery.<br/>Storing a compressed copy of the dataset in Cloud Storage exposes the files for batch analysis tools on other cloud providers, satisfying the interoperability constraint.<br/>Option D introduces an arbitrary and unsupported 80/20 data ratio, while A and B fail to provide file-based access for external systems.",
+        "answer_image_url": null,
+        "type_data": {},
+        "choices": [
+          {
+            "id": 47038,
+            "letter": "A",
+            "text": "Store and process the entire dataset in BigQuery.",
+            "is_correct": false,
+            "order": 0
+          },
+          {
+            "id": 47039,
+            "letter": "B",
+            "text": "Store and process the entire dataset in Bigtable.",
+            "is_correct": false,
+            "order": 1
+          },
+          {
+            "id": 47040,
+            "letter": "C",
+            "text": "Store the full dataset in BigQuery, and store a compressed copy of the data in a Cloud Storage bucket.",
+            "is_correct": true,
+            "order": 2
+          },
+          {
+            "id": 47041,
+            "letter": "D",
+            "text": "Store the warm data as files in Cloud Storage, and store the active data in BigQuery. Keep this ratio as 80% warm and 20% active.",
+            "is_correct": false,
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "description": "",
+        "is_case_study": false,
+        "case_study_text": ""
+      }
+    ],
+    "series": [],
+    "case_studies": [],
+    "exam_topics": [
+      {
+        "id": 105,
+        "order": 1,
+        "name": "Topic 1",
+        "is_case_study": false,
+        "question_count": 349
+      }
+    ]
+  },
+  "page": 25,
+  "discussions": {
+    "12214": {
+      "target_type": "question",
+      "target_id": 12214,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12215": {
+      "target_type": "question",
+      "target_id": 12215,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12216": {
+      "target_type": "question",
+      "target_id": 12216,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12217": {
+      "target_type": "question",
+      "target_id": 12217,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    },
+    "12218": {
+      "target_type": "question",
+      "target_id": 12218,
+      "comment_count": 0,
+      "items": [],
+      "next_cursor": null
+    }
+  },
+  "topicId": null
+}
