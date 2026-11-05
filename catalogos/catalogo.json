@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-11-04T19:00:49.167327+00:00",
+  "updated_at": "2026-11-05T14:44:23.249922+00:00",
   "advertised_total": 1657,
   "vendors": [
     {
@@ -1319,10 +1319,14 @@
     "Las listas completas se obtienen al actualizar el catálogo. Puedes usar cualquier URL de examen compatible."
   ],
   "last_update": {
-    "updated_vendors": [
-      "google-cloud"
+    "updated_vendors": [],
+    "errors": [
+      {
+        "vendor": "microsoft",
+        "error": "Índice parcial: se encontraron 50 de 135 exámenes anunciados; se conserva el catálogo previo.",
+        "blocked": false
+      }
     ],
-    "errors": [],
     "previous_entries_retained": true
   },
   "vendor_updated_at": {
