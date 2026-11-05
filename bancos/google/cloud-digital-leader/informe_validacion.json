@@ -71,7 +71,7 @@
   "observed_page_totals": [
     58
   ],
-  "duplicate_observations": 144,
+  "duplicate_observations": 4,
   "conflicts": [],
   "errors": [],
   "missing_or_special_answers": [
@@ -103,11 +103,14 @@
   "answers_missing": [
     288
   ],
+  "answers_unmarked_in_source": [
+    288
+  ],
   "answers_complete": false,
   "empty_questions": [],
   "empty_choices": [],
   "images_downloaded": 0,
-  "integrity_checked_at": "2026-11-04T19:15:17.600066+00:00",
+  "integrity_checked_at": "2026-11-05T01:20:47.168935+00:00",
   "content_review_complete": false,
   "references_complete": true,
   "unresolved_references": [],
