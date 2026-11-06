@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-11-05T14:44:23.249922+00:00",
+  "updated_at": "2026-11-06T14:23:03.115575+00:00",
   "advertised_total": 1657,
   "vendors": [
     {
@@ -1322,8 +1322,8 @@
     "updated_vendors": [],
     "errors": [
       {
-        "vendor": "microsoft",
-        "error": "Índice parcial: se encontraron 50 de 135 exámenes anunciados; se conserva el catálogo previo.",
+        "vendor": "cisco",
+        "error": "Índice parcial: se encontraron 50 de 111 exámenes anunciados; se conserva el catálogo previo.",
         "blocked": false
       }
     ],
