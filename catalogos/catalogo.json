@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-11-07T13:12:08.397133+00:00",
+  "updated_at": "2026-11-08T13:32:09.611021+00:00",
   "advertised_total": 1657,
   "vendors": [
     {
@@ -1322,8 +1322,8 @@
     "updated_vendors": [],
     "errors": [
       {
-        "vendor": "fortinet",
-        "error": "Índice parcial: se encontraron 50 de 82 exámenes anunciados; se conserva el catálogo previo.",
+        "vendor": "salesforce",
+        "error": "Índice parcial: se encontraron 49 de 69 exámenes anunciados; se conserva el catálogo previo.",
         "blocked": false
       }
     ],
