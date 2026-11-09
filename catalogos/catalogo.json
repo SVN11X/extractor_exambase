@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-11-08T13:32:09.611021+00:00",
+  "updated_at": "2026-11-09T13:57:20.424485+00:00",
   "advertised_total": 1657,
   "vendors": [
     {
@@ -1322,8 +1322,8 @@
     "updated_vendors": [],
     "errors": [
       {
-        "vendor": "salesforce",
-        "error": "Índice parcial: se encontraron 49 de 69 exámenes anunciados; se conserva el catálogo previo.",
+        "vendor": "microsoft",
+        "error": "Índice parcial: se encontraron 50 de 135 exámenes anunciados; se conserva el catálogo previo.",
         "blocked": false
       }
     ],
