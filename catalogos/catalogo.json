@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-11-09T16:30:39.210334+00:00",
+  "updated_at": "2026-11-10T14:58:44.149504+00:00",
   "advertised_total": 1657,
   "vendors": [
     {
@@ -1322,8 +1322,8 @@
     "updated_vendors": [],
     "errors": [
       {
-        "vendor": "vmware",
-        "error": "Índice parcial: se encontraron 50 de 64 exámenes anunciados; se conserva el catálogo previo.",
+        "vendor": "test-prep",
+        "error": "Índice parcial: se encontraron 50 de 53 exámenes anunciados; se conserva el catálogo previo.",
         "blocked": false
       }
     ],
